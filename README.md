@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Firemisc frontend Web Application. This application is created using React
 
 ## Available Scripts
 
