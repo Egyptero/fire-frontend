@@ -1,0 +1,12 @@
+{
+  "tenantIds": ["5cb717d2db794f59f8f876be"],
+  "sharedAgent": false,
+  "role": "User",
+  "mode": "Push",
+  "interactionIds": [],
+  "_id": "5cc8343996a8db1d3c16c202",
+  "firstname": "Asmaa",
+  "lastname": "Salah",
+  "username": "asalah",
+  "email": "asalah@firemisc.com"
+}

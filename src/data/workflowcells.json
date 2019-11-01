@@ -1,0 +1,141 @@
+{
+  "data": [
+    {
+      "type": "standard.Circle",
+      "position": { "x": 4910, "y": 70 },
+      "size": { "width": 60, "height": 60 },
+      "angle": 0,
+      "root": { "title": "Start" },
+      "cursor": "hand",
+      "id": "2c5ff2b7-002a-4fa2-bd60-36894231207f",
+      "z": 1,
+      "attrs": {
+        "body": { "fill": "#000078", "stroke": "#000078" },
+        "label": { "fill": "#FFFFFF", "text": "Start" }
+      }
+    },
+    {
+      "type": "standard.HeaderedRectangle",
+      "position": { "x": 4850, "y": 210 },
+      "size": { "width": 180, "height": 60 },
+      "angle": 0,
+      "root": { "title": "Queue" },
+      "id": "5a8f6b0f-f3d8-42d5-bf9b-d24cd504c083",
+      "z": 2,
+      "attrs": {
+        "body": { "fill": "#EFE5B0", "stroke": "#C00000" },
+        "header": { "fill": "#C00000", "stroke": "#C00000" },
+        "headerText": { "fill": "#FFFFFF", "text": "Queue to skill" }
+      }
+    },
+    {
+      "type": "standard.Link",
+      "source": {
+        "type": "standard.Circle",
+        "position": { "x": 4910, "y": 70 },
+        "size": { "width": 60, "height": 60 },
+        "angle": 0,
+        "root": { "title": "Start" },
+        "cursor": "hand",
+        "id": "2c5ff2b7-002a-4fa2-bd60-36894231207f",
+        "z": 1,
+        "attrs": {
+          "body": { "fill": "#000078", "stroke": "#000078" },
+          "label": { "fill": "#FFFFFF", "text": "Start" }
+        }
+      },
+      "target": { "id": "5a8f6b0f-f3d8-42d5-bf9b-d24cd504c083" },
+      "id": "d7205db6-606c-49d2-8c75-4673893e5fa8",
+      "router": { "name": "orthogonal" },
+      "z": 3,
+      "attrs": {
+        "line": { "stroke": "#000000" },
+        "root": { "title": "Link", "tabindex": 14 },
+        "label": { "text": "Yes", "fill": "#000000" }
+      }
+    },
+    {
+      "type": "standard.Circle",
+      "position": { "x": 4910, "y": 350 },
+      "size": { "width": 60, "height": 60 },
+      "angle": 0,
+      "root": { "title": "Stop" },
+      "id": "bfc0a0b2-eb10-4220-bb5c-e9fe0a8da3cd",
+      "z": 4,
+      "attrs": {
+        "body": { "fill": "#C80000", "stroke": "#C80000" },
+        "label": { "fill": "#FFFFFF", "text": "Stop" }
+      }
+    },
+    {
+      "type": "standard.Link",
+      "source": {
+        "type": "standard.HeaderedRectangle",
+        "position": { "x": 4850, "y": 210 },
+        "size": { "width": 180, "height": 60 },
+        "angle": 0,
+        "root": { "title": "Queue" },
+        "id": "5a8f6b0f-f3d8-42d5-bf9b-d24cd504c083",
+        "z": 2,
+        "attrs": {
+          "body": { "fill": "#EFE5B0", "stroke": "#C00000" },
+          "header": { "fill": "#C00000", "stroke": "#C00000" },
+          "headerText": { "fill": "#FFFFFF", "text": "Queue to skill" }
+        }
+      },
+      "target": { "id": "bfc0a0b2-eb10-4220-bb5c-e9fe0a8da3cd" },
+      "id": "8c138a73-1762-4676-8e30-962900549370",
+      "router": { "name": "orthogonal" },
+      "z": 5,
+      "attrs": {
+        "line": { "stroke": "#000000" },
+        "root": { "title": "Link", "tabindex": 14 },
+        "label": { "text": "Yes", "fill": "#000000" }
+      }
+    },
+    {
+      "type": "standard.HeaderedRectangle",
+      "position": { "x": 4640, "y": 210 },
+      "size": { "width": 180, "height": 60 },
+      "angle": 0,
+      "root": { "title": "Bot" },
+      "id": "897a3ae3-6e6c-4d9d-9719-b9c04ac7f4ae",
+      "z": 6,
+      "attrs": {
+        "body": { "fill": "#C893FF", "stroke": "#400080" },
+        "header": { "fill": "#400080", "stroke": "#400080" },
+        "headerText": { "fill": "#FFFFFF", "text": "Queue to bot" }
+      }
+    },
+    {
+      "type": "standard.Link",
+      "source": {
+        "type": "standard.Circle",
+        "position": { "x": 4910, "y": 70 },
+        "size": { "width": 60, "height": 60 },
+        "angle": 0,
+        "root": { "title": "Start" },
+        "cursor": "hand",
+        "id": "2c5ff2b7-002a-4fa2-bd60-36894231207f",
+        "z": 1,
+        "attrs": {
+          "body": { "fill": "#000078", "stroke": "#000078" },
+          "label": { "fill": "#FFFFFF", "text": "Start" }
+        }
+      },
+      "target": { "id": "897a3ae3-6e6c-4d9d-9719-b9c04ac7f4ae" },
+      "id": "971b866d-9367-4f9d-9403-54c2cb38ac6f",
+      "router": { "name": "orthogonal" },
+      "z": 7,
+      "attrs": {
+        "line": { "stroke": "#000000" },
+        "root": { "title": "Link", "tabindex": 14 },
+        "label": { "text": "Yes", "fill": "#000000" }
+      }
+    }
+  ],
+  "_id": "5cbf1a23eef7212704b23dfe",
+  "name": "Facebook flow",
+  "tenantId": "5cb717d2db794f59f8f876be",
+  "__v": 0
+}

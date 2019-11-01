@@ -1,0 +1,42 @@
+{
+  "action": "addinteraction",
+  "message": "Add interaction",
+  "status": "Reserved",
+  "nextStatus": "Ready",
+  "interactionDetails": {
+    "interaction": {
+      "stage": "Offer",
+      "schedule": "2019-05-17T00:00:00.000Z",
+      "_id": "5cddf3309a1bff2d00a85c47",
+      "customerId": "5ccee205d2ca753510499dcd",
+      "typeId": "5cd0ac2b2913842040c2ab14",
+      "attached": {
+        "title": "Should work-Change from inside",
+        "description": "should work-Change from inside",
+        "start": "2019-05-17",
+        "due": "2019-05-24"
+      },
+      "conversationData": [],
+      "creationDate": "2019-05-16T23:33:04.972Z",
+      "lastModifiedDate": "2019-05-16T23:33:04.972Z",
+      "tenantId": "5cc99dc8a870ac3834e57308",
+      "__v": 2,
+      "data": { "fielda": "Sample" },
+      "skillgroupId": "5cc9a1b1a870ac3834e57329",
+      "nodeId": "ec98bbf5-c6ce-4145-888a-54b77c4e5f4c",
+      "workflowId": "5cdae61fb14941432c963b6c",
+      "agentId": "5cc99d88a870ac3834e57305"
+    },
+    "buttons": {
+      "accept": true,
+      "reject": true,
+      "hold": false,
+      "resume": false,
+      "terminate": true,
+      "close": false,
+      "transfer": false,
+      "conference": false
+    }
+  },
+  "interactionIds": ["5cddf3309a1bff2d00a85c47"]
+}

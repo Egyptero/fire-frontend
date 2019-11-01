@@ -1,0 +1,23 @@
+[
+  {
+    "configuration": {
+      "facebook": { "pages": [], "accounts": [], "messenger": false },
+      "twitter": { "pages": [], "accounts": [], "messenger": false }
+    },
+    "emails": [],
+    "phones": [],
+    "score": 0,
+    "_id": "5cb45e3035458b24ec2c9697",
+    "firstname": "Mamdouh",
+    "lastname": "Aref",
+    "username": "maref",
+    "tenantIds": [
+      {
+        "score": 0,
+        "_id": "5cb45e3035458b24ec2c9698",
+        "tenantId": "5c4c91896e24335694c7f497"
+      }
+    ],
+    "__v": 0
+  }
+]
