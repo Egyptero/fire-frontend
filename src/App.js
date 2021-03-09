@@ -9,7 +9,7 @@ import isAuthenticated from "./app/isAuthenticated";
 import getSharedApp from "./app/getSharedApp";
 import theme from "./app/defaultTheme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import OfferInteractionSnackbar from "./components/notifications/OfferInteractionSnackbar";
+import OfferInteractionSnackbarMinimum from "./components/notifications/OfferInteractionSnackbarMinimum";
 import handleAccept from "./components/io/output/handleAccept";
 import handleReject from "./components/io/output/handleReject";
 import handleClose from "./components/io/output/handleClose";
@@ -75,10 +75,10 @@ class App extends Component {
     snackbars: [],
     screen: null,
     sipUA: null,
-    sipState: null
+    sipState: null,
   };
 
-  onLogin = data => onLogin(this, data);
+  onLogin = (data) => onLogin(this, data);
   onLogout = () => onLogout(this);
   isAuthenticated = () => {
     return isAuthenticated(this);
@@ -86,10 +86,10 @@ class App extends Component {
   getSharedObject = () => {
     return getSharedApp(this);
   };
-  handleScreenChange = screen => {
+  handleScreenChange = (screen) => {
     if (this.state.screen !== screen) this.setState({ screen });
   };
-  closeInteractionOffer = interactionId => {
+  closeInteractionOffer = (interactionId) => {
     let { snackbars } = this.state;
     snackbars.forEach((snackbar, index) => {
       if (snackbar.id === interactionId) {
@@ -99,64 +99,71 @@ class App extends Component {
     });
     this.setState({ snackbars });
   };
-  offerInteraction = interactionDetails => {
+  offerInteraction = (interactionDetails) => {
     let { snackbars } = this.state;
-    const key = this.props.enqueueSnackbar("", {
-      persist: true,
-      anchorOrigin: {
-        vertical: "top",
-        horizontal: "center"
-      },
-      children: () => {
-        return (
-          <OfferInteractionSnackbar
+    const key = this.props.enqueueSnackbar(
+      "Would you like to receive new interaction",
+      {
+        persist: true, // should be true
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        action: (
+          <OfferInteractionSnackbarMinimum
             app={this.getSharedObject()}
             enqueueSnackbar={this.props.enqueueSnackbar}
             interactionDetails={interactionDetails}
           />
-        );
+        ),
+        // <OfferInteractionSnackbar
+        //   id={key}
+        //   app={this.getSharedObject()}
+        //   enqueueSnackbar={this.props.enqueueSnackbar}
+        //   interactionDetails={interactionDetails}
+        // />
       }
-    });
+    );
     snackbars.push({ id: interactionDetails.interaction._id, key });
     this.setState({ snackbars });
   };
-  handleAcceptInteraction = interactionId => {
+  handleAcceptInteraction = (interactionId) => {
     handleAccept(this, interactionId);
   };
-  handleRejectInteraction = interactionId => {
+  handleRejectInteraction = (interactionId) => {
     handleReject(this, interactionId);
   };
-  handleCloseInteraction = interactionId => {
+  handleCloseInteraction = (interactionId) => {
     handleClose(this, interactionId);
   };
-  handleConferenceInteraction = interactionId => {
+  handleConferenceInteraction = (interactionId) => {
     handleConference(this, interactionId);
   };
-  handleHoldInteraction = interactionId => {
+  handleHoldInteraction = (interactionId) => {
     handleHold(this, interactionId);
   };
-  handleResumeInteraction = interactionId => {
+  handleResumeInteraction = (interactionId) => {
     handleResume(this, interactionId);
   };
-  handleTerminateInteraction = interactionId => {
+  handleTerminateInteraction = (interactionId) => {
     handleTerminate(this, interactionId);
   };
-  handleTransferInteraction = interactionId => {
+  handleTransferInteraction = (interactionId) => {
     handleTransfer(this, interactionId);
   };
-  handleMakeVoiceCall = extension => {
+  handleMakeVoiceCall = (extension) => {
     handleMakeVoiceCall(this, extension);
   };
-  handleMakeVideoCall = extension => {
+  handleMakeVideoCall = (extension) => {
     handleMakeVideoCall(this, extension);
   };
-  handleUpdateToken = token => {
+  handleUpdateToken = (token) => {
     this.setState({ token });
   };
-  handleUpdateMe = user => {
+  handleUpdateMe = (user) => {
     this.setState({ user });
   };
-  handleTenantChange = tenant => {
+  handleTenantChange = (tenant) => {
     if (this.state.tenant !== tenant) {
       this.setState({
         tenant: tenant,
@@ -185,7 +192,7 @@ class App extends Component {
         myEmailQueues: null,
         myEmailQueuesDetails: null,
         myProjectQueues: null,
-        myProjectQueuesDetails: null
+        myProjectQueuesDetails: null,
       });
       //We should load here but this require modififcations
       // loadTypes(this);
@@ -193,94 +200,94 @@ class App extends Component {
       // loadCustomers(this);
     }
   };
-  handleTodoListLoad = todos => {
+  handleTodoListLoad = (todos) => {
     this.setState({ todos });
   };
-  handleMyFeedbackListLoad = myFeedbacks => {
+  handleMyFeedbackListLoad = (myFeedbacks) => {
     this.setState({ myFeedbacks });
   };
-  handleUsersListLoad = users => {
+  handleUsersListLoad = (users) => {
     this.setState({ users });
   };
-  handleWorkflowsListLoad = workflows => {
+  handleWorkflowsListLoad = (workflows) => {
     this.setState({ workflows });
   };
-  handleSkillgroupsListLoad = skillgroups => {
+  handleSkillgroupsListLoad = (skillgroups) => {
     this.setState({ skillgroups });
   };
-  handleMyQueuesListLoad = myQueues => {
+  handleMyQueuesListLoad = (myQueues) => {
     this.setState({ myQueues });
   };
-  handleMyQueuesDetailsListLoad = myQueuesDetails => {
+  handleMyQueuesDetailsListLoad = (myQueuesDetails) => {
     this.setState({ myQueuesDetails });
   };
-  handleMyEmailQueuesListLoad = myEmailQueues => {
+  handleMyEmailQueuesListLoad = (myEmailQueues) => {
     this.setState({ myEmailQueues });
   };
-  handleMyEmailQueuesDetailsListLoad = myEmailQueuesDetails => {
+  handleMyEmailQueuesDetailsListLoad = (myEmailQueuesDetails) => {
     this.setState({ myEmailQueuesDetails });
   };
-  handleMyChatQueuesListLoad = myChatQueues => {
+  handleMyChatQueuesListLoad = (myChatQueues) => {
     this.setState({ myChatQueues });
   };
-  handleMyChatQueuesDetailsListLoad = myChatQueuesDetails => {
+  handleMyChatQueuesDetailsListLoad = (myChatQueuesDetails) => {
     this.setState({ myChatQueuesDetails });
   };
-  handleMyProjectQueuesListLoad = myProjectQueues => {
+  handleMyProjectQueuesListLoad = (myProjectQueues) => {
     this.setState({ myProjectQueues });
   };
-  handleMyProjectQueuesDetailsListLoad = myProjectQueuesDetails => {
+  handleMyProjectQueuesDetailsListLoad = (myProjectQueuesDetails) => {
     this.setState({ myProjectQueuesDetails });
   };
-  handleMyCallQueuesListLoad = myCallQueues => {
+  handleMyCallQueuesListLoad = (myCallQueues) => {
     this.setState({ myCallQueues });
   };
-  handleMyCallQueuesDetailsListLoad = myCallQueuesDetails => {
+  handleMyCallQueuesDetailsListLoad = (myCallQueuesDetails) => {
     this.setState({ myCallQueuesDetails });
   };
-  handleMyInstagramQueuesListLoad = myInstagramQueues => {
+  handleMyInstagramQueuesListLoad = (myInstagramQueues) => {
     this.setState({ myInstagramQueues });
   };
-  handleMyInstagramQueuesDetailsListLoad = myInstagramQueuesDetails => {
+  handleMyInstagramQueuesDetailsListLoad = (myInstagramQueuesDetails) => {
     this.setState({ myInstagramQueuesDetails });
   };
-  handleMyFacebookQueuesListLoad = myFacebookQueues => {
+  handleMyFacebookQueuesListLoad = (myFacebookQueues) => {
     this.setState({ myFacebookQueues });
   };
-  handleMyFacebookQueuesDetailsListLoad = myFacebookQueuesDetails => {
+  handleMyFacebookQueuesDetailsListLoad = (myFacebookQueuesDetails) => {
     this.setState({ myFacebookQueuesDetails });
   };
-  handleMyWhatsAppQueuesListLoad = myWhatsAppQueues => {
+  handleMyWhatsAppQueuesListLoad = (myWhatsAppQueues) => {
     this.setState({ myWhatsAppQueues });
   };
-  handleMyWhatsAppQueuesDetailsListLoad = myWhatsAppQueuesDetails => {
+  handleMyWhatsAppQueuesDetailsListLoad = (myWhatsAppQueuesDetails) => {
     this.setState({ myWhatsAppQueuesDetails });
   };
-  handleMyTwitterQueuesListLoad = myTwitterQueues => {
+  handleMyTwitterQueuesListLoad = (myTwitterQueues) => {
     this.setState({ myTwitterQueues });
   };
-  handleMyTwitterQueuesDetailsListLoad = myTwitterQueuesDetails => {
+  handleMyTwitterQueuesDetailsListLoad = (myTwitterQueuesDetails) => {
     this.setState({ myTwitterQueuesDetails });
   };
-  handleMySkillgroupsListLoad = mySkillgroups => {
+  handleMySkillgroupsListLoad = (mySkillgroups) => {
     this.setState({ mySkillgroups });
   };
-  handleMyTeamsListLoad = myTeams => {
+  handleMyTeamsListLoad = (myTeams) => {
     this.setState({ myTeams });
   };
-  handleMyTenantsListLoad = myTenants => {
+  handleMyTenantsListLoad = (myTenants) => {
     this.setState({ myTenants });
   };
-  handleCustomersListLoad = customers => {
+  handleCustomersListLoad = (customers) => {
     this.setState({ customers });
   };
-  handleTypesListLoad = types => {
+  handleTypesListLoad = (types) => {
     this.setState({ types });
   };
-  handleInteractionsListLoad = interactions => {
+  handleInteractionsListLoad = (interactions) => {
     this.setState({ interactions });
   };
-  handleTenantsListLoad = tenants => {
+  handleTenantsListLoad = (tenants) => {
     this.setState({ tenants });
   };
   render() {
@@ -299,7 +306,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  enqueueSnackbar: PropTypes.func.isRequired
+  enqueueSnackbar: PropTypes.func.isRequired,
   //closeSnackbar: PropTypes.func.isRequired
   // theme: PropTypes.object.isRequired,
   // classes: PropTypes.object.isRequired

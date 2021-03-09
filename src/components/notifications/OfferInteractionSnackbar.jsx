@@ -25,6 +25,7 @@ class OfferInteractionSnackbar extends Component {
   };
   render() {
     const { classes, interactionDetails, theme } = this.props;
+    console.log("trying to render new content");
     return (
       <ExpansionPanel
         expanded
