@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
+  
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Typography
 } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
@@ -41,13 +42,13 @@ class TenantsDetails extends Component {
       <React.Fragment>
         {sourceState.tenants.map((tenant, index) => {
           return (
-            <ExpansionPanel key={tenant.name}>
-              <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+            <Accordion key={tenant.name}>
+              <AccordionSummary expandIcon={<ExpandMore />}>
                 <Typography className={classes.heading}>
                   {tenant.name}
                 </Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              </AccordionSummary>
+              <AccordionDetails>
                 <TenantData
                   app={this.props.app}
                   primaryApp={this.props.primaryApp}
@@ -56,8 +57,8 @@ class TenantsDetails extends Component {
                   tenant={tenant}
                   index={index}
                 />
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+              </AccordionDetails>
+            </Accordion >
           );
         })}
       </React.Fragment>
