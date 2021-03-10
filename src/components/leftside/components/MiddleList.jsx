@@ -1,20 +1,18 @@
-import React, { Component } from "react";
 import {
-  ListItem,
+  Divider, List, ListItem,
   ListItemIcon,
   ListItemText,
-  List,
-  Divider,
+
+
   Typography
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import {
-  History,
-  BarChart,
-  Assignment,
-  LocationCity
+
+  Assignment, History
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from "react";
 import styles from "../../primaryapp/appStyles";
 
 class MiddelList extends Component {
@@ -28,7 +26,8 @@ class MiddelList extends Component {
         <List
         // style={{ backgroundColor: this.props.theme.palette.secondary.main }}
         >
-          {/* <ListItem
+          {/* Code was disabled as email and chat function are not ready yet.
+          <ListItem
             button
             key="Email"
             onClick={() => handleScreenChange("Email")}
@@ -98,6 +97,7 @@ class MiddelList extends Component {
               }
             />
           </ListItem>
+          {/* Code will be disabled to disable reports in MVP version 
           <ListItem
             button
             key="Reports"
@@ -122,7 +122,8 @@ class MiddelList extends Component {
                 </Typography>
               }
             />
-          </ListItem>
+          </ListItem> */}
+
         </List>
         <Divider />
       </React.Fragment>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Zoom } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import NewInteractionDialog from "../dialogs/NewInteractionDialog";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -11,8 +11,6 @@ import updateInteraction from "../../functions/tenant/interaction/updateInteract
 import deleteInteraction from "../../functions/tenant/interaction/deleteInteraction";
 import loadInteraction from "../../functions/tenant/interaction/loadInteraction";
 import addInteraction from "../../functions/tenant/interaction/addInteraction";
-import loadTypes from "../../functions/tenant/type/loadTypes";
-import loadCustomers from "../../functions/tenant/customer/loadCustomers";
 const styles = theme => ({
   content: {
     flexGrow: 1,

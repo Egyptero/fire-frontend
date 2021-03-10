@@ -6,9 +6,6 @@ import {
   Card,
   IconButton,
   CardContent,
-  Button,
-  Select,
-  MenuItem
 } from "@material-ui/core";
 import loadMyTeams from "../../../functions/user/team/loadMyTeams";
 import Table from "@material-ui/core/Table";
@@ -16,7 +13,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import _ from "lodash";
+//import _ from "lodash";
 import MyTeamsChart from "./MyTeamsChart";
 const CustomTableCell = withStyles(theme => ({
   head: {

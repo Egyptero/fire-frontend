@@ -1,20 +1,20 @@
-import React, { Component } from "react";
 import {
-  ListItem,
+  Divider, List, ListItem,
   ListItemIcon,
   ListItemText,
-  List,
-  Divider,
+
+
   Typography
 } from "@material-ui/core";
-import { Contacts, Dashboard, Traffic, Work } from "@material-ui/icons";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { Dashboard, Traffic } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import styles from "../../primaryapp/appStyles";
 
 class TopList extends Component {
   render() {
-    const { handleScreenChange, primaryAppState } = this.props.primaryApp;
+    const { handleScreenChange } = this.props.primaryApp;
     const { app } = this.props;
     const { theme } = this.props;
     return (

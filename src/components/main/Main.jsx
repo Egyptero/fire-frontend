@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Dashboard from "../screens/Dashboard";
-import Setting from "../screens/Setting";
+//import Setting from "../screens/Setting";
 import Queues from "../screens/Queues";
 import Information from "../screens/Information";
 import History from "../screens/History";
@@ -19,7 +19,7 @@ import MyInteractions from "../screens/MyInteractions";
 import MyProfile from "../screens/MyProfile";
 import TenantWizard from "../screens/TenantWizard";
 import Welcome from "../screens/Welcome";
-import Reports from "../screens/Reports";
+//import Reports from "../screens/Reports";
 
 const styles = theme => ({
   toolbar: {
@@ -130,6 +130,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
+/* Setting is disabled in MVP      
     else if (screen === "Setting")
       return (
         <Setting
@@ -138,6 +139,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
+*/
     else if (screen === "History")
       return (
         <History
@@ -186,6 +188,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
+/** Reports are disabled in MVP
     else if (screen === "Reports")
       return (
         <Reports
@@ -194,6 +197,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
+*/
   };
   render() {
     const { classes } = this.props;

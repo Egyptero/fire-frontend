@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Card, CardContent } from "@material-ui/core";
+import { CardContent } from "@material-ui/core";
 import Chart from "react-google-charts";
 
 const styles = theme => ({

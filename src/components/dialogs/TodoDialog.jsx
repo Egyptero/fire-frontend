@@ -1,32 +1,32 @@
-import React, { Component } from "react";
 import {
   Button,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
-  Grid,
   DialogTitle,
-  Select,
-  MenuItem,
-  InputLabel,
   FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  TextField,
   Typography,
-  OutlinedInput
 } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import addTodo from "../../functions/user/addTodo";
 import _ from "lodash";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import addTodo from "../../functions/user/addTodo";
 import updateTodo from "../../functions/user/updateTodo";
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
   cardContent: {},
   formControl: {},
-  floatButton: {}
+  floatButton: {},
 });
 
 class NewTodo extends Component {
@@ -36,13 +36,16 @@ class NewTodo extends Component {
     description: "",
     due: Date.now(),
     priority: "Medium",
-    status: "New"
+    status: "New",
   };
   componentDidMount() {
     const { source, app } = this.props;
     const { sourceState } = source;
     if (sourceState.todoId && sourceState.action === "edit") {
-      const todo = _.filter(app.todos, todo => todo._id === sourceState.todoId);
+      const todo = _.filter(
+        app.todos,
+        (todo) => todo._id === sourceState.todoId
+      );
       if (todo.length > 0) this.setInitialState(todo[0]);
     } else this.setInitialState();
   }
@@ -53,7 +56,7 @@ class NewTodo extends Component {
     if (todoId && todoId !== prevTodoId) {
       // Reload in case of new todoId
       if (this.props.source.sourceState.action === "edit") {
-        const todo = _.filter(app.todos, todo => todo._id === todoId);
+        const todo = _.filter(app.todos, (todo) => todo._id === todoId);
         if (todo.length > 0) this.setInitialState(todo[0]);
       }
     } else if (todoId === null) {
@@ -64,7 +67,7 @@ class NewTodo extends Component {
         this.setInitialState();
     }
   }
-  setInitialState = todo => {
+  setInitialState = (todo) => {
     if (todo)
       this.setState({
         head: "Edit action",
@@ -72,7 +75,7 @@ class NewTodo extends Component {
         description: todo.description,
         priority: todo.priority,
         due: todo.due,
-        status: todo.status
+        status: todo.status,
       });
     else
       this.setState({
@@ -81,11 +84,11 @@ class NewTodo extends Component {
         description: "",
         due: Date.now(),
         priority: "Medium",
-        status: "New"
+        status: "New",
       });
   };
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.name === "title")
       this.setState({ title: event.target.value });
     else if (event.target.name === "description")
@@ -109,10 +112,10 @@ class NewTodo extends Component {
           description: this.state.description,
           due: this.state.due,
           priority: this.state.priority,
-          status: this.state.status
+          status: this.state.status,
         },
         this,
-        result => {
+        (result) => {
           if (!result.error) handleTodoClose();
         }
       );
@@ -124,21 +127,21 @@ class NewTodo extends Component {
           description: this.state.description,
           due: this.state.due,
           priority: this.state.priority,
-          status: this.state.status
+          status: this.state.status,
         },
         this,
-        result => {
+        (result) => {
           if (!result.error) handleTodoClose();
         }
       );
   };
 
-  formattedDate = d => {
+  formattedDate = (d) => {
     const date = new Date(d);
     return date.toISOString().split("T")[0];
   };
   render() {
-    const { source, classes, theme } = this.props;
+    const { source, theme } = this.props;
     const { sourceState, handleTodoClose } = source;
     return (
       <Dialog
@@ -150,13 +153,13 @@ class NewTodo extends Component {
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.dark,
           }}
         >
           <Typography
             variant="h6"
             style={{
-              color: theme.palette.secondary.contrastText
+              color: theme.palette.secondary.contrastText,
             }}
           >
             {this.state.head}
@@ -267,6 +270,6 @@ NewTodo.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  source: PropTypes.object.isRequired
+  source: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(NewTodo);

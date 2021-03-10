@@ -1,15 +1,7 @@
-import React, { Component } from "react";
-import {
-  Button,
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  Typography,
-  ExpansionPanelDetails,
-  Grid,
-} from "@material-ui/core";
-import PropTypes from "prop-types";
+import { Button, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { ExpandMore } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 const styles = (theme) => ({});
 class OfferInteractionSnackbarMinimum extends Component {
   state = {};
@@ -24,7 +16,8 @@ class OfferInteractionSnackbarMinimum extends Component {
     app.handleRejectInteraction(interactionDetails.interaction._id);
   };
   render() {
-    const { classes, interactionDetails, theme } = this.props;
+    //interactionDetails,
+    const {   theme } = this.props;
     console.log("trying to render new content");
     return (
       <Grid container direction="row-reverse">

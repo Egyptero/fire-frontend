@@ -1,32 +1,29 @@
-import React, { Component } from "react";
 import {
-  Grid,
-  Table,
-  TableRow,
-  TableCell,
-  TableBody,
-  Typography,
   Card,
-  CardHeader,
   CardContent,
+  CardHeader,
+  Grid,
   IconButton,
-  Avatar
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
 } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {
   ArrowDropDown,
   ArrowDropUp,
-  Remove,
-  Refresh,
   MoreVert,
-  Pageview,
-  Maximize
+  Refresh,
+  Remove,
 } from "@material-ui/icons";
-import loadMyTwitterQueues from "../../../functions/user/tenant/loadMyTwitterQueues";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
+import loadMyTwitterQueues from "../../../functions/user/tenant/loadMyTwitterQueues";
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   fullgrid: {},
@@ -34,7 +31,7 @@ const styles = theme => ({
     overflow: "auto",
     maxHeight: "100%",
     minHeight: "100%",
-    minWidth: "100%"
+    minWidth: "100%",
   },
   cardContent: {
     position: "relative",
@@ -42,28 +39,28 @@ const styles = theme => ({
     height: "34vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   floatButton: {
     position: "absolute",
     top: theme.spacing(1),
     right: theme.spacing(1),
-    zIndex: 1
+    zIndex: 1,
   },
   floatButtonLeft: {
     position: "absolute",
     top: theme.spacing(1),
     left: theme.spacing(1),
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });
 
 class TwitterQueueCardSummary extends Component {
@@ -72,34 +69,34 @@ class TwitterQueueCardSummary extends Component {
       {
         label: "Mentions",
         trend: "neutral", //up down neutral
-        value: 0
+        value: 0,
       },
       {
         label: "Hashtags",
         trend: "neutral",
-        value: 0
+        value: 0,
       },
       {
         label: "Direct Msgs",
         trend: "neutral",
-        value: 0
-      }
-    ]
+        value: 0,
+      },
+    ],
   };
   componentDidMount() {
     const { app } = this.props;
     if (!app.mySkillgroups)
-      loadMySkillgroups(this, result => {
+      loadMySkillgroups(this, (result) => {
         if (!result.error) {
           if (!app.myTwitterQueues)
-            loadMyTwitterQueues(this, result => {
+            loadMyTwitterQueues(this, (result) => {
               if (!result.error) this.prepareData();
             });
           else this.prepareData();
         }
       });
     else if (!app.myTwitterQueues)
-      loadMyTwitterQueues(this, result => {
+      loadMyTwitterQueues(this, (result) => {
         if (!result.error) this.prepareData();
       });
     else this.prepareData();
@@ -107,29 +104,29 @@ class TwitterQueueCardSummary extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { app } = this.props;
     if (app.tenant !== prevProps.app.tenant)
-      loadMySkillgroups(this, result => {
+      loadMySkillgroups(this, (result) => {
         if (!result.error)
-          loadMyTwitterQueues(this, result => {
+          loadMyTwitterQueues(this, (result) => {
             if (!result.error) this.prepareData();
           });
       });
   }
   reload = () => {
-    loadMySkillgroups(this, result => {
+    loadMySkillgroups(this, (result) => {
       if (!result.error)
-        loadMyTwitterQueues(this, result => {
+        loadMyTwitterQueues(this, (result) => {
           if (!result.error) this.prepareData();
         });
     });
   };
-  switchToSkillQueue = skillId => {};
-  renderTrend = trend => {
+  switchToSkillQueue = (skillId) => {};
+  renderTrend = (trend) => {
     switch (trend) {
       case "up":
         return (
           <ArrowDropUp
             style={{
-              color: "red"
+              color: "red",
             }}
             fontSize="small"
           />
@@ -138,7 +135,7 @@ class TwitterQueueCardSummary extends Component {
         return (
           <Remove
             style={{
-              color: "orange"
+              color: "orange",
             }}
             fontSize="small"
           />
@@ -147,7 +144,7 @@ class TwitterQueueCardSummary extends Component {
         return (
           <ArrowDropDown
             style={{
-              color: "green"
+              color: "green",
             }}
             fontSize="small"
           />
@@ -162,7 +159,7 @@ class TwitterQueueCardSummary extends Component {
     let hashtags = 0;
     let dm = 0;
     if (app.myTwitterQueues) {
-      app.myTwitterQueues.forEach(queue => {
+      app.myTwitterQueues.forEach((queue) => {
         mentions += queue.mentionsQueue;
         hashtags += queue.hashtagQueue;
         dm += queue.dmQueue;
@@ -171,7 +168,7 @@ class TwitterQueueCardSummary extends Component {
     let mentionsTrend = "neutral";
     let hashtagsTrend = "neutral";
     let dmsTrend = "neutral";
-    this.state.data.forEach(row => {
+    this.state.data.forEach((row) => {
       if (row.label === "Mentions") {
         if (mentions > row.value) mentionsTrend = "up";
         else if (mentions < row.value) mentionsTrend = "down";
@@ -194,26 +191,26 @@ class TwitterQueueCardSummary extends Component {
         {
           label: "Mentions",
           trend: mentionsTrend, //up down neutral
-          value: mentions
+          value: mentions,
         },
         {
           label: "Hashtags",
           trend: hashtagsTrend,
-          value: hashtags
+          value: hashtags,
         },
         {
           label: "Direct Msgs",
           trend: dmsTrend,
-          value: dm
-        }
-      ]
+          value: dm,
+        },
+      ],
     });
   };
-  getQueue = skillId => {
+  getQueue = (skillId) => {
     const { app } = this.props;
     if (app.myTwitterQueues) {
       const targetQueues = app.myTwitterQueues.filter(
-        queue => queue.skillgroupId === skillId
+        (queue) => queue.skillgroupId === skillId
       );
       if (targetQueues.length > 0) return targetQueues[0].queue;
     }
@@ -242,7 +239,7 @@ class TwitterQueueCardSummary extends Component {
             <Grid container direction="column" spacing={1}>
               <Table size="small" style={{ marginBottom: theme.spacing(3) }}>
                 <TableBody>
-                  {this.state.data.map(row => (
+                  {this.state.data.map((row) => (
                     <TableRow key={row.label}>
                       <TableCell component="th" scope="row">
                         {row.label}
@@ -255,7 +252,7 @@ class TwitterQueueCardSummary extends Component {
                   ))}
                 </TableBody>
               </Table>
-              {mySkillgroups.map(skillgroup => {
+              {mySkillgroups.map((skillgroup) => {
                 return (
                   <Grid
                     key={skillgroup._id}
@@ -266,7 +263,7 @@ class TwitterQueueCardSummary extends Component {
                       container
                       style={{
                         borderRadius: "2em",
-                        background: "#F3F3F3"
+                        background: "#F3F3F3",
                       }}
                       spacing={1}
                     >
@@ -312,7 +309,7 @@ TwitterQueueCardSummary.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(TwitterQueueCardSummary);

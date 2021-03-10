@@ -11,7 +11,6 @@ import {
   FormControl,
   TextField,
   Typography,
-  Divider
 } from "@material-ui/core";
 const styles = theme => ({
   content: {

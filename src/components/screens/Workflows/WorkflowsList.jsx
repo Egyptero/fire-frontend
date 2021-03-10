@@ -75,7 +75,7 @@ class WorkflowsList extends Component {
   };
   render() {
     const { classes, source, app } = this.props;
-    const { sourceState } = source;
+//    const { sourceState } = source;
     const { workflows } = app;
     return (
       <Grid

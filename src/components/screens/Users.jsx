@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Fade, Zoom } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import NewUserDialog from "../dialogs/NewUserDialog";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";

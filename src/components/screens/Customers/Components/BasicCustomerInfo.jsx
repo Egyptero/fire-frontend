@@ -3,13 +3,6 @@ import {
   Grid,
   TextField,
   FormControl,
-  MenuItem,
-  InputLabel,
-  OutlinedInput,
-  Button,
-  Select,
-  FormControlLabel,
-  Switch,
   Avatar
 } from "@material-ui/core";
 import PropTypes from "prop-types";

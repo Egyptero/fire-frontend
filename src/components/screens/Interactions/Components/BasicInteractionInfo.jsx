@@ -226,7 +226,7 @@ class BasicCustomerInfo extends Component {
     );
   };
   render() {
-    const { classes, source, theme } = this.props;
+    const { classes, source } = this.props;
     return (
       <React.Fragment>
         {/* Empty space*/}

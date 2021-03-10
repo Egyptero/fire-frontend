@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Grid, Card, Divider } from "@material-ui/core";
+import { Grid, Divider } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import UserTopBar from "./Components/UserTopBar";
 import BasicUserInfo from "./Components/BasicUserInfo";
 import UserSkillManagement from "./Components/UserSkillManagement";
 import UserAdvancedManagement from "./Components/UserAdvancedManagement";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
-    flexGrow: 1
+    flexGrow: 1,
     //height: "86vh"
   },
   grid: {
@@ -16,11 +16,11 @@ const styles = theme => ({
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
-    position: "relative" //
+    position: "relative", //
     // height: "79vh",
     // maxHeight: "79vh"
   },
@@ -33,7 +33,7 @@ const styles = theme => ({
     background: "transparent",
     // border: "1px solid",
     // borderColor: theme.palette.secondary.light,
-    boxShadow: "none"
+    boxShadow: "none",
   },
   details: {
     display: "block",
@@ -46,20 +46,20 @@ const styles = theme => ({
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "90%"
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
@@ -71,16 +71,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -92,16 +92,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -113,24 +113,23 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class MyProfileDetails extends Component {
   state = {};
   componentDidMount() {}
   render() {
-    const { classes } = this.props;
     return (
       <Grid item xs={12}>
         <Grid
@@ -139,7 +138,7 @@ class MyProfileDetails extends Component {
             overflow: "auto",
             position: "relative",
             display: "flex",
-            background: "transparent"
+            background: "transparent",
           }}
         >
           {/** User Topbar running all user capabilities like save , edit , watch */}
@@ -171,7 +170,7 @@ MyProfileDetails.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(MyProfileDetails);

@@ -11,7 +11,6 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import AceEditor from "react-ace";
 import "brace/mode/javascript";
 import "brace/theme/chrome";
 const styles = theme => ({

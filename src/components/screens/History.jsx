@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Grid, CardHeader, CardContent, Chip } from "@material-ui/core";
+import { Card, Grid } from "@material-ui/core";
 //import classNames from 'classnames';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";

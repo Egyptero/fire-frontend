@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Grid, CardHeader, CardContent } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import FacebookQueueCardSummary from "./Queues/FacebookQueueCardSummary";
@@ -54,7 +54,8 @@ const styles = theme => ({
 
 class Queues extends Component {
   render() {
-    const { classes, theme } = this.props;
+    //theme
+    const { classes  } = this.props;
     return (
       <React.Fragment>
         <Grid className={classes.content} container spacing={1}>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Grid, Typography, Link } from "@material-ui/core";
-import verify from "./verify";
 
 const styles = theme => ({
   card: {},

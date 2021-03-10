@@ -15,7 +15,7 @@ import {
   Category,
   CheckCircle,
   Contacts,
-  Settings
+//  Settings
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -235,6 +235,7 @@ class BottomList extends Component {
               }
             />
           </ListItem>
+          {/* Setting is disabled in MVP 
           <ListItem
             button
             key="Setting"
@@ -259,7 +260,7 @@ class BottomList extends Component {
                 </Typography>
               }
             />
-          </ListItem>
+          </ListItem> */}
         </List>
       </React.Fragment>
     );

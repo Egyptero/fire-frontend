@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Refresh, BarChart, TableChart } from "@material-ui/icons";
-import { Card, IconButton, CardContent, Button } from "@material-ui/core";
+import { Card, IconButton, CardContent } from "@material-ui/core";
 import loadMyQueues from "../../../functions/user/tenant/loadMyQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
 import Table from "@material-ui/core/Table";
@@ -119,7 +119,7 @@ class MyQueues extends Component {
     else if (view === "Graph") this.setState({ view: "Table" });
   };
   renderTable = () => {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { app } = this.props;
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
     return (

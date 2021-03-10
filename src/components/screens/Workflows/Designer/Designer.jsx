@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import shapes from "./Shapes/Shapes";
 import ToolsBox from "./Components/ToolsBox";
 import TopBar from "./Components/TopBar";
 import joint from "jointjs/index";

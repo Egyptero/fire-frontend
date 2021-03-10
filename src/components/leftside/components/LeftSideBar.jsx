@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import TopList from "./TopList";
-import MiddleList from "./MiddleList";
-import BottomList from "./BottomList";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import compareGrade from "../../../app/compareGrade";
 import styles from "../../primaryapp/appStyles";
+import BottomList from "./BottomList";
+import MiddleList from "./MiddleList";
+import TopList from "./TopList";
 class LeftSideBar extends Component {
   state = {};
   render() {

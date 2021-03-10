@@ -1,40 +1,39 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
-  ListItem,
   Avatar,
-  ListItemText,
-  Typography,
-  ListItemSecondaryAction,
   IconButton,
+  ListItem,
+  ListItemAvatar,
+  ListItemSecondaryAction,
+  ListItemText,
   Menu,
   MenuItem,
-  ListItemAvatar,
-  Grid
+  Typography,
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import { MoreVert } from "@material-ui/icons";
-const styles = theme => ({
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
   cardContent: {},
   formControl: {},
-  floatButton: {}
+  floatButton: {},
 });
 
 class TodoItem extends Component {
   state = {
     source: null,
-    openMenu: false
+    openMenu: false,
   };
-  handleMenuOpen = event => {
+  handleMenuOpen = (event) => {
     this.setState({ openMenu: true, source: event.currentTarget });
   };
   handleMenuClose = () => {
     this.setState({ openMenu: false, source: null });
   };
-  renderDetails = todo => {
+  renderDetails = (todo) => {
     return (
       <React.Fragment>
         <Typography component="span" variant="body2" color="textPrimary">
@@ -55,7 +54,7 @@ class TodoItem extends Component {
     );
   };
   render() {
-    const { classes, todo, source } = this.props;
+    const { todo, source } = this.props;
     let avatarColor = "orange";
     if (todo.priority === "Critical") avatarColor = "darkred";
     else if (todo.priority === "High") avatarColor = "red";
@@ -75,7 +74,7 @@ class TodoItem extends Component {
         <ListItemSecondaryAction>
           <IconButton
             aria-haspopup="true"
-            onClick={event => {
+            onClick={(event) => {
               this.handleMenuOpen(event);
             }}
             //color="inherit"
@@ -148,6 +147,6 @@ TodoItem.propTypes = {
   primaryApp: PropTypes.object.isRequired,
   todo: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  view: PropTypes.string.isRequired
+  view: PropTypes.string.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(TodoItem);

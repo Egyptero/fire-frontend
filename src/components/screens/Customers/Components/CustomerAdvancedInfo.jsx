@@ -210,7 +210,7 @@ class CustomerAdvancedInfo extends Component {
     );
   };
   render() {
-    const { app, classes, source } = this.props;
+    const { classes, source } = this.props;
     const { selectedCustomer } = source.sourceState;
     return (
       <React.Fragment>

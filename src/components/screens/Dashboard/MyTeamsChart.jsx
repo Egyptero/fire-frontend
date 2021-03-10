@@ -1,36 +1,22 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { Card, CardContent } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Refresh, TableChart, BarChart } from "@material-ui/icons";
-import {
-  Card,
-  IconButton,
-  CardContent,
-  Button,
-  Select,
-  MenuItem
-} from "@material-ui/core";
-import loadMyTeams from "../../../functions/user/team/loadMyTeams";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import _ from "lodash";
+//import TableCell from "@material-ui/core/TableCell";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import Chart from "react-google-charts";
-const CustomTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.common.white,
-    fontSize: 16,
-    fontWeight: "Bold"
-  },
-  body: {
-    //fontSize: 14,
-  }
-}))(TableCell);
+// const CustomTableCell = withStyles((theme) => ({
+//   head: {
+//     backgroundColor: theme.palette.secondary.main,
+//     color: theme.palette.common.white,
+//     fontSize: 16,
+//     fontWeight: "Bold",
+//   },
+//   body: {
+//     //fontSize: 14,
+//   },
+// }))(TableCell);
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
@@ -40,23 +26,23 @@ const styles = theme => ({
     height: "32vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    marginLeft: theme.spacing()
+    marginLeft: theme.spacing(),
   },
   row: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   },
   floatButton: {
     position: "absolute",
@@ -64,9 +50,9 @@ const styles = theme => ({
     right: theme.spacing(2),
     width: theme.spacing(4),
     height: theme.spacing(4),
-    zIndex: 1
+    zIndex: 1,
   },
-  floatButtonLeft: {}
+  floatButtonLeft: {},
 });
 
 class MyTeams extends Component {
@@ -84,10 +70,10 @@ class MyTeams extends Component {
       loggedout: 0,
       wrapup: 0,
       error: 0,
-      reserved: 0
+      reserved: 0,
     };
     if (teams)
-      teams.forEach(user => {
+      teams.forEach((user) => {
         switch (user.status) {
           case "Ready":
             statusCount.ready += 1;
@@ -148,11 +134,11 @@ class MyTeams extends Component {
               {
                 title: "Team status",
                 hAxis: {
-                  title: "Status"
+                  title: "Status",
                 },
                 vAxis: { title: "Count" },
                 // legend: "none",
-                position: "relative"
+                position: "relative",
                 // colors: [theme.palette.primary.main]
               }
             }
@@ -169,6 +155,6 @@ MyTeams.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyTeams);

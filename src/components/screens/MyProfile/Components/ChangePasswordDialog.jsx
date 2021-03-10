@@ -1,59 +1,58 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Button,
-  Grid,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   FormControl,
+  Grid,
   TextField,
   Typography,
-  Divider
 } from "@material-ui/core";
-const styles = theme => ({
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
     height: "79vh",
-    maxHeight: "79vh"
+    maxHeight: "79vh",
   },
   card: {},
   details: {},
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   list: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class ChangePasswordDialog extends Component {
   state = {
     password: "",
     passwordConfirm: "",
-    error: ""
+    error: "",
   };
   componentDidUpdate(prevProps, prevState) {
     const { dialogTrigger } = this.props;
     if (dialogTrigger !== prevProps.dialogTrigger)
       this.setState({ password: "", passwordConfirm: "", error: "" });
   }
-  onTextChange = event => {
+  onTextChange = (event) => {
     if (event.target.name === "password") {
       this.setState({ password: event.target.value });
       if (this.state.passwordConfirm === event.target.value)
@@ -137,7 +136,7 @@ ChangePasswordDialog.propTypes = {
   primaryApp: PropTypes.object.isRequired,
   handlePasswordDialogClose: PropTypes.func.isRequired,
   changePassword: PropTypes.func.isRequired,
-  dialogTrigger: PropTypes.bool.isRequired
+  dialogTrigger: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(ChangePasswordDialog);

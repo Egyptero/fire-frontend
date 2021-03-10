@@ -1,6 +1,5 @@
 import request from "superagent";
 import url from "../../app/url";
-import verify from "./verify";
 
 export default (user, ref) => {
   const { enqueueSnackbar } = ref.props;

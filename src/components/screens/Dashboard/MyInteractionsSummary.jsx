@@ -12,7 +12,6 @@ import {
   InputLabel,
   FormControl
 } from "@material-ui/core";
-import TodoDialog from "../../dialogs/TodoDialog";
 import MyInteractionsItem from "./MyInteractions/MyInteractionsItem";
 const styles = theme => ({
   content: {},
