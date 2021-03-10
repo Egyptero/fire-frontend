@@ -67,6 +67,8 @@ class Organizations extends Component {
   renderTenantDetails = () => {
     return (
       <React.Fragment>
+        {/* 
+        Disable add multiple tenant for now
         <Grid item dir="rtl" xs={12}>
           <Fab
             color="primary"
@@ -75,7 +77,7 @@ class Organizations extends Component {
           >
             <AddIcon />
           </Fab>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <TenantsDetails
             app={this.props.app}

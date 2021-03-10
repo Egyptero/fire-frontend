@@ -6,7 +6,7 @@ import Dashboard from "../screens/Dashboard";
 import Queues from "../screens/Queues";
 import Information from "../screens/Information";
 import History from "../screens/History";
-import Logs from "../screens/Logs";
+//import Logs from "../screens/Logs";
 import Organizations from "../screens/Organizations";
 import Skillgroups from "../screens/Skillgroups";
 import Users from "../screens/Users";
@@ -122,7 +122,8 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
-    else if (screen === "Logs")
+/* Disable logs in MVP
+      else if (screen === "Logs")
       return (
         <Logs
           app={this.props.app}
@@ -130,6 +131,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
+*/
 /* Setting is disabled in MVP      
     else if (screen === "Setting")
       return (

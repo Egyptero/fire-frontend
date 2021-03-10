@@ -60,7 +60,7 @@ class CustomerTopBar extends Component {
                 variant="h6"
                 color="textPrimary"
                 className={classes.topBarItem}
-                inline
+                inline="true"
               >
                 {`${selectedCustomer.firstname} ${selectedCustomer.lastname}`}
               </Typography>

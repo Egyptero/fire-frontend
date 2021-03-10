@@ -64,7 +64,7 @@ class UserTopBar extends Component {
                 variant="h6"
                 className={classes.topBarItem}
                 color="textPrimary"
-                inline
+                inline="true"
               >
                 {`${sourceState.selectedUser.firstname} ${
                   sourceState.selectedUser.lastname

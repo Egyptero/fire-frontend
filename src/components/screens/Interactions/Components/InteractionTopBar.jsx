@@ -57,7 +57,7 @@ class InteractionTopBar extends Component {
                 variant="h6"
                 color="textPrimary"
                 className={classes.topBarItem}
-                inline={true}
+                inline="true"
               >
                 {`${selectedInteraction.attached.title} - ${
                   selectedInteraction.stage

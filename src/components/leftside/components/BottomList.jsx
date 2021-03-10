@@ -210,6 +210,8 @@ class BottomList extends Component {
             />
           </ListItem>
 
+          {/* 
+          Disable logs in MVP
           <ListItem
             button
             key="Logs"
@@ -234,7 +236,7 @@ class BottomList extends Component {
                 </Typography>
               }
             />
-          </ListItem>
+          </ListItem> */}
           {/* Setting is disabled in MVP 
           <ListItem
             button

@@ -61,7 +61,7 @@ class SkillgroupTopBar extends Component {
                 variant="h6"
                 className={classes.topBarItem}
                 color="textPrimary"
-                inline
+                inline="true"
               >
                 {sourceState.selectedSkillgroup.name}
               </Typography>

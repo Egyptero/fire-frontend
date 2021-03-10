@@ -59,7 +59,7 @@ class TypeTopBar extends Component {
                 variant="h6"
                 className={classes.topBarItem}
                 color="textPrimary"
-                inline
+                inline="true"
               >
                 {sourceState.selectedType.name}
               </Typography>
