@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Grid, Fab } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import { Grid } from "@material-ui/core";
+// import AddIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import TenantsDetails from "./Organizations/TenantsDetails";
-import addTenant from "./Organizations/addTenant";
+// import addTenant from "./Organizations/addTenant";
 import deleteTenant from "./Organizations/deleteTenant";
 import updateTenant from "./Organizations/updateTenant";
-import loadMyTenants from "./Organizations/loadTenants";
-import NewTenantDialog from "../dialogs/NewTenantDialog";
+// import loadMyTenants from "./Organizations/loadTenants";
+// import NewTenantDialog from "../dialogs/NewTenantDialog";
 
 const styles = theme => ({
   root: {
@@ -18,13 +18,14 @@ const styles = theme => ({
 
 class Organizations extends Component {
   state = {
-    tenants: [],
+    //tenants: [],
     openNewTenant: false
   };
 
-  componentDidMount() {
-    this.loadTenants();
-  }
+/** We should render current selected tenant information. */
+  // componentDidMount() {
+  //   this.loadTenants();
+  // }
 
   handleNewTenantClickOpen = () => {
     this.setState({ openNewTenant: true });
@@ -34,18 +35,20 @@ class Organizations extends Component {
     this.setState({ openNewTenant: false });
   };
 
-  loadTenants = () => {
-    loadMyTenants(this);
-  };
+/** We should render current selected tenant information */
+  // loadTenants = () => {
+  //   loadMyTenants(this);
+  // };
   handleDeleteTenant = index => {
     deleteTenant(index, this);
   };
   handleUpdateTenant = (index, tenant) => {
     updateTenant(index, tenant, this);
   };
-  handleAddTenant = tenant => {
-    addTenant(tenant, this);
-  };
+/** No need to add new tenant from here. Master button could be enough and it is not required in MVP */
+  // handleAddTenant = tenant => {
+  //   addTenant(tenant, this);
+  // };
   updateTenantData = (data, index, type) => {
     let { tenants } = this.state;
     if (type === "name") tenants[index].name = data;
@@ -86,12 +89,15 @@ class Organizations extends Component {
             enqueueSnackbar={this.props.enqueueSnackbar}
           />
         </Grid>
+        
+        {/* 
+        Im this screen we should update tenant info only.
         <NewTenantDialog
           app={this.props.app}
           primaryApp={this.props.primaryApp}
           source={this.getSharedObject()}
           enqueueSnackbar={this.props.enqueueSnackbar}
-        />
+        /> */}
       </React.Fragment>
     );
   };
