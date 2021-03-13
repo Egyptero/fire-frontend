@@ -137,10 +137,6 @@ const styles = (theme) => ({
 
 class TenantsDetails extends Component {
   render() {
-    console.log(
-      "============================== Current selected tenant =============================="
-    );
-    console.log(this.props.app.tenant);
     let { classes, source } = this.props;
     /** Comment line as we do not need source state so far. */
     //    let { sourceState } = source;

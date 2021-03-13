@@ -129,22 +129,27 @@ const styles = (theme) => ({
 });
 
 class BasicTenantInfo extends Component {
-  state = {};
-  componentDidMount() {}
+  state = {
+    tenant: null,
+  };
+  componentDidMount() {
+    this.setState({ tenant: this.props.app.tenant });
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.app.tenant !== prevProps.app.tenant)
+      this.setState({ tenant: this.props.app.tenant });
+  }
   onDataChange = (event) => {
     const { source } = this.props;
     //let { selectedUser } = source.sourceState;
-    let { tenant } = this.props.app;
+    let { tenant } = this.state;
     if (event.target.name === "name") tenant.name = event.target.value;
-    // if (event.target.name === "lastname")
-    //   tenant.lastname = event.target.value;
+    if (event.target.name === "legalName")
+      tenant.legalName = event.target.value;
     if (event.target.name === "email") tenant.email = event.target.value;
-    // if (event.target.name === "username")
-    //   tenant.username = event.target.value;
-    // if (event.target.name === "sipUserName")
-    //   tenant.sipUserName = event.target.value;
-    // if (event.target.name === "sipPassword")
-    //   tenant.sipPassword = event.target.value;
+    if (event.target.name === "phone") tenant.phone = event.target.value;
+    if (event.target.name === "website") tenant.website = event.target.value;
+    if (event.target.name === "mobile") tenant.mobile = event.target.value;
     // if (event.target.name === "sipServer")
     //   tenant.sipServer = event.target.value;
     // if (event.target.name === "sipUri")
@@ -154,85 +159,92 @@ class BasicTenantInfo extends Component {
     //   tenant.sharedAgent = event.target.checked;
 
     //    source.updateSelectedUser(tenant);
+    this.setState({ tenant });
   };
   render() {
     const { classes, source, theme } = this.props;
-    const { tenant } = this.props.app;
-    return (
-      <React.Fragment>
-        {/* Empty space*/}
-        <Grid item xs={12}>
-          <p style={{ margin: theme.spacing(1) }} />
-        </Grid>
-        {/* Tenant profile pic */}
-        <Grid item xs={6} sm={6} md={3} lg={3}>
-          <FormControl className={classes.formControl}>
-            <Avatar
-              src="/imgs/nopic.jpg"
-              style={{ width: "5em", height: "5em" }}
-            />
-          </FormControl>
-        </Grid>
-        {/* Tenant Verification Status*/}
-        <Grid item xs={6} sm={6} md={3} lg={3}>
-          <Grid container direction="column">
-            {/* Tenant Verification Status */}
+    const { tenant } = this.state;
+    if (tenant == null) return <React.Fragment />;
+    else
+      return (
+        <React.Fragment>
+          {/* Empty space*/}
+          <Grid item xs={12}>
+            <p style={{ margin: theme.spacing(1) }} />
+          </Grid>
+          {/* Tenant profile pic */}
+          <Grid item xs={6} sm={6} md={3} lg={3}>
             <FormControl className={classes.formControl}>
-              <TextField
-                name="verified"
-                label="Verified"
-                placeholder="Organization verification status"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.verified ? "Verified" : "Not yet"}
-                fullWidth
+              <Avatar
+                src="/imgs/nopic.jpg"
+                style={{ width: "5em", height: "5em" }}
               />
             </FormControl>
           </Grid>
-        </Grid>
-        {/* Organization status*/}
-        <Grid item xs={6} sm={6} md={3} lg={3}>
-          <Grid container direction="column">
-            {/* Organization status */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="status"
-                label="Status"
-                placeholder="Organization subscription status"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.status ? tenant.status : ""}
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
+          {/* Tenant Verification Status*/}
+          <Grid item xs={6} sm={6} md={3} lg={3}>
+            <Grid container direction="column">
+              {/* Tenant Verification Status */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="verified"
+                  label="Verified"
+                  placeholder="Organization verification status"
+                  disabled
+                  onChange={this.onDataChange}
+                  value={tenant.verified ? "Verified" : "Not yet"}
+                  fullWidth
+                />
+              </FormControl>
+            </Grid>
           </Grid>
-        </Grid>
-        {/* Your Role*/}
-        <Grid item xs={6} sm={5} md={3} lg={3}>
-          <Grid container direction="row">
-            <FormControl
-              variant="outlined"
-              className={classes.formControl}
-              style={{ width: "100%" }}
-            >
-              <InputLabel htmlFor="role-label">Your role</InputLabel>
-              <Select
-                value={this.props.app.user.role}
-                onChange={this.onDataChange}
-                disabled
-                input={
-                  <OutlinedInput labelWidth={40} name="role" id="role-label" />
-                }
+          {/* Organization status*/}
+          <Grid item xs={6} sm={6} md={3} lg={3}>
+            <Grid container direction="column">
+              {/* Organization status */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="status"
+                  label="Status"
+                  placeholder="Organization subscription status"
+                  disabled
+                  onChange={this.onDataChange}
+                  value={tenant.status ? tenant.status : ""}
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+          {/* Your Role*/}
+          <Grid item xs={6} sm={5} md={3} lg={3}>
+            <Grid container direction="row">
+              <FormControl
+                variant="outlined"
+                className={classes.formControl}
+                style={{ width: "100%" }}
               >
-                <MenuItem value="User">User</MenuItem>
-                <MenuItem value="Agent">Agent</MenuItem>
-                <MenuItem value="Supervisor">Supervisor</MenuItem>
-                <MenuItem value="Business">Business</MenuItem>
-                <MenuItem value="Administrator">Administrator</MenuItem>
-              </Select>
-            </FormControl>
-            {/* <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="role-label">Your role</InputLabel>
+                <Select
+                  value={this.props.app.user.role}
+                  onChange={this.onDataChange}
+                  disabled
+                  input={
+                    <OutlinedInput
+                      labelWidth={40}
+                      name="role"
+                      id="role-label"
+                    />
+                  }
+                >
+                  <MenuItem value="User">User</MenuItem>
+                  <MenuItem value="Agent">Agent</MenuItem>
+                  <MenuItem value="Supervisor">Supervisor</MenuItem>
+                  <MenuItem value="Business">Business</MenuItem>
+                  <MenuItem value="Administrator">Administrator</MenuItem>
+                </Select>
+              </FormControl>
+              {/* <FormControl className={classes.formControl}>
               <FormControlLabel
                 control={
                   <Switch
@@ -246,132 +258,132 @@ class BasicTenantInfo extends Component {
                 label="Phone"
               />
             </FormControl> */}
+            </Grid>
           </Grid>
-        </Grid>
-        {/* Group Tenant Name , Email */}
-        <Grid item xs={12} sm={6} md={3} lg={3}>
-          <Grid container direction="column">
-            {/* Business Name */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="name"
-                label="Business name"
-                placeholder="Business name"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.name}
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
-            {/* Tenant Email */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="email"
-                label="Business email"
-                placeholder="Business offical email"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.email}
-                type="Email"
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
-          </Grid>
-        </Grid>
-        {/* Group Legal Name , Business Phone */}
-        <Grid item xs={12} sm={6} md={3} lg={3}>
-          <Grid container direction="column">
-            {/* Legal Name */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="legalName"
-                label="Legal business name"
-                placeholder="Legal business name"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.legalName}
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
-            {/* Business Phone */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="phone"
-                label="Business phone"
-                placeholder="Business phone number"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.phone}
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
-          </Grid>
-        </Grid>
-        {/* Website , Business Mobile */}
-        <Grid item xs={12} sm={6} md={3} lg={3}>
-          <Grid container direction="column">
-            {/* Website */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="website"
-                label="Website"
-                placeholder="Business website"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.website ? tenant.website : ""}
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
-            {/* Business Mobile */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="mobile"
-                label="Business mobile"
-                placeholder="Business mobile number"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={tenant.mobile ? tenant.mobile : ""}
-                fullWidth
-                //variant="outlined"
-              />
-            </FormControl>
-          </Grid>
-        </Grid>
-        {/* Group tenant admin*/}
-        <Grid item xs={12} sm={6} md={3} lg={3}>
-          <Grid container direction="column">
-            {/* tenant admin */}
-            <FormControl className={classes.formControl}>
-              <Button
-                variant="contained"
-                color="secondary"
-                type="Tenant admin"
-                disabled={!source.sourceState.canSave}
-              //  onClick={this.handlePasswordDialogOpen}
-              >
-                Manage Adnin
-              </Button>
-            </FormControl>
+          {/* Group Tenant Name , Email */}
+          <Grid item xs={12} sm={6} md={3} lg={3}>
             <Grid container direction="column">
-              {/* Delete Organization */}
+              {/* Business Name */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="name"
+                  label="Business name"
+                  placeholder="Business name"
+                  disabled={!source.sourceState.canSave}
+                  onChange={this.onDataChange}
+                  value={tenant.name}
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+              {/* Tenant Email */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="email"
+                  label="Business email"
+                  placeholder="Business offical email"
+                  disabled={!source.sourceState.canSave}
+                  onChange={this.onDataChange}
+                  value={tenant.email}
+                  type="Email"
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+          {/* Group Legal Name , Business Phone */}
+          <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid container direction="column">
+              {/* Legal Name */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="legalName"
+                  label="Legal business name"
+                  placeholder="Legal business name"
+                  disabled={!source.sourceState.canSave}
+                  onChange={this.onDataChange}
+                  value={tenant.legalName}
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+              {/* Business Phone */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="phone"
+                  label="Business phone"
+                  placeholder="Business phone number"
+                  disabled={!source.sourceState.canSave}
+                  onChange={this.onDataChange}
+                  value={tenant.phone}
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+          {/* Website , Business Mobile */}
+          <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid container direction="column">
+              {/* Website */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="website"
+                  label="Website"
+                  placeholder="Business website"
+                  disabled={!source.sourceState.canSave}
+                  onChange={this.onDataChange}
+                  value={tenant.website ? tenant.website : ""}
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+              {/* Business Mobile */}
+              <FormControl className={classes.formControl}>
+                <TextField
+                  name="mobile"
+                  label="Business mobile"
+                  placeholder="Business mobile number"
+                  disabled={!source.sourceState.canSave}
+                  onChange={this.onDataChange}
+                  value={tenant.mobile ? tenant.mobile : ""}
+                  fullWidth
+                  //variant="outlined"
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+          {/* Group tenant admin*/}
+          <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid container direction="column">
+              {/* tenant admin */}
               <FormControl className={classes.formControl}>
                 <Button
-                  variant="outlined"
-                  color="primary"
-                  type="Delete organization"
+                  variant="contained"
+                  color="secondary"
+                  type="Tenant admin"
                   disabled={!source.sourceState.canSave}
-                //  onClick={this.handlePasswordDialogOpen}
+                  //  onClick={this.handlePasswordDialogOpen}
                 >
-                  Delete organization
+                  Manage Adnin
                 </Button>
               </FormControl>
-              {/* User ODI */}
-              {/* <FormControl className={classes.formControl}>
+              <Grid container direction="column">
+                {/* Delete Organization */}
+                <FormControl className={classes.formControl}>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    type="Delete organization"
+                    disabled={!source.sourceState.canSave}
+                    onClick={source.deleteTenant}
+                  >
+                    Delete organization
+                  </Button>
+                </FormControl>
+                {/* User ODI */}
+                {/* <FormControl className={classes.formControl}>
                 <FormControlLabel
                   control={
                     <Switch
@@ -385,11 +397,11 @@ class BasicTenantInfo extends Component {
                   label="ODI"
                 />
               </FormControl> */}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
   }
 }
 
