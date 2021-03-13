@@ -75,12 +75,12 @@ class TenantTopBar extends Component {
             >
               <Save />
             </IconButton>
-            {/* <IconButton
+            <IconButton
               onClick={source.watchTenant}
               disabled={!source.sourceState.canWatch}
             >
               <Visibility />
-            </IconButton> */}
+            </IconButton>
             <IconButton
               onClick={source.editTenant}
               disabled={!source.sourceState.canEdit}

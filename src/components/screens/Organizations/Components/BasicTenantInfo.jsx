@@ -130,19 +130,14 @@ const styles = (theme) => ({
 
 class BasicTenantInfo extends Component {
   state = {
-    tenant: null,
+    
   };
   componentDidMount() {
-    this.setState({ tenant: this.props.app.tenant });
   }
   componentDidUpdate(prevProps) {
-    if (this.props.app.tenant !== prevProps.app.tenant)
-      this.setState({ tenant: this.props.app.tenant });
   }
   onDataChange = (event) => {
-    const { source } = this.props;
-    //let { selectedUser } = source.sourceState;
-    let { tenant } = this.state;
+    let { tenant } = this.props.source.sourceState;
     if (event.target.name === "name") tenant.name = event.target.value;
     if (event.target.name === "legalName")
       tenant.legalName = event.target.value;
@@ -150,20 +145,11 @@ class BasicTenantInfo extends Component {
     if (event.target.name === "phone") tenant.phone = event.target.value;
     if (event.target.name === "website") tenant.website = event.target.value;
     if (event.target.name === "mobile") tenant.mobile = event.target.value;
-    // if (event.target.name === "sipServer")
-    //   tenant.sipServer = event.target.value;
-    // if (event.target.name === "sipUri")
-    //   tenant.sipUri = event.target.value;
-    // if (event.target.name === "role") tenant.role = event.target.value;
-    // if (event.target.name === "sharedAgent")
-    //   tenant.sharedAgent = event.target.checked;
-
-    //    source.updateSelectedUser(tenant);
-    this.setState({ tenant });
+    this.props.source.updateTenantOnChange( tenant );
   };
   render() {
     const { classes, source, theme } = this.props;
-    const { tenant } = this.state;
+    const { tenant } = source.sourceState;
     if (tenant == null) return <React.Fragment />;
     else
       return (

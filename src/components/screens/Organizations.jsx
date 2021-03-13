@@ -11,49 +11,60 @@ import _ from "lodash";
 // import loadMyTenants from "./Organizations/loadTenants";
 // import NewTenantDialog from "../dialogs/NewTenantDialog";
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
     position: "relative",
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   card: {
     overflow: "auto",
     maxHeight: "100%",
     minHeight: "100%",
-    minWidth: "100%"
+    minWidth: "100%",
   },
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class Organizations extends Component {
   state = {
+    tenant: null,
     canSave: false,
     canEdit: false,
+    canWatch: false,
   };
 
-  componentDidMount(){
-    if(this.props.app.user._id == this.props.app.tenant.adminId)
-      this.setState({canEdit:true});
+  componentDidMount() {
+    if (this.props.app.user._id == this.props.app.tenant.adminId)
+      this.setState({
+        canEdit: true,
+        tenant: _.cloneDeep(this.props.app.tenant),
+      });
   }
-  componentDidUpdate(prevProps,prevState){
-    if(prevProps.app.tenant !== this.props.app.tenant){
-      if(this.props.app.user._id == this.props.app.tenant.adminId)
-        this.setState({canEdit:true});
-        else
-        this.setState({canEdit:false});
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.app.tenant !== this.props.app.tenant) {
+      if (this.props.app.user._id == this.props.app.tenant.adminId)
+        this.setState({
+          canEdit: true,
+          tenant: _.cloneDeep(this.props.app.tenant),
+        });
+      else this.setState({ canEdit: false, tenant: null });
     }
   }
-  handleDeleteTenant = index => {
+
+  updateTenantOnChange = (tenant) =>{
+    this.setState({tenant});
+  }
+  handleDeleteTenant = (index) => {
     deleteTenant(index, this);
   };
   handleUpdateTenant = (index, tenant) => {
@@ -65,41 +76,60 @@ class Organizations extends Component {
     if (type === "email") tenants[index].email = data;
     this.setState({ tenants });
   };
+  watchTenant = () => {
+    //We need to reset tenant here
+    this.setState({
+      canSave: false,
+      canWatch: false,
+      canEdit: true,
+      tenant: _.cloneDeep(this.props.app.tenant),
+    });
+  };
   editTenant = () => {
     this.setState({
       canSave: true,
+      canWatch: true,
       canEdit: false,
     });
   };
-  saveTenant = ()=> {
+  saveTenant = () => {
     // We need to send tenant "Cloned"
     let tenant = _.cloneDeep(this.props.app.tenant);
-    tenant = _.pick(tenant,["name","legalName","email","phone","website","mobile"]);
+    tenant = _.pick(tenant, [
+      "name",
+      "legalName",
+      "email",
+      "phone",
+      "website",
+      "mobile",
+    ]);
     //delete tenant.confguration;
     console.log(tenant);
-    updateTenant(this.props.app.tenant._id,tenant,this);
+    updateTenant(this.props.app.tenant._id, tenant, this);
     this.setState({
       canSave: false,
       canEdit: true,
     });
-  }
-  deleteTenant = ()=> {
-    deleteTenant(this.props.app.tenant,this);
+  };
+  deleteTenant = () => {
+    deleteTenant(this.props.app.tenant, this);
     this.setState({
       canSave: false,
       canEdit: true,
     });
-  }
+  };
 
   getSharedObject = () => {
     return {
       updateTenantData: this.updateTenantData,
       handleDeleteTenant: this.handleDeleteTenant,
       handleUpdateTenant: this.handleUpdateTenant,
-      editTenant:this.editTenant,
-      saveTenant:this.saveTenant,
-      deleteTenant:this.deleteTenant,
-      sourceState: this.state
+      editTenant: this.editTenant,
+      saveTenant: this.saveTenant,
+      deleteTenant: this.deleteTenant,
+      watchTenant: this.watchTenant,
+      updateTenantOnChange: this.updateTenantOnChange,
+      sourceState: this.state,
     };
   };
 
@@ -135,7 +165,7 @@ Organizations.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Organizations);
