@@ -16,15 +16,122 @@ import BasicTenantInfo from "./Components/BasicTenantInfo";
 //import TenantData from "./TenantData";
 
 const styles = (theme) => ({
-  root: {
+  content: {
+    flexGrow: 1,
+    //height: "86vh"
+  },
+  grid: {
     display: "flex",
+    position: "relative",
+    maxHeight: "100%",
+    minHeight: "100%",
+    overflow: "hidden",
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+  gridWithoutBorder: {
+    display: "flex",
+    position: "relative", //
+    // height: "79vh",
+    // maxHeight: "79vh"
   },
-  button: {
+  card: {
+    display: "flex",
+    position: "relative",
+    overflow: "hidden",
+    maxHeight: "100%",
+    minHeight: "100%",
+    background: "transparent",
+    // border: "1px solid",
+    // borderColor: theme.palette.secondary.light,
+    boxShadow: "none",
+  },
+  details: {
+    display: "block",
+    position: "absolute",
+    overflow: "auto",
+    // height: "auto",
+    // maxHeight: "78vh",
+    //    minWidth: "100%",
+    whiteSpace: "nowrap",
+    //width: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  formControl: {
     margin: theme.spacing(1),
+    maxWidth: "90%",
+  },
+  list: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.light,
+    "border-radius": "5px",
+    height: "18em",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  listOrganizations: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.light,
+    "border-radius": "5px",
+    height: "6.2em",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  listUsers: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.light,
+    "border-radius": "5px",
+    height: "14.7em",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
   },
 });
 

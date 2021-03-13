@@ -91,7 +91,7 @@ class TypesList extends Component {
                 </IconButton>
               </div>
             }
-            title="List of types"
+            title="Channels"
           />
           <Divider />
           <CardContent className={classes.cardContent}>

@@ -7,34 +7,35 @@ import {
   InputLabel,
   OutlinedInput,
   Select,
-  Avatar
+  Avatar,
+  Button,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
     height: "79vh",
-    maxHeight: "79vh"
+    maxHeight: "79vh",
   },
   card: {
     display: "flex",
     position: "relative",
     overflow: "hidden",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   details: {
     display: "block",
@@ -47,20 +48,20 @@ const styles = theme => ({
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "90%"
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
@@ -72,16 +73,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -93,16 +94,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -114,29 +115,27 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class BasicTenantInfo extends Component {
-  state = {
-  };
+  state = {};
   componentDidMount() {}
-  onDataChange = event => {
+  onDataChange = (event) => {
     const { source } = this.props;
     //let { selectedUser } = source.sourceState;
-    let {tenant} = this.props.app;
-    if (event.target.name === "name")
-      tenant.name = event.target.value;
+    let { tenant } = this.props.app;
+    if (event.target.name === "name") tenant.name = event.target.value;
     // if (event.target.name === "lastname")
     //   tenant.lastname = event.target.value;
     if (event.target.name === "email") tenant.email = event.target.value;
@@ -154,11 +153,11 @@ class BasicTenantInfo extends Component {
     // if (event.target.name === "sharedAgent")
     //   tenant.sharedAgent = event.target.checked;
 
-//    source.updateSelectedUser(tenant);
+    //    source.updateSelectedUser(tenant);
   };
   render() {
     const { classes, source, theme } = this.props;
-    const {tenant} = this.props.app;
+    const { tenant } = this.props.app;
     return (
       <React.Fragment>
         {/* Empty space*/}
@@ -185,11 +184,7 @@ class BasicTenantInfo extends Component {
                 placeholder="Organization verification status"
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
-                value={
-                  tenant.verified
-                    ? "Verified"
-                    : "Not yet"
-                }
+                value={tenant.verified ? "Verified" : "Not yet"}
                 fullWidth
               />
             </FormControl>
@@ -206,11 +201,7 @@ class BasicTenantInfo extends Component {
                 placeholder="Organization subscription status"
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
-                value={
-                  tenant.status
-                    ? tenant.status
-                    : ""
-                }
+                value={tenant.status ? tenant.status : ""}
                 fullWidth
                 //variant="outlined"
               />
@@ -331,11 +322,7 @@ class BasicTenantInfo extends Component {
                 placeholder="Business website"
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
-                value={
-                  tenant.website
-                    ? tenant.website
-                    : ""
-                }
+                value={tenant.website ? tenant.website : ""}
                 fullWidth
                 //variant="outlined"
               />
@@ -348,48 +335,41 @@ class BasicTenantInfo extends Component {
                 placeholder="Business mobile number"
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
-                value={
-                  tenant.mobile
-                    ? tenant.mobile
-                    : ""
-                }
+                value={tenant.mobile ? tenant.mobile : ""}
                 fullWidth
                 //variant="outlined"
               />
             </FormControl>
           </Grid>
         </Grid>
-        {/* Group Change Password Button , Shared Agent */}
+        {/* Group tenant admin*/}
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
-            {/* User Change Password Button */}
-            {/* <FormControl className={classes.formControl}>
+            {/* tenant admin */}
+            <FormControl className={classes.formControl}>
               <Button
                 variant="contained"
                 color="secondary"
-                type="Change password"
+                type="Tenant admin"
                 disabled={!source.sourceState.canSave}
-                onClick={this.handlePasswordDialogOpen}
+              //  onClick={this.handlePasswordDialogOpen}
               >
-                Change password
+                Manage Adnin
               </Button>
-            </FormControl> */}
-            <Grid container direction="row">
-              {/* User SharedAgent */}
-              {/* <FormControl className={classes.formControl}>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={source.sourceState.selectedUser.sharedAgent}
-                      onChange={this.onDataChange}
-                      disabled={!source.sourceState.canSave}
-                      color="primary"
-                      name="sharedAgent"
-                    />
-                  }
-                  label="Shared"
-                />
-              </FormControl> */}
+            </FormControl>
+            <Grid container direction="column">
+              {/* Delete Organization */}
+              <FormControl className={classes.formControl}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  type="Delete organization"
+                  disabled={!source.sourceState.canSave}
+                //  onClick={this.handlePasswordDialogOpen}
+                >
+                  Delete organization
+                </Button>
+              </FormControl>
               {/* User ODI */}
               {/* <FormControl className={classes.formControl}>
                 <FormControlLabel
@@ -419,7 +399,7 @@ BasicTenantInfo.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(BasicTenantInfo);

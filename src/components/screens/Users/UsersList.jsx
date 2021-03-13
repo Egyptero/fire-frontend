@@ -94,7 +94,7 @@ class UsersList extends Component {
                 </IconButton>
               </div>
             }
-            title="List of users"
+            title="Users"
           />
           <Divider />
           <CardContent className={classes.cardContent}>

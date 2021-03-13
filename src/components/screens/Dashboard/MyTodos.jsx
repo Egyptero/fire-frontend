@@ -187,7 +187,7 @@ class MyTodos extends Component {
               </IconButton>
             </div>
           }
-          title="To do"
+          title="My tasks"
         />
         <Divider />
 

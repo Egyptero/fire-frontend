@@ -98,7 +98,7 @@ class WorkflowsList extends Component {
                 </IconButton>
               </div>
             }
-            title="List of flows"
+            title="Workflows"
           />
           <Divider />
           <CardContent className={classes.cardContent}>

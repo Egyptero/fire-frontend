@@ -33,31 +33,6 @@ class BottomList extends Component {
         >
           <ListItem
             button
-            key="Organizations"
-            onClick={() => handleScreenChange("Organizations")}
-            selected={app.screen === "Organizations"}
-            style={
-              app.screen === "Organizations"
-                ? {
-                    backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
-                  }
-                : {}
-            }
-          >
-            <ListItemIcon>
-              <LocationCity style={{ color: "white" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
-                  Organizations
-                </Typography>
-              }
-            />
-          </ListItem>
-          <ListItem
-            button
             key="Types"
             onClick={() => handleScreenChange("Types")}
             selected={app.screen === "Types"}
@@ -76,7 +51,7 @@ class BottomList extends Component {
             <ListItemText
               primary={
                 <Typography variant="subtitle2" style={{ color: "white" }}>
-                  Types
+                  Channels
                 </Typography>
               }
             />
@@ -102,7 +77,7 @@ class BottomList extends Component {
             <ListItemText
               primary={
                 <Typography variant="subtitle2" style={{ color: "white" }}>
-                  Workflows
+                  Intellgence
                 </Typography>
               }
             />
@@ -128,7 +103,7 @@ class BottomList extends Component {
             <ListItemText
               primary={
                 <Typography variant="subtitle2" style={{ color: "white" }}>
-                  Skillgroups
+                  Skill-groups
                 </Typography>
               }
             />
@@ -205,6 +180,31 @@ class BottomList extends Component {
               primary={
                 <Typography variant="subtitle2" style={{ color: "white" }}>
                   Contacts
+                </Typography>
+              }
+            />
+          </ListItem>
+          <ListItem
+            button
+            key="Organizations"
+            onClick={() => handleScreenChange("Organizations")}
+            selected={app.screen === "Organizations"}
+            style={
+              app.screen === "Organizations"
+                ? {
+                    backgroundColor: theme.palette.primary.dark,
+                    boxShadow: "1px 1px 2px black"
+                  }
+                : {}
+            }
+          >
+            <ListItemIcon>
+              <LocationCity style={{ color: "white" }} />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Typography variant="subtitle2" style={{ color: "white" }}>
+                  Organization
                 </Typography>
               }
             />

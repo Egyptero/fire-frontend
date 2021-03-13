@@ -122,7 +122,7 @@ class InteractionsList extends Component {
                 </IconButton>
               </div>
             }
-            title="List of interactions"
+            title="Interactions"
           />
           <Divider />
           <CardContent className={classes.cardContent}>

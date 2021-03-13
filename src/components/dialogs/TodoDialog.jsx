@@ -31,7 +31,7 @@ const styles = (theme) => ({
 
 class NewTodo extends Component {
   state = {
-    head: "New action",
+    head: "Add task",
     title: "",
     description: "",
     due: Date.now(),
@@ -70,7 +70,7 @@ class NewTodo extends Component {
   setInitialState = (todo) => {
     if (todo)
       this.setState({
-        head: "Edit action",
+        head: "Edit task",
         title: todo.title,
         description: todo.description,
         priority: todo.priority,
@@ -79,7 +79,7 @@ class NewTodo extends Component {
       });
     else
       this.setState({
-        head: "New action",
+        head: "Add task",
         title: "",
         description: "",
         due: Date.now(),

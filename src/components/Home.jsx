@@ -9,7 +9,7 @@ import {
   Button,
   CardHeader,
   CardContent,
-  Fab
+  Fab,
 } from "@material-ui/core";
 import auth from "./home/auth";
 import CreateAccount from "./home/CreateAccount";
@@ -20,7 +20,7 @@ import ArchivedAccount from "./home/ArchivedAccount";
 import PasswordReset from "./home/PasswordReset";
 import EmailReset from "./home/EmailReset";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
     position: "absolute",
     top: 0,
@@ -29,8 +29,8 @@ const styles = theme => ({
     right: 0,
     margin: "auto",
     maxWidth: "28em",
-    maxHeight: "30em"
-  }
+    maxHeight: "30em",
+  },
 });
 
 class Home extends Component {
@@ -38,7 +38,7 @@ class Home extends Component {
     email: "",
     password: "",
     error: "",
-    step: 1
+    step: 1,
     //Step 0 Register implemented
     //Step 1 Login implemented
     //Step 2 Sign in implemented
@@ -52,17 +52,23 @@ class Home extends Component {
     //Step 10 Terms and Conditions
   };
 
-  handleEmailChange = event => {
+  handleEnterPressInEmail = (event) => {
+    if (event.keyCode == 13) this.handleNextClick(event);
+  };
+  handleEmailChange = (event) => {
     this.setState({ email: event.target.value });
   };
-  handlePasswordChange = event => {
+  handleEnterKey = (event) => {
+    if (event.keyCode == 13) this.handleLoginClick(event);
+  };
+  handlePasswordChange = (event) => {
     this.setState({ password: event.target.value });
   };
-  handleNextClick = event => {
+  handleNextClick = (event) => {
     if (event) event.preventDefault();
     this.setState({ step: 2 });
   };
-  handleBackClick = event => {
+  handleBackClick = (event) => {
     if (event) event.preventDefault();
     this.setState({ step: 1 });
   };
@@ -84,11 +90,11 @@ class Home extends Component {
   handleEmailResetRequest = () => {
     this.setState({ step: 8 });
   };
-  handleRegisterClick = event => {
+  handleRegisterClick = (event) => {
     event.preventDefault();
     this.setState({ step: 0 });
   };
-  handleLoginClick = event => {
+  handleLoginClick = (event) => {
     event.preventDefault();
     auth(this);
   };
@@ -183,6 +189,7 @@ class Home extends Component {
                   autoFocus
                   value={this.state.password}
                   onChange={this.handlePasswordChange}
+                  onKeyDown={this.handleEnterKey}
                   type="password"
                   style={{ width: "75%" }}
                 />
@@ -208,7 +215,7 @@ class Home extends Component {
                     width: "75%",
                     marginTop: "4vh",
                     marginBottom: "2vh",
-                    textTransform: "none"
+                    textTransform: "none",
                   }}
                 >
                   Sign in
@@ -221,7 +228,7 @@ class Home extends Component {
                   onClick={this.handlePasswordResetRequest}
                   style={{
                     marginBottom: "3vh",
-                    textTransform: "none"
+                    textTransform: "none",
                   }}
                 >
                   Forget password?
@@ -266,6 +273,7 @@ class Home extends Component {
                   autoFocus
                   value={this.state.email}
                   onChange={this.handleEmailChange}
+                  onKeyDown={this.handleEnterPressInEmail}
                   style={{ width: "75%" }}
                 />
               </Grid>
@@ -282,7 +290,7 @@ class Home extends Component {
                     width: "75%",
                     marginTop: "4vh",
                     marginBottom: "8vh",
-                    textTransform: "none"
+                    textTransform: "none",
                   }}
                 >
                   Next
@@ -313,7 +321,7 @@ class Home extends Component {
                     textAlign: "center",
                     borderBottom: "1px solid #000",
                     lineHeight: "0.1em",
-                    margin: "10px 0 20px"
+                    margin: "10px 0 20px",
                   }}
                 >
                   <span style={{ background: "#fff", padding: "0 10px" }}>
@@ -330,7 +338,7 @@ class Home extends Component {
                   style={{
                     width: "45%",
                     borderRadius: "2em",
-                    textTransform: "none"
+                    textTransform: "none",
                   }}
                 >
                   Create Account
@@ -372,7 +380,7 @@ Home.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Home);

@@ -93,7 +93,7 @@ class SkillgroupsList extends Component {
                 </IconButton>
               </div>
             }
-            title="List of skillgroups"
+            title="Skill-groups"
           />
           <Divider />
           <CardContent className={classes.cardContent}>

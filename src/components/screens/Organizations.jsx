@@ -19,6 +19,7 @@ const styles = theme => ({
 class Organizations extends Component {
   state = {
     //tenants: [],
+    canSave: true,
     openNewTenant: false
   };
 

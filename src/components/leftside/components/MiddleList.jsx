@@ -67,7 +67,7 @@ class MiddelList extends Component {
             <ListItemText
               primary={
                 <Typography variant="subtitle2" style={{ color: "white" }}>
-                  To do
+                  Tasks
                 </Typography>
               }
             />
