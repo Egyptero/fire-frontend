@@ -12,7 +12,7 @@ const styles = theme => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "32vh",
+    height: "18vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em"
@@ -104,7 +104,7 @@ class MyQueues extends Component {
                 options={
                   // Chart options
                   {
-                    height:"20vh",
+                    //height:"16vh",
                     width:"100%",
                     // title: "Queues",
                     // titleTextStyle: {
@@ -118,8 +118,8 @@ class MyQueues extends Component {
                     legend: "none",
                     position: "relative",//relative
                     colors: [
-                      theme.palette.primary.main,
-                      theme.palette.secondary.main
+                      theme.palette.error.dark,
+                      theme.palette.info.main
                     ]
                   }
                 }

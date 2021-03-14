@@ -44,7 +44,7 @@ const styles = (theme) => ({
 
 class Dashboard extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes,theme } = this.props;
     return (
       <React.Fragment>
         <Grid className={classes.content} container spacing={3}>
@@ -54,22 +54,40 @@ class Dashboard extends Component {
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Grid container spacing={3}>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} />
+                <DashboardHeader {...this.props} params={{
+                  topAvatarColor:theme.palette.info.light,
+                  bottomAvatarColor:theme.palette.info.light,
+                }}/>
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} />
+                <DashboardHeader {...this.props} params={{
+                  topAvatarColor:theme.palette.error.light,
+                  bottomAvatarColor:theme.palette.error.light,
+                }}/>
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} />
+                <DashboardHeader {...this.props} params={{
+                  topAvatarColor:theme.palette.warning.light,
+                  bottomAvatarColor:theme.palette.warning.light,
+                }}/>
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} />
+                <DashboardHeader {...this.props} params={{
+                  topAvatarColor:theme.palette.primary.light,
+                  bottomAvatarColor:theme.palette.primary.light,
+                }}/>
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} />
+                <DashboardHeader {...this.props} params={{
+                  topAvatarColor:theme.palette.secondary.light,
+                  bottomAvatarColor:theme.palette.secondary.light,
+                }}/>
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} />
+                <DashboardHeader {...this.props} params={{
+                  topAvatarColor:theme.palette.error.main,
+                  bottomAvatarColor:theme.palette.error.main,
+                }}/>
               </Grid>
             </Grid>
           </Grid>

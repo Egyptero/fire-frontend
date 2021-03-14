@@ -23,7 +23,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "24vh",
+    height: "18vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -135,7 +135,7 @@ class MyTeams extends Component {
               // Chart options
               {
                 width: "100%",
-                height: "20vh",
+                //height: "18vh",
                 //is3D:true,
                 // title: "Team status",
                 // titleTextStyle: {
@@ -152,7 +152,20 @@ class MyTeams extends Component {
                 legend: { position: "bottom" },
                 colors: [
                   theme.palette.primary.main,
-                  theme.palette.secondary.main
+                  theme.palette.info.main,
+                  theme.palette.secondary.main,
+                  theme.palette.error.main,
+                  theme.palette.warning.main,
+                  theme.palette.primary.light,
+                  theme.palette.info.light,
+                  theme.palette.secondary.light,
+                  theme.palette.error.light,
+                  theme.palette.warning.light,
+                  theme.palette.primary.dark,
+                  theme.palette.info.dark,
+                  theme.palette.secondary.dark,
+                  theme.palette.error.dark,
+                  theme.palette.warning.dark,
                 ]
               }
             }
