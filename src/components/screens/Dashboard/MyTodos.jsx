@@ -187,13 +187,13 @@ class MyTodos extends Component {
               </IconButton>
             </div>
           }
-          title="My tasks"
+          title="Tasks"
         />
-        <Divider />
+        {/* <Divider /> */}
 
         <CardContent
           className={classes.cardContent}
-          style={this.props.fullScreen ? { height: "75vh" } : {height: "75vh"}}
+          style={this.props.fullScreen ? { height: "75vh" } : {height: "59vh"}}
         >
           {/**className={classes.cardContent} */}
           {/* <Grid container className={classes.grid}> */}

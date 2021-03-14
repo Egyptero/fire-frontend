@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import { Card, CardContent, CardHeader, Divider, Grid, Typography } from "@material-ui/core";
 import _ from "lodash";
 import Chart from "react-google-charts";
 
@@ -90,6 +90,8 @@ class MyQueues extends Component {
     const chartData = this.prepareDate();
     return (
       <Card className={classes.card}>
+        <CardHeader title="Queues"/>
+        <Divider />
         <CardContent
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}
@@ -102,13 +104,13 @@ class MyQueues extends Component {
                 options={
                   // Chart options
                   {
-                    height:"28vh",
+                    height:"20vh",
                     width:"100%",
-                    title: "Queues",
-                    titleTextStyle: {
-                      fontSize: 24,
+                    // title: "Queues",
+                    // titleTextStyle: {
+                    //   fontSize: 24,
                       
-                    },    
+                    // },    
                     hAxis: {
                       title: "Queues"
                     },

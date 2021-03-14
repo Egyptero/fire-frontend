@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@material-ui/core";
+import { Card, CardContent, CardHeader, Divider } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 //import TableCell from "@material-ui/core/TableCell";
 import PropTypes from "prop-types";
@@ -23,7 +23,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "32vh",
+    height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -122,6 +122,8 @@ class MyTeams extends Component {
     const { classes, theme } = this.props;
     return (
       <Card className={classes.card}>
+        <CardHeader title="Team"/>
+        <Divider />
         <CardContent
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}
@@ -133,13 +135,13 @@ class MyTeams extends Component {
               // Chart options
               {
                 width: "100%",
-                height: "28vh",
+                height: "20vh",
                 //is3D:true,
-                title: "Team status",
-                titleTextStyle: {
-                  fontSize: 24,
+                // title: "Team status",
+                // titleTextStyle: {
+                //   fontSize: 24,
                   
-                },
+                // },
                 hAxis: {
                   title: "Status",
                 },
@@ -148,6 +150,10 @@ class MyTeams extends Component {
                 position: "relative",
                 //colors: ["green", "orange", "red"],
                 legend: { position: "bottom" },
+                colors: [
+                  theme.palette.primary.main,
+                  theme.palette.secondary.main
+                ]
               }
             }
             legendToggle

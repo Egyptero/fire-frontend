@@ -6,6 +6,7 @@ import {
   CardHeader,
   Fade,
   Grow,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -13,6 +14,7 @@ import MyTodos from "./Dashboard/MyTodos";
 import MyInteractionsSummary from "./Dashboard/MyInteractionsSummary";
 import MyQueues from "./Dashboard/MyQueues";
 import MyTeams from "./Dashboard/MyTeams";
+import DashboardHeader from "./Dashboard/DashboardHeader";
 
 const styles = (theme) => ({
   content: {
@@ -45,28 +47,89 @@ class Dashboard extends Component {
     const { classes } = this.props;
     return (
       <React.Fragment>
-        <Grid className={classes.content} container spacing={1}>
+        <Grid className={classes.content} container spacing={3}>
           {/* <Grid item xs={12} sm={6} md={6} lg={6} className={classes.grid}>
             <MyInteractionsSummary {...this.props} />
           </Grid> */}
-          <Grid item xs={12} sm={12} md={6} lg={6} className={classes.gridFull}>
-            <Grid className={classes.content} container spacing={1}>
-              <Grid item xs={12} sm={6} md={6} lg={6} className={classes.grid}>
-                <MyTeams {...this.props} />
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Grid container spacing={3}>
+              <Grid item xs={6} sm={3} md={2} lg={2}>
+                <DashboardHeader {...this.props} />
               </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6} className={classes.grid}>
-                <MyQueues {...this.props} />
+              <Grid item xs={6} sm={3} md={2} lg={2}>
+                <DashboardHeader {...this.props} />
               </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6} className={classes.grid}>
-                <Card className={classes.card}>
-                  <CardHeader title="Score Card" />
-                  <CardContent />
-                </Card>
+              <Grid item xs={6} sm={3} md={2} lg={2}>
+                <DashboardHeader {...this.props} />
+              </Grid>
+              <Grid item xs={6} sm={3} md={2} lg={2}>
+                <DashboardHeader {...this.props} />
+              </Grid>
+              <Grid item xs={6} sm={3} md={2} lg={2}>
+                <DashboardHeader {...this.props} />
+              </Grid>
+              <Grid item xs={6} sm={3} md={2} lg={2}>
+                <DashboardHeader {...this.props} />
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6} className={classes.gridFull}>
-            <MyTodos {...this.props} />
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Grid container spacing={3}>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={6}
+                className={classes.gridFull}
+              >
+                <Grid container spacing={3}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                    className={classes.grid}
+                  >
+                    <MyTeams {...this.props} />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                    className={classes.grid}
+                  >
+                    <MyQueues {...this.props} />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    className={classes.grid}
+                  >
+                    <Card className={classes.card}>
+                      <CardHeader title="Score Card" />
+                      <CardContent />
+                    </Card>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={6}
+                className={classes.gridFull}
+              >
+                <MyTodos {...this.props} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </React.Fragment>

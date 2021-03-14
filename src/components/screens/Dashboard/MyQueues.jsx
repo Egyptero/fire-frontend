@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Refresh, BarChart, TableChart } from "@material-ui/icons";
-import { Card, IconButton, CardContent } from "@material-ui/core";
+import { Card, IconButton, CardContent, CardHeader, Divider } from "@material-ui/core";
 import loadMyQueues from "../../../functions/user/tenant/loadMyQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
 import Table from "@material-ui/core/Table";
@@ -31,7 +31,7 @@ const styles = theme => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "32vh",
+    height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em"
@@ -124,6 +124,8 @@ class MyQueues extends Component {
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
     return (
       <Card className={classes.card}>
+        <CardHeader title="Queues"/>
+        <Divider />
         <CardContent
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}

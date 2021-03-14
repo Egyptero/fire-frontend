@@ -6,6 +6,8 @@ import {
   Card,
   IconButton,
   CardContent,
+  CardHeader,
+  Divider,
 } from "@material-ui/core";
 import loadMyTeams from "../../../functions/user/team/loadMyTeams";
 import Table from "@material-ui/core/Table";
@@ -34,7 +36,7 @@ const styles = theme => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "32vh",
+    height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em"
@@ -94,6 +96,8 @@ class MyTeams extends Component {
     const teams = app.myTeams ? app.myTeams : [];
     return (
       <Card className={classes.card}>
+        <CardHeader title="Team"/>
+        <Divider />
         <CardContent
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}

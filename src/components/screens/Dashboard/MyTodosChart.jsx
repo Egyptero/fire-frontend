@@ -80,7 +80,7 @@ class MyTeams extends Component {
     return (
       <CardContent
         className={classes.cardContent}
-        style={this.props.fullScreen ? { height: "75vh" } : {}}
+        style={this.props.fullScreen ? { height: "75vh" } : {height: "59vh"}}
       >
         <Chart
           chartType="ColumnChart"
