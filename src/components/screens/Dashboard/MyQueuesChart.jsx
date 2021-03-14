@@ -102,6 +102,6 @@ MyQueues.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  data:PropTypes.object.isRequired,
+  data:PropTypes.array.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyQueues);
