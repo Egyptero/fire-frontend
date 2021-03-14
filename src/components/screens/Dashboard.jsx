@@ -272,7 +272,7 @@ class Dashboard extends Component {
           </Grid> */}
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Grid container spacing={3}>
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -286,7 +286,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -300,7 +300,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -314,21 +314,21 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.primary.light,
                     bottomAvatarColor: theme.palette.primary.main,
                     bottomValue: this.state.customersWaiting,
-                    message: "Customers in queue",
+                    message: "Queues",
                     icon: () => {
                       return <HourglassEmpty fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -342,7 +342,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
