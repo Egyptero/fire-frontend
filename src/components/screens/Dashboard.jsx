@@ -47,7 +47,6 @@ class Dashboard extends Component {
     teamStatus: {},
   };
   componentDidMount() {
-    console.log("Component did mount ==> Dashboard");
     const { app } = this.props;
     if (!app.mySkillgroups)
       loadMySkillgroups(this, (result) => {

@@ -71,7 +71,6 @@ class DashboardHeader extends Component {
   state = {};
   render() {
     const { classes, params } = this.props;
-    console.log(params);
     return (
       <Grid container>
         <Avatar
