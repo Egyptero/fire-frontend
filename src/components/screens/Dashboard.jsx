@@ -10,8 +10,17 @@ import DashboardHeader from "./Dashboard/DashboardHeader";
 import loadMyQueues from "../../functions/user/tenant/loadMyQueues";
 import loadMySkillgroups from "../../functions/user/tenant/loadMySkillgroups";
 import loadMyTeams from "../../functions/user/team/loadMyTeams";
+import loadTodos from "../../functions/user/loadTodos";
+
 import _ from "lodash";
-import { Assignment, Cached, DirectionsRun, Group, HourglassEmpty, PhoneInTalk } from "@material-ui/icons";
+import {
+  Assignment,
+  Cached,
+  DirectionsRun,
+  Group,
+  HourglassEmpty,
+  PhoneInTalk,
+} from "@material-ui/icons";
 
 const styles = (theme) => ({
   content: {
@@ -43,8 +52,10 @@ class Dashboard extends Component {
   state = {
     teamData: [],
     queueData: [],
+    todoData: [],
     customersWaiting: 0,
     teamStatus: {},
+    todoStatus: {},
   };
   componentDidMount() {
     const { app } = this.props;
@@ -68,6 +79,10 @@ class Dashboard extends Component {
         if (!result.error) this.calcTeamData();
       });
     else this.calcTeamData();
+    if (app.todos) this.calcTodoData();
+    else loadTodos(this,(result)=>{
+      if(!result.error) this.calcTodoData();
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -83,6 +98,9 @@ class Dashboard extends Component {
         if (!result.error) this.calcTeamData();
       });
     }
+    if (app.todos !== prevProps.app.todos) {
+      this.calcTodoData();
+    }
   }
 
   refreshTeams = () => {
@@ -95,16 +113,16 @@ class Dashboard extends Component {
   };
 
   refreshQueues = () => {
-    loadMySkillgroups(this, result => {
-      if (!result.error) loadMyQueues(this, (result) => {
-        if (!result.error) {
-          this.calcQueueData();
-          this.calcTeamData();
-        }
-      });
+    loadMySkillgroups(this, (result) => {
+      if (!result.error)
+        loadMyQueues(this, (result) => {
+          if (!result.error) {
+            this.calcQueueData();
+            this.calcTeamData();
+          }
+        });
     });
   };
-
 
   getSkillQueue = (skillgroupId) => {
     const { app } = this.props;
@@ -131,6 +149,36 @@ class Dashboard extends Component {
     return users.length;
   };
 
+  calcTodoData = () => {
+    const { app } = this.props;
+    const todos = app.todos ? app.todos : [];
+    let data = [["Status", "Activities"]];
+    let statusCount = {
+      new: 0,
+      progress: 0,
+      completed: 0,
+    };
+    if (todos)
+      todos.forEach((todo) => {
+        switch (todo.status) {
+          case "New":
+            statusCount.new += 1;
+            break;
+          case "Progress":
+            statusCount.progress += 1;
+            break;
+          case "Completed":
+            statusCount.completed += 1;
+            break;
+          default:
+            break;
+        }
+      });
+    data.push(["New", statusCount.new]);
+    data.push(["Progress", statusCount.progress]);
+    data.push(["Completed", statusCount.completed]);
+    this.setState({ todoData: data, todoStatus: statusCount });
+  };
   calcQueueData = () => {
     const { app } = this.props;
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
@@ -230,7 +278,9 @@ class Dashboard extends Component {
                     bottomAvatarColor: theme.palette.success.main,
                     bottomValue: this.state.teamStatus.ready,
                     message: "Ready agents",
-                    icon:()=> {return <Group fontSize="large"/>;}
+                    icon: () => {
+                      return <Group fontSize="large" />;
+                    },
                   }}
                 />
               </Grid>
@@ -242,7 +292,9 @@ class Dashboard extends Component {
                     bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.teamStatus.notready,
                     message: "Not ready agents",
-                    icon:()=> {return <DirectionsRun fontSize="large"/>;}
+                    icon: () => {
+                      return <DirectionsRun fontSize="large" />;
+                    },
                   }}
                 />
               </Grid>
@@ -254,7 +306,9 @@ class Dashboard extends Component {
                     bottomAvatarColor: theme.palette.info.main,
                     bottomValue: this.state.teamStatus.handling,
                     message: "Working agents",
-                    icon:()=> {return <PhoneInTalk fontSize="large"/>;}
+                    icon: () => {
+                      return <PhoneInTalk fontSize="large" />;
+                    },
                   }}
                 />
               </Grid>
@@ -266,7 +320,9 @@ class Dashboard extends Component {
                     bottomAvatarColor: theme.palette.primary.main,
                     bottomValue: this.state.customersWaiting,
                     message: "Customers in queue",
-                    icon:()=>{return <HourglassEmpty fontSize="large"/>;}
+                    icon: () => {
+                      return <HourglassEmpty fontSize="large" />;
+                    },
                   }}
                 />
               </Grid>
@@ -276,9 +332,11 @@ class Dashboard extends Component {
                   params={{
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
-                    bottomValue: 8,
+                    bottomValue: this.state.todoStatus.new,
                     message: "Open tasks",
-                    icon:()=>{return <Assignment fontSize="large"/>;}
+                    icon: () => {
+                      return <Assignment fontSize="large" />;
+                    },
                   }}
                 />
               </Grid>
@@ -288,9 +346,11 @@ class Dashboard extends Component {
                   params={{
                     topAvatarColor: theme.palette.warning.light,
                     bottomAvatarColor: theme.palette.warning.main,
-                    bottomValue: 15,
+                    bottomValue: this.state.todoStatus.progress,
                     message: "In-progress tasks",
-                    icon:()=>{return <Cached fontSize="large"/>;}
+                    icon: () => {
+                      return <Cached fontSize="large" />;
+                    },
                   }}
                 />
               </Grid>
@@ -329,7 +389,11 @@ class Dashboard extends Component {
                     lg={6}
                     className={classes.grid}
                   >
-                    <MyQueues {...this.props} data={this.state.queueData} refresh={this.refreshQueues}/>
+                    <MyQueues
+                      {...this.props}
+                      data={this.state.queueData}
+                      refresh={this.refreshQueues}
+                    />
                   </Grid>
                   <Grid
                     item
@@ -354,7 +418,7 @@ class Dashboard extends Component {
                 lg={6}
                 className={classes.gridFull}
               >
-                <MyTodos {...this.props} />
+                <MyTodos {...this.props} data={this.state.todoData} />
               </Grid>
             </Grid>
           </Grid>

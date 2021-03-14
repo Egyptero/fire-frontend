@@ -61,10 +61,10 @@ class MyTodos extends Component {
     severity: "All",
     screenView: "Table" //Table
   };
-  componentDidMount() {
-    const { app } = this.props;
-    if (!app.todos) loadTodos(this);
-  }
+  // componentDidMount() {
+  //   const { app } = this.props;
+  //   if (!app.todos) loadTodos(this);
+  // }
   handleNewTodoOpen = () => {
     this.setState({ openTodo: true, action: "new", todoId: null });
   };
