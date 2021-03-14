@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import {
-  Grid,
-  Card,
-  CardContent,
-  CardHeader,
-  Fade,
-  Grow,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Card, CardContent, CardHeader } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MyTodos from "./Dashboard/MyTodos";
-import MyInteractionsSummary from "./Dashboard/MyInteractionsSummary";
+//import MyInteractionsSummary from "./Dashboard/MyInteractionsSummary";
 import MyQueues from "./Dashboard/MyQueues";
 import MyTeams from "./Dashboard/MyTeams";
 import DashboardHeader from "./Dashboard/DashboardHeader";
+import loadMyQueues from "../../functions/user/tenant/loadMyQueues";
+import loadMySkillgroups from "../../functions/user/tenant/loadMySkillgroups";
+import loadMyTeams from "../../functions/user/team/loadMyTeams";
+import _ from "lodash";
+import { Assignment, Cached, DirectionsRun, Group, HourglassEmpty, PhoneInTalk } from "@material-ui/icons";
 
 const styles = (theme) => ({
   content: {
@@ -43,8 +40,181 @@ const styles = (theme) => ({
 });
 
 class Dashboard extends Component {
+  state = {
+    teamData: [],
+    queueData: [],
+    customersWaiting: 0,
+    teamStatus: {},
+  };
+  componentDidMount() {
+    console.log("Component did mount ==> Dashboard");
+    const { app } = this.props;
+    if (!app.mySkillgroups)
+      loadMySkillgroups(this, (result) => {
+        if (!result.error) {
+          if (!app.myQueues)
+            loadMyQueues(this, (result) => {
+              if (!result.error) this.calcQueueData();
+            });
+        }
+      });
+    else if (!app.myQueues)
+      loadMyQueues(this, (result) => {
+        if (!result.error) this.calcQueueData();
+      });
+    else this.calcQueueData();
+
+    if (!app.myTeams)
+      loadMyTeams(this, (result) => {
+        if (!result.error) this.calcTeamData();
+      });
+    else this.calcTeamData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { app } = this.props;
+    if (app.tenant !== prevProps.app.tenant) {
+      loadMySkillgroups(this, (result) => {
+        if (!result.error)
+          loadMyQueues(this, (result) => {
+            if (!result.error) this.calcQueueData();
+          });
+      });
+      loadMyTeams(this, (result) => {
+        if (!result.error) this.calcTeamData();
+      });
+    }
+  }
+
+  refreshTeams = () => {
+    loadMyTeams(this, (result) => {
+      if (!result.error) {
+        this.calcTeamData();
+        this.calcQueueData();
+      }
+    });
+  };
+
+  refreshQueues = () => {
+    loadMySkillgroups(this, result => {
+      if (!result.error) loadMyQueues(this, (result) => {
+        if (!result.error) {
+          this.calcQueueData();
+          this.calcTeamData();
+        }
+      });
+    });
+  };
+
+
+  getSkillQueue = (skillgroupId) => {
+    const { app } = this.props;
+    if (app.myQueues) {
+      let matchQueues = _.filter(
+        app.myQueues,
+        (queue) => queue.skillgroupId === skillgroupId
+      );
+      if (matchQueues && matchQueues.length > 0) return matchQueues[0].queue;
+      else return "-";
+    } else return 0;
+  };
+
+  getSkillNotReady = (skillgroupId) => {
+    const { app } = this.props;
+    const { myTeams } = app;
+    const users = _.filter(
+      myTeams,
+      (user) =>
+        user.status === "Not ready" &&
+        user.skillIds.includes(skillgroupId) &&
+        user.tenantIds.includes(app.tenant._id)
+    );
+    return users.length;
+  };
+
+  calcQueueData = () => {
+    const { app } = this.props;
+    const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
+    let data = [["Skillgroup", "Queue", "Not ready"]];
+    let customersWaiting = 0;
+    if (skillgroups)
+      skillgroups.forEach((skillgroup) => {
+        let queueSize = this.getSkillQueue(skillgroup._id);
+        customersWaiting += queueSize;
+        data.push([
+          skillgroup.name,
+          this.getSkillQueue(skillgroup._id),
+          this.getSkillNotReady(skillgroup._id),
+        ]);
+      });
+
+    if (skillgroups.length === 0) data = null;
+    this.setState({ queueData: data, customersWaiting });
+  };
+  calcTeamData = () => {
+    const { app } = this.props;
+    const teams = app.myTeams ? app.myTeams : [];
+    let data = [["Status", "Count"]];
+    let statusCount = {
+      ready: 0,
+      notready: 0,
+      handling: 0,
+      unknown: 0,
+      loggedin: 0,
+      loggedout: 0,
+      wrapup: 0,
+      error: 0,
+      reserved: 0,
+    };
+    if (teams)
+      teams.forEach((user) => {
+        switch (user.status) {
+          case "Ready":
+            statusCount.ready += 1;
+            break;
+          case "Not ready":
+            statusCount.notready += 1;
+            break;
+          case "Handling":
+            statusCount.handling += 1;
+            break;
+          case "Unknown":
+            statusCount.unknown += 1;
+            break;
+          case "Wrap up":
+            statusCount.wrapup += 1;
+            break;
+          case "Reserved":
+            statusCount.reserved += 1;
+            break;
+          case "Error":
+            statusCount.error += 1;
+            break;
+          case "Logged In":
+            statusCount.loggedin += 1;
+            break;
+          case "Logged Out":
+            statusCount.loggedout += 1;
+            break;
+          default:
+            break;
+        }
+      });
+    data.push(["Ready", statusCount.ready]);
+    data.push(["Not ready", statusCount.notready]);
+    data.push(["Handling", statusCount.handling]);
+    data.push(["Reserved", statusCount.reserved]);
+    data.push(["Wrap up", statusCount.wrapup]);
+    data.push(["Error", statusCount.error]);
+    data.push(["Logged in", statusCount.loggedin]);
+    data.push(["Logged out", statusCount.loggedout]);
+    data.push(["Unknown", statusCount.unknown]);
+
+    this.setState({ teamData: data, teamStatus: statusCount });
+  };
+
   render() {
-    const { classes,theme } = this.props;
+    const { classes, theme } = this.props;
     return (
       <React.Fragment>
         <Grid className={classes.content} container spacing={3}>
@@ -54,40 +224,76 @@ class Dashboard extends Component {
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Grid container spacing={3}>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} params={{
-                  topAvatarColor:theme.palette.info.light,
-                  bottomAvatarColor:theme.palette.info.light,
-                }}/>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.success.light,
+                    bottomAvatarColor: theme.palette.success.main,
+                    bottomValue: this.state.teamStatus.ready,
+                    message: "Ready agents",
+                    icon:()=> {return <Group fontSize="large"/>;}
+                  }}
+                />
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} params={{
-                  topAvatarColor:theme.palette.error.light,
-                  bottomAvatarColor:theme.palette.error.light,
-                }}/>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.error.light,
+                    bottomAvatarColor: theme.palette.error.main,
+                    bottomValue: this.state.teamStatus.notready,
+                    message: "Not ready agents",
+                    icon:()=> {return <DirectionsRun fontSize="large"/>;}
+                  }}
+                />
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} params={{
-                  topAvatarColor:theme.palette.warning.light,
-                  bottomAvatarColor:theme.palette.warning.light,
-                }}/>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.info.light,
+                    bottomAvatarColor: theme.palette.info.main,
+                    bottomValue: this.state.teamStatus.handling,
+                    message: "Working agents",
+                    icon:()=> {return <PhoneInTalk fontSize="large"/>;}
+                  }}
+                />
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} params={{
-                  topAvatarColor:theme.palette.primary.light,
-                  bottomAvatarColor:theme.palette.primary.light,
-                }}/>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.primary.light,
+                    bottomAvatarColor: theme.palette.primary.main,
+                    bottomValue: this.state.customersWaiting,
+                    message: "Customers in queue",
+                    icon:()=>{return <HourglassEmpty fontSize="large"/>;}
+                  }}
+                />
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} params={{
-                  topAvatarColor:theme.palette.secondary.light,
-                  bottomAvatarColor:theme.palette.secondary.light,
-                }}/>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.secondary.light,
+                    bottomAvatarColor: theme.palette.secondary.main,
+                    bottomValue: 8,
+                    message: "Open tasks",
+                    icon:()=>{return <Assignment fontSize="large"/>;}
+                  }}
+                />
               </Grid>
               <Grid item xs={6} sm={3} md={2} lg={2}>
-                <DashboardHeader {...this.props} params={{
-                  topAvatarColor:theme.palette.error.main,
-                  bottomAvatarColor:theme.palette.error.main,
-                }}/>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.warning.light,
+                    bottomAvatarColor: theme.palette.warning.main,
+                    bottomValue: 15,
+                    message: "In-progress tasks",
+                    icon:()=>{return <Cached fontSize="large"/>;}
+                  }}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -110,7 +316,11 @@ class Dashboard extends Component {
                     lg={6}
                     className={classes.grid}
                   >
-                    <MyTeams {...this.props} />
+                    <MyTeams
+                      {...this.props}
+                      data={this.state.teamData}
+                      refresh={this.refreshTeams}
+                    />
                   </Grid>
                   <Grid
                     item
@@ -120,7 +330,7 @@ class Dashboard extends Component {
                     lg={6}
                     className={classes.grid}
                   >
-                    <MyQueues {...this.props} />
+                    <MyQueues {...this.props} data={this.state.queueData} refresh={this.refreshQueues}/>
                   </Grid>
                   <Grid
                     item

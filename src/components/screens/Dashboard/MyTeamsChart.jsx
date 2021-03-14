@@ -57,67 +57,6 @@ const styles = (theme) => ({
 
 class MyTeams extends Component {
   state = {};
-  prepareDate = () => {
-    const { app } = this.props;
-    const teams = app.myTeams ? app.myTeams : [];
-    let data = [["Status", "Count"]];
-    let statusCount = {
-      ready: 0,
-      notready: 0,
-      handling: 0,
-      unknown: 0,
-      loggedin: 0,
-      loggedout: 0,
-      wrapup: 0,
-      error: 0,
-      reserved: 0,
-    };
-    if (teams)
-      teams.forEach((user) => {
-        switch (user.status) {
-          case "Ready":
-            statusCount.ready += 1;
-            break;
-          case "Not ready":
-            statusCount.notready += 1;
-            break;
-          case "Handling":
-            statusCount.handling += 1;
-            break;
-          case "Unknown":
-            statusCount.unknown += 1;
-            break;
-          case "Wrap up":
-            statusCount.wrapup += 1;
-            break;
-          case "Reserved":
-            statusCount.reserved += 1;
-            break;
-          case "Error":
-            statusCount.error += 1;
-            break;
-          case "Logged In":
-            statusCount.loggedin += 1;
-            break;
-          case "Logged Out":
-            statusCount.loggedout += 1;
-            break;
-          default:
-            break;
-        }
-      });
-    data.push(["Ready", statusCount.ready]);
-    data.push(["Not ready", statusCount.notready]);
-    data.push(["Handling", statusCount.handling]);
-    data.push(["Reserved", statusCount.reserved]);
-    data.push(["Wrap up", statusCount.wrapup]);
-    data.push(["Error", statusCount.error]);
-    data.push(["Logged in", statusCount.loggedin]);
-    data.push(["Logged out", statusCount.loggedout]);
-    data.push(["Unknown", statusCount.unknown]);
-    return data;
-  };
-
   render() {
     const { classes, theme } = this.props;
     return (
@@ -130,7 +69,7 @@ class MyTeams extends Component {
         >
           <Chart
             chartType="PieChart"
-            data={this.prepareDate()}
+            data={this.props.data}
             options={
               // Chart options
               {
@@ -183,5 +122,6 @@ MyTeams.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
+  data:PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyTeams);

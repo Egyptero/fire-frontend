@@ -6,8 +6,10 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Divider,
   Grid,
   IconButton,
+  Typography,
 } from "@material-ui/core";
 import { MoreVert, Settings } from "@material-ui/icons";
 
@@ -46,20 +48,20 @@ const styles = (theme) => ({
   floatButtonLeft: {},
   avatar: {
     position: "relative",
-    boxShadow: "1px 1px 2px gray",
+    boxShadow: "1px 1px 4px gray",
     zIndex: 1,
     top: theme.spacing(-2),
-    width: theme.spacing(15),
+    width: theme.spacing(12),
     height: theme.spacing(5),
     backgroundColor: theme.palette.error.light,
   },
   avatarOver: {
     position: "relative",
-    boxShadow: "1px 1px 2px gray",
+    boxShadow: "1px 1px 4px gray",
     zIndex: 1,
     //top: theme.spacing(-5),
     left: theme.spacing(2),
-    width: theme.spacing(15),
+    width: theme.spacing(12),
     height: theme.spacing(5),
     backgroundColor: theme.palette.error.light,
   },
@@ -68,7 +70,7 @@ const styles = (theme) => ({
 class DashboardHeader extends Component {
   state = {};
   render() {
-    const { classes , params } = this.props;
+    const { classes, params } = this.props;
     console.log(params);
     return (
       <Grid container>
@@ -78,8 +80,7 @@ class DashboardHeader extends Component {
           variant="square"
           style={{ backgroundColor: params.topAvatarColor }}
         >
-          {" "}
-          {/* <Settings/> */}
+          <Typography variant="h4">{params.bottomValue}</Typography>
         </Avatar>
         <Card className={classes.card}>
           <CardHeader
@@ -91,7 +92,7 @@ class DashboardHeader extends Component {
                 variant="square"
                 style={{ backgroundColor: params.bottomAvatarColor }}
               >
-                {" "}
+                {params.icon ? params.icon() : ""}
               </Avatar>
             }
             // action={
@@ -105,7 +106,10 @@ class DashboardHeader extends Component {
           <CardContent
             className={classes.cardContent}
             style={this.props.fullScreen ? { height: "75vh" } : {}}
-          ></CardContent>
+          >
+            <Divider />
+            {params.message}
+          </CardContent>
         </Card>
       </Grid>
     );

@@ -46,48 +46,9 @@ const styles = theme => ({
 
 class MyQueues extends Component {
   state = {};
-  getSkillQueue = skillgroupId => {
-    const { app } = this.props;
-    if (app.myQueues) {
-      let matchQueues = _.filter(
-        app.myQueues,
-        queue => queue.skillgroupId === skillgroupId
-      );
-      if (matchQueues && matchQueues.length > 0) return matchQueues[0].queue;
-      else return "-";
-    } else return 0;
-  };
-  getSkillNotReady = skillgroupId => {
-    const { app } = this.props;
-    const { myTeams } = app;
-    const users = _.filter(
-      myTeams,
-      user =>
-        user.status === "Not ready" &&
-        user.skillIds.includes(skillgroupId) &&
-        user.tenantIds.includes(app.tenant._id)
-    );
-    return users.length;
-  };
-  prepareDate = () => {
-    const { app } = this.props;
-    const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
-    let data = [["Skillgroup", "Queue", "Not ready"]];
-    if (skillgroups)
-      skillgroups.forEach(skillgroup => {
-        data.push([
-          skillgroup.name,
-          this.getSkillQueue(skillgroup._id),
-          this.getSkillNotReady(skillgroup._id)
-        ]);
-      });
-
-    if (skillgroups.length === 0) data = null;
-    return data;
-  };
   render() {
     const { classes, theme } = this.props;
-    const chartData = this.prepareDate();
+    const chartData = this.props.data;
     return (
       <Card className={classes.card}>
         <CardHeader title="Queues"/>
@@ -140,6 +101,7 @@ MyQueues.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
+  data:PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyQueues);

@@ -75,15 +75,8 @@ class MyTeams extends Component {
   state = {
     view: "Graph"
   };
-  componentDidMount() {
-    const { app } = this.props;
-    if (!app.myTeams) loadMyTeams(this);
-  }
   changeView = event => {
     this.setState({ view: event.target.value });
-  };
-  reloadMyTeams = () => {
-    loadMyTeams(this);
   };
   toggelView = () => {
     const { view } = this.state;
@@ -139,7 +132,7 @@ class MyTeams extends Component {
         </IconButton>
         <IconButton
           className={classes.floatButtonLeft}
-          onClick={this.reloadMyTeams}
+          onClick={this.props.refresh}
         >
           <Refresh />
         </IconButton>
@@ -153,6 +146,7 @@ MyTeams.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
+  refresh : PropTypes.func.isRequired
 };
 export default withStyles(styles, { withTheme: true })(MyTeams);

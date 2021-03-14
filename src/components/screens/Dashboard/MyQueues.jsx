@@ -70,28 +70,6 @@ class MyQueues extends Component {
   state = {
     view: "Graph"
   };
-  componentDidMount() {
-    const { app } = this.props;
-    if (!app.mySkillgroups)
-      loadMySkillgroups(this, result => {
-        if (!result.error) {
-          if (!app.myQueues) loadMyQueues(this);
-        }
-      });
-    else if (!app.myQueues) loadMyQueues(this);
-  }
-  componentDidUpdate(prevProps, prevState) {
-    const { app } = this.props;
-    if (app.tenant !== prevProps.app.tenant)
-      loadMySkillgroups(this, result => {
-        if (!result.error) loadMyQueues(this);
-      });
-  }
-  reloadMyQueues = () => {
-    loadMySkillgroups(this, result => {
-      if (!result.error) loadMyQueues(this);
-    });
-  };
   getSkillQueue = skillgroupId => {
     const { app } = this.props;
     let matchQueues = _.filter(
@@ -169,7 +147,7 @@ class MyQueues extends Component {
         </IconButton>
         <IconButton
           className={classes.floatButtonLeft}
-          onClick={this.reloadMyQueues}
+          onClick={this.props.refresh}
         >
           <Refresh />
         </IconButton>
@@ -183,6 +161,7 @@ MyQueues.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
+  refresh : PropTypes.func.isRequired
 };
 export default withStyles(styles, { withTheme: true })(MyQueues);
