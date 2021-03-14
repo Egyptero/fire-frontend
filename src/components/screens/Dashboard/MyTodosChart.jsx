@@ -58,20 +58,24 @@ class MyTeams extends Component {
           }
         >
           <Chart
-            chartType="ColumnChart"
+            chartType="PieChart"
             data={this.props.data}
             height="54vh"
             options={
               // Chart options
               {
-                title: "To do progress",
+                //title: "To do progress",
                 hAxis: {
                   title: "Status",
                 },
                 vAxis: { title: "Activities" },
-                legend: "none",
+                legend: { position: "bottom" },
                 position: "relative",
-                colors: [theme.palette.primary.main],
+                colors: [
+                  theme.palette.info.light,
+                  theme.palette.warning.light,
+                  theme.palette.success.light,
+                ]
               }
             }
             legendToggle

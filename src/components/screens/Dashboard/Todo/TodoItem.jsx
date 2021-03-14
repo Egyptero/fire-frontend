@@ -54,11 +54,14 @@ class TodoItem extends Component {
     );
   };
   render() {
-    const { todo, source } = this.props;
-    let avatarColor = "orange";
-    if (todo.priority === "Critical") avatarColor = "darkred";
-    else if (todo.priority === "High") avatarColor = "red";
-    else if (todo.priority === "Low") avatarColor = "gray";
+    const { todo, source,theme } = this.props;
+    let avatarColor = theme.palette.secondary.light;
+    if (todo.priority === "Critical") avatarColor =  theme.palette.error.dark;
+    else if (todo.priority === "High") avatarColor =  theme.palette.error.light;
+    else if (todo.priority === "Low") avatarColor =  theme.palette.info.light;
+    else if (todo.priority === "Medium") avatarColor =  theme.palette.warning.dark;
+
+    if(todo.status === "Completed") avatarColor = theme.palette.success.light;
 
     return (
       <ListItem key={todo._id}>

@@ -12,7 +12,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  FormControl
+  FormControl,
 } from "@material-ui/core";
 import loadTodos from "../../../functions/user/loadTodos";
 import TodoDialog from "../../dialogs/TodoDialog";
@@ -20,7 +20,7 @@ import updateTodo from "../../../functions/user/updateTodo";
 import TodoItem from "./Todo/TodoItem";
 import deleteTodo from "../../../functions/user/deleteTodo";
 import MyTodosChart from "./MyTodosChart";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
@@ -30,25 +30,25 @@ const styles = theme => ({
     height: "32vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    marginLeft: theme.spacing()
+    marginLeft: theme.spacing(),
   },
   floatButton: {
     position: "absolute",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });
 
 class MyTodos extends Component {
@@ -59,40 +59,40 @@ class MyTodos extends Component {
     showType: "New",
     view: "Detailed",
     severity: "All",
-    screenView: "Table" //Table
+    screenView: "Table", //Table
   };
-  // componentDidMount() {
-  //   const { app } = this.props;
-  //   if (!app.todos) loadTodos(this);
-  // }
+  componentDidMount() {
+    if (!this.props.fullScreen) this.setState({ screenView: "Graph" });
+  }
+
   handleNewTodoOpen = () => {
     this.setState({ openTodo: true, action: "new", todoId: null });
   };
-  handleEditTodoOpen = todoId => {
+  handleEditTodoOpen = (todoId) => {
     this.setState({ openTodo: true, action: "edit", todoId });
   };
-  handleMarkCompleted = todoId => {
+  handleMarkCompleted = (todoId) => {
     this.setState({ todoId });
     updateTodo(todoId, { status: "Completed" }, this);
   };
-  handleMarkProgress = todoId => {
+  handleMarkProgress = (todoId) => {
     this.setState({ todoId });
     updateTodo(todoId, { status: "Progress" }, this);
   };
-  handleDeleteTodo = todoId => {
+  handleDeleteTodo = (todoId) => {
     this.setState({ todoId });
     deleteTodo(todoId, this);
   };
   handleTodoClose = () => {
     this.setState({ openTodo: false });
   };
-  changeShowType = event => {
+  changeShowType = (event) => {
     this.setState({ showType: event.target.value });
   };
-  changeView = event => {
+  changeView = (event) => {
     this.setState({ view: event.target.value });
   };
-  changeSeverity = event => {
+  changeSeverity = (event) => {
     this.setState({ severity: event.target.value });
   };
   reloadTodos = () => {
@@ -105,7 +105,7 @@ class MyTodos extends Component {
       handleMarkCompleted: this.handleMarkCompleted,
       handleMarkProgress: this.handleMarkProgress,
       handleDeleteTodo: this.handleDeleteTodo,
-      sourceState: this.state
+      sourceState: this.state,
     };
   };
   toggelView = () => {
@@ -113,7 +113,7 @@ class MyTodos extends Component {
     if (screenView === "Table") this.setState({ screenView: "Graph" });
     else if (screenView === "Graph") this.setState({ screenView: "Table" });
   };
-  renderTodoList = todo => {
+  renderTodoList = (todo) => {
     if (
       (this.state.showType === "All" || todo.status === this.state.showType) &&
       (this.state.severity === "All" || todo.priority === this.state.severity)
@@ -193,12 +193,14 @@ class MyTodos extends Component {
 
         <CardContent
           className={classes.cardContent}
-          style={this.props.fullScreen ? { height: "75vh" } : {height: "58vh"}}
+          style={
+            this.props.fullScreen ? { height: "75vh" } : { height: "58vh" }
+          }
         >
           {/**className={classes.cardContent} */}
           {/* <Grid container className={classes.grid}> */}
           <List>
-            {todos.map(todo => {
+            {todos.map((todo) => {
               return this.renderTodoList(todo);
             })}
           </List>
@@ -234,7 +236,7 @@ MyTodos.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
   // fullScreen: PropTypes.bool.optional it give exception in runtime
 };
 export default withStyles(styles, { withTheme: true })(MyTodos);

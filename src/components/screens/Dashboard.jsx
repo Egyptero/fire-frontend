@@ -19,6 +19,7 @@ import {
   DirectionsRun,
   Group,
   HourglassEmpty,
+  HowToReg,
   PhoneInTalk,
 } from "@material-ui/icons";
 
@@ -80,9 +81,10 @@ class Dashboard extends Component {
       });
     else this.calcTeamData();
     if (app.todos) this.calcTodoData();
-    else loadTodos(this,(result)=>{
-      if(!result.error) this.calcTodoData();
-    });
+    else
+      loadTodos(this, (result) => {
+        if (!result.error) this.calcTodoData();
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -307,7 +309,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.handling,
                     message: "Working agents",
                     icon: () => {
-                      return <PhoneInTalk fontSize="large" />;
+                      return <HowToReg fontSize="large" />;
                     },
                   }}
                 />
@@ -333,7 +335,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
                     bottomValue: this.state.todoStatus.new,
-                    message: "Open tasks",
+                    message: "New tasks",
                     icon: () => {
                       return <Assignment fontSize="large" />;
                     },

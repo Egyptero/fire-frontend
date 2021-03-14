@@ -90,21 +90,10 @@ class MyTeams extends Component {
                 //colors: ["green", "orange", "red"],
                 legend: { position: "bottom" },
                 colors: [
-                  theme.palette.primary.main,
-                  theme.palette.info.main,
-                  theme.palette.secondary.main,
-                  theme.palette.error.main,
-                  theme.palette.warning.main,
-                  theme.palette.primary.light,
-                  theme.palette.info.light,
-                  theme.palette.secondary.light,
                   theme.palette.error.light,
+                  theme.palette.info.light,
+                  theme.palette.success.light,
                   theme.palette.warning.light,
-                  theme.palette.primary.dark,
-                  theme.palette.info.dark,
-                  theme.palette.secondary.dark,
-                  theme.palette.error.dark,
-                  theme.palette.warning.dark,
                 ]
               }
             }

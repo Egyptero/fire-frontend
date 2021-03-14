@@ -79,8 +79,8 @@ class MyQueues extends Component {
                     legend: "none",
                     position: "relative",//relative
                     colors: [
-                      theme.palette.error.dark,
-                      theme.palette.info.main
+                      theme.palette.error.light,
+                      theme.palette.info.light
                     ]
                   }
                 }
