@@ -11,7 +11,7 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
-import { MoreVert, Settings } from "@material-ui/icons";
+import { Label, MoreVert, Settings } from "@material-ui/icons";
 
 const styles = (theme) => ({
   content: {},
