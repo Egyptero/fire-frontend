@@ -193,7 +193,7 @@ class MyTodos extends Component {
 
         <CardContent
           className={classes.cardContent}
-          style={this.props.fullScreen ? { height: "75vh" } : {}}
+          style={this.props.fullScreen ? { height: "75vh" } : {height: "75vh"}}
         >
           {/**className={classes.cardContent} */}
           {/* <Grid container className={classes.grid}> */}

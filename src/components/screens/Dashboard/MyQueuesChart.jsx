@@ -102,13 +102,19 @@ class MyQueues extends Component {
                 options={
                   // Chart options
                   {
-                    title: "Customers waiting",
+                    height:"28vh",
+                    width:"100%",
+                    title: "Queues",
+                    titleTextStyle: {
+                      fontSize: 24,
+                      
+                    },    
                     hAxis: {
                       title: "Queues"
                     },
-                    vAxis: { title: "Customers" },
+                    // vAxis: { title: "Customers" },
                     legend: "none",
-                    position: "relative",
+                    position: "relative",//relative
                     colors: [
                       theme.palette.primary.main,
                       theme.palette.secondary.main

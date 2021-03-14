@@ -119,7 +119,7 @@ class MyTeams extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
     return (
       <Card className={classes.card}>
         <CardContent
@@ -132,14 +132,22 @@ class MyTeams extends Component {
             options={
               // Chart options
               {
+                width: "100%",
+                height: "28vh",
+                //is3D:true,
                 title: "Team status",
+                titleTextStyle: {
+                  fontSize: 24,
+                  
+                },
                 hAxis: {
                   title: "Status",
                 },
                 vAxis: { title: "Count" },
                 // legend: "none",
                 position: "relative",
-                // colors: [theme.palette.primary.main]
+                //colors: ["green", "orange", "red"],
+                legend: { position: "bottom" },
               }
             }
             legendToggle
