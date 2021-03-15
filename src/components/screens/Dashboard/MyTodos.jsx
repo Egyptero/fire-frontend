@@ -8,7 +8,6 @@ import {
   IconButton,
   CardContent,
   List,
-  Divider,
   Select,
   MenuItem,
   InputLabel,
@@ -62,7 +61,7 @@ class MyTodos extends Component {
     screenView: "Table", //Table
   };
   componentDidMount() {
-    if (!this.props.fullScreen) this.setState({ screenView: "Graph" });
+    //if (!this.props.fullScreen) this.setState({ screenView: "Graph" });
   }
 
   handleNewTodoOpen = () => {
@@ -194,7 +193,7 @@ class MyTodos extends Component {
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "75vh" } : { height: "58vh" }
+            this.props.fullScreen ? { height: "75vh" } : { height: "65vh" }
           }
         >
           {/**className={classes.cardContent} */}
@@ -223,9 +222,14 @@ class MyTodos extends Component {
             : this.renderTodoDetailedView()}
         </Card>
         <TodoDialog {...this.props} source={this.getSharedObject()} />
-        <IconButton className={classes.floatButton} onClick={this.toggelView}>
-          {this.state.screenView === "Graph" ? <TableChart /> : <BarChart />}
-        </IconButton>
+        {/* Hide graph switch in case of full screen */}
+        {!this.props.fullScreen ? (
+          <IconButton className={classes.floatButton} onClick={this.toggelView}>
+            {this.state.screenView === "Graph" ? <TableChart /> : <BarChart />}
+          </IconButton>
+        ) : (
+          ""
+        )}
       </React.Fragment>
     );
   }

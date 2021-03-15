@@ -272,49 +272,49 @@ class Dashboard extends Component {
           </Grid> */}
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Grid container spacing={3}>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.success.light,
                     bottomAvatarColor: theme.palette.success.main,
                     bottomValue: this.state.teamStatus.ready,
-                    message: "Ready agents",
+                    message: "Ready",
                     icon: () => {
                       return <Group fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.error.light,
                     bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.teamStatus.notready,
-                    message: "Not ready agents",
+                    message: "Not ready",
                     icon: () => {
                       return <DirectionsRun fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.info.light,
                     bottomAvatarColor: theme.palette.info.main,
                     bottomValue: this.state.teamStatus.handling,
-                    message: "Working agents",
+                    message: "Working",
                     icon: () => {
                       return <HowToReg fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -328,28 +328,28 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
                     bottomValue: this.state.todoStatus.new,
-                    message: "New tasks",
+                    message: "New",
                     icon: () => {
                       return <Assignment fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={4} md={2} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.warning.light,
                     bottomAvatarColor: theme.palette.warning.main,
                     bottomValue: this.state.todoStatus.progress,
-                    message: "In-progress tasks",
+                    message: "Progress",
                     icon: () => {
                       return <Cached fontSize="large" />;
                     },

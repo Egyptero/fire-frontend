@@ -83,7 +83,6 @@ class DashboardHeader extends Component {
         </Avatar>
         <Card className={classes.card}>
           <CardHeader
-            // className={classes.cardHeader}
             avatar={
               <Avatar
                 aria-label="recipe"
@@ -94,21 +93,8 @@ class DashboardHeader extends Component {
                 {params.icon ? params.icon() : ""}
               </Avatar>
             }
-            // action={
-            //   <IconButton aria-label="settings">
-            //     <MoreVert />
-            //   </IconButton>
-            // }
-            // title="Sample Header"
-            // subheader="September 14, 2016"
+            title={params.message}
           ></CardHeader>
-          <CardContent
-            className={classes.cardContent}
-            style={this.props.fullScreen ? { height: "75vh" } : {}}
-          >
-            <Divider />
-            {params.message}
-          </CardContent>
         </Card>
       </Grid>
     );

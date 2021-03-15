@@ -73,8 +73,11 @@ class MyTeams extends Component {
             options={
               // Chart options
               {
+                chartArea: {
+                  width: "100%",
+                },
                 width: "100%",
-                //height: "18vh",
+//                height: "90%",
                 //is3D:true,
                 // title: "Team status",
                 // titleTextStyle: {
@@ -84,7 +87,7 @@ class MyTeams extends Component {
                 hAxis: {
                   title: "Status",
                 },
-                vAxis: { title: "Count" },
+//                vAxis: { title: "Count" },
                 // legend: "none",
                 position: "relative",
                 //colors: ["green", "orange", "red"],

@@ -54,7 +54,7 @@ class MyTeams extends Component {
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "75vh" } : { height: "59vh" }
+            this.props.fullScreen ? { height: "75vh" } : { height: "65.7vh" }
           }
         >
           <Chart
@@ -65,6 +65,11 @@ class MyTeams extends Component {
               // Chart options
               {
                 //title: "To do progress",
+                chartArea: {
+                  width: "100%",
+                },
+                width: "100%",
+
                 hAxis: {
                   title: "Status",
                 },
