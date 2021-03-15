@@ -120,8 +120,12 @@ class Dashboard extends Component {
       if (!result.error)
         loadMyQueues(this, (result) => {
           if (!result.error) {
-            this.calcQueueData();
-            this.calcTeamData();
+            loadMyTeams(this, (result) => {
+              if (!result.error) {
+                this.calcTeamData();
+                this.calcQueueData();
+              }
+            });
           }
         });
     });
@@ -370,6 +374,16 @@ class Dashboard extends Component {
                 className={classes.gridFull}
               >
                 <Grid container spacing={3}>
+                <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    className={classes.grid}
+                  >
+                    <MyScroreCard {...this.props}/>
+                  </Grid>
                   <Grid
                     item
                     xs={12}
@@ -397,16 +411,6 @@ class Dashboard extends Component {
                       data={this.state.queueData}
                       refresh={this.refreshQueues}
                     />
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    className={classes.grid}
-                  >
-                    <MyScroreCard {...this.props}/>
                   </Grid>
                 </Grid>
               </Grid>
