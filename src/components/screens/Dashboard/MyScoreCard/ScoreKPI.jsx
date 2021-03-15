@@ -44,6 +44,9 @@ class ScoreKPI extends Component {
         <Typography variant="caption">{params.caption}</Typography>
         <Typography variant="subtitle1">Target</Typography>
         <Typography variant="caption">{params.target}</Typography>
+        <Divider />
+        <Typography variant="subtitle1">Actual</Typography>
+        <Typography variant="caption">{params.actual}</Typography>
       </Grid>
     );
   }

@@ -191,7 +191,7 @@ class FeedbackDialog extends Component {
                 value={this.state.title}
                 fullWidth
                 required
-                variant="outlined"
+                //variant="outlined"
               />
             </Grid>
             <Grid item xs={12}>

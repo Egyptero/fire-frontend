@@ -374,7 +374,7 @@ class Dashboard extends Component {
                 className={classes.gridFull}
               >
                 <Grid container spacing={3}>
-                <Grid
+                  <Grid
                     item
                     xs={12}
                     sm={12}
@@ -382,7 +382,7 @@ class Dashboard extends Component {
                     lg={12}
                     className={classes.grid}
                   >
-                    <MyScroreCard {...this.props}/>
+                    <MyScroreCard {...this.props} />
                   </Grid>
                   <Grid
                     item

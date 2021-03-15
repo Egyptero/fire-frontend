@@ -55,7 +55,8 @@ class MyScroreCard extends Component {
                   value: 0.37,
                   kpi:"Utlization",
                   caption: "Time utilization %",
-                  target: "85%"
+                  target: "85%",
+                  actual: "37%"
                 }}
               />
             </Grid>
@@ -66,7 +67,8 @@ class MyScroreCard extends Component {
                   value: 0.86,
                   kpi:"AHA",
                   caption: "Average handling time",
-                  target: "75%"
+                  target: "75%",
+                  actual: "86%"
                 }}
               />
             </Grid>
@@ -77,7 +79,8 @@ class MyScroreCard extends Component {
                   value: 0.17,
                   kpi: "ASA",
                   caption: "Average speed of answer",
-                  target: "95%"
+                  target: "95%",
+                  actual: "17%"
                 }}
               />
             </Grid>
@@ -88,7 +91,8 @@ class MyScroreCard extends Component {
                   value: 1,
                   kpi: "Coversations",
                   caption: "Coversations handled",
-                  target: "96%"
+                  target: "96%",
+                  actual: "100%"
                 }}
               />
             </Grid>
