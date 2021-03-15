@@ -22,6 +22,7 @@ import {
   HowToReg,
   PhoneInTalk,
 } from "@material-ui/icons";
+import MyScroreCard from "./Dashboard/MyScroreCard";
 
 const styles = (theme) => ({
   content: {
@@ -405,10 +406,7 @@ class Dashboard extends Component {
                     lg={12}
                     className={classes.grid}
                   >
-                    <Card className={classes.card}>
-                      <CardHeader title="Score Card" />
-                      <CardContent />
-                    </Card>
+                    <MyScroreCard {...this.props}/>
                   </Grid>
                 </Grid>
               </Grid>
