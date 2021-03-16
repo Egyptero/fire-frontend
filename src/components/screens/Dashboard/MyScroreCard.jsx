@@ -65,8 +65,8 @@ class MyScroreCard extends Component {
                 {...this.props}
                 params={{
                   value: 0.86,
-                  kpi:"AHA",
-                  caption: "Average handling time",
+                  kpi:"SLA",
+                  caption: "Service level agreement",
                   target: "75%",
                   actual: "86%"
                 }}
