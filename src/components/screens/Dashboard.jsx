@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Grid, Card, CardContent, CardHeader } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MyTodos from "./Dashboard/MyTodos";
-//import MyInteractionsSummary from "./Dashboard/MyInteractionsSummary";
 import MyQueues from "./Dashboard/MyQueues";
 import MyTeams from "./Dashboard/MyTeams";
 import DashboardHeader from "./Dashboard/DashboardHeader";
@@ -15,16 +14,15 @@ import loadTodos from "../../functions/user/loadTodos";
 import _ from "lodash";
 import {
   Assignment,
+  Block,
   Cached,
   CheckCircle,
   DirectionsRun,
-  ExitToApp,
   Group,
   Help,
   HourglassEmpty,
   HowToReg,
   LockOpen,
-  PhoneInTalk,
   Warning,
 } from "@material-ui/icons";
 import MyScroreCard from "./Dashboard/MyScroreCard";
@@ -288,10 +286,10 @@ class Dashboard extends Component {
                   params={{
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
-                    bottomValue: this.state.teamStatus.loggedout,
-                    message: "Logged out",
+                    bottomValue: this.state.teamStatus.unknown,
+                    message: "Unknown",
                     icon: () => {
-                      return <ExitToApp fontSize="large" />;
+                      return <Help fontSize="large" />;
                     },
                   }}
                 />
@@ -300,8 +298,22 @@ class Dashboard extends Component {
                 <DashboardHeader
                   {...this.props}
                   params={{
-                    topAvatarColor: theme.palette.warning.light,
-                    bottomAvatarColor: theme.palette.warning.main,
+                    topAvatarColor: theme.palette.secondary.light,
+                    bottomAvatarColor: theme.palette.secondary.main,
+                    bottomValue: this.state.teamStatus.loggedout,
+                    message: "Logged out",
+                    icon: () => {
+                      return <Block fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.error.light,
+                    bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.teamStatus.loggedin,
                     message: "Logged in",
                     icon: () => {
@@ -328,12 +340,12 @@ class Dashboard extends Component {
                 <DashboardHeader
                   {...this.props}
                   params={{
-                    topAvatarColor: theme.palette.success.light,
-                    bottomAvatarColor: theme.palette.success.main,
-                    bottomValue: this.state.teamStatus.ready,
-                    message: "Ready",
+                    topAvatarColor: theme.palette.error.light,
+                    bottomAvatarColor: theme.palette.error.main,
+                    bottomValue: this.state.teamStatus.notready,
+                    message: "Not ready",
                     icon: () => {
-                      return <Group fontSize="large" />;
+                      return <DirectionsRun fontSize="large" />;
                     },
                   }}
                 />
@@ -342,12 +354,12 @@ class Dashboard extends Component {
                 <DashboardHeader
                   {...this.props}
                   params={{
-                    topAvatarColor: theme.palette.error.light,
-                    bottomAvatarColor: theme.palette.error.main,
-                    bottomValue: this.state.teamStatus.notready,
-                    message: "Not ready",
+                    topAvatarColor: theme.palette.success.light,
+                    bottomAvatarColor: theme.palette.success.main,
+                    bottomValue: this.state.teamStatus.ready,
+                    message: "Ready",
                     icon: () => {
-                      return <DirectionsRun fontSize="large" />;
+                      return <Group fontSize="large" />;
                     },
                   }}
                 />
@@ -376,20 +388,6 @@ class Dashboard extends Component {
                     message: "Wrap up",
                     icon: () => {
                       return <HowToReg fontSize="large" />;
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={1}>
-                <DashboardHeader
-                  {...this.props}
-                  params={{
-                    topAvatarColor: theme.palette.secondary.light,
-                    bottomAvatarColor: theme.palette.secondary.main,
-                    bottomValue: this.state.teamStatus.unknown,
-                    message: "Unknown",
-                    icon: () => {
-                      return <Help fontSize="large" />;
                     },
                   }}
                 />
