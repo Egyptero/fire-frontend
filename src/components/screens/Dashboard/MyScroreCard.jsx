@@ -7,6 +7,7 @@ import {
   CardHeader,
   Divider,
   Grid,
+  Grow,
 } from "@material-ui/core";
 import Chart from "react-google-charts";
 import GaugeChart from "react-gauge-chart";
@@ -53,10 +54,10 @@ class MyScroreCard extends Component {
                 {...this.props}
                 params={{
                   value: 0.37,
-                  kpi:"Utlization",
+                  kpi: "Utlization",
                   caption: "Time utilization %",
                   target: "85%",
-                  actual: "37%"
+                  actual: "37%",
                 }}
               />
             </Grid>
@@ -65,10 +66,10 @@ class MyScroreCard extends Component {
                 {...this.props}
                 params={{
                   value: 0.86,
-                  kpi:"SLA",
+                  kpi: "SLA",
                   caption: "Service level agreement",
                   target: "75%",
-                  actual: "86%"
+                  actual: "86%",
                 }}
               />
             </Grid>
@@ -80,7 +81,7 @@ class MyScroreCard extends Component {
                   kpi: "ASA",
                   caption: "Average speed of answer",
                   target: "95%",
-                  actual: "17%"
+                  actual: "17%",
                 }}
               />
             </Grid>
@@ -92,7 +93,7 @@ class MyScroreCard extends Component {
                   kpi: "Coversations",
                   caption: "Coversations handled",
                   target: "96%",
-                  actual: "100%"
+                  actual: "100%",
                 }}
               />
             </Grid>

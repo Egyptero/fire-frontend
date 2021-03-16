@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, Divider } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  Grow,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 //import TableCell from "@material-ui/core/TableCell";
 import PropTypes from "prop-types";
@@ -61,7 +67,7 @@ class MyTeams extends Component {
     const { classes, theme } = this.props;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Team"/>
+        <CardHeader title="Team" />
         <Divider />
         <CardContent
           className={classes.cardContent}
@@ -77,17 +83,17 @@ class MyTeams extends Component {
                   width: "100%",
                 },
                 width: "100%",
-//                height: "90%",
+                //                height: "90%",
                 //is3D:true,
                 // title: "Team status",
                 // titleTextStyle: {
                 //   fontSize: 24,
-                  
+
                 // },
                 hAxis: {
                   title: "Status",
                 },
-//                vAxis: { title: "Count" },
+                //                vAxis: { title: "Count" },
                 // legend: "none",
                 position: "relative",
                 //colors: ["green", "orange", "red"],
@@ -97,7 +103,7 @@ class MyTeams extends Component {
                   theme.palette.info.light,
                   theme.palette.success.light,
                   theme.palette.warning.light,
-                ]
+                ],
               }
             }
             legendToggle
@@ -114,6 +120,6 @@ MyTeams.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  data:PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyTeams);

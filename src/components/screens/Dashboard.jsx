@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Grow } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MyTodos from "./Dashboard/MyTodos";
@@ -497,7 +497,7 @@ class Dashboard extends Component {
                       {...this.props}
                       data={this.state.queueData}
                       refresh={this.refreshQueues}
-                    />
+                    />{" "}
                   </Grid>
                 </Grid>
               </Grid>

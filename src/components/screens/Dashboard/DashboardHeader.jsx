@@ -8,6 +8,7 @@ import {
   CardHeader,
   Divider,
   Grid,
+  Grow,
   IconButton,
   Typography,
 } from "@material-ui/core";
@@ -72,34 +73,36 @@ class DashboardHeader extends Component {
   render() {
     const { classes, params } = this.props;
     return (
-      <Grid container alignItems="center" direction="column">
-        <Avatar
-          aria-label="recipe"
-          className={classes.avatarOver}
-          variant="square"
-          style={{ backgroundColor: params.topAvatarColor }}
-        >
-          <Typography variant="h4">{params.bottomValue}</Typography>
-        </Avatar>
-        <Card className={classes.card}>
-          <CardContent>
-            <Grid container alignItems="center" direction="column">
-              <Avatar
-                aria-label="recipe"
-                className={classes.avatar}
-                variant="square"
-                style={{ backgroundColor: params.bottomAvatarColor }}
-              >
-                {params.icon ? params.icon() : ""}
-              </Avatar>
-            </Grid>
-            <Divider />
-            <Grid container alignItems="center" direction="column">
-              {params.message}
-            </Grid>
-          </CardContent>
-        </Card>
-      </Grid>
+      <Grow in={true} style={{ transformOrigin: "0 0 0" }} timeout={1000}>
+        <Grid container alignItems="center" direction="column">
+          <Avatar
+            aria-label="recipe"
+            className={classes.avatarOver}
+            variant="square"
+            style={{ backgroundColor: params.topAvatarColor }}
+          >
+            <Typography variant="h4">{params.bottomValue}</Typography>
+          </Avatar>
+          <Card className={classes.card}>
+            <CardContent>
+              <Grid container alignItems="center" direction="column">
+                <Avatar
+                  aria-label="recipe"
+                  className={classes.avatar}
+                  variant="square"
+                  style={{ backgroundColor: params.bottomAvatarColor }}
+                >
+                  {params.icon ? params.icon() : ""}
+                </Avatar>
+              </Grid>
+              <Divider />
+              <Grid container alignItems="center" direction="column">
+                {params.message}
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grow>
     );
   }
 }
