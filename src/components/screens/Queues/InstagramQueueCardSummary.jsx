@@ -223,7 +223,7 @@ class InstagramQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: "#7f1734" }}
+            style={{ backgroundColor: theme.palette.error.dark }} //"#7f1734"
             title={
               <Grid container alignContent="center" justify="center">
                 <img

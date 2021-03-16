@@ -170,7 +170,7 @@ class EmailQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: "#7c9cb0" }}
+            style={{ backgroundColor:  theme.palette.secondary.light}}//"#7c9cb0"
             title={
               <Grid container alignContent="center" justify="center">
                 <img

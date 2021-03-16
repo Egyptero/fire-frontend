@@ -206,7 +206,7 @@ class CallQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: "#548235" }}
+            style={{ backgroundColor:  theme.palette.success.dark}} //"#548235"
             title={
               <Grid container alignContent="center" justify="center">
                 <img

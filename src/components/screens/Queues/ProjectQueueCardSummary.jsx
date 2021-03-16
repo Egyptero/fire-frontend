@@ -172,7 +172,7 @@ class ProjectQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: "#468078" }}
+            style={{ backgroundColor:  theme.palette.warning.main}} //"#468078"
             title={
               <Grid container alignContent="center" justify="center">
                 <img

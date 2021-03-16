@@ -170,7 +170,7 @@ class ChatQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: "#203864" }}
+            style={{ backgroundColor:  theme.palette.info.main}} //"#203864"
             title={
               <Grid container alignContent="center" justify="center">
                 <img
