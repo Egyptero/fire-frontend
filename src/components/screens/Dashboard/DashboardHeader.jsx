@@ -51,7 +51,7 @@ const styles = (theme) => ({
     boxShadow: "1px 1px 4px gray",
     zIndex: 1,
     top: theme.spacing(-2),
-    width: theme.spacing(12),
+    width: theme.spacing(20),
     height: theme.spacing(5),
     backgroundColor: theme.palette.error.light,
   },
@@ -60,8 +60,8 @@ const styles = (theme) => ({
     boxShadow: "1px 1px 4px gray",
     zIndex: 1,
     //top: theme.spacing(-5),
-    left: theme.spacing(2),
-    width: theme.spacing(12),
+    //left: theme.spacing(2),
+    width: theme.spacing(20),
     height: theme.spacing(5),
     backgroundColor: theme.palette.error.light,
   },
@@ -72,7 +72,7 @@ class DashboardHeader extends Component {
   render() {
     const { classes, params } = this.props;
     return (
-      <Grid container>
+      <Grid container alignItems="center" direction="column">
         <Avatar
           aria-label="recipe"
           className={classes.avatarOver}
@@ -82,8 +82,8 @@ class DashboardHeader extends Component {
           <Typography variant="h4">{params.bottomValue}</Typography>
         </Avatar>
         <Card className={classes.card}>
-          <CardHeader
-            avatar={
+          <CardContent>
+            <Grid container alignItems="center" direction="column">
               <Avatar
                 aria-label="recipe"
                 className={classes.avatar}
@@ -92,9 +92,12 @@ class DashboardHeader extends Component {
               >
                 {params.icon ? params.icon() : ""}
               </Avatar>
-            }
-            title={params.message}
-          ></CardHeader>
+            </Grid>
+            <Divider />
+            <Grid container alignItems="center" direction="column">
+              {params.message}
+            </Grid>
+          </CardContent>
         </Card>
       </Grid>
     );

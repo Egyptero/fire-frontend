@@ -284,7 +284,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.success.light,
                     bottomAvatarColor: theme.palette.success.main,
                     bottomValue: this.state.teamStatus.ready,
-                    message: "Ready",
+                    message: "Ready agents",
                     icon: () => {
                       return <Group fontSize="large" />;
                     },
@@ -298,7 +298,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.error.light,
                     bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.teamStatus.notready,
-                    message: "Not ready",
+                    message: "Not ready agents",
                     icon: () => {
                       return <DirectionsRun fontSize="large" />;
                     },
@@ -312,7 +312,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.info.light,
                     bottomAvatarColor: theme.palette.info.main,
                     bottomValue: this.state.teamStatus.handling,
-                    message: "Working",
+                    message: "Working agents",
                     icon: () => {
                       return <HowToReg fontSize="large" />;
                     },
@@ -326,7 +326,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.primary.light,
                     bottomAvatarColor: theme.palette.primary.main,
                     bottomValue: this.state.customersWaiting,
-                    message: "Queues",
+                    message: "Customers in queues",
                     icon: () => {
                       return <HourglassEmpty fontSize="large" />;
                     },
@@ -340,7 +340,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
                     bottomValue: this.state.todoStatus.new,
-                    message: "New",
+                    message: "New tasks",
                     icon: () => {
                       return <Assignment fontSize="large" />;
                     },
@@ -354,7 +354,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.warning.light,
                     bottomAvatarColor: theme.palette.warning.main,
                     bottomValue: this.state.todoStatus.progress,
-                    message: "Progress",
+                    message: "Progress tasks",
                     icon: () => {
                       return <Cached fontSize="large" />;
                     },
