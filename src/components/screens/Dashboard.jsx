@@ -16,11 +16,16 @@ import _ from "lodash";
 import {
   Assignment,
   Cached,
+  CheckCircle,
   DirectionsRun,
+  ExitToApp,
   Group,
+  Help,
   HourglassEmpty,
   HowToReg,
+  LockOpen,
   PhoneInTalk,
+  Warning,
 } from "@material-ui/icons";
 import MyScroreCard from "./Dashboard/MyScroreCard";
 
@@ -277,86 +282,170 @@ class Dashboard extends Component {
           </Grid> */}
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Grid container spacing={3}>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.secondary.light,
+                    bottomAvatarColor: theme.palette.secondary.main,
+                    bottomValue: this.state.teamStatus.loggedout,
+                    message: "Logged out",
+                    icon: () => {
+                      return <ExitToApp fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.warning.light,
+                    bottomAvatarColor: theme.palette.warning.main,
+                    bottomValue: this.state.teamStatus.loggedin,
+                    message: "Logged in",
+                    icon: () => {
+                      return <LockOpen fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.error.light,
+                    bottomAvatarColor: theme.palette.error.main,
+                    bottomValue: this.state.teamStatus.error,
+                    message: "Error",
+                    icon: () => {
+                      return <Warning fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.success.light,
                     bottomAvatarColor: theme.palette.success.main,
                     bottomValue: this.state.teamStatus.ready,
-                    message: "Ready agents",
+                    message: "Ready",
                     icon: () => {
                       return <Group fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.error.light,
                     bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.teamStatus.notready,
-                    message: "Not ready agents",
+                    message: "Not ready",
                     icon: () => {
                       return <DirectionsRun fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.info.light,
                     bottomAvatarColor: theme.palette.info.main,
                     bottomValue: this.state.teamStatus.handling,
-                    message: "Working agents",
+                    message: "Working",
                     icon: () => {
                       return <HowToReg fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.info.light,
+                    bottomAvatarColor: theme.palette.info.main,
+                    bottomValue: this.state.teamStatus.wrapup,
+                    message: "Wrap up",
+                    icon: () => {
+                      return <HowToReg fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.secondary.light,
+                    bottomAvatarColor: theme.palette.secondary.main,
+                    bottomValue: this.state.teamStatus.unknown,
+                    message: "Unknown",
+                    icon: () => {
+                      return <Help fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.primary.light,
                     bottomAvatarColor: theme.palette.primary.main,
                     bottomValue: this.state.customersWaiting,
-                    message: "Customers in queues",
+                    message: "Queues",
                     icon: () => {
                       return <HourglassEmpty fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
                     bottomValue: this.state.todoStatus.new,
-                    message: "New tasks",
+                    message: "New",
                     icon: () => {
                       return <Assignment fontSize="large" />;
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
                     topAvatarColor: theme.palette.warning.light,
                     bottomAvatarColor: theme.palette.warning.main,
                     bottomValue: this.state.todoStatus.progress,
-                    message: "Progress tasks",
+                    message: "Progress",
                     icon: () => {
                       return <Cached fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.success.light,
+                    bottomAvatarColor: theme.palette.success.main,
+                    bottomValue: this.state.todoStatus.completed,
+                    message: "Completed",
+                    icon: () => {
+                      return <CheckCircle fontSize="large" />;
                     },
                   }}
                 />
