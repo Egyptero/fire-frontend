@@ -326,6 +326,20 @@ class Dashboard extends Component {
                   params={{
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
+                    bottomValue: this.state.teamStatus.error,
+                    message: "Error",
+                    icon: () => {
+                      return <Warning fontSize="large" />;
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={1}>
+                <DashboardHeader
+                  {...this.props}
+                  params={{
+                    topAvatarColor: theme.palette.secondary.light,
+                    bottomAvatarColor: theme.palette.secondary.main,
                     bottomValue: this.state.teamStatus.loggedout,
                     message: "Logged out",
                     icon: () => {
@@ -344,20 +358,6 @@ class Dashboard extends Component {
                     message: "Logged in",
                     icon: () => {
                       return <LockOpen fontSize="large" />;
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={1}>
-                <DashboardHeader
-                  {...this.props}
-                  params={{
-                    topAvatarColor: theme.palette.error.light,
-                    bottomAvatarColor: theme.palette.error.main,
-                    bottomValue: this.state.teamStatus.error,
-                    message: "Error",
-                    icon: () => {
-                      return <Warning fontSize="large" />;
                     },
                   }}
                 />

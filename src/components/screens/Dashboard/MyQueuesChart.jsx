@@ -20,7 +20,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "18vh",
+//    height: "18vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -85,7 +85,7 @@ class MyQueues extends Component {
                     categories: chartData.categories,
                   },
                 }}
-                width="95%"
+                width="100%"
               />
             ) : (
               <Typography variant="h6">No skillgroups defined</Typography>

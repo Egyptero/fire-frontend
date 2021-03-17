@@ -19,7 +19,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "18vh",
+    //height: "30vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -68,7 +68,7 @@ class MyTeams extends Component {
             container
             alignItems="center"
             justify="center"
-            style={{ height: "100%" }}
+            //style={{ height: "100%" }}
           >
             {chartData.data && chartData.data.length ? (
               <Chart
@@ -103,7 +103,7 @@ class MyTeams extends Component {
                     },
                   },
                 }}
-                height="100%"
+                width="95%"
                 type="donut"
               />
             ) : (

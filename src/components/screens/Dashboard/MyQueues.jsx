@@ -31,7 +31,7 @@ const styles = theme => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "24vh",
+//    height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em"

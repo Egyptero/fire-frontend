@@ -62,7 +62,7 @@ class MyTodos extends Component {
     screenView: "Table", //Table
   };
   componentDidMount() {
-    if (!this.props.fullScreen) this.setState({ screenView: "Graph" });
+    // if (!this.props.fullScreen) this.setState({ screenView: "Graph" });
   }
 
   handleNewTodoOpen = () => {
