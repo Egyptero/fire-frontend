@@ -3,24 +3,14 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  Grid,
   Grow,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 //import TableCell from "@material-ui/core/TableCell";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import Chart from "react-google-charts";
-// const CustomTableCell = withStyles((theme) => ({
-//   head: {
-//     backgroundColor: theme.palette.secondary.main,
-//     color: theme.palette.common.white,
-//     fontSize: 16,
-//     fontWeight: "Bold",
-//   },
-//   body: {
-//     //fontSize: 14,
-//   },
-// }))(TableCell);
+import Chart from "react-apexcharts";
 
 const styles = (theme) => ({
   content: {},
@@ -65,6 +55,7 @@ class MyTeams extends Component {
   state = {};
   render() {
     const { classes, theme } = this.props;
+    let chartData = this.props.data;
     return (
       <Card className={classes.card}>
         <CardHeader title="Team" />
@@ -73,41 +64,38 @@ class MyTeams extends Component {
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}
         >
-          <Chart
-            chartType="PieChart"
-            data={this.props.data}
-            options={
-              // Chart options
-              {
-                chartArea: {
-                  width: "100%",
-                },
-                width: "100%",
-                //                height: "90%",
-                //is3D:true,
-                // title: "Team status",
-                // titleTextStyle: {
-                //   fontSize: 24,
-
-                // },
-                hAxis: {
-                  title: "Status",
-                },
-                //                vAxis: { title: "Count" },
-                // legend: "none",
-                position: "relative",
-                //colors: ["green", "orange", "red"],
-                legend: { position: "bottom" },
-                colors: [
-                  theme.palette.error.light,
-                  theme.palette.info.light,
-                  theme.palette.success.light,
-                  theme.palette.warning.light,
-                ],
-              }
-            }
-            legendToggle
-          />
+          <Grid
+            container
+            alignItems="center"
+            justify="center"
+            style={{ height: "100%" }}
+          >
+            {chartData.data && chartData.data.length ? (
+              <Chart
+                series={chartData.data}
+                options={{
+                  labels: chartData.categories,
+                  dataLabels: {
+                    enabled: true,
+                    textAnchor: "middle",
+                  },
+                  legend: {
+                    show: false,
+                  },
+                  chart: {
+                    id: "teamChart",
+                    toolbar: {
+                      show: false,
+                    },
+                  },
+                }}
+                height="100%"
+                type="pie"
+              />
+            ) : (
+              ""
+            )}
+          </Grid>
         </CardContent>
       </Card>
     );

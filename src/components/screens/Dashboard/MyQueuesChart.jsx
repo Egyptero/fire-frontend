@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import _ from "lodash";
-import Chart from "react-google-charts";
+import Chart from "react-apexcharts";
 
 const styles = (theme) => ({
   content: {},
@@ -65,39 +65,27 @@ class MyQueues extends Component {
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}
         >
-          <Grid container alignItems="center" justify="center">
-            {chartData ? (
+          <Grid
+            container
+            alignItems="center"
+            justify="center"
+            style={{ height: "100%" }}
+          >
+            {chartData.data && chartData.data.length ? (
               <Chart
-                chartType="ColumnChart"
-                data={chartData}
-                options={
-                  // Chart options
-                  {
-                    //height:"16vh",
-                    chartArea: {
-                      width: "100%",
+                series={chartData.data}
+                options={{
+                  chart: {
+                    id: "queuecChart",
+                    toolbar: {
+                      show: false,
                     },
-                    width: "100%",
-
-                    //height: "90%",
-                    // title: "Queues",
-                    // titleTextStyle: {
-                    //   fontSize: 24,
-
-                    // },
-                    hAxis: {
-                      title: "Queues",
-                    },
-                    // vAxis: { title: "Customers" },
-                    legend: "none",
-                    position: "relative", //relative
-                    colors: [
-                      theme.palette.error.light,
-                      theme.palette.info.light,
-                    ],
-                  }
-                }
-                legendToggle
+                  },
+                  xaxis: {
+                    categories: chartData.categories,
+                  },
+                }}
+                width="90%"
               />
             ) : (
               <Typography variant="h6">No skillgroups defined</Typography>

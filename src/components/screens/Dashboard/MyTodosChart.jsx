@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { CardContent, CardHeader, Divider } from "@material-ui/core";
-import Chart from "react-google-charts";
+import { CardContent, CardHeader, Divider, Grid } from "@material-ui/core";
+import Chart from "react-apexcharts";
 
 const styles = (theme) => ({
   content: {},
@@ -47,6 +47,7 @@ class MyTeams extends Component {
 
   render() {
     const { classes, theme } = this.props;
+    let chartData = this.props.data;
     return (
       <React.Fragment>
         <CardHeader title="Tasks" />
@@ -57,34 +58,31 @@ class MyTeams extends Component {
             this.props.fullScreen ? { height: "75vh" } : { height: "65.7vh" }
           }
         >
-          <Chart
-            chartType="PieChart"
-            data={this.props.data}
-            height="54vh"
-            options={
-              // Chart options
-              {
-                //title: "To do progress",
-                chartArea: {
-                  width: "100%",
-                },
-                width: "100%",
-
-                hAxis: {
-                  title: "Status",
-                },
-                vAxis: { title: "Activities" },
-                legend: { position: "bottom" },
-                position: "relative",
-                colors: [
-                  theme.palette.info.light,
-                  theme.palette.warning.light,
-                  theme.palette.success.light,
-                ]
-              }
-            }
-            legendToggle
-          />
+            {chartData.data && chartData.data.length ? (
+              <Chart
+                series={chartData.data}
+                options={{
+                  labels: chartData.categories,
+                  dataLabels: {
+                    enabled: true,
+                    textAnchor: "middle",
+                  },
+                  legend: {
+                    show: true,
+                  },
+                  chart: {
+                    id: "todoChart",
+                    toolbar: {
+                      show: false,
+                    },
+                  },
+                }}
+                height="100%"
+                type="pie"
+              />
+            ) : (
+              ""
+            )}
         </CardContent>
       </React.Fragment>
     );

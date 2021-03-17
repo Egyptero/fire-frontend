@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Grow } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MyTodos from "./Dashboard/MyTodos";
@@ -55,9 +55,9 @@ const styles = (theme) => ({
 
 class Dashboard extends Component {
   state = {
-    teamData: [],
-    queueData: [],
-    todoData: [],
+    teamData: {},
+    queueData: {},
+    todoData: {},
     customersWaiting: 0,
     teamStatus: {},
     todoStatus: {},
@@ -162,7 +162,13 @@ class Dashboard extends Component {
   calcTodoData = () => {
     const { app } = this.props;
     const todos = app.todos ? app.todos : [];
-    let data = [["Status", "Activities"]];
+    let categories = [
+      "New",
+      "In progress",
+      "Completed",
+    ];
+
+    let data = [];
     let statusCount = {
       new: 0,
       progress: 0,
@@ -184,34 +190,54 @@ class Dashboard extends Component {
             break;
         }
       });
-    data.push(["New", statusCount.new]);
-    data.push(["Progress", statusCount.progress]);
-    data.push(["Completed", statusCount.completed]);
-    this.setState({ todoData: data, todoStatus: statusCount });
+    data.push(statusCount.new);
+    data.push(statusCount.progress);
+    data.push(statusCount.completed);
+    this.setState({ todoData: {data,categories}, todoStatus: statusCount });
   };
   calcQueueData = () => {
     const { app } = this.props;
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
-    let data = [["Skillgroup", "Queue", "Not ready"]];
+    let categories = [];
+    let data = [];
+    let queueSeries = {
+      name: "Queue",
+      type: "column",
+      data: [],
+    };
+    let notreadySeries = {
+      name: "Not ready",
+      type: "column",
+      data: [],
+    };
     let customersWaiting = 0;
     if (skillgroups)
       skillgroups.forEach((skillgroup) => {
         let queueSize = this.getSkillQueue(skillgroup._id);
         customersWaiting += queueSize;
-        data.push([
-          skillgroup.name,
-          this.getSkillQueue(skillgroup._id),
-          this.getSkillNotReady(skillgroup._id),
-        ]);
+        categories.push(skillgroup.name);
+        queueSeries.data.push(this.getSkillQueue(skillgroup._id));
+        notreadySeries.data.push(this.getSkillNotReady(skillgroup._id));
       });
 
-    if (skillgroups.length === 0) data = null;
-    this.setState({ queueData: data, customersWaiting });
+    data.push(queueSeries, notreadySeries);
+    this.setState({ queueData: { data, categories }, customersWaiting });
   };
   calcTeamData = () => {
     const { app } = this.props;
     const teams = app.myTeams ? app.myTeams : [];
-    let data = [["Status", "Count"]];
+    let categories = [
+      "Ready",
+      "Not ready",
+      "Handling",
+      "Reserved",
+      "Wrapup",
+      "Error",
+      "Logged in",
+      "Logged out",
+      "Unknown",
+    ];
+    let data = [];
     let statusCount = {
       ready: 0,
       notready: 0,
@@ -257,17 +283,17 @@ class Dashboard extends Component {
             break;
         }
       });
-    data.push(["Ready", statusCount.ready]);
-    data.push(["Not ready", statusCount.notready]);
-    data.push(["Handling", statusCount.handling]);
-    data.push(["Reserved", statusCount.reserved]);
-    data.push(["Wrap up", statusCount.wrapup]);
-    data.push(["Error", statusCount.error]);
-    data.push(["Logged in", statusCount.loggedin]);
-    data.push(["Logged out", statusCount.loggedout]);
-    data.push(["Unknown", statusCount.unknown]);
+    data.push(statusCount.ready);
+    data.push(statusCount.notready);
+    data.push(statusCount.handling);
+    data.push(statusCount.reserved);
+    data.push(statusCount.wrapup);
+    data.push(statusCount.error);
+    data.push(statusCount.loggedin);
+    data.push(statusCount.loggedout);
+    data.push(statusCount.unknown);
 
-    this.setState({ teamData: data, teamStatus: statusCount });
+    this.setState({ teamData: { data, categories }, teamStatus: statusCount });
   };
 
   render() {
