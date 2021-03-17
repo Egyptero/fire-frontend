@@ -78,6 +78,9 @@ class MyTeams extends Component {
                   dataLabels: {
                     enabled: true,
                     textAnchor: "middle",
+                    style: {
+                      fontSize: "16px",
+                    },
                   },
                   legend: {
                     show: false,

@@ -58,31 +58,39 @@ class MyTeams extends Component {
             this.props.fullScreen ? { height: "75vh" } : { height: "65.7vh" }
           }
         >
-            {chartData.data && chartData.data.length ? (
-              <Chart
-                series={chartData.data}
-                options={{
-                  labels: chartData.categories,
-                  dataLabels: {
-                    enabled: true,
-                    textAnchor: "middle",
+          {chartData.data && chartData.data.length ? (
+            <Chart
+              series={chartData.data}
+              options={{
+                colors: [
+                  theme.palette.info.main,
+                  theme.palette.warning.main,
+                  theme.palette.success.main,
+                ],
+                labels: chartData.categories,
+                dataLabels: {
+                  enabled: true,
+                  textAnchor: "middle",
+                  style: {
+                    fontSize: "16px",
                   },
-                  legend: {
-                    show: true,
+                },
+                legend: {
+                  show: true,
+                },
+                chart: {
+                  id: "todoChart",
+                  toolbar: {
+                    show: false,
                   },
-                  chart: {
-                    id: "todoChart",
-                    toolbar: {
-                      show: false,
-                    },
-                  },
-                }}
-                height="100%"
-                type="pie"
-              />
-            ) : (
-              ""
-            )}
+                },
+              }}
+              height="100%"
+              type="pie"
+            />
+          ) : (
+            ""
+          )}
         </CardContent>
       </React.Fragment>
     );
