@@ -74,6 +74,17 @@ class MyTeams extends Component {
               <Chart
                 series={chartData.data}
                 options={{
+                  colors: [
+                    theme.palette.success.main,
+                    theme.palette.error.main,
+                    theme.palette.info.main,
+                    theme.palette.info.main,
+                    theme.palette.info.main,
+                    theme.palette.secondary.main,
+                    theme.palette.error.main,
+                    theme.palette.secondary.main,
+                    theme.palette.secondary.main,
+                  ],
                   labels: chartData.categories,
                   dataLabels: {
                     enabled: true,
@@ -93,7 +104,7 @@ class MyTeams extends Component {
                   },
                 }}
                 height="100%"
-                type="pie"
+                type="donut"
               />
             ) : (
               ""

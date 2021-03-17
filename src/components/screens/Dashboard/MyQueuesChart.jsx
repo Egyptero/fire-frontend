@@ -85,7 +85,7 @@ class MyQueues extends Component {
                     categories: chartData.categories,
                   },
                 }}
-                width="90%"
+                width="95%"
               />
             ) : (
               <Typography variant="h6">No skillgroups defined</Typography>

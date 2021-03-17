@@ -86,7 +86,7 @@ class MyTeams extends Component {
                 },
               }}
               height="100%"
-              type="pie"
+              type="donut"
             />
           ) : (
             ""
