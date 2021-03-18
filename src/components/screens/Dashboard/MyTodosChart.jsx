@@ -50,7 +50,7 @@ class MyTeams extends Component {
     let chartData = this.props.data;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Tasks" />
+        <CardHeader title="Activities" />
         <Divider />
         <CardContent
           className={classes.cardContent}

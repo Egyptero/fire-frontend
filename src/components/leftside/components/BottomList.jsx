@@ -4,7 +4,7 @@ import {
   ListItemIcon,
   ListItemText,
   List,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import {
   Group,
@@ -15,7 +15,11 @@ import {
   Category,
   CheckCircle,
   Contacts,
-//  Settings
+  Input,
+  AssignmentLate,
+  PermContactCalendar,
+  Business,
+  //  Settings
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -40,17 +44,34 @@ class BottomList extends Component {
               app.screen === "Types"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <Category style={{ color: "white" }} />
+              <Input //style={{ color: "white" }}
+                style={
+                  app.screen === "Types"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Types"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Channels
                 </Typography>
               }
@@ -66,17 +87,34 @@ class BottomList extends Component {
               app.screen === "Workflows"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <DeviceHub style={{ color: "white" }} />
+              <DeviceHub //style={{ color: "white" }}
+                style={
+                  app.screen === "Workflows"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Workflows"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Intellgence
                 </Typography>
               }
@@ -92,17 +130,34 @@ class BottomList extends Component {
               app.screen === "Skillgroups"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <School style={{ color: "white" }} />
+              <School //style={{ color: "white" }}
+                style={
+                  app.screen === "Skillgroups"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Skillgroups"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Skill-groups
                 </Typography>
               }
@@ -118,17 +173,34 @@ class BottomList extends Component {
               app.screen === "Users"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <Group style={{ color: "white" }} />
+              <Group //style={{ color: "white" }}
+                style={
+                  app.screen === "Users"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Users"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Users
                 </Typography>
               }
@@ -143,17 +215,34 @@ class BottomList extends Component {
               app.screen === "Interactions"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <CheckCircle style={{ color: "white" }} />
+              <AssignmentLate //style={{ color: "white" }}
+                style={
+                  app.screen === "Interactions"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Interactions"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Interactions
                 </Typography>
               }
@@ -168,17 +257,34 @@ class BottomList extends Component {
               app.screen === "Contacts"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <Contacts style={{ color: "white" }} />
+              <PermContactCalendar //style={{ color: "white" }}
+                style={
+                  app.screen === "Contacts"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Contacts"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Contacts
                 </Typography>
               }
@@ -193,17 +299,35 @@ class BottomList extends Component {
               app.screen === "Organizations"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <LocationCity style={{ color: "white" }} />
+              {/* style={{ color: "white" }} */}
+              <Business
+                style={
+                  app.screen === "Organizations"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Organizations"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Organization
                 </Typography>
               }
@@ -272,7 +396,7 @@ BottomList.propTypes = {
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(BottomList);

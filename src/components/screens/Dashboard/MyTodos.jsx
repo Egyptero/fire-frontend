@@ -197,7 +197,7 @@ class MyTodos extends Component {
             </IconButton>
           </div>
         }
-        title="Tasks"
+        title="Activities"
       />
     );
   };

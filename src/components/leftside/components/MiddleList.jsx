@@ -1,16 +1,13 @@
 import {
-  Divider, List, ListItem,
+  Divider,
+  List,
+  ListItem,
   ListItemIcon,
   ListItemText,
-
-
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import {
-
-  Assignment, History
-} from "@material-ui/icons";
+import { Assignment, History, Event } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styles from "../../primaryapp/appStyles";
@@ -56,18 +53,35 @@ class MiddelList extends Component {
               app.screen === "To do"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <Assignment style={{ color: "white" }} />
+              <Event //style={{ color: "white" }}
+                style={
+                  app.screen === "To do"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
-                  Tasks
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "To do"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
+                  Activities
                 </Typography>
               }
             />
@@ -81,17 +95,34 @@ class MiddelList extends Component {
               app.screen === "History"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <History style={{ color: "white" }} />
+              <History //style={{ color: "white" }}
+                style={
+                  app.screen === "History"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "History"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   History
                 </Typography>
               }
@@ -123,7 +154,6 @@ class MiddelList extends Component {
               }
             />
           </ListItem> */}
-
         </List>
         <Divider />
       </React.Fragment>
@@ -134,7 +164,7 @@ MiddelList.propTypes = {
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(MiddelList);

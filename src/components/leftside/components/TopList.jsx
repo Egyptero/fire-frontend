@@ -1,13 +1,13 @@
 import {
-  Divider, List, ListItem,
+  Divider,
+  List,
+  ListItem,
   ListItemIcon,
   ListItemText,
-
-
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Dashboard, Traffic } from "@material-ui/icons";
+import { Dashboard, HourglassEmpty, Traffic } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styles from "../../primaryapp/appStyles";
@@ -56,17 +56,34 @@ class TopList extends Component {
               app.screen === "Dashboard"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <Dashboard style={{ color: "white" }} />
+              <Dashboard //style={{ color: "white" }}
+                style={
+                  app.screen === "Dashboard"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Dashboard"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Dashboard
                 </Typography>
               }
@@ -81,17 +98,34 @@ class TopList extends Component {
               app.screen === "Queues"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
-                    boxShadow: "1px 1px 2px black"
+                    boxShadow: "1px 1px 2px black",
                   }
                 : {}
             }
           >
             <ListItemIcon>
-              <Traffic style={{ color: "white" }} />
+              <HourglassEmpty //style={{ color: "white" }}
+                style={
+                  app.screen === "Queues"
+                    ? {
+                        color: theme.palette.common.white,
+                      }
+                    : {}
+                }
+              />
             </ListItemIcon>
             <ListItemText
               primary={
-                <Typography variant="subtitle2" style={{ color: "white" }}>
+                <Typography
+                  variant="subtitle2" //style={{ color: "white" }}
+                  style={
+                    app.screen === "Queues"
+                      ? {
+                          color: theme.palette.common.white,
+                        }
+                      : {}
+                  }
+                >
                   Queues
                 </Typography>
               }
@@ -107,7 +141,7 @@ TopList.propTypes = {
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(TopList);

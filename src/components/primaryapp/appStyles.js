@@ -102,7 +102,7 @@ const styles = theme => ({
   drawerOpen: {
     width: drawerWidth,
     //backgroundImage: "linear-gradient(45deg, #333232 30%, #666262 90%)",
-    backgroundColor: theme.palette.secondary.dark,
+    //backgroundColor: theme.palette.secondary.light,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -121,8 +121,8 @@ const styles = theme => ({
     }
   },
   drawerClose: {
-    //backgroundImage: "linear-gradient(45deg, #333232 30%, #666262 90%)",
-    backgroundColor: theme.palette.secondary.dark,
+    //backgroundImage: `linear-gradient(45deg,theme.palette.primary.main,30%, #666262 90%)`,
+    //backgroundColor: theme.palette.secondary.light,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen

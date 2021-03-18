@@ -30,7 +30,8 @@ class LeftSideDrawer extends React.Component {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeft style={{ color: "white" }} />
+            <ChevronLeft //style={{ color: "white" }} 
+            />
           </IconButton>
         </div>
         <LeftSideBar {...this.props} />
