@@ -52,7 +52,7 @@ class MyTodosCalendar extends Component {
         >
           <FullCalendar
             plugins={[dayGridPlugin]}
-            initialView={"dayGridWeek"} //dayGridWeek  dayGridMonth
+            initialView={"dayGridMonth"} //dayGridWeek  dayGridMonth
             headerToolbar={{
               left: "prev,next today",
               center: "title",
