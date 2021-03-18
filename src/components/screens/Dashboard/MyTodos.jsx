@@ -62,7 +62,7 @@ class MyTodos extends Component {
     openTodo: false,
     action: "new",
     todoId: null,
-    showType: "New",
+    showType: "All",
     view: "Detailed",
     severity: "All",
     screenView: "Table", //Table

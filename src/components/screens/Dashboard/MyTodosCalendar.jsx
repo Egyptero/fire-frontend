@@ -18,9 +18,11 @@ class MyTodosCalendar extends Component {
   state = {};
 
   prepareData = () => {
+    const { theme } = this.props;
     const todos = this.props.app.todos;
     const sourceState = this.props.source.sourceState;
     let data = [];
+    let color = theme.palette.info.main;
     if (!todos) return;
     todos.forEach((todo) => {
       if (
@@ -28,26 +30,38 @@ class MyTodosCalendar extends Component {
           todo.status === sourceState.showType) &&
         (sourceState.severity === "All" ||
           todo.priority === sourceState.severity)
-      )
+      ) {
+          console.log(todo.status)
+        color =
+          todo.status === "New"
+            ? theme.palette.info.main
+            : todo.status === "Completed"
+            ? theme.palette.success.main
+            : theme.palette.warning.main;
         data.push({
+          id: todo._id,
           title: todo.title,
           start: todo.due,
           end: todo.due,
+          allDay: true,
+          color,
         });
+      }
     });
-    console.log(data);
+    //console.log(data);
     return data;
   };
   render() {
     const { classes } = this.props;
     let data = this.prepareData();
+    console.log(data);
     return (
       <Card className={classes.card}>
         {this.props.source.renderTodoDetailedHeader("calendar")}
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "77vh" } : { height: "65vh" }
+            this.props.fullScreen ? { height: "75vh" } : { height: "65vh" }
           }
         >
           <FullCalendar
@@ -58,8 +72,11 @@ class MyTodosCalendar extends Component {
               center: "title",
               right: "dayGridWeek,dayGridMonth",
             }}
-            height={"72vh"}
+            height={"70vh"}
             events={data}
+            eventClick={(info) => {
+              this.props.source.handleEditTodoOpen(info.event.id);
+            }}
           />
         </CardContent>
       </Card>
