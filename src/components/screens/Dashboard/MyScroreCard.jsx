@@ -9,8 +9,6 @@ import {
   Grid,
   Grow,
 } from "@material-ui/core";
-import Chart from "react-google-charts";
-import GaugeChart from "react-gauge-chart";
 import ScoreKPI from "./MyScoreCard/ScoreKPI";
 
 const styles = (theme) => ({

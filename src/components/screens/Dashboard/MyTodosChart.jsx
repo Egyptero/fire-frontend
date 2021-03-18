@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { CardContent, CardHeader, Divider, Grid } from "@material-ui/core";
+import { CardContent, CardHeader, Divider, Card } from "@material-ui/core";
 import Chart from "react-apexcharts";
 
 const styles = (theme) => ({
@@ -49,7 +49,7 @@ class MyTeams extends Component {
     const { classes, theme } = this.props;
     let chartData = this.props.data;
     return (
-      <React.Fragment>
+      <Card className={classes.card}>
         <CardHeader title="Tasks" />
         <Divider />
         <CardContent
@@ -92,7 +92,7 @@ class MyTeams extends Component {
             ""
           )}
         </CardContent>
-      </React.Fragment>
+      </Card>
     );
   }
 }

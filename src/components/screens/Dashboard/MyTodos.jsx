@@ -13,6 +13,8 @@ import {
   InputLabel,
   FormControl,
   Grow,
+  Grid,
+  Divider,
 } from "@material-ui/core";
 import loadTodos from "../../../functions/user/loadTodos";
 import TodoDialog from "../../dialogs/TodoDialog";
@@ -20,6 +22,10 @@ import updateTodo from "../../../functions/user/updateTodo";
 import TodoItem from "./Todo/TodoItem";
 import deleteTodo from "../../../functions/user/deleteTodo";
 import MyTodosChart from "./MyTodosChart";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import MyTodosCalendar from "./MyTodosCalendar";
+
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -105,6 +111,7 @@ class MyTodos extends Component {
       handleMarkCompleted: this.handleMarkCompleted,
       handleMarkProgress: this.handleMarkProgress,
       handleDeleteTodo: this.handleDeleteTodo,
+      renderTodoDetailedHeader: this.renderTodoDetailedHeader,
       sourceState: this.state,
     };
   };
@@ -128,85 +135,100 @@ class MyTodos extends Component {
         />
       );
   };
-  renderTodoDetailedView = () => {
+  renderTodoDetailedHeader = (type) => {
     const { classes } = this.props;
-    const { app } = this.props;
-    const todos = app.todos ? app.todos : [];
     return (
-      <React.Fragment>
-        <CardHeader
-          action={
-            <div>
-              {this.props.fullScreen ? (
-                <FormControl className={classes.formControl}>
-                  <InputLabel shrink htmlFor="bot-label-placeholder">
-                    Severity
-                  </InputLabel>
-                  <Select
-                    value={this.state.severity}
-                    onChange={this.changeSeverity}
-                  >
-                    <MenuItem value={"All"}>All</MenuItem>
-                    <MenuItem value={"Critical"}>Critical</MenuItem>
-                    <MenuItem value={"High"}>High</MenuItem>
-                    <MenuItem value={"Medium"}>Medium</MenuItem>
-                    <MenuItem value={"Low"}>Low</MenuItem>
-                  </Select>
-                </FormControl>
-              ) : (
-                ""
-              )}
+      <CardHeader
+        action={
+          <div>
+            {this.props.fullScreen ? (
+              <FormControl className={classes.formControl}>
+                <InputLabel shrink htmlFor="bot-label-placeholder">
+                  Severity
+                </InputLabel>
+                <Select
+                  value={this.state.severity}
+                  onChange={this.changeSeverity}
+                >
+                  <MenuItem value={"All"}>All</MenuItem>
+                  <MenuItem value={"Critical"}>Critical</MenuItem>
+                  <MenuItem value={"High"}>High</MenuItem>
+                  <MenuItem value={"Medium"}>Medium</MenuItem>
+                  <MenuItem value={"Low"}>Low</MenuItem>
+                </Select>
+              </FormControl>
+            ) : (
+              ""
+            )}
+
+            {type === "calendar" ? (
+              ""
+            ) : (
               <FormControl className={classes.formControl}>
                 <InputLabel shrink htmlFor="bot-label-placeholder">
                   View
                 </InputLabel>
+
                 <Select value={this.state.view} onChange={this.changeView}>
                   <MenuItem value={"Summary"}>Summary</MenuItem>
                   <MenuItem value={"Detailed"}>Detailed</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl className={classes.formControl}>
-                <InputLabel shrink htmlFor="bot-label-placeholder">
-                  Status
-                </InputLabel>
-                <Select
-                  value={this.state.showType}
-                  onChange={this.changeShowType}
-                >
-                  <MenuItem value={"All"}>All</MenuItem>
-                  <MenuItem value={"New"}>New</MenuItem>
-                  <MenuItem value={"Progress"}>Progress</MenuItem>
-                  <MenuItem value={"Completed"}>Completed</MenuItem>
-                </Select>
-              </FormControl>
-              <IconButton onClick={this.reloadTodos}>
-                <Refresh />
-              </IconButton>
-              <IconButton onClick={this.handleNewTodoOpen}>
-                <Add />
-              </IconButton>
-            </div>
-          }
-          title="Tasks"
-        />
-        {/* <Divider /> */}
+            )}
+            <FormControl className={classes.formControl}>
+              <InputLabel shrink htmlFor="bot-label-placeholder">
+                Status
+              </InputLabel>
+              <Select
+                value={this.state.showType}
+                onChange={this.changeShowType}
+              >
+                <MenuItem value={"All"}>All</MenuItem>
+                <MenuItem value={"New"}>New</MenuItem>
+                <MenuItem value={"Progress"}>Progress</MenuItem>
+                <MenuItem value={"Completed"}>Completed</MenuItem>
+              </Select>
+            </FormControl>
+            <IconButton onClick={this.reloadTodos}>
+              <Refresh />
+            </IconButton>
+            <IconButton onClick={this.handleNewTodoOpen}>
+              <Add />
+            </IconButton>
+          </div>
+        }
+        title="Tasks"
+      />
+    );
+  };
+  renderTodoDetailedView = () => {
+    const { classes } = this.props;
+    const { app } = this.props;
+    const todos = app.todos ? app.todos : [];
+    return (
+      <Grid container alignItems="center" justify="center">
+        {this.props.fullScreen ? "" : ""}
+        <Card className={classes.card}>
+          {this.renderTodoDetailedHeader()}
+          {/* <Divider /> */}
 
-        <CardContent
-          className={classes.cardContent}
-          style={
-            this.props.fullScreen ? { height: "75vh" } : { height: "65vh" }
-          }
-        >
-          {/**className={classes.cardContent} */}
-          {/* <Grid container className={classes.grid}> */}
-          <List>
-            {todos.map((todo) => {
-              return this.renderTodoList(todo);
-            })}
-          </List>
-          {/* </Grid> */}
-        </CardContent>
-      </React.Fragment>
+          <CardContent
+            className={classes.cardContent}
+            style={
+              this.props.fullScreen ? { height: "75vh" } : { height: "65vh" }
+            }
+          >
+            {/**className={classes.cardContent} */}
+            {/* <Grid container className={classes.grid}> */}
+            <List>
+              {todos.map((todo) => {
+                return this.renderTodoList(todo);
+              })}
+            </List>
+            {/* </Grid> */}
+          </CardContent>
+        </Card>
+      </Grid>
     );
   };
   renderChart = () => {
@@ -217,20 +239,25 @@ class MyTodos extends Component {
 
     return (
       <React.Fragment>
-        <Card className={classes.card}>
-          {this.state.screenView === "Graph"
-            ? this.renderChart()
-            : this.renderTodoDetailedView()}
-        </Card>
+        {this.state.screenView === "Graph" ? (
+          !this.props.fullScreen ? (
+            this.renderChart()
+          ) : (
+            <MyTodosCalendar {...this.props} source={this.getSharedObject()} />
+          )
+        ) : (
+          this.renderTodoDetailedView()
+        )}
+
         <TodoDialog {...this.props} source={this.getSharedObject()} />
         {/* Hide graph switch in case of full screen */}
-        {!this.props.fullScreen ? (
-          <IconButton className={classes.floatButton} onClick={this.toggelView}>
-            {this.state.screenView === "Graph" ? <TableChart /> : <BarChart />}
-          </IconButton>
-        ) : (
+        {/* {!this.props.fullScreen ? ( */}
+        <IconButton className={classes.floatButton} onClick={this.toggelView}>
+          {this.state.screenView === "Graph" ? <TableChart /> : <BarChart />}
+        </IconButton>
+        {/* ) : (
           ""
-        )}
+        )} */}
       </React.Fragment>
     );
   }
