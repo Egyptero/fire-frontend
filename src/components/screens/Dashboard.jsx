@@ -341,7 +341,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.secondary.light,
                     bottomAvatarColor: theme.palette.secondary.main,
                     bottomValue: this.state.teamStatus.loggedout,
-                    message: "Logged out",
+                    message: "Log out",
                     icon: () => {
                       return <Block fontSize="large" />;
                     },
@@ -355,7 +355,7 @@ class Dashboard extends Component {
                     topAvatarColor: theme.palette.error.light,
                     bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.teamStatus.loggedin,
-                    message: "Logged in",
+                    message: "Log in",
                     icon: () => {
                       return <LockOpen fontSize="large" />;
                     },

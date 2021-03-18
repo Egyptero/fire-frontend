@@ -65,7 +65,7 @@ class MyScroreCard extends Component {
                 params={{
                   value: 0.86,
                   kpi: "SLA",
-                  caption: "Service level agreement",
+                  caption: "Service level",
                   target: "75%",
                   actual: "86%",
                 }}
@@ -77,7 +77,7 @@ class MyScroreCard extends Component {
                 params={{
                   value: 0.17,
                   kpi: "ASA",
-                  caption: "Average speed of answer",
+                  caption: "Speed of answer",
                   target: "95%",
                   actual: "17%",
                 }}
