@@ -53,20 +53,20 @@ class MainBar extends Component {
             <Menu />
           </IconButton>
 
-          <img
+          {/* <img
             src="./imgs/firemisc.png"
             alt="firemisc"
             height={this.props.theme.spacing(8)}
             width={this.props.theme.spacing(13)}
-          />
-          <Divider
+          /> */}
+          {/* <Divider
             style={{
               width: "2px",
               height: "3em",
               marginLeft: "1em",
               marginRight: "1em"
             }}
-          />
+          /> */}
           <div className={classes.sectionDesktop}>
             <div>
               <OrganizationSelect {...this.props} />

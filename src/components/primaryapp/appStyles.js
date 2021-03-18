@@ -147,8 +147,8 @@ const styles = theme => ({
   },
   toolbar: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
+    //alignItems: "center",
+    //Temp stop justifyContent: "flex-end",
     padding: "0 8px",
     //backgroundImage: "linear-gradient(#666262, black)",
     //backgroundColor: "#666262",
