@@ -5,7 +5,7 @@ import { IconButton, Drawer, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../primaryapp/appStyles";
 import LeftSideBar from "./components/LeftSideBar";
-import { ChevronLeft, Label, LabelImportant } from "@material-ui/icons";
+import { ChevronLeft } from "@material-ui/icons";
 
 class LeftSideDrawer extends React.Component {
   state = {};
@@ -31,18 +31,27 @@ class LeftSideDrawer extends React.Component {
         {/* <div className={classes.toolbar}> */}
         <Grid
           container
-          style={{ height: theme.spacing(8) }}
+          style={{ height: theme.spacing(10) }}
           alignItems="center"
+          alignContent="center"
+          justify="center"
         >
           {primaryAppState.open ? (
             <React.Fragment>
               <Grid item xs={9}>
-                <img
-                  src="./imgs/firemisc.png"
-                  alt="firemisc"
-                  height={theme.spacing(8)}
-                  width={theme.spacing(13)}
-                />
+                <Grid
+                  container
+                  alignItems="center"
+                  alignContent="center"
+                  justify="center"
+                >
+                  <img
+                    src="./imgs/firemisc.png"
+                    alt="firemisc"
+                    height={theme.spacing(9)}
+                    width={theme.spacing(15)}
+                  />
+                </Grid>
               </Grid>
               <Grid item xs={3}>
                 <IconButton onClick={handleDrawerClose}>

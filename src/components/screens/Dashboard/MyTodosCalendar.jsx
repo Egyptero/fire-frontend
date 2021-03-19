@@ -31,7 +31,6 @@ class MyTodosCalendar extends Component {
         (sourceState.severity === "All" ||
           todo.priority === sourceState.severity)
       ) {
-          console.log(todo.status)
         color =
           todo.status === "New"
             ? theme.palette.info.main
@@ -48,13 +47,11 @@ class MyTodosCalendar extends Component {
         });
       }
     });
-    //console.log(data);
     return data;
   };
   render() {
     const { classes } = this.props;
     let data = this.prepareData();
-    console.log(data);
     return (
       <Card className={classes.card}>
         {this.props.source.renderTodoDetailedHeader("calendar")}
