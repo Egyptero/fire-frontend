@@ -29,6 +29,7 @@ import MyTodosCalendar from "./MyTodosCalendar";
 const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull:{},
   card: {},
   cardContent: {
     position: "relative",

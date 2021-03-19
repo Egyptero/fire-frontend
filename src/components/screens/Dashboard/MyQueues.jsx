@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Refresh, BarChart, TableChart } from "@material-ui/icons";
-import { Card, IconButton, CardContent, CardHeader, Divider } from "@material-ui/core";
-import loadMyQueues from "../../../functions/user/tenant/loadMyQueues";
-import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
+import {
+  Card,
+  IconButton,
+  CardContent,
+  CardHeader,
+  Divider,
+} from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,79 +16,80 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import _ from "lodash";
 import MyQueuesChart from "./MyQueuesChart";
-const CustomTableCell = withStyles(theme => ({
+const CustomTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.common.white,
     fontSize: 16,
-    fontWeight: "Bold"
+    fontWeight: "Bold",
   },
   body: {
     //fontSize: 14,
-  }
+  },
 }))(TableCell);
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull: {},
   card: {},
   cardContent: {
     position: "relative",
     overflow: "auto",
-//    height: "24vh",
+    //    height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    marginLeft: theme.spacing()
+    marginLeft: theme.spacing(),
   },
   row: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   },
   floatButton: {
     position: "absolute",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    zIndex: 1
+    zIndex: 1,
   },
   floatButtonLeft: {
     position: "absolute",
     bottom: theme.spacing(2),
     left: theme.spacing(2),
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });
 
 class MyQueues extends Component {
   state = {
-    view: "Graph"
+    view: "Graph",
   };
-  getSkillQueue = skillgroupId => {
+  getSkillQueue = (skillgroupId) => {
     const { app } = this.props;
     let matchQueues = _.filter(
       app.myQueues,
-      queue => queue.skillgroupId === skillgroupId
+      (queue) => queue.skillgroupId === skillgroupId
     );
     if (matchQueues && matchQueues.length > 0) return matchQueues[0].queue;
     else return "-";
   };
-  getSkillNotReady = skillgroupId => {
+  getSkillNotReady = (skillgroupId) => {
     const { app } = this.props;
     const { myTeams } = app;
     const users = _.filter(
       myTeams,
-      user =>
+      (user) =>
         user.status === "Not ready" &&
         user.skillIds.includes(skillgroupId) &&
         user.tenantIds.includes(app.tenant._id)
@@ -102,7 +107,7 @@ class MyQueues extends Component {
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
     return (
       <Card className={classes.card}>
-        <CardHeader title="Queues"/>
+        <CardHeader title="Queues" />
         <Divider />
         <CardContent
           className={classes.cardContent}
@@ -117,7 +122,7 @@ class MyQueues extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {skillgroups.map(skillgroup => (
+              {skillgroups.map((skillgroup) => (
                 <TableRow className={classes.row} key={skillgroup._id}>
                   <CustomTableCell>{skillgroup.name}</CustomTableCell>
                   <CustomTableCell>
@@ -162,6 +167,6 @@ MyQueues.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  refresh : PropTypes.func.isRequired
+  refresh: PropTypes.func.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyQueues);

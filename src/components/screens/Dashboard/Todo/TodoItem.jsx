@@ -16,6 +16,7 @@ import React, { Component } from "react";
 const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull:{},
   card: {},
   cardContent: {},
   formControl: {},

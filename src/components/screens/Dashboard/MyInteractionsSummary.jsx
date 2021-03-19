@@ -10,12 +10,13 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  FormControl
+  FormControl,
 } from "@material-ui/core";
 import MyInteractionsItem from "./MyInteractions/MyInteractionsItem";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull: {},
   card: {},
   cardContent: {
     position: "relative",
@@ -23,19 +24,19 @@ const styles = theme => ({
     height: "32vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    marginLeft: theme.spacing()
-  }
+    marginLeft: theme.spacing(),
+  },
 });
 
 class MyInteractionsSummary extends Component {
@@ -43,27 +44,27 @@ class MyInteractionsSummary extends Component {
     openInteraction: false,
     action: "new",
     interactionId: null,
-    view: "Detailed"
+    view: "Detailed",
   };
 
-  handleMyInteractionOpen = interactionId => {
+  handleMyInteractionOpen = (interactionId) => {
     this.setState({ openInteraction: true, action: "open", interactionId });
   };
   handleMyInteractionClose = () => {
     this.setState({ openInteraction: false });
   };
-  changeView = event => {
+  changeView = (event) => {
     this.setState({ view: event.target.value });
   };
   getSharedObject = () => {
     return {
       handleMyInteractionClose: this.handleMyInteractionClose,
       handleMyInteractionOpen: this.handleMyInteractionOpen,
-      sourceState: this.state
+      sourceState: this.state,
     };
   };
 
-  renderMyInteractionList = myInteraction => {
+  renderMyInteractionList = (myInteraction) => {
     return (
       <MyInteractionsItem
         key={myInteraction.interaction._id}
@@ -106,7 +107,7 @@ class MyInteractionsSummary extends Component {
               style={{ height: "75vh" }}
             >
               <List>
-                {myInteractions.map(myInteraction => {
+                {myInteractions.map((myInteraction) => {
                   return this.renderMyInteractionList(myInteraction);
                 })}
               </List>
@@ -114,7 +115,7 @@ class MyInteractionsSummary extends Component {
           ) : (
             <CardContent className={classes.cardContent}>
               <List>
-                {myInteractions.map(myInteraction => {
+                {myInteractions.map((myInteraction) => {
                   return this.renderMyInteractionList(myInteraction);
                 })}
               </List>
@@ -132,7 +133,7 @@ MyInteractionsSummary.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
   // fullScreen: PropTypes.bool.optional it give exception in runtime
 };
 export default withStyles(styles, { withTheme: true })(MyInteractionsSummary);

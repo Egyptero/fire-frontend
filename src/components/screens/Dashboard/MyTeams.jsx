@@ -9,7 +9,6 @@ import {
   CardHeader,
   Divider,
 } from "@material-ui/core";
-import loadMyTeams from "../../../functions/user/team/loadMyTeams";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -32,6 +31,7 @@ const CustomTableCell = withStyles(theme => ({
 const styles = theme => ({
   content: {},
   grid: {},
+  gridFull:{},
   card: {},
   cardContent: {
     position: "relative",

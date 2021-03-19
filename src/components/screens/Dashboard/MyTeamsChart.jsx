@@ -15,6 +15,7 @@ import Chart from "react-apexcharts";
 const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull:{},
   card: {},
   cardContent: {
     position: "relative",
@@ -122,6 +123,6 @@ MyTeams.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyTeams);

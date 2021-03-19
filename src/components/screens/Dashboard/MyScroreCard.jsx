@@ -14,12 +14,14 @@ import ScoreKPI from "./MyScoreCard/ScoreKPI";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  card: {},
+  gridFull:{},
+  card: {
+  },
   cardContent: {
     position: "relative",
     overflow: "auto",
-    //height: "32vh", //32 vh
-    minWidth: "100%",
+    height: "28vh", //32 vh
+    //minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
     },
@@ -45,7 +47,7 @@ class MyScroreCard extends Component {
       <Card className={classes.card}>
         <CardHeader title="Score card"></CardHeader>
         <Divider />
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Grid container>
             <Grid item xs={12} sm={6} md={6} lg={3}>
               <ScoreKPI

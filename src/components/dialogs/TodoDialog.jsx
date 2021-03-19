@@ -23,6 +23,7 @@ import updateTodo from "../../functions/user/updateTodo";
 const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull: {},
   card: {},
   cardContent: {},
   formControl: {},

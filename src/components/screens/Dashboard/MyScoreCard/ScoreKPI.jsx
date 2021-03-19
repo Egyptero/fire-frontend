@@ -7,6 +7,7 @@ import { Divider, Grid, Typography } from "@material-ui/core";
 const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull:{},
   card: {},
   cardContent: {},
   formControl: {},
