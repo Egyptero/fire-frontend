@@ -43,14 +43,14 @@ class MainBar extends Component {
           [classes.appBarShift]: primaryAppState.open,
         })}
       >
-        {app.loader.progress != 0 && app.loader.progress != 100 ? (
+        {/* {app.loader.progress != 0 && app.loader.progress != 100 ? (
           <LinearProgress
             variant="determinate"
             value={app.loader.progress} // Reading from progress
           />
         ) : (
           ""
-        )}
+        )} */}
 
         <Toolbar disableGutters={!primaryAppState.open}>
           <IconButton

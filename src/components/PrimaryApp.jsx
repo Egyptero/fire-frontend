@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CssBaseline } from "@material-ui/core";
+import {
+  Backdrop,
+  CircularProgress,
+  CssBaseline,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { LinearProgress } from "@material-ui/core";
 import styles from "./primaryapp/appStyles";
@@ -241,6 +247,37 @@ class PrimaryApp extends React.Component {
           primaryApp={this.getSharedObject()}
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
+        <Backdrop
+          className={classes.backdrop}
+          open={this.props.app.loader.progress != 100}
+        >
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justify="center"
+            alignContent="center"
+          >
+            <img
+              src="./imgs/loader.gif"
+              alt="Loading organization"
+              height={this.props.theme.spacing(16)}
+              width={this.props.theme.spacing(16)}
+            />
+
+            {/* <CircularProgress
+              color="inherit"
+//              variant="determinate"
+//              value={this.props.app.loader.progress}
+            /> */}
+            <Typography color="inherit" variant="h6">
+              Loading .....
+            </Typography>
+            <Typography color="inherit" variant="caption">
+              {this.props.app.loader.message}
+            </Typography>
+          </Grid>
+        </Backdrop>
       </React.Fragment>
     );
   }
