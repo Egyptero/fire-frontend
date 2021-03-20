@@ -4,7 +4,7 @@ import url from "../../../app/url";
 export default (ref, callback) => {
   const { app } = ref.props;
   const { enqueueSnackbar } = ref.props;
-  console.log("Loading skillgroups");
+  console.log("Loading skillgroups   .....");
   if (!app.tenant) {
     if (callback) {
       return callback({
