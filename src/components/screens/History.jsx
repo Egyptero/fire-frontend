@@ -86,9 +86,9 @@ class History extends Component {
               setRange={this.setRange}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <HistoryChart {...this.props} range={this.state.range} />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Card className={classes.card}>
               <HistoryDetails {...this.props} range={this.state.range} />

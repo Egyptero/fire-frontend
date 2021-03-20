@@ -49,9 +49,7 @@ class PrimaryApp extends React.Component {
 
           //Loading Admin Data
           console.log("Loading admin data at mount time");
-          if (!app.users) loadUsers(this,(result)=>{
-            console.log("Users loaded",result);
-          });
+          if (!app.users) loadUsers(this);
           if (!app.types) loadTypes(this);
           if (!app.workflows) loadWorkflows(this);
           if (!app.interactions) loadInteractions(this);
@@ -59,11 +57,11 @@ class PrimaryApp extends React.Component {
           if (!app.skillgroups) loadSkillgroups(this);
 
           //Load user data
+          console.log("Loading user data at mount time");
           if (!app.mySkillgroups) loadMySkillgroups(this);
           if (!app.myQueues) loadMyQueues(this);
           if (!app.myTeams) loadMyTeams(this);
           if (!app.todos) loadTodos(this);
-
         }
       });
     else if (app.tenants.length > 0) app.handleTenantChange(app.tenants[0]);

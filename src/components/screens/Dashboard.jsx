@@ -63,14 +63,15 @@ class Dashboard extends Component {
     todoStatus: {},
   };
   componentDidMount() {
-    if (this.props.app.mySkillgroups) this.calcQueueData();
+    if (this.props.app.mySkillgroups && this.props.app.myQueues)
+      this.calcQueueData();
     if (this.props.app.myTeams) this.calcTeamData();
     if (this.props.app.todos) this.calcTodoData();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.app.mySkillgroups && !prevProps.app.mySkillgroups)
-      this.calcQueueData();
-    if (this.props.app.myTeams && !prevProps.app.myTeams) this.calcTeamData();
+    // if (this.props.app.mySkillgroups && !prevProps.app.mySkillgroups)
+    //   this.calcQueueData();
+    // if (this.props.app.myTeams && !prevProps.app.myTeams) this.calcTeamData();
     // if (this.props.app.todos && !prevProps.app.todos) this.calcTodoData();
     const { app } = this.props;
     // if (app.tenant !== prevProps.app.tenant) {
@@ -84,7 +85,10 @@ class Dashboard extends Component {
     //     if (!result.error) this.calcTeamData();
     //   });
     // }
-    if (app.mySkillgroups !== prevProps.app.mySkillgroups) {
+    if (
+      app.mySkillgroups !== prevProps.app.mySkillgroups ||
+      app.myQueues !== prevProps.app.myQueues
+    ) {
       console.log("My skills calc will run now");
       this.calcQueueData();
     }
