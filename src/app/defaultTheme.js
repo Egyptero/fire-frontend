@@ -17,7 +17,8 @@ const theme = createMuiTheme({
       dark: "#931f29", //931f29 //38245C
       contrastText: "#ffffff"
     }
-  }
+  },
+  direction: "ltr"
 });
 
 export default theme;

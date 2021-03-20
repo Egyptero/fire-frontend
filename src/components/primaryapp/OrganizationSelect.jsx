@@ -9,15 +9,15 @@ import CreateOrganizationBtn from "../buttons/createorganization/CreateOrganizat
 class OrganizationSelect extends React.Component {
   state = {};
   componentDidMount() {
-    const { app } = this.props;
-    if (!app.tenants)
-      loadMyTenants(this, result => {
-        if (!result.error && result.tenants) {
-          app.handleTenantsListLoad(result.tenants);
-          app.handleTenantChange(result.tenants[0]);
-        }
-      });
-    else if (app.tenants.length > 0) app.handleTenantChange(app.tenants[0]);
+    // const { app } = this.props;
+    // if (!app.tenants)
+    //   loadMyTenants(this, result => {
+    //     if (!result.error && result.tenants) {
+    //       app.handleTenantsListLoad(result.tenants);
+    //       app.handleTenantChange(result.tenants[0]);
+    //     }
+    //   });
+    // else if (app.tenants.length > 0) app.handleTenantChange(app.tenants[0]);
   }
   handleChange = event => {
     const { app } = this.props;

@@ -63,50 +63,30 @@ class Dashboard extends Component {
     todoStatus: {},
   };
   componentDidMount() {
-    const { app } = this.props;
-    if (!app.mySkillgroups)
-      loadMySkillgroups(this, (result) => {
-        if (!result.error) {
-          if (!app.myQueues)
-            loadMyQueues(this, (result) => {
-              if (!result.error) this.calcQueueData();
-            });
-        }
-      });
-    else if (!app.myQueues)
-      loadMyQueues(this, (result) => {
-        if (!result.error) this.calcQueueData();
-      });
-    else this.calcQueueData();
-
-    if (!app.myTeams)
-      loadMyTeams(this, (result) => {
-        if (!result.error) this.calcTeamData();
-      });
-    else this.calcTeamData();
-    if (app.todos) this.calcTodoData();
-    else
-      loadTodos(this, (result) => {
-        if (!result.error) this.calcTodoData();
-      });
+    if (this.props.app.mySkillgroups) this.calcQueueData();
+    if (this.props.app.myTeams) this.calcTeamData();
+    if (this.props.app.myTodos) this.calcTodoData();
   }
-
   componentDidUpdate(prevProps, prevState) {
-    const { app } = this.props;
-    if (app.tenant !== prevProps.app.tenant) {
-      loadMySkillgroups(this, (result) => {
-        if (!result.error)
-          loadMyQueues(this, (result) => {
-            if (!result.error) this.calcQueueData();
-          });
-      });
-      loadMyTeams(this, (result) => {
-        if (!result.error) this.calcTeamData();
-      });
-    }
-    if (app.todos !== prevProps.app.todos) {
-      this.calcTodoData();
-    }
+    if (this.props.app.mySkillgroups && !prevProps.app.mySkillgroups)
+      this.calcQueueData();
+    if (this.props.app.myTeams && !prevProps.app.myTeams) this.calcTeamData();
+    if (this.props.app.myTodos && !prevProps.app.myTodos) this.calcTodoData();
+    // const { app } = this.props;
+    // if (app.tenant !== prevProps.app.tenant) {
+    //   loadMySkillgroups(this, (result) => {
+    //     if (!result.error)
+    //       loadMyQueues(this, (result) => {
+    //         if (!result.error) this.calcQueueData();
+    //       });
+    //   });
+    //   loadMyTeams(this, (result) => {
+    //     if (!result.error) this.calcTeamData();
+    //   });
+    // }
+    // if (app.todos !== prevProps.app.todos) {
+    //   this.calcTodoData();
+    // }
   }
 
   refreshTeams = () => {
@@ -162,11 +142,8 @@ class Dashboard extends Component {
   calcTodoData = () => {
     const { app } = this.props;
     const todos = app.todos ? app.todos : [];
-    let categories = [
-      "New",
-      "In progress",
-      "Completed",
-    ];
+    if (!todos) return;
+    let categories = ["New", "In progress", "Completed"];
 
     let data = [];
     let statusCount = {
@@ -193,11 +170,13 @@ class Dashboard extends Component {
     data.push(statusCount.new);
     data.push(statusCount.progress);
     data.push(statusCount.completed);
-    this.setState({ todoData: {data,categories}, todoStatus: statusCount });
+    this.setState({ todoData: { data, categories }, todoStatus: statusCount });
   };
   calcQueueData = () => {
     const { app } = this.props;
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
+
+    if (!skillgroups) return;
     let categories = [];
     let data = [];
     let queueSeries = {
@@ -226,6 +205,7 @@ class Dashboard extends Component {
   calcTeamData = () => {
     const { app } = this.props;
     const teams = app.myTeams ? app.myTeams : [];
+    if (!teams) return;
     let categories = [
       "Ready",
       "Not ready",

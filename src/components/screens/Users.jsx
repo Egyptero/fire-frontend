@@ -46,12 +46,12 @@ class Users extends Component {
   };
   componentDidMount() {
     const { app } = this.props;
-    if (app.tenant && !app.users)
-      loadUsers(this, result => {
-        if (!result.error && result.users && result.users.length > 0)
-          this.setState({ selectedUser: result.users[0] });
-        else this.setState({ selectedUser: null });
-      });
+    // if (app.tenant && !app.users)
+    //   loadUsers(this, result => {
+    //     if (!result.error && result.users && result.users.length > 0)
+    //       this.setState({ selectedUser: result.users[0] });
+    //     else this.setState({ selectedUser: null });
+    //   });
     if (!this.state.selectedUser && app.users && app.users.length > 0)
       this.setState({ selectedUser: app.users[0] });
   }

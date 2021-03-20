@@ -8,15 +8,86 @@ import TopSideDrawer from "./topside/TopSideDrawer";
 import Main from "./main/Main";
 import PhoneScreen from "./phone/PhoneScreen";
 import MasterAdd from "./buttons/add/MasterAdd";
+import loadUsers from "../functions/tenant/user/loadUsers";
+import loadTypes from "../functions/tenant/type/loadTypes";
+import loadWorkflows from "../functions/tenant/workflow/loadWorkflows";
+import loadInteractions from "../functions/tenant/interaction/loadInteractions";
+import loadCustomers from "../functions/tenant/customer/loadCustomers";
+import loadSkillgroups from "../functions/tenant/skillgroup/loadSkillgroups";
+import loadMyTenants from "../functions/user/tenant/loadMyTenants";
+import loadMySkillgroups from "../functions/user/tenant/loadMySkillgroups";
+import loadMyQueues from "../functions/user/tenant/loadMyQueues";
+import loadMyTeams from "../functions/user/team/loadMyTeams";
+import loadTodos from "../functions/user/loadTodos";
 
 class PrimaryApp extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    open: false
+    open: false,
   };
 
-  handleProfileMenuOpen = event => {
+  componentDidMount() {
+    //We need to loadd application data now
+
+    //Load Admin related information
+    const { app } = this.props;
+    if (!app) return;
+    if (app.tenant) {
+      console.log("Loading Tenant Admin Data at mount time");
+      if (!app.users) loadUsers(this);
+      if (!app.types) loadTypes(this);
+      if (!app.workflows) loadWorkflows(this);
+      if (!app.interactions) loadInteractions(this);
+      if (!app.customers) loadCustomers(this);
+      if (!app.skillgroups) loadSkillgroups(this);
+    } else if (!app.tenants)
+      loadMyTenants(this, (result) => {
+        if (!result.error && result.tenants) {
+          app.handleTenantsListLoad(result.tenants);
+          app.handleTenantChange(result.tenants[0]);
+
+          //Loading Admin Data
+          console.log("Loading admin data at mount time");
+          if (!app.users) loadUsers(this,(result)=>{
+            console.log("Users loaded",result);
+          });
+          if (!app.types) loadTypes(this);
+          if (!app.workflows) loadWorkflows(this);
+          if (!app.interactions) loadInteractions(this);
+          if (!app.customers) loadCustomers(this);
+          if (!app.skillgroups) loadSkillgroups(this);
+
+          //Load user data
+          if (!app.mySkillgroups) loadMySkillgroups(this);
+          if (!app.myQueues) loadMyQueues(this);
+          if (!app.myTeams) loadMyTeams(this);
+          if (!app.todos) loadTodos(this);
+
+        }
+      });
+    else if (app.tenants.length > 0) app.handleTenantChange(app.tenants[0]);
+  }
+  componentDidUpdate(prevProps) {
+    const { app } = this.props;
+    const { app: prevApp } = prevProps;
+    if (!app || !prevApp) return;
+    if (!app.tenant || !prevApp.tenant) return;
+    //    let reload = app.tenant && !prevApp ? true : false;
+    //    if (!reload) reload = app.tenant && !prevApp.tenant ? true : false;
+    let reload = app.tenant._id !== prevApp.tenant._id ? true : false;
+    //let changed =
+    if (reload) {
+      console.log("Loading Tenant Admin Data in update");
+      if (!app.users) loadUsers(this);
+      if (!app.workflows) loadWorkflows(this);
+      if (!app.types) loadTypes(this);
+      if (!app.interactions) loadInteractions(this);
+      if (!app.customers) loadCustomers(this);
+      if (!app.skillgroups) loadSkillgroups(this);
+    }
+  }
+  handleProfileMenuOpen = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -25,7 +96,7 @@ class PrimaryApp extends React.Component {
     this.handleMobileMenuClose();
   };
 
-  handleMobileMenuOpen = event => {
+  handleMobileMenuOpen = (event) => {
     this.setState({ mobileMoreAnchorEl: event.currentTarget });
   };
 
@@ -40,7 +111,7 @@ class PrimaryApp extends React.Component {
     this.setState({ open: false });
   };
 
-  handleScreenChange = screen => {
+  handleScreenChange = (screen) => {
     const { app } = this.props;
     app.handleScreenChange(screen);
   };
@@ -56,7 +127,7 @@ class PrimaryApp extends React.Component {
       handleDrawerClose: this.handleDrawerClose,
       handleScreenChange: this.handleScreenChange,
       anchorEl: this.state.anchorEl,
-      mobileMoreAnchorEl: this.state.mobileMoreAnchorEl
+      mobileMoreAnchorEl: this.state.mobileMoreAnchorEl,
     };
   };
   render() {
@@ -104,7 +175,7 @@ PrimaryApp.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  app: PropTypes.object.isRequired
+  app: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(PrimaryApp);
