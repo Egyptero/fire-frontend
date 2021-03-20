@@ -16,22 +16,22 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 //import _ from "lodash";
 import MyTeamsChart from "./MyTeamsChart";
-const CustomTableCell = withStyles(theme => ({
+const CustomTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.common.white,
     fontSize: 16,
-    fontWeight: "Bold"
+    fontWeight: "Bold",
   },
   body: {
     //fontSize: 14,
-  }
+  },
 }))(TableCell);
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
+  gridFull: {},
   card: {},
   cardContent: {
     position: "relative",
@@ -39,43 +39,43 @@ const styles = theme => ({
     //height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    marginLeft: theme.spacing()
+    marginLeft: theme.spacing(),
   },
   row: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   },
   floatButton: {
     position: "absolute",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    zIndex: 1
+    zIndex: 1,
   },
   floatButtonLeft: {
     position: "absolute",
     bottom: theme.spacing(2),
     left: theme.spacing(2),
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });
 
 class MyTeams extends Component {
   state = {
-    view: "Graph"
+    view: "Graph",
   };
-  changeView = event => {
+  changeView = (event) => {
     this.setState({ view: event.target.value });
   };
   toggelView = () => {
@@ -89,7 +89,7 @@ class MyTeams extends Component {
     const teams = app.myTeams ? app.myTeams : [];
     return (
       <Card className={classes.card}>
-        <CardHeader title="Team"/>
+        <CardHeader title="Team" />
         <Divider />
         <CardContent
           className={classes.cardContent}
@@ -104,7 +104,7 @@ class MyTeams extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {teams.map(user => (
+              {teams.map((user) => (
                 <TableRow className={classes.row} key={user._id}>
                   <CustomTableCell>
                     {user.firstname + " " + user.lastname}
@@ -147,6 +147,6 @@ MyTeams.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  refresh : PropTypes.func.isRequired
+  refresh: PropTypes.func.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyTeams);

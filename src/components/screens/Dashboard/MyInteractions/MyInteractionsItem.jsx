@@ -12,7 +12,7 @@ import {
   MenuItem,
   Tooltip,
   ListItemAvatar,
-  Grid
+  Grid,
 } from "@material-ui/core";
 import {
   MoreVert,
@@ -22,22 +22,22 @@ import {
   PlayArrow,
   CallMade,
   CallMerge,
-  Remove
+  Remove,
 } from "@material-ui/icons";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
   cardContent: {},
-  formControl: {}
+  formControl: {},
 });
 
 class MyInteractionsItem extends Component {
   state = {
     source: null,
-    openMenu: false
+    openMenu: false,
   };
-  handleMenuOpen = event => {
+  handleMenuOpen = (event) => {
     this.setState({ openMenu: true, source: event.currentTarget });
   };
   handleMenuClose = () => {
@@ -97,7 +97,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Accept">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleAcceptInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -111,7 +111,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Reject">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleRejectInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -125,7 +125,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Hold">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleHoldInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -139,7 +139,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Resume">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleResumeInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -153,7 +153,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Close">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleCloseInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -167,7 +167,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Transfer">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleTransferInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -181,7 +181,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="Conference">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleConferenceInteraction(
                     myInteraction.interaction._id
                   );
@@ -197,7 +197,7 @@ class MyInteractionsItem extends Component {
             <Tooltip title="End">
               <IconButton
                 aria-haspopup="true"
-                onClick={event => {
+                onClick={(event) => {
                   app.handleTerminateInteraction(myInteraction.interaction._id);
                 }}
               >
@@ -209,7 +209,7 @@ class MyInteractionsItem extends Component {
           )}
           <IconButton
             aria-haspopup="true"
-            onClick={event => {
+            onClick={(event) => {
               this.handleMenuOpen(event);
             }}
             //color="inherit"
@@ -344,6 +344,6 @@ MyInteractionsItem.propTypes = {
   primaryApp: PropTypes.object.isRequired,
   myInteraction: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  view: PropTypes.string.isRequired
+  view: PropTypes.string.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyInteractionsItem);

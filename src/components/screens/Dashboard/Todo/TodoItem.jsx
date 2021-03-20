@@ -16,7 +16,7 @@ import React, { Component } from "react";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
+  gridFull: {},
   card: {},
   cardContent: {},
   formControl: {},
@@ -55,14 +55,15 @@ class TodoItem extends Component {
     );
   };
   render() {
-    const { todo, source,theme } = this.props;
+    const { todo, source, theme } = this.props;
     let avatarColor = theme.palette.secondary.light;
-    if (todo.priority === "Critical") avatarColor =  theme.palette.error.dark;
-    else if (todo.priority === "High") avatarColor =  theme.palette.error.light;
-    else if (todo.priority === "Low") avatarColor =  theme.palette.info.light;
-    else if (todo.priority === "Medium") avatarColor =  theme.palette.warning.dark;
+    if (todo.priority === "Critical") avatarColor = theme.palette.error.dark;
+    else if (todo.priority === "High") avatarColor = theme.palette.error.light;
+    else if (todo.priority === "Low") avatarColor = theme.palette.info.light;
+    else if (todo.priority === "Medium")
+      avatarColor = theme.palette.warning.dark;
 
-    if(todo.status === "Completed") avatarColor = theme.palette.success.light;
+    if (todo.status === "Completed") avatarColor = theme.palette.success.light;
 
     return (
       <ListItem key={todo._id}>

@@ -17,7 +17,7 @@ import { Label, MoreVert, Settings } from "@material-ui/icons";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
+  gridFull: {},
   card: {
     // postiion:"absolute",
     // left: theme.spacing(-2)
