@@ -7,7 +7,9 @@ import {
   IconButton,
   Typography,
   Badge,
-  Divider
+  Divider,
+  LinearProgress,
+  CircularProgress,
 } from "@material-ui/core";
 import { Menu, AccountCircle, MoreVert, TouchApp } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -28,7 +30,7 @@ class MainBar extends Component {
       primaryAppState,
       handleDrawerOpen,
       handleProfileMenuOpen,
-      handleMobileMenuOpen
+      handleMobileMenuOpen,
     } = this.props.primaryApp;
     const { app } = this.props;
     const { classes } = this.props;
@@ -38,16 +40,25 @@ class MainBar extends Component {
       <AppBar
         position="fixed"
         className={classNames(classes.appBar, {
-          [classes.appBarShift]: primaryAppState.open
+          [classes.appBarShift]: primaryAppState.open,
         })}
       >
+        {app.loader.progress != 0 && app.loader.progress != 100 ? (
+          <LinearProgress
+            variant="determinate"
+            value={app.loader.progress} // Reading from progress
+          />
+        ) : (
+          ""
+        )}
+
         <Toolbar disableGutters={!primaryAppState.open}>
           <IconButton
             color="inherit"
             aria-label="Open drawer"
             onClick={handleDrawerOpen}
             className={classNames(classes.menuButton, {
-              [classes.hide]: primaryAppState.open
+              [classes.hide]: primaryAppState.open,
             })}
           >
             <Menu />
@@ -76,7 +87,7 @@ class MainBar extends Component {
                 width: "2px",
                 height: "3em",
                 marginLeft: "1em",
-                marginRight: "1em"
+                marginRight: "1em",
               }}
             />
             <Typography
@@ -92,7 +103,7 @@ class MainBar extends Component {
                 width: "2px",
                 height: "3em",
                 marginLeft: "1em",
-                marginRight: "1em"
+                marginRight: "1em",
               }}
             />
           </div>
@@ -106,7 +117,7 @@ class MainBar extends Component {
                   width: "2px",
                   height: "3em",
                   marginLeft: "1em",
-                  marginRight: "1em"
+                  marginRight: "1em",
                 }}
               />
             </React.Fragment>
@@ -136,6 +147,7 @@ class MainBar extends Component {
               enqueueSnackbar={this.props.enqueueSnackbar}
               classes={classes}
             /> */}
+
             <Typography
               className={classes.title}
               variant="body1"
@@ -189,7 +201,7 @@ MainBar.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(MainBar);

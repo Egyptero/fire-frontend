@@ -101,7 +101,8 @@ export default ref => {
     handleUpdateToken: ref.handleUpdateToken, //Update user token
     //User Related Data
     todos: ref.state.todos, // User Todos
-
-    handleTodoListLoad: ref.handleTodoListLoad //Function to update the todo list at any time.
+    loader: ref.state.loader, //Loading loader state
+    handleTodoListLoad: ref.handleTodoListLoad, //Function to update the todo list at any time.
+    updateProgress: ref.updateProgress, //function to update loader progress
   };
 };

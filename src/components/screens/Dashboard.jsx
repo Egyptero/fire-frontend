@@ -417,8 +417,8 @@ class Dashboard extends Component {
                 <DashboardHeader
                   {...this.props}
                   params={{
-                    topAvatarColor: theme.palette.primary.light,
-                    bottomAvatarColor: theme.palette.primary.main,
+                    topAvatarColor: theme.palette.error.light,
+                    bottomAvatarColor: theme.palette.error.main,
                     bottomValue: this.state.customersWaiting,
                     message: "Queues",
                     icon: () => {

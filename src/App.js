@@ -76,6 +76,10 @@ class App extends Component {
     screen: null,
     sipUA: null,
     sipState: null,
+    loader: {
+      progress: 0,
+      message: "",
+    },
   };
 
   onLogin = (data) => onLogin(this, data);
@@ -194,10 +198,6 @@ class App extends Component {
         myProjectQueues: null,
         myProjectQueuesDetails: null,
       });
-      //We should load here but this require modififcations
-      // loadTypes(this);
-      // loadSkillgroups(this);
-      // loadCustomers(this);
     }
   };
   handleTodoListLoad = (todos) => {
@@ -289,6 +289,9 @@ class App extends Component {
   };
   handleTenantsListLoad = (tenants) => {
     this.setState({ tenants });
+  };
+  updateProgress = (loader) => {
+    this.setState({loader})
   };
   render() {
     return this.isAuthenticated() ? (

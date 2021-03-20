@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { CssBaseline } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { LinearProgress } from "@material-ui/core";
 import styles from "./primaryapp/appStyles";
 import LeftSideDrawer from "./leftside/LeftSideDrawer";
 import TopSideDrawer from "./topside/TopSideDrawer";
@@ -33,38 +34,40 @@ class PrimaryApp extends React.Component {
     //Load Admin related information
     const { app } = this.props;
     if (!app) return;
-    if (app.tenant) {
-      console.log("Loading Tenant Admin Data at mount time");
-      if (!app.users) loadUsers(this);
-      if (!app.types) loadTypes(this);
-      if (!app.workflows) loadWorkflows(this);
-      if (!app.interactions) loadInteractions(this);
-      if (!app.customers) loadCustomers(this);
-      if (!app.skillgroups) loadSkillgroups(this);
-    } else if (!app.tenants)
+    let loader = {
+      progress: 0,
+      message: "",
+    };
+    app.updateProgress(loader);
+    // if (app.tenant) {
+    //   console.log("Loading Tenant Admin Data at mount time");
+    //   if (!app.users) loadUsers(this);
+    //   if (!app.types) loadTypes(this);
+    //   if (!app.workflows) loadWorkflows(this);
+    //   if (!app.interactions) loadInteractions(this);
+    //   if (!app.customers) loadCustomers(this);
+    //   if (!app.skillgroups) loadSkillgroups(this);
+    // } else
+    if (!app.tenants) {
+      loader = {
+        progress: 50,
+        message: "Loading organization info",
+      };
+      app.updateProgress(loader);
       loadMyTenants(this, (result) => {
         if (!result.error && result.tenants) {
           app.handleTenantsListLoad(result.tenants);
           app.handleTenantChange(result.tenants[0]);
-
-          //Loading Admin Data
-          console.log("Loading admin data at mount time");
-          if (!app.users) loadUsers(this);
-          if (!app.types) loadTypes(this);
-          if (!app.workflows) loadWorkflows(this);
-          if (!app.interactions) loadInteractions(this);
-          if (!app.customers) loadCustomers(this);
-          if (!app.skillgroups) loadSkillgroups(this);
-
-          //Load user data
-          console.log("Loading user data at mount time");
-          if (!app.mySkillgroups) loadMySkillgroups(this);
-          if (!app.myQueues) loadMyQueues(this);
-          if (!app.myTeams) loadMyTeams(this);
-          if (!app.todos) loadTodos(this);
+          loader.progress = 100;
+          loader.message = "Organization info loaded";
+          app.updateProgress(loader);
+          this.loadData();
         }
       });
-    else if (app.tenants.length > 0) app.handleTenantChange(app.tenants[0]);
+    } else if (app.tenants.length > 0) {
+      app.handleTenantChange(app.tenants[0]);
+      this.loadData();
+    }
   }
   componentDidUpdate(prevProps) {
     const { app } = this.props;
@@ -85,6 +88,81 @@ class PrimaryApp extends React.Component {
       if (!app.skillgroups) loadSkillgroups(this);
     }
   }
+  loadData = () => {
+    const { app } = this.props;
+    const loadAdminData = true;
+    if (!app) return;
+    let loader = {
+      progress: loadAdminData ? 0 : 60,
+      message: "",
+    };
+    app.updateProgress(loader);
+    //Loading Admin Data
+    console.log("Loading admin data at mount time");
+    if (!app.users)
+      loadUsers(this, (result) => {
+        loader.progress += 10;
+        if (!result.error) loader.message = "Users loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.types)
+      loadTypes(this, (result) => {
+        loader.progress += 5;
+        if (!result.error) loader.message = "Types loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.workflows)
+      loadWorkflows(this, (result) => {
+        loader.progress += 5;
+        if (!result.error) loader.message = "Workflows loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.interactions)
+      loadInteractions(this, (result) => {
+        loader.progress += 20;
+        if (!result.error) loader.message = "Interactions loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.customers)
+      loadCustomers(this, (result) => {
+        loader.progress += 15;
+        if (!result.error) loader.message = "Customers loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.skillgroups)
+      loadSkillgroups(this, (result) => {
+        loader.progress += 5;
+        if (!result.error) loader.message = "Skillgroups loaded";
+        app.updateProgress(loader);
+      });
+
+    //Load user data
+    console.log("Loading user data at mount time");
+    if (!app.mySkillgroups)
+      loadMySkillgroups(this, (result) => {
+        loader.progress += 10;
+        if (!result.error) loader.message = "My skillgroups loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.myQueues)
+      loadMyQueues(this, (result) => {
+        loader.progress += 10;
+        if (!result.error) loader.message = "My queues loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.myTeams)
+      loadMyTeams(this, (result) => {
+        loader.progress += 10;
+        if (!result.error) loader.message = "My teams loaded";
+        app.updateProgress(loader);
+      });
+    if (!app.todos)
+      loadTodos(this, (result) => {
+        loader.progress += 10;
+        if (!result.error) loader.message = "Activities loaded";
+        app.updateProgress(loader);
+      });
+  };
   handleProfileMenuOpen = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -137,7 +215,6 @@ class PrimaryApp extends React.Component {
           //style={{ background: theme.palette.secondary.light }}
         >
           <CssBaseline />
-
           <TopSideDrawer
             app={this.props.app}
             primaryApp={this.getSharedObject()}
