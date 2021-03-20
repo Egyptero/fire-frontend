@@ -65,14 +65,14 @@ class Dashboard extends Component {
   componentDidMount() {
     if (this.props.app.mySkillgroups) this.calcQueueData();
     if (this.props.app.myTeams) this.calcTeamData();
-    if (this.props.app.myTodos) this.calcTodoData();
+    if (this.props.app.todos) this.calcTodoData();
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.app.mySkillgroups && !prevProps.app.mySkillgroups)
       this.calcQueueData();
     if (this.props.app.myTeams && !prevProps.app.myTeams) this.calcTeamData();
-    if (this.props.app.myTodos && !prevProps.app.myTodos) this.calcTodoData();
-    // const { app } = this.props;
+    // if (this.props.app.todos && !prevProps.app.todos) this.calcTodoData();
+    const { app } = this.props;
     // if (app.tenant !== prevProps.app.tenant) {
     //   loadMySkillgroups(this, (result) => {
     //     if (!result.error)
@@ -84,9 +84,20 @@ class Dashboard extends Component {
     //     if (!result.error) this.calcTeamData();
     //   });
     // }
-    // if (app.todos !== prevProps.app.todos) {
-    //   this.calcTodoData();
-    // }
+    if (app.mySkillgroups !== prevProps.app.mySkillgroups) {
+      console.log("My skills calc will run now");
+      this.calcQueueData();
+    }
+
+    if (app.myTeams !== prevProps.app.myTeams) {
+      console.log("My team calc will run now");
+      this.calcTeamData();
+    }
+
+    if (app.todos !== prevProps.app.todos) {
+      console.log("Todo calc will run now");
+      this.calcTodoData();
+    }
   }
 
   refreshTeams = () => {
