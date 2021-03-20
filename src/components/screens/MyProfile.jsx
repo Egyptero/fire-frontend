@@ -6,28 +6,28 @@ import MyProfileDetails from "./MyProfile/MyProfileDetails";
 import updateMe from "../../functions/user/me/updateMe";
 import _ from "lodash";
 import loadMe from "../../functions/user/me/loadMe";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
     position: "relative",
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   card: {
     overflow: "auto",
     maxHeight: "100%",
     minHeight: "100%",
-    minWidth: "100%"
+    minWidth: "100%",
   },
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class MyProfile extends Component {
@@ -35,17 +35,20 @@ class MyProfile extends Component {
     selectedUser: null,
     canSave: false,
     canEdit: true,
-    canWatch: true
+    canWatch: true,
   };
   componentDidMount() {
     const { app } = this.props;
-    if (!app.user)
-      loadMe(this, result => {
-        if (!result.error) {
-          this.setState({ selectedUser: result.user });
-        }
-      });
-    else this.setState({ selectedUser: app.user });
+    // console.log("User component will mount now");
+    // if (!app.user)
+    //   loadMe(this, result => {
+    //     if (!result.error) {
+    //       console.log("User is loaded by calling loadMe");
+    //       this.setState({ selectedUser: result.user });
+    //     }
+    //   });
+    // else
+    if (app.user) this.setState({ selectedUser: app.user });
   }
 
   saveUser = () => {
@@ -60,11 +63,11 @@ class MyProfile extends Component {
       "sipUri",
       "sipServer",
       "sipUserName",
-      "sipPassword"
+      "sipPassword",
     ];
     //Select password in case it will be updated
     if (selectedUser.password) pickUp.push("password");
-    updateMe(_.pick(selectedUser, pickUp), this, result => {
+    updateMe(_.pick(selectedUser, pickUp), this, (result) => {
       if (!result.error) {
         app.handleUpdateMe(result.user);
       }
@@ -75,7 +78,7 @@ class MyProfile extends Component {
       canSave: true,
       canRefresh: false,
       canEdit: false,
-      canWatch: true
+      canWatch: true,
     });
   };
   watchUser = () => {
@@ -83,13 +86,13 @@ class MyProfile extends Component {
       canSave: false,
       canRefresh: true,
       canEdit: true,
-      canWatch: true
+      canWatch: true,
     });
 
     //We need to warn about saving
     if (this.state.canSave) this.saveUser();
   };
-  updateSelectedUser = user => {
+  updateSelectedUser = (user) => {
     this.setState({ selectedUser: user });
   };
 
@@ -100,7 +103,7 @@ class MyProfile extends Component {
       editUser: this.editUser,
       watchUser: this.watchUser,
       updateSelectedUser: this.updateSelectedUser,
-      sourceState: this.state
+      sourceState: this.state,
     };
   };
 
@@ -126,7 +129,7 @@ MyProfile.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(MyProfile);

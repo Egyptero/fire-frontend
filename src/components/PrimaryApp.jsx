@@ -26,6 +26,7 @@ import loadMySkillgroups from "../functions/user/tenant/loadMySkillgroups";
 import loadMyQueues from "../functions/user/tenant/loadMyQueues";
 import loadMyTeams from "../functions/user/team/loadMyTeams";
 import loadTodos from "../functions/user/loadTodos";
+import loadMe from "../functions/user/me/loadMe";
 
 class PrimaryApp extends React.Component {
   state = {
@@ -144,30 +145,43 @@ class PrimaryApp extends React.Component {
 
     //Load user data
     console.log("Loading user data at mount time");
+//    if (!app.user)
+      loadMe(this, (result) => {
+        loader.progress += 5;
+        if (!result.error) loader.message = "User data loaded";
+        app.updateProgress(loader);
+      });
+//    else loader.progress += 5;
+
     if (!app.mySkillgroups)
       loadMySkillgroups(this, (result) => {
-        loader.progress += 10;
+        loader.progress += 5;
         if (!result.error) loader.message = "My skillgroups loaded";
         app.updateProgress(loader);
       });
+    else loader.progress += 5;
+
     if (!app.myQueues)
       loadMyQueues(this, (result) => {
         loader.progress += 10;
         if (!result.error) loader.message = "My queues loaded";
         app.updateProgress(loader);
       });
+    else loader.progress += 10;
     if (!app.myTeams)
       loadMyTeams(this, (result) => {
         loader.progress += 10;
         if (!result.error) loader.message = "My teams loaded";
         app.updateProgress(loader);
       });
+    else loader.progress += 10;
     if (!app.todos)
       loadTodos(this, (result) => {
         loader.progress += 10;
         if (!result.error) loader.message = "Activities loaded";
         app.updateProgress(loader);
       });
+    else loader.progress += 10;
   };
   handleProfileMenuOpen = (event) => {
     this.setState({ anchorEl: event.currentTarget });
