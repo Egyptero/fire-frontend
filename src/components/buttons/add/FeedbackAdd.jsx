@@ -19,8 +19,8 @@ class FeedbackAdd extends Component {
     return (
       <React.Fragment>
         <Tooltip title="Report issue">
-          <IconButton color="inherit" onClick={this.handleOpen}>
-            <Feedback />
+          <IconButton color="inherit" onClick={this.handleOpen} size="small">
+            <Feedback fontSize="small"/>
           </IconButton>
         </Tooltip>
         <FeedbackDialog

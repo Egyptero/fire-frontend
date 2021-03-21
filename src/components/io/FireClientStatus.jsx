@@ -4,7 +4,8 @@ import {
   Tooltip,
   Select,
   MenuItem,
-  FormControl
+  FormControl,
+  Typography
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
@@ -66,6 +67,7 @@ class FireClientStatus extends Component {
           >
             <Tooltip title="Change status" aria-label="Add">
               <Select
+              
                 value={this.state.selected}
                 onChange={this.onChangeStatus}
                 disableUnderline
@@ -75,11 +77,12 @@ class FireClientStatus extends Component {
                     icon: classes.fireClientStatus.icon
                   }
                 }}
+                
               >
                 {this.state.statusList.map(status => {
                   return (
                     <MenuItem key={status} value={status}>
-                      {status}
+                      <Typography variant="caption">{status}</Typography>
                     </MenuItem>
                   );
                 })}

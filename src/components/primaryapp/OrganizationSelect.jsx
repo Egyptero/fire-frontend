@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, MenuItem, Grid, FormControl } from "@material-ui/core";
+import { Select, MenuItem, Grid, FormControl, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import loadMyTenants from "../../functions/user/tenant/loadMyTenants";
@@ -48,7 +48,7 @@ class OrganizationSelect extends React.Component {
             >
               {app.tenants.map(tenant => (
                 <MenuItem value={tenant._id} key={tenant._id}>
-                  {tenant.name}
+                 <Typography variant="caption"> {tenant.name}</Typography>
                 </MenuItem>
               ))}
             </Select>

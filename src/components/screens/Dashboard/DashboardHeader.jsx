@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import {
   Avatar,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Divider,
@@ -20,7 +21,8 @@ const styles = (theme) => ({
   gridFull: {},
   card: {
     // postiion:"absolute",
-    // left: theme.spacing(-2)
+    // left: theme.spacing(-2),
+    bottom: theme.spacing(-1),
   },
   cardContent: {
     position: "relative",
@@ -53,8 +55,8 @@ const styles = (theme) => ({
     boxShadow: "1px 1px 4px gray",
     zIndex: 1,
     top: theme.spacing(-2),
-    width: theme.spacing(8),
-    height: theme.spacing(5),
+    width: theme.spacing(6),
+    height: theme.spacing(3),
     backgroundColor: theme.palette.error.light,
   },
   avatarOver: {
@@ -63,8 +65,8 @@ const styles = (theme) => ({
     zIndex: 1,
     //top: theme.spacing(-5),
     //left: theme.spacing(2),
-    width: theme.spacing(8),
-    height: theme.spacing(5),
+    width: theme.spacing(6),
+    height: theme.spacing(3),
     backgroundColor: theme.palette.error.light,
   },
 });
@@ -82,10 +84,10 @@ class DashboardHeader extends Component {
             variant="square"
             style={{ backgroundColor: params.topAvatarColor }}
           >
-            <Typography variant="h4">{params.bottomValue}</Typography>
+            <Typography variant="h6">{params.bottomValue}</Typography>
           </Avatar>
           <Card className={classes.card}>
-            <CardContent>
+            <CardContent style={{ height: this.props.theme.spacing(0) }}>
               <Grid container alignItems="center" direction="column">
                 <Avatar
                   aria-label="recipe"
@@ -97,10 +99,19 @@ class DashboardHeader extends Component {
                 </Avatar>
               </Grid>
               <Divider />
-              <Grid container alignItems="center" direction="column">
-                {params.message}
-              </Grid>
             </CardContent>
+            <CardActions>
+              <Grid
+                container
+                alignItems="center"
+                direction="column"
+                justify="center"
+              >
+                <Typography variant="caption" style={{ margin: 0 }}>
+                  {params.message}
+                </Typography>
+              </Grid>
+            </CardActions>
           </Card>
         </Grid>
       </Grow>

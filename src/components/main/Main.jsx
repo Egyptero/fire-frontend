@@ -21,22 +21,23 @@ import TenantWizard from "../screens/TenantWizard";
 import Welcome from "../screens/Welcome";
 //import Reports from "../screens/Reports";
 
-const styles = theme => ({
+const styles = (theme) => ({
   toolbar: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    padding: "0 8px",
+    //padding: "0 8px",
     // background: theme.palette.primary.light,
-    ...theme.mixins.toolbar
+    //...theme.mixins.toolbar
+    height: theme.spacing(6),
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     minHeight: "100%",
     height: "100%",
-    maxHeight: "100%"
-  }
+    maxHeight: "100%",
+  },
 });
 
 class Main extends Component {
@@ -122,7 +123,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
-/* Disable logs in MVP
+    /* Disable logs in MVP
       else if (screen === "Logs")
       return (
         <Logs
@@ -132,7 +133,7 @@ class Main extends Component {
         />
       );
 */
-/* Setting is disabled in MVP      
+    /* Setting is disabled in MVP      
     else if (screen === "Setting")
       return (
         <Setting
@@ -141,8 +142,9 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
-*/
-    else if (screen === "History")
+*/ else if (
+      screen === "History"
+    )
       return (
         <History
           app={this.props.app}
@@ -190,7 +192,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
-/** Reports are disabled in MVP
+    /** Reports are disabled in MVP
     else if (screen === "Reports")
       return (
         <Reports
@@ -220,7 +222,7 @@ Main.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Main);

@@ -30,7 +30,7 @@ import MyScroreCard from "./Dashboard/MyScroreCard";
 const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh",
+    //height: "86vh",
     //background: theme.palette.primary.light
   },
   grid: {
@@ -295,12 +295,12 @@ class Dashboard extends Component {
     const { classes, theme } = this.props;
     return (
       <React.Fragment>
-        <Grid className={classes.content} container spacing={3}>
+        <Grid className={classes.content} container spacing={2}>
           {/* <Grid item xs={12} sm={6} md={6} lg={6} className={classes.grid}>
             <MyInteractionsSummary {...this.props} />
           </Grid> */}
           <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <Grid item xs={6} sm={6} md={4} lg={1}>
                 <DashboardHeader
                   {...this.props}
@@ -310,7 +310,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.unknown,
                     message: "Unknown",
                     icon: () => {
-                      return <Help fontSize="large" />;
+                      return <Help fontSize="small" />;
                     },
                   }}
                 />
@@ -324,7 +324,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.error,
                     message: "Error",
                     icon: () => {
-                      return <Warning fontSize="large" />;
+                      return <Warning fontSize="small" />;
                     },
                   }}
                 />
@@ -338,7 +338,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.loggedout,
                     message: "Log out",
                     icon: () => {
-                      return <Block fontSize="large" />;
+                      return <Block fontSize="small" />;
                     },
                   }}
                 />
@@ -352,7 +352,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.loggedin,
                     message: "Log in",
                     icon: () => {
-                      return <LockOpen fontSize="large" />;
+                      return <LockOpen fontSize="small" />;
                     },
                   }}
                 />
@@ -366,7 +366,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.notready,
                     message: "Not ready",
                     icon: () => {
-                      return <DirectionsRun fontSize="large" />;
+                      return <DirectionsRun fontSize="small" />;
                     },
                   }}
                 />
@@ -380,7 +380,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.ready,
                     message: "Ready",
                     icon: () => {
-                      return <Group fontSize="large" />;
+                      return <Group fontSize="small" />;
                     },
                   }}
                 />
@@ -394,7 +394,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.handling,
                     message: "Working",
                     icon: () => {
-                      return <HowToReg fontSize="large" />;
+                      return <HowToReg fontSize="small" />;
                     },
                   }}
                 />
@@ -408,7 +408,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.teamStatus.wrapup,
                     message: "Wrap up",
                     icon: () => {
-                      return <HowToReg fontSize="large" />;
+                      return <HowToReg fontSize="small" />;
                     },
                   }}
                 />
@@ -422,7 +422,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.customersWaiting,
                     message: "Queues",
                     icon: () => {
-                      return <HourglassEmpty fontSize="large" />;
+                      return <HourglassEmpty fontSize="small" />;
                     },
                   }}
                 />
@@ -436,7 +436,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.todoStatus.new,
                     message: "New",
                     icon: () => {
-                      return <Assignment fontSize="large" />;
+                      return <Assignment fontSize="small" />;
                     },
                   }}
                 />
@@ -450,7 +450,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.todoStatus.progress,
                     message: "Progress",
                     icon: () => {
-                      return <Cached fontSize="large" />;
+                      return <Cached fontSize="small" />;
                     },
                   }}
                 />
@@ -464,7 +464,7 @@ class Dashboard extends Component {
                     bottomValue: this.state.todoStatus.completed,
                     message: "Completed",
                     icon: () => {
-                      return <CheckCircle fontSize="large" />;
+                      return <CheckCircle fontSize="small" />;
                     },
                   }}
                 />
@@ -472,7 +472,7 @@ class Dashboard extends Component {
             </Grid>
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <Grid
                 item
                 xs={12}
@@ -481,7 +481,7 @@ class Dashboard extends Component {
                 lg={6}
                 className={classes.gridFull}
               >
-                <Grid container spacing={3}>
+                <Grid container spacing={2}>
                   <Grid
                     item
                     xs={12}

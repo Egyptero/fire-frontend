@@ -37,14 +37,14 @@ class MainMenu extends React.Component {
         <MenuItem>
           <IconButton color="inherit">
             <Badge badgeContent={11} color="secondary">
-              <TouchApp />
+              <TouchApp fontSize="small"/>
             </Badge>
           </IconButton>
           <p>Notifications</p>
         </MenuItem>
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton color="inherit">
-            <AccountCircle />
+            <AccountCircle fontSize="small"/>
           </IconButton>
           <p>Profile</p>
         </MenuItem>

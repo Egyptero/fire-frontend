@@ -54,8 +54,11 @@ class MiddelList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
+                    height: theme.spacing(4),
                   }
-                : {}
+                : {
+                    height: theme.spacing(4),
+                  }
             }
           >
             <ListItemIcon>
@@ -67,12 +70,13 @@ class MiddelList extends Component {
                       }
                     : {}
                 }
+                fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
-                  variant="subtitle2" //style={{ color: "white" }}
+                  variant="caption" //style={{ color: "white" }}
                   style={
                     app.screen === "To do"
                       ? {
@@ -96,8 +100,11 @@ class MiddelList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
+                    height: theme.spacing(4),
                   }
-                : {}
+                : {
+                    height: theme.spacing(4),
+                  }
             }
           >
             <ListItemIcon>
@@ -109,12 +116,13 @@ class MiddelList extends Component {
                       }
                     : {}
                 }
+                fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
-                  variant="subtitle2" //style={{ color: "white" }}
+                  variant="caption" //style={{ color: "white" }}
                   style={
                     app.screen === "History"
                       ? {

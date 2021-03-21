@@ -45,9 +45,9 @@ class FireClientConnect extends Component {
                 aria-label="ODI Connection"
                 onClick={this.onPower}
                 className={classColor}
-                //size="small"
+                size="small"
               >
-                <PowerSettingsNew />
+                <PowerSettingsNew fontSize="small"/>
               </Fab>
             </Tooltip>
           </Grid>

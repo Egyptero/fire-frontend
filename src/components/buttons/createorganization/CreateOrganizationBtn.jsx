@@ -23,6 +23,7 @@ class CreateOrganizationBtn extends Component {
           color="inherit"
           onClick={this.handleNewTenantClickOpen}
           style={{ textTransform: "none" }}
+          size="small"
         >
           New Organization
         </Button>

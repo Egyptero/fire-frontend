@@ -8,10 +8,10 @@ import PhoneMenu from "./PhoneMenu";
 
 class PhoneClient extends Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
   };
 
-  handlePhoneMenuOpen = event => {
+  handlePhoneMenuOpen = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
   handlePhoneMenuClose = () => {
@@ -32,21 +32,22 @@ class PhoneClient extends Component {
             </Typography>
             <Tooltip title={"Phone " + sipState} aria-label="Phone">
               <Fab
+                size="small"
                 aria-label="Phone"
                 onClick={this.handlePhoneMenuOpen}
                 style={{
                   backgroundColor: "#fafafa",
                   color: buttonColor,
                   "&:hover": {
-                    backgroundColor: "#fafafa"
+                    backgroundColor: "#fafafa",
                   },
                   width: 35,
                   height: 35,
                   boxShadow: "none",
-                  textTransform: "none"
+                  textTransform: "none",
                 }}
               >
-                <Dialpad />
+                <Dialpad fontSize="small"/>
               </Fab>
             </Tooltip>
             <PhoneMenu
@@ -67,7 +68,7 @@ PhoneClient.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(PhoneClient);

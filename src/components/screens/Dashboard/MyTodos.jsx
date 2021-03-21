@@ -199,6 +199,7 @@ class MyTodos extends Component {
           </div>
         }
         title="Activities"
+        titleTypographyProps={{variant:"subtitle"}}
       />
     );
   };

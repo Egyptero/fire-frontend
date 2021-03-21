@@ -57,8 +57,11 @@ class TopList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
+                    height: theme.spacing(4),
                   }
-                : {}
+                : {
+                    height: theme.spacing(4),
+                  }
             }
           >
             <ListItemIcon>
@@ -70,12 +73,13 @@ class TopList extends Component {
                       }
                     : {}
                 }
+                fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
-                  variant="subtitle2" //style={{ color: "white" }}
+                  variant="caption" //style={{ color: "white" }}
                   style={
                     app.screen === "Dashboard"
                       ? {
@@ -99,8 +103,11 @@ class TopList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
+                    height: theme.spacing(4),
                   }
-                : {}
+                : {
+                    height: theme.spacing(4),
+                  }
             }
           >
             <ListItemIcon>
@@ -112,12 +119,13 @@ class TopList extends Component {
                       }
                     : {}
                 }
+                fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
-                  variant="subtitle2" //style={{ color: "white" }}
+                  variant="caption" //style={{ color: "white" }}
                   style={
                     app.screen === "Queues"
                       ? {

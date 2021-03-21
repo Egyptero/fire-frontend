@@ -60,7 +60,7 @@ class MyQueues extends Component {
     const chartData = this.props.data;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Queues" />
+        <CardHeader title="Queues" titleTypographyProps={{variant:"subtitle"}}/>
         <Divider />
         <CardContent
           className={classes.cardContent}

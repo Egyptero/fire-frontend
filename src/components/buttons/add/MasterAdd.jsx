@@ -10,7 +10,7 @@ import {
   School,
   Group,
   CheckCircle,
-  Contacts
+  Contacts,
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import styles from "../../primaryapp/appStyles";
@@ -31,53 +31,53 @@ import addInteraction from "../../../functions/tenant/interaction/addInteraction
 import NewInteractionDialog from "../../dialogs/NewInteractionDialog";
 const actions = [
   {
-    icon: <Assignment />,
+    icon: <Assignment fontSize="small"/>,
     name: "To do",
     role: "User",
-    tooltip: "Add new todo item"
+    tooltip: "Add new todo item",
   },
   {
-    icon: <LocationCity />,
+    icon: <LocationCity fontSize="small"/>,
     name: "Organization",
     role: "User",
-    tooltip: "Add new organization wizard"
+    tooltip: "Add new organization wizard",
   },
   {
-    icon: <Category />,
+    icon: <Category fontSize="small"/>,
     name: "Type",
     role: "Administrator",
-    tooltip: "Add channel type"
+    tooltip: "Add channel type",
   },
   {
-    icon: <DeviceHub />,
+    icon: <DeviceHub fontSize="small"/>,
     name: "Workflow",
     role: "Administrator",
-    tooltip: "Add new workflow"
+    tooltip: "Add new workflow",
   },
   {
-    icon: <School />,
+    icon: <School fontSize="small"/>,
     name: "Skillgroup",
     role: "Administrator",
-    tooltip: "Add new skillgroup"
+    tooltip: "Add new skillgroup",
   },
   {
-    icon: <Group />,
+    icon: <Group fontSize="small"/>,
     name: "User",
     role: "Administrator",
-    tooltip: "Add new user"
+    tooltip: "Add new user",
   },
   {
-    icon: <CheckCircle />,
+    icon: <CheckCircle fontSize="small"/>,
     name: "Task",
     role: "Administrator",
-    tooltip: "Add new task"
+    tooltip: "Add new task",
   },
   {
-    icon: <Contacts />,
+    icon: <Contacts fontSize="small"/>,
     name: "Customer",
     role: "Administrator",
-    tooltip: "Add new customer"
-  }
+    tooltip: "Add new customer",
+  },
 ];
 class MasterAdd extends Component {
   state = {
@@ -89,9 +89,9 @@ class MasterAdd extends Component {
     openNewWorkflow: false,
     openNewCustomer: false,
     openNewInteraction: false,
-    action: "new"
+    action: "new",
   };
-  handleClick = action => {
+  handleClick = (action) => {
     const { app } = this.props;
     switch (action) {
       case "To do":
@@ -145,8 +145,8 @@ class MasterAdd extends Component {
   handleNewUserClose = () => {
     this.setState({ openNewUser: false });
   };
-  handleAddUser = user => {
-    addUser(user, this, result => {
+  handleAddUser = (user) => {
+    addUser(user, this, (result) => {
       if (!result.error) {
         this.handleNewUserClose();
       }
@@ -158,8 +158,8 @@ class MasterAdd extends Component {
   handleNewSkillgroupClose = () => {
     this.setState({ openNewSkillgroup: false });
   };
-  handleAddSkillgroup = skillgroup => {
-    addSkillgroup(skillgroup, this, result => {
+  handleAddSkillgroup = (skillgroup) => {
+    addSkillgroup(skillgroup, this, (result) => {
       if (!result.error) {
         this.handleNewSkillgroupClose();
       }
@@ -171,8 +171,8 @@ class MasterAdd extends Component {
   handleNewTypeClose = () => {
     this.setState({ openNewType: false });
   };
-  handleAddType = type => {
-    addType(type, this, result => {
+  handleAddType = (type) => {
+    addType(type, this, (result) => {
       if (!result.error) {
         this.handleNewTypeClose();
       }
@@ -184,8 +184,8 @@ class MasterAdd extends Component {
   handleNewWorkflowClose = () => {
     this.setState({ openNewWorkflow: false });
   };
-  handleAddWorkflow = workflow => {
-    addWorkflow(workflow, this, result => {
+  handleAddWorkflow = (workflow) => {
+    addWorkflow(workflow, this, (result) => {
       if (!result.error) {
         this.handleNewWorkflowClose();
       }
@@ -197,8 +197,8 @@ class MasterAdd extends Component {
   handleNewCustomerClose = () => {
     this.setState({ openNewCustomer: false });
   };
-  handleAddCustomer = customer => {
-    addCustomer(customer, this, result => {
+  handleAddCustomer = (customer) => {
+    addCustomer(customer, this, (result) => {
       if (!result.error) {
         this.handleNewCustomerClose();
       }
@@ -210,8 +210,8 @@ class MasterAdd extends Component {
   handleNewInteractionClose = () => {
     this.setState({ openNewInteraction: false });
   };
-  handleAddInteraction = interaction => {
-    addInteraction(interaction, this, result => {
+  handleAddInteraction = (interaction) => {
+    addInteraction(interaction, this, (result) => {
       if (!result.error) {
         this.handleNewInteractionClose();
       }
@@ -233,7 +233,7 @@ class MasterAdd extends Component {
       handleAddType: this.handleAddType,
       handleAddSkillgroup: this.handleAddSkillgroup,
       handleAddUser: this.handleAddUser,
-      sourceState: this.state
+      sourceState: this.state,
     };
   };
 
@@ -260,11 +260,13 @@ class MasterAdd extends Component {
           onMouseLeave={this.handleClose}
           open={this.state.open}
           direction="up"
+          FabProps={{ size: "small" }}
         >
-          {actions.map(action => {
+          {actions.map((action) => {
             if (compareGrade(this.props.app.user.role, action.role) >= 0)
               return (
                 <SpeedDialAction
+                  FabProps={{ size: "small" }}
                   key={action.name}
                   icon={action.icon}
                   tooltipTitle={action.tooltip}
@@ -327,7 +329,7 @@ MasterAdd.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(MasterAdd);

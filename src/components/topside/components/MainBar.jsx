@@ -42,6 +42,7 @@ class MainBar extends Component {
         className={classNames(classes.appBar, {
           [classes.appBarShift]: primaryAppState.open,
         })}
+        style={{ height: this.props.theme.spacing(6) }}
       >
         {/* {app.loader.progress != 0 && app.loader.progress != 100 ? (
           <LinearProgress
@@ -52,7 +53,11 @@ class MainBar extends Component {
           ""
         )} */}
 
-        <Toolbar disableGutters={!primaryAppState.open}>
+        <Toolbar
+          disableGutters={!primaryAppState.open}
+          style={{ minHeight: this.props.theme.spacing(6), margin: 0, padding: 0 }}
+
+        >
           <IconButton
             color="inherit"
             aria-label="Open drawer"
@@ -60,24 +65,11 @@ class MainBar extends Component {
             className={classNames(classes.menuButton, {
               [classes.hide]: primaryAppState.open,
             })}
+            size="small"
           >
-            <Menu />
+            <Menu fontSize="small" />
           </IconButton>
 
-          {/* <img
-            src="./imgs/firemisc.png"
-            alt="firemisc"
-            height={this.props.theme.spacing(8)}
-            width={this.props.theme.spacing(13)}
-          /> */}
-          {/* <Divider
-            style={{
-              width: "2px",
-              height: "3em",
-              marginLeft: "1em",
-              marginRight: "1em"
-            }}
-          /> */}
           <div className={classes.sectionDesktop}>
             <div>
               <OrganizationSelect {...this.props} />
@@ -85,14 +77,14 @@ class MainBar extends Component {
             <Divider
               style={{
                 width: "2px",
-                height: "3em",
+                height: "2em",
                 marginLeft: "1em",
                 marginRight: "1em",
               }}
             />
             <Typography
               className={classes.title}
-              variant="h6"
+              variant="bodt1"
               color="inherit"
               noWrap
             >
@@ -101,7 +93,7 @@ class MainBar extends Component {
             <Divider
               style={{
                 width: "2px",
-                height: "3em",
+                height: "2em",
                 marginLeft: "1em",
                 marginRight: "1em",
               }}
@@ -115,7 +107,7 @@ class MainBar extends Component {
               <Divider
                 style={{
                   width: "2px",
-                  height: "3em",
+                  height: "2em",
                   marginLeft: "1em",
                   marginRight: "1em",
                 }}
@@ -141,20 +133,13 @@ class MainBar extends Component {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {/* <CreateOrganizationButton
-              app={this.props.app}
-              primaryApp={this.props.primaryApp}
-              enqueueSnackbar={this.props.enqueueSnackbar}
-              classes={classes}
-            /> */}
-
             <Typography
               className={classes.title}
-              variant="body1"
+              variant="caption"
               color="inherit"
               noWrap
             >
-              {app.user.firstname + " " + app.user.lastname}
+              {app.user.firstname + " " + app.user.lastname + "   "}
             </Typography>
             {myInteractions.length > 0 ? (
               <IconButton
@@ -162,9 +147,10 @@ class MainBar extends Component {
                 onClick={() => {
                   this.props.app.handleScreenChange("My work");
                 }}
+                size="small"
               >
                 <Badge badgeContent={myInteractions.length} color="primary">
-                  <TouchApp />
+                  <TouchApp fontSize="small" />
                 </Badge>
               </IconButton>
             ) : (
@@ -177,8 +163,9 @@ class MainBar extends Component {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              size="small"
             >
-              <AccountCircle />
+              <AccountCircle fontSize="small" />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -186,8 +173,9 @@ class MainBar extends Component {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
+              size="small"
             >
-              <MoreVert />
+              <MoreVert fontSize="small" />
             </IconButton>
           </div>
         </Toolbar>

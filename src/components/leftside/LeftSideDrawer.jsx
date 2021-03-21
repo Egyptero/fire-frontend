@@ -31,30 +31,30 @@ class LeftSideDrawer extends React.Component {
         {/* <div className={classes.toolbar}> */}
         <Grid
           container
-          style={{ height: theme.spacing(10) }}
+          style={{ height: theme.spacing(6) }}
           alignItems="center"
           alignContent="center"
           justify="center"
         >
           {primaryAppState.open ? (
             <React.Fragment>
-              <Grid item xs={9}>
+              <Grid item xs={10}>
                 <Grid
                   container
-                  alignItems="center"
-                  alignContent="center"
+                  alignItems="flex-start"
+                  alignContent="flex-start"
                   justify="center"
                 >
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(9)}
-                    width={theme.spacing(15)}
+                    height={theme.spacing(6)}
+                    width={theme.spacing(11)}
                   />
                 </Grid>
               </Grid>
-              <Grid item xs={3}>
-                <IconButton onClick={handleDrawerClose}>
+              <Grid item xs={2}>
+                <IconButton onClick={handleDrawerClose} size="small">
                   <ChevronLeft //style={{ color: "white" }}
                   />
                 </IconButton>

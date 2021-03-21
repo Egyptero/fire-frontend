@@ -20,7 +20,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "28vh", //32 vh
+    //height: "29vh", //32 vh
     //minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -45,7 +45,7 @@ class MyScroreCard extends Component {
     const { classes, params, theme } = this.props;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Score card"></CardHeader>
+        <CardHeader title="Score card" titleTypographyProps={{variant:"subtitle"}}></CardHeader>
         <Divider />
         <CardContent className={classes.cardContent}>
           <Grid container>
