@@ -75,7 +75,8 @@ class MyTodosCalendar extends Component {
               center: "title",
               right: "dayGridWeek,dayGridMonth",
             }}
-            height={"76vh"}
+            
+            height={"75vh"}
             contentHeight={"76vh"}
             events={data}
             eventClick={(info) => {

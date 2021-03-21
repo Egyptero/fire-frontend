@@ -141,6 +141,7 @@ class MyTodos extends Component {
     const { classes } = this.props;
     return (
       <CardHeader
+      //style={{height:this.props.theme.spacing(3)}}
         action={
           <div>
             {this.props.fullScreen ? (
@@ -155,7 +156,7 @@ class MyTodos extends Component {
                 <Select
                   value={this.state.severity}
                   onChange={this.changeSeverity}
-                  style={{ paddingBottom: 0, marginBottom: 0 }}
+                  style={{ margin: 5 }}
                 >
                   <MenuItem value={"All"}>
                     <Typography variant="caption">All</Typography>
@@ -193,7 +194,7 @@ class MyTodos extends Component {
                 <Select
                   value={this.state.view}
                   onChange={this.changeView}
-                  style={{ paddingTop: 0, marginTop: 0 }}
+                  style={{ margin: 5 }}
                 >
                   <MenuItem value={"Summary"}>
                     <Typography variant="caption">Summary</Typography>
@@ -215,7 +216,7 @@ class MyTodos extends Component {
               <Select
                 value={this.state.showType}
                 onChange={this.changeShowType}
-                style={{ paddingBottom: 0, marginBottom: 0 }}
+                style={{ margin: 5 }}
               >
                 <MenuItem value={"All"}>
                   <Typography variant="caption">All</Typography>
