@@ -37,7 +37,7 @@ class TodoItem extends Component {
   renderDetails = (todo) => {
     return (
       <React.Fragment>
-        <Typography component="span" variant="body2" color="textPrimary">
+        <Typography component="span" variant="caption" color="textPrimary">
           {" "}
           {/**  */}
           {(() => {
@@ -49,7 +49,16 @@ class TodoItem extends Component {
         <br />
 
         {(() => {
-          if (this.props.view === "Detailed") return todo.description;
+          if (this.props.view === "Detailed")
+            return (
+              <Typography
+                component="span"
+                variant="caption"
+                //                color="textPrimary"
+              >
+                {todo.description}
+              </Typography>
+            );
         })()}
       </React.Fragment>
     );
@@ -66,14 +75,20 @@ class TodoItem extends Component {
     if (todo.status === "Completed") avatarColor = theme.palette.success.light;
 
     return (
-      <ListItem key={todo._id}>
+      <ListItem key={todo._id} style={{ paddingBottom: 0, paddingTop: 0 }}>
         <ListItemAvatar>
-          <Avatar style={{ background: avatarColor }}>
-            {todo.priority[0]}
+          <Avatar
+            style={{
+              background: avatarColor,
+              width: this.props.theme.spacing(4),
+              height: this.props.theme.spacing(4),
+            }}
+          >
+            <Typography variant="caption">{todo.priority[0]}</Typography>
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={todo.title}
+          primary={<Typography variant="body2">{todo.title}</Typography>}
           secondary={this.renderDetails(todo)}
         />
         <ListItemSecondaryAction>
@@ -82,6 +97,7 @@ class TodoItem extends Component {
             onClick={(event) => {
               this.handleMenuOpen(event);
             }}
+            size="small"
             //color="inherit"
           >
             <MoreVert fontSize="small" />
@@ -102,7 +118,7 @@ class TodoItem extends Component {
                       this.handleMenuClose();
                     }}
                   >
-                    Done
+                    <Typography variant="caption">Done</Typography>
                   </MenuItem>
                 );
               }
@@ -116,7 +132,7 @@ class TodoItem extends Component {
                       this.handleMenuClose();
                     }}
                   >
-                    Progress
+                    <Typography variant="caption">Progress</Typography>
                   </MenuItem>
                 );
               }
@@ -127,7 +143,7 @@ class TodoItem extends Component {
                 this.handleMenuClose();
               }}
             >
-              Edit
+              <Typography variant="caption">Edit</Typography>
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -135,7 +151,7 @@ class TodoItem extends Component {
                 this.handleMenuClose();
               }}
             >
-              Remove
+              <Typography variant="caption">Remove</Typography>
             </MenuItem>
           </Menu>
         </ListItemSecondaryAction>

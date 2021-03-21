@@ -51,12 +51,12 @@ class MyTeams extends Component {
     let chartData = this.props.data;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Activities" />
+        <CardHeader title="Activities" titleTypographyProps={{variant:"subtitle"}}/>
         <Divider />
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "75vh" } : { height: "65.7vh" }
+            this.props.fullScreen ? { height: "75vh" } : { height: "68.5vh" }
           }
         >
           {chartData.data && chartData.data.length ? (

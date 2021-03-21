@@ -15,6 +15,7 @@ import {
   Grow,
   Grid,
   Divider,
+  Typography,
 } from "@material-ui/core";
 import loadTodos from "../../../functions/user/loadTodos";
 import TodoDialog from "../../dialogs/TodoDialog";
@@ -29,7 +30,7 @@ import MyTodosCalendar from "./MyTodosCalendar";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
+  gridFull: {},
   card: {},
   cardContent: {
     position: "relative",
@@ -145,17 +146,27 @@ class MyTodos extends Component {
             {this.props.fullScreen ? (
               <FormControl className={classes.formControl}>
                 <InputLabel shrink htmlFor="bot-label-placeholder">
-                  Severity
+                  <Typography variant="caption">Severity</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.severity}
                   onChange={this.changeSeverity}
                 >
-                  <MenuItem value={"All"}>All</MenuItem>
-                  <MenuItem value={"Critical"}>Critical</MenuItem>
-                  <MenuItem value={"High"}>High</MenuItem>
-                  <MenuItem value={"Medium"}>Medium</MenuItem>
-                  <MenuItem value={"Low"}>Low</MenuItem>
+                  <MenuItem value={"All"}>
+                    <Typography variant="caption">All</Typography>
+                  </MenuItem>
+                  <MenuItem value={"Critical"}>
+                    <Typography variant="caption">Critical</Typography>
+                  </MenuItem>
+                  <MenuItem value={"High"}>
+                    <Typography variant="caption">High</Typography>
+                  </MenuItem>
+                  <MenuItem value={"Medium"}>
+                    <Typography variant="caption">Medium</Typography>
+                  </MenuItem>
+                  <MenuItem value={"Low"}>
+                    <Typography variant="caption">Low</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             ) : (
@@ -167,39 +178,51 @@ class MyTodos extends Component {
             ) : (
               <FormControl className={classes.formControl}>
                 <InputLabel shrink htmlFor="bot-label-placeholder">
-                  View
+                  <Typography variant="caption">View</Typography>
                 </InputLabel>
 
                 <Select value={this.state.view} onChange={this.changeView}>
-                  <MenuItem value={"Summary"}>Summary</MenuItem>
-                  <MenuItem value={"Detailed"}>Detailed</MenuItem>
+                  <MenuItem value={"Summary"}>
+                    <Typography variant="caption">Summary</Typography>
+                  </MenuItem>
+                  <MenuItem value={"Detailed"}>
+                    <Typography variant="caption">Detailed</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             )}
             <FormControl className={classes.formControl}>
               <InputLabel shrink htmlFor="bot-label-placeholder">
-                Status
+                <Typography variant="caption">Status</Typography>
               </InputLabel>
               <Select
                 value={this.state.showType}
                 onChange={this.changeShowType}
               >
-                <MenuItem value={"All"}>All</MenuItem>
-                <MenuItem value={"New"}>New</MenuItem>
-                <MenuItem value={"Progress"}>Progress</MenuItem>
-                <MenuItem value={"Completed"}>Completed</MenuItem>
+                <MenuItem value={"All"}>
+                  <Typography variant="caption">All</Typography>
+                </MenuItem>
+                <MenuItem value={"New"}>
+                  <Typography variant="caption">New</Typography>
+                </MenuItem>
+                <MenuItem value={"Progress"}>
+                  <Typography variant="caption">Progress</Typography>
+                </MenuItem>
+                <MenuItem value={"Completed"}>
+                  <Typography variant="caption">Completed</Typography>
+                </MenuItem>
               </Select>
             </FormControl>
             <IconButton onClick={this.reloadTodos}>
-              <Refresh />
+              <Refresh fontSize="small"/>
             </IconButton>
             <IconButton onClick={this.handleNewTodoOpen}>
-              <Add />
+              <Add fontSize="small"/>
             </IconButton>
           </div>
         }
         title="Activities"
-        titleTypographyProps={{variant:"subtitle"}}
+        titleTypographyProps={{ variant: "subtitle" }}
       />
     );
   };
@@ -217,7 +240,7 @@ class MyTodos extends Component {
           <CardContent
             className={classes.cardContent}
             style={
-              this.props.fullScreen ? { height: "75vh" } : { height: "65vh" }
+              this.props.fullScreen ? { height: "75vh" } : { height: "66vh" }
             }
           >
             {/**className={classes.cardContent} */}
