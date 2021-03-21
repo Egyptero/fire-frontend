@@ -7,7 +7,7 @@ import MyTodos from "./Dashboard/MyTodos";
 const styles = theme => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    //height: "86vh"
   },
   grid: {
     display: "flex",

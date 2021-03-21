@@ -8,8 +8,13 @@ import { Card, CardContent } from "@material-ui/core";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
-  card: {},
+  gridFull: {},
+  card: {
+    overflow: "auto",
+    maxHeight: "100%",
+    minHeight: "100%",
+    minWidth: "100%",
+  },
   cardContent: {},
   formControl: {},
   floatButton: {},
@@ -59,7 +64,7 @@ class MyTodosCalendar extends Component {
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "75vh" } : { height: "65vh" }
+            this.props.fullScreen ? { height: "80vh" } : { height: "65vh" }
           }
         >
           <FullCalendar
@@ -70,7 +75,8 @@ class MyTodosCalendar extends Component {
               center: "title",
               right: "dayGridWeek,dayGridMonth",
             }}
-            height={"70vh"}
+            height={"76vh"}
+            contentHeight={"76vh"}
             events={data}
             eventClick={(info) => {
               this.props.source.handleEditTodoOpen(info.event.id);

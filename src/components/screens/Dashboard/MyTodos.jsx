@@ -35,7 +35,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "32vh",
+    //height: "32vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -145,12 +145,17 @@ class MyTodos extends Component {
           <div>
             {this.props.fullScreen ? (
               <FormControl className={classes.formControl}>
-                <InputLabel shrink htmlFor="bot-label-placeholder">
+                <InputLabel
+                  shrink
+                  htmlFor="bot-label-placeholder"
+                  //style={{ paddingBottom: 0, marginBottom: 0 }}
+                >
                   <Typography variant="caption">Severity</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.severity}
                   onChange={this.changeSeverity}
+                  style={{ paddingBottom: 0, marginBottom: 0 }}
                 >
                   <MenuItem value={"All"}>
                     <Typography variant="caption">All</Typography>
@@ -177,11 +182,19 @@ class MyTodos extends Component {
               ""
             ) : (
               <FormControl className={classes.formControl}>
-                <InputLabel shrink htmlFor="bot-label-placeholder">
+                <InputLabel
+                  shrink
+                  htmlFor="bot-label-placeholder"
+                  //style={{ paddingBottom: 0, marginBottom: 0 }}
+                >
                   <Typography variant="caption">View</Typography>
                 </InputLabel>
 
-                <Select value={this.state.view} onChange={this.changeView}>
+                <Select
+                  value={this.state.view}
+                  onChange={this.changeView}
+                  style={{ paddingTop: 0, marginTop: 0 }}
+                >
                   <MenuItem value={"Summary"}>
                     <Typography variant="caption">Summary</Typography>
                   </MenuItem>
@@ -192,12 +205,17 @@ class MyTodos extends Component {
               </FormControl>
             )}
             <FormControl className={classes.formControl}>
-              <InputLabel shrink htmlFor="bot-label-placeholder">
+              <InputLabel
+                shrink
+                htmlFor="bot-label-placeholder"
+                //style={{ paddingBottom: 0, marginBottom: 0 }}
+              >
                 <Typography variant="caption">Status</Typography>
               </InputLabel>
               <Select
                 value={this.state.showType}
                 onChange={this.changeShowType}
+                style={{ paddingBottom: 0, marginBottom: 0 }}
               >
                 <MenuItem value={"All"}>
                   <Typography variant="caption">All</Typography>
@@ -214,10 +232,10 @@ class MyTodos extends Component {
               </Select>
             </FormControl>
             <IconButton onClick={this.reloadTodos}>
-              <Refresh fontSize="small"/>
+              <Refresh fontSize="small" />
             </IconButton>
             <IconButton onClick={this.handleNewTodoOpen}>
-              <Add fontSize="small"/>
+              <Add fontSize="small" />
             </IconButton>
           </div>
         }
@@ -240,7 +258,7 @@ class MyTodos extends Component {
           <CardContent
             className={classes.cardContent}
             style={
-              this.props.fullScreen ? { height: "75vh" } : { height: "66vh" }
+              this.props.fullScreen ? { height: "80vh" } : { height: "66vh" }
             }
           >
             {/**className={classes.cardContent} */}
