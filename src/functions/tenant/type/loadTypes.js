@@ -28,6 +28,7 @@ export default (ref, callback) => {
             sysmessage: res.body
           });
       } else {
+        console.log("types received",res.body);
         app.handleTypesListLoad(res.body);
         if (callback)
           return callback({
