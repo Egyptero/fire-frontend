@@ -148,13 +148,13 @@ class PrimaryApp extends React.Component {
 
     //Load user data
     console.log("Loading user data at mount time");
-//    if (!app.user)
+   if (!app.user)
       loadMe(this, (result) => {
         loader.progress += 5;
         if (!result.error) loader.message = "User data loaded";
         app.updateProgress(loader);
       });
-//    else loader.progress += 5;
+   else loader.progress += 5;
 
     if (!app.mySkillgroups)
       loadMySkillgroups(this, (result) => {

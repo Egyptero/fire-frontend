@@ -108,6 +108,7 @@ class TodoItem extends Component {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={this.state.openMenu}
             onClose={this.handleMenuClose}
+            
           >
             {(() => {
               if (todo.status !== "Completed") {

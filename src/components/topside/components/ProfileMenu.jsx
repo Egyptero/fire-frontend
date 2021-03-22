@@ -4,6 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../../primaryapp/appStyles";
+import { Typography } from "@material-ui/core";
 
 class ProfileMenu extends React.Component {
   state = {};
@@ -25,9 +26,9 @@ class ProfileMenu extends React.Component {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={this.openProfile}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        <MenuItem onClick={this.props.app.onLogout}>Logout</MenuItem>
+        <MenuItem onClick={this.openProfile}><Typography variant="caption">Profile</Typography></MenuItem>
+        <MenuItem onClick={handleMenuClose}><Typography variant="caption">My account</Typography></MenuItem>
+        <MenuItem onClick={this.props.app.onLogout}><Typography variant="caption">Logout</Typography></MenuItem>
       </Menu>
     );
   }
