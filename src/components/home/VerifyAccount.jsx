@@ -4,13 +4,13 @@ import { withStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Grid, Typography, Link } from "@material-ui/core";
 import verify from "./verify";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {},
   registerCard: {
     paddingLeft: "3em",
     paddingRight: "3em",
-    maxWidth: "40em"
-  }
+    maxWidth: "40em",
+  },
 });
 
 class VerifyAccount extends Component {
@@ -18,7 +18,7 @@ class VerifyAccount extends Component {
   componentDidMount() {
     this.sendVerificationEmail();
   }
-  sendVerificationEmail = event => {
+  sendVerificationEmail = (event) => {
     if (event) event.preventDefault();
     verify(this);
   };
@@ -40,37 +40,37 @@ class VerifyAccount extends Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(10)}
-                    width={theme.spacing(16)}
+                    //height={theme.spacing(10)}
+                    width={"25%"}
                   />
                 </Grid>
               </Grid>
               {/**Welcome Message */}
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="h5">Verify Account</Typography>
+                  <Typography variant="subtitle1">Verify Account</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="subtitle1">
+                  <Typography variant="body">
                     Check your email address {this.props.app.user.email} to
                     complete account verification process.If you did not receive
                     the email ,{" "}
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.sendVerificationEmail}
                     >
                       click here to resend
-                    </Link>{" "}
-                    or{" "}
+                    </Link>
+                    <Typography variant="body"> or </Typography>
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.props.handleBackClick}
                     >
-                      Sign in
+                      sign in
                     </Link>
                   </Typography>
                 </Grid>
@@ -87,7 +87,7 @@ VerifyAccount.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(VerifyAccount);

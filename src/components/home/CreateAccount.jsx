@@ -9,17 +9,17 @@ import {
   TextField,
   Fab,
   Link,
-  Checkbox
+  Checkbox,
 } from "@material-ui/core";
 import register from "./register";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {},
   registerCard: {
     paddingLeft: "3em",
     paddingRight: "3em",
-    maxWidth: "40em"
-  }
+    maxWidth: "40em",
+  },
 });
 
 class CreateAccount extends Component {
@@ -30,9 +30,9 @@ class CreateAccount extends Component {
     email: "",
     password: "",
     confirmPassword: "",
-    sendUpdates: true
+    sendUpdates: true,
   };
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.id === "firstname")
       this.setState({ firstname: event.target.value });
     else if (event.target.id === "lastname")
@@ -55,7 +55,7 @@ class CreateAccount extends Component {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
-      receiveUpdates: this.state.sendUpdates
+      receiveUpdates: this.state.sendUpdates,
     };
     register(user, this);
   };
@@ -77,27 +77,27 @@ class CreateAccount extends Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(10)}
-                    width={theme.spacing(16)}
+                    //height={theme.spacing(10)}
+                    width={"20%"}
                   />
                 </Grid>
               </Grid>
               {/**Welcome Message */}
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="h5">Create Account</Typography>
+                  <Typography variant="subtitle1">Create Account</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="subtitle1">
+                  <Typography variant="caption">
                     Already have an account?{" "}
                     <Link
                       component="button"
                       variant="subtitle1"
                       onClick={this.props.handleBackClick}
                     >
-                      Sign in
+                      <Typography variant="caption">Sign in</Typography>
                     </Link>
                   </Typography>
                 </Grid>
@@ -114,6 +114,9 @@ class CreateAccount extends Component {
                   value={this.state.firstname}
                   fullWidth
                   required
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
               {/** Last name */}
@@ -127,6 +130,9 @@ class CreateAccount extends Component {
                   value={this.state.lastname}
                   fullWidth
                   required
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
               {/** User name */}
@@ -140,6 +146,9 @@ class CreateAccount extends Component {
                   value={this.state.username}
                   fullWidth
                   required
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
               {/** Password */}
@@ -154,6 +163,9 @@ class CreateAccount extends Component {
                   value={this.state.password}
                   fullWidth
                   required
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
               {/** Confirm Password */}
@@ -169,6 +181,9 @@ class CreateAccount extends Component {
                   value={this.state.confirmPassword}
                   fullWidth
                   required
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
               {/** Email */}
@@ -183,6 +198,9 @@ class CreateAccount extends Component {
                   value={this.state.email}
                   fullWidth
                   required
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
               {/** Updates information */}
@@ -192,7 +210,7 @@ class CreateAccount extends Component {
                   onChange={this.handleDataChange}
                   id="sendUpdates"
                 />
-                <Typography variant="subtitle1" style={{ display: "inline" }}>
+                <Typography variant="subtitle2" style={{ display: "inline" }}>
                   Send me updates about firemisc promotions, products and
                   services.
                 </Typography>
@@ -238,10 +256,11 @@ class CreateAccount extends Component {
                     }
                     style={{
                       //width: "50%",
-                      marginTop: "4vh",
-                      textTransform: "none"
+                      marginTop: this.props.theme.spacing(4),
+                      textTransform: "none",
                       //marginBottom: "8vh"
                     }}
+                    size="small"
                   >
                     Register
                   </Fab>
@@ -259,7 +278,7 @@ CreateAccount.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CreateAccount);

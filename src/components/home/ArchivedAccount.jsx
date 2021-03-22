@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Grid, Typography, Link } from "@material-ui/core";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {},
   registerCard: {
     paddingLeft: "3em",
     paddingRight: "3em",
-    maxWidth: "40em"
-  }
+    maxWidth: "40em",
+  },
 });
 
 class SuspendAccount extends Component {
@@ -32,24 +32,24 @@ class SuspendAccount extends Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(10)}
-                    width={theme.spacing(16)}
+                    //height={theme.spacing(10)}
+                    width={"25%"}
                   />
                 </Grid>
               </Grid>
               {/**Welcome Message */}
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="h5">Restore Account</Typography>
+                  <Typography variant="subtitle1">Restore Account</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="subtitle1">
+                  <Typography variant="body">
                     This account is archived.{" "}
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.props.handleBackClick}
                     >
                       Click here to restore.
@@ -69,7 +69,7 @@ SuspendAccount.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(SuspendAccount);

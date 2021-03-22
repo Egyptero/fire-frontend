@@ -32,25 +32,25 @@ class SuspendAccount extends Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(10)}
-                    width={theme.spacing(16)}
+                    //height={theme.spacing(10)}
+                    width={"25%"}
                   />
                 </Grid>
               </Grid>
               {/**Welcome Message */}
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="h5">Account Suspended</Typography>
+                  <Typography variant="subtitle1">Account Suspended</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="subtitle1">
+                  <Typography variant="body">
                     This account is suspended. please contact our help desk team
                     by sending email to support@firemisc.com{" "}
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.props.handleBackClick}
                     >
                       Sign in

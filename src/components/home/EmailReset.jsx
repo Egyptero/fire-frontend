@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Grid, Typography, Link } from "@material-ui/core";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {},
   registerCard: {
     paddingLeft: "3em",
     paddingRight: "3em",
-    maxWidth: "40em"
-  }
+    maxWidth: "40em",
+  },
 });
 
 class EmailReset extends Component {
@@ -17,7 +17,7 @@ class EmailReset extends Component {
   componentDidMount() {
     this.sendEmailResetEmail();
   }
-  sendEmailResetEmail = event => {
+  sendEmailResetEmail = (event) => {
     if (event) event.preventDefault();
     //verify(this);
   };
@@ -39,36 +39,36 @@ class EmailReset extends Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(10)}
-                    width={theme.spacing(16)}
+                    //height={theme.spacing(10)}
+                    width={"25%"}
                   />
                 </Grid>
               </Grid>
               {/**Welcome Message */}
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="h5">Restore Email</Typography>
+                  <Typography variant="subtitle1">Restore Email</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="subtitle1">
+                  <Typography variant="body">
                     Email address sent to your registered mobile number .If you
                     did not receive the message ,{" "}
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.sendEmailResetEmail}
                     >
                       click here to resend
-                    </Link>{" "}
-                    or{" "}
+                    </Link>
+                    <Typography variant="body"> or </Typography>
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.props.handleBackClick}
                     >
-                      Sign in
+                      sign in
                     </Link>
                   </Typography>
                 </Grid>
@@ -85,7 +85,7 @@ EmailReset.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(EmailReset);

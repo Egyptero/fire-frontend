@@ -28,8 +28,8 @@ const styles = (theme) => ({
     left: 0,
     right: 0,
     margin: "auto",
-    maxWidth: "28em",
-    maxHeight: "30em",
+    maxWidth: "25em",
+    maxHeight: "25em",
   },
 });
 
@@ -154,6 +154,7 @@ class Home extends Component {
               <Button
                 onClick={this.handleBackClick}
                 style={{ textTransform: "none" }}
+                size="small"
               >
                 Back
               </Button>
@@ -168,15 +169,15 @@ class Home extends Component {
                 <img
                   src="./imgs/firemisc.png"
                   alt="firemisc"
-                  height={theme.spacing(10)}
-                  width={theme.spacing(16)}
+                  //height={theme.spacing(10)}
+                  width={"25%"}
                 />
               </Grid>
             </Grid>
             {/**Welcome Message */}
             <Grid item xs={12}>
               <Grid container alignContent="center" direction="column">
-                <Typography variant="h5">Welcome</Typography>
+                <Typography variant="subtitle1">Welcome</Typography>
               </Grid>
             </Grid>
             {/** Password parameter */}
@@ -192,6 +193,9 @@ class Home extends Component {
                   onKeyDown={this.handleEnterKey}
                   type="password"
                   style={{ width: "75%" }}
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
                 />
               </Grid>
             </Grid>
@@ -212,13 +216,14 @@ class Home extends Component {
                   onClick={this.handleLoginClick}
                   disabled={this.state.password === ""}
                   style={{
-                    width: "75%",
-                    marginTop: "4vh",
-                    marginBottom: "2vh",
+                    width: "40%",
+                    marginTop: this.props.theme.spacing(5),
+                    marginBottom: this.props.theme.spacing(2),
                     textTransform: "none",
                   }}
+                  size="small"
                 >
-                  Sign in
+                  <Typography variant="caption">Sign in</Typography>
                 </Fab>
               </Grid>
             </Grid>
@@ -227,11 +232,13 @@ class Home extends Component {
                 <Button
                   onClick={this.handlePasswordResetRequest}
                   style={{
-                    marginBottom: "3vh",
+                    width: "40%",
+                    //marginBottom: "3vh",
                     textTransform: "none",
                   }}
+                  size="small"
                 >
-                  Forget password?
+                  <Typography variant="caption">Forget password?</Typography>
                 </Button>
               </Grid>
             </Grid>
@@ -252,15 +259,15 @@ class Home extends Component {
                 <img
                   src="./imgs/firemisc.png"
                   alt="firemisc"
-                  height={theme.spacing(10)}
-                  width={theme.spacing(16)}
+                  //height={theme.spacing(10)}
+                  width={"25%"}
                 />
               </Grid>
             </Grid>
             {/**Welcome Message */}
             <Grid item xs={12}>
               <Grid container alignContent="center" direction="column">
-                <Typography variant="h5">Sign in</Typography>
+                <Typography variant="subtitle1">Sign in</Typography>
               </Grid>
             </Grid>
             {/** Email parameter */}
@@ -275,6 +282,10 @@ class Home extends Component {
                   onChange={this.handleEmailChange}
                   onKeyDown={this.handleEnterPressInEmail}
                   style={{ width: "75%" }}
+                  size="small"
+                  inputProps={{style:{fontSize:"0.8rem"}}}
+                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
+
                 />
               </Grid>
             </Grid>
@@ -287,13 +298,14 @@ class Home extends Component {
                   onClick={this.handleNextClick}
                   disabled={this.state.email === ""}
                   style={{
-                    width: "75%",
-                    marginTop: "4vh",
-                    marginBottom: "8vh",
+                    width: "40%",
+                    marginTop: this.props.theme.spacing(5),
+                    marginBottom: this.props.theme.spacing(2),
                     textTransform: "none",
                   }}
+                  size="small"
                 >
-                  Next
+                  <Typography variant="caption">Next</Typography>
                 </Fab>
               </Grid>
             </Grid>
@@ -315,9 +327,9 @@ class Home extends Component {
             <Grid item xs={12}>
               <Grid container alignContent="center" direction="column">
                 <Typography
-                  variant="body1"
+                  variant="caption"
                   style={{
-                    width: "80%",
+                    width: "75%",
                     textAlign: "center",
                     borderBottom: "1px solid #000",
                     lineHeight: "0.1em",
@@ -336,12 +348,13 @@ class Home extends Component {
                   variant="outlined"
                   onClick={this.handleRegisterClick}
                   style={{
-                    width: "45%",
+                    width: "40%",
                     borderRadius: "2em",
                     textTransform: "none",
                   }}
+                  size="small"
                 >
-                  Create Account
+                  <Typography variant="caption">Create Account</Typography>
                 </Button>
               </Grid>
             </Grid>

@@ -4,13 +4,13 @@ import { withStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Grid, Typography, Link } from "@material-ui/core";
 import resetpassword from "./resetpassword";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {},
   registerCard: {
     paddingLeft: "3em",
     paddingRight: "3em",
-    maxWidth: "40em"
-  }
+    maxWidth: "40em",
+  },
 });
 
 class PasswordReset extends Component {
@@ -18,7 +18,7 @@ class PasswordReset extends Component {
   componentDidMount() {
     this.sendPasswordResetEmail();
   }
-  sendPasswordResetEmail = event => {
+  sendPasswordResetEmail = (event) => {
     if (event) event.preventDefault();
     resetpassword(this, this.props.email);
   };
@@ -40,36 +40,36 @@ class PasswordReset extends Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(10)}
-                    width={theme.spacing(16)}
+                    //height={theme.spacing(10)}
+                    width={"25%"}
                   />
                 </Grid>
               </Grid>
               {/**Welcome Message */}
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="h5">Password Reset</Typography>
+                  <Typography variant="subtitle1">Password Reset</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Grid container alignContent="center" direction="column">
-                  <Typography variant="subtitle1">
+                  <Typography variant="body">
                     Password reset instructions sent to your email address{" "}
                     {this.props.email}.If you did not receive the email ,{" "}
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.sendPasswordResetEmail}
                     >
                       click here to resend
-                    </Link>{" "}
-                    or{" "}
+                    </Link>
+                    <Typography variant="caption"> or </Typography>
                     <Link
                       component="button"
-                      variant="subtitle1"
+                      variant="body"
                       onClick={this.props.handleBackClick}
                     >
-                      Sign in
+                      sign in
                     </Link>
                   </Typography>
                 </Grid>
@@ -86,7 +86,7 @@ PasswordReset.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(PasswordReset);
