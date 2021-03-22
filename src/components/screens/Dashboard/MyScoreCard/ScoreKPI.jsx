@@ -40,12 +40,12 @@ class ScoreKPI extends Component {
           needleColor={theme.palette.secondary.light}
           needleBaseColor={theme.palette.secondary.main}
         />
-        <Typography variant="body1">{params.kpi}</Typography>
-        <Typography variant="caption">{params.caption}</Typography>
-        <Typography variant="body2">Target</Typography>
-        <Typography variant="caption">{params.target}</Typography>
-        <Typography variant="body2">Actual</Typography>
-        <Typography variant="caption">{params.actual}</Typography>
+        <Typography variant="body1" gutterBottom={false}>{params.kpi}</Typography>
+        <Typography variant="caption" gutterBottom={false}>{params.caption}</Typography>
+        <Typography variant="body2" gutterBottom={false}>Target</Typography>
+        <Typography variant="caption" gutterBottom={false}>{params.target}</Typography>
+        <Typography variant="body2" gutterBottom={false}>Actual</Typography>
+        <Typography variant="caption" gutterBottom={false}>{params.actual}</Typography>
       </Grid>
     );
   }

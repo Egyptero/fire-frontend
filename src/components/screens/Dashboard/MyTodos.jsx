@@ -241,7 +241,7 @@ class MyTodos extends Component {
           </div>
         }
         title="Activities"
-        titleTypographyProps={{ variant: "subtitle" }}
+        titleTypographyProps={{ variant: "body1" }}
       />
     );
   };
@@ -259,7 +259,7 @@ class MyTodos extends Component {
           <CardContent
             className={classes.cardContent}
             style={
-              this.props.fullScreen ? { height: "80vh" } : { height: "66vh" }
+              this.props.fullScreen ? { height: "80vh" } : { height: "68vh" }
             }
           >
             {/**className={classes.cardContent} */}

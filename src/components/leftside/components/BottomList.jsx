@@ -45,14 +45,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <Input //style={{ color: "white" }}
                 style={
                   app.screen === "Types"
@@ -64,7 +64,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
@@ -92,14 +92,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <DeviceHub //style={{ color: "white" }}
                 style={
                   app.screen === "Workflows"
@@ -111,7 +111,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
@@ -139,14 +139,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <School //style={{ color: "white" }}
                 style={
                   app.screen === "Skillgroups"
@@ -158,7 +158,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
@@ -186,14 +186,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <Group //style={{ color: "white" }}
                 style={
                   app.screen === "Users"
@@ -205,7 +205,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
@@ -232,14 +232,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <AssignmentLate //style={{ color: "white" }}
                 style={
                   app.screen === "Interactions"
@@ -251,7 +251,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
@@ -278,14 +278,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <PermContactCalendar //style={{ color: "white" }}
                 style={
                   app.screen === "Contacts"
@@ -297,7 +297,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
@@ -324,14 +324,14 @@ class BottomList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               {/* style={{ color: "white" }} */}
               <Business
                 style={
@@ -344,7 +344,7 @@ class BottomList extends Component {
                 fontSize="small"
               />
             </ListItemIcon>
-            <ListItemText
+            <ListItemText style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}

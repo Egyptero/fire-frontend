@@ -14,9 +14,8 @@ import ScoreKPI from "./MyScoreCard/ScoreKPI";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
-  card: {
-  },
+  gridFull: {},
+  card: {},
   cardContent: {
     position: "relative",
     overflow: "auto",
@@ -45,7 +44,10 @@ class MyScroreCard extends Component {
     const { classes, params, theme } = this.props;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Score card" titleTypographyProps={{variant:"subtitle"}}></CardHeader>
+        <CardHeader
+          title="Score card"
+          titleTypographyProps={{ variant: "body1" }}
+        ></CardHeader>
         <Divider />
         <CardContent className={classes.cardContent}>
           <Grid container>

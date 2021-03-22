@@ -48,7 +48,7 @@ class LeftSideDrawer extends React.Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(6)}
+                    height={theme.spacing(7)}
                     width={theme.spacing(11)}
                   />
                 </Grid>

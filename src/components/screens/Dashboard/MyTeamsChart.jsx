@@ -59,7 +59,7 @@ class MyTeams extends Component {
     let chartData = this.props.data;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Team" titleTypographyProps={{variant:"subtitle"}}/>
+        <CardHeader title="Team" titleTypographyProps={{variant:"body1"}}/>
         <Divider />
         <CardContent
           className={classes.cardContent}

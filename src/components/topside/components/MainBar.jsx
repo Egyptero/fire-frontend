@@ -55,8 +55,11 @@ class MainBar extends Component {
 
         <Toolbar
           disableGutters={!primaryAppState.open}
-          style={{ minHeight: this.props.theme.spacing(6), margin: 0, padding: 0 }}
-
+          style={{
+            minHeight: this.props.theme.spacing(6),
+            margin: 0,
+            padding: 0,
+          }}
         >
           <IconButton
             color="inherit"
@@ -67,7 +70,7 @@ class MainBar extends Component {
             })}
             size="small"
           >
-            <Menu fontSize="small" />
+            <Menu />
           </IconButton>
 
           <div className={classes.sectionDesktop}>
@@ -133,30 +136,48 @@ class MainBar extends Component {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            {myInteractions.length > 0 ? (
+              <React.Fragment>
+                <IconButton
+                  color="inherit"
+                  onClick={() => {
+                    this.props.app.handleScreenChange("My work");
+                  }}
+                  size="small"
+                >
+                  <Badge badgeContent={myInteractions.length} color="primary">
+                    <TouchApp fontSize="small" />
+                  </Badge>
+                </IconButton>
+                <Divider
+                  style={{
+                    width: "2px",
+                    height: "2em",
+                    marginLeft: "1em",
+                    marginRight: "1em",
+                  }}
+                />
+              </React.Fragment>
+            ) : (
+              ""
+            )}
+            <FeedbackAdd {...this.props} />
+            <Divider
+              style={{
+                width: "2px",
+                height: "2em",
+                marginLeft: "1em",
+                marginRight: "1em",
+              }}
+            />
             <Typography
               className={classes.title}
               variant="caption"
               color="inherit"
               noWrap
             >
-              {app.user.firstname + " " + app.user.lastname + "   "}
+              {app.user.firstname + " " + app.user.lastname + "  "}
             </Typography>
-            {myInteractions.length > 0 ? (
-              <IconButton
-                color="inherit"
-                onClick={() => {
-                  this.props.app.handleScreenChange("My work");
-                }}
-                size="small"
-              >
-                <Badge badgeContent={myInteractions.length} color="primary">
-                  <TouchApp fontSize="small" />
-                </Badge>
-              </IconButton>
-            ) : (
-              ""
-            )}
-            <FeedbackAdd {...this.props} />
 
             <IconButton
               aria-owns={isMenuOpen ? "material-appbar" : undefined}

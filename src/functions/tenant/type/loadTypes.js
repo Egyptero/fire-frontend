@@ -9,7 +9,7 @@ export default (ref, callback) => {
     if (callback) {
       return callback({
         error: true,
-        message: "No tenant found"
+        message: "No tenant found",
       });
     }
     return;
@@ -25,16 +25,16 @@ export default (ref, callback) => {
           return callback({
             error: true,
             message: "error loading types list",
-            sysmessage: res.body
+            sysmessage: res.body,
           });
       } else {
-        console.log("types received",res.body);
+        console.log("types received", res.body);
         app.handleTypesListLoad(res.body);
         if (callback)
           return callback({
             error: false,
             message: "loaded",
-            types: res.body
+            types: res.body,
           });
       }
     });

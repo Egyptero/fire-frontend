@@ -5,7 +5,7 @@ import {
   Select,
   MenuItem,
   FormControl,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
@@ -13,17 +13,17 @@ import styles from "../primaryapp/appStyles";
 class FireClientStatus extends Component {
   state = {
     selected: "",
-    statusList: []
+    statusList: [],
   };
 
-  onChangeStatus = event => {
+  onChangeStatus = (event) => {
     let selected = event.target.value;
     const { client } = this.props.app;
     client.emit("message", {
       action: "state",
       date: Date.now(),
       token: this.props.app.token,
-      status: selected
+      status: selected,
     });
   };
 
@@ -62,24 +62,22 @@ class FireClientStatus extends Component {
             style={{
               width: "100%",
               marginLeft: theme.spacing(1.5),
-              marginRight: theme.spacing(1)
+              marginRight: theme.spacing(1),
             }}
           >
             <Tooltip title="Change status" aria-label="Add">
               <Select
-              
                 value={this.state.selected}
                 onChange={this.onChangeStatus}
                 disableUnderline
                 inputProps={{
                   classes: {
                     root: classes.fireClientStatus.whiteColor,
-                    icon: classes.fireClientStatus.icon
-                  }
+                    icon: classes.fireClientStatus.icon,
+                  },
                 }}
-                
               >
-                {this.state.statusList.map(status => {
+                {this.state.statusList.map((status) => {
                   return (
                     <MenuItem key={status} value={status}>
                       <Typography variant="caption">{status}</Typography>
@@ -102,7 +100,7 @@ FireClientStatus.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(FireClientStatus);

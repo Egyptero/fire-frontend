@@ -1,6 +1,6 @@
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
-const drawerWidth = 175; //240
+const drawerWidth = 160; //240
 const styles = (theme) => ({
   root: {
     display: "flex",
@@ -132,9 +132,9 @@ const styles = (theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
-    width: theme.spacing(4) + 1, //theme.spacing(7) + 1
+    width: theme.spacing(3) + 1, //theme.spacing(7) + 1
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(7) + 1, //theme.spacing(9) + 1
+      width: theme.spacing(5) + 1, //theme.spacing(9) + 1
     },
     "&::-webkit-scrollbar": {
       width: "0.2em",

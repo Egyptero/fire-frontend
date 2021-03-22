@@ -31,49 +31,49 @@ import addInteraction from "../../../functions/tenant/interaction/addInteraction
 import NewInteractionDialog from "../../dialogs/NewInteractionDialog";
 const actions = [
   {
-    icon: <Assignment fontSize="small"/>,
+    icon: <Assignment fontSize="small" />,
     name: "To do",
     role: "User",
     tooltip: "Add new todo item",
   },
   {
-    icon: <LocationCity fontSize="small"/>,
+    icon: <LocationCity fontSize="small" />,
     name: "Organization",
     role: "User",
     tooltip: "Add new organization wizard",
   },
   {
-    icon: <Category fontSize="small"/>,
+    icon: <Category fontSize="small" />,
     name: "Type",
     role: "Administrator",
     tooltip: "Add channel type",
   },
   {
-    icon: <DeviceHub fontSize="small"/>,
+    icon: <DeviceHub fontSize="small" />,
     name: "Workflow",
     role: "Administrator",
     tooltip: "Add new workflow",
   },
   {
-    icon: <School fontSize="small"/>,
+    icon: <School fontSize="small" />,
     name: "Skillgroup",
     role: "Administrator",
     tooltip: "Add new skillgroup",
   },
   {
-    icon: <Group fontSize="small"/>,
+    icon: <Group fontSize="small" />,
     name: "User",
     role: "Administrator",
     tooltip: "Add new user",
   },
   {
-    icon: <CheckCircle fontSize="small"/>,
+    icon: <CheckCircle fontSize="small" />,
     name: "Task",
     role: "Administrator",
     tooltip: "Add new task",
   },
   {
-    icon: <Contacts fontSize="small"/>,
+    icon: <Contacts fontSize="small" />,
     name: "Customer",
     role: "Administrator",
     tooltip: "Add new customer",

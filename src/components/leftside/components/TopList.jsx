@@ -57,33 +57,35 @@ class TopList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0),minWidth:theme.spacing(5) }}>
               <Dashboard //style={{ color: "white" }}
                 style={
                   app.screen === "Dashboard"
                     ? {
                         color: theme.palette.common.white,
                       }
-                    : {}
+                    : {
+                    }
                 }
                 fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
+              style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
                   style={
                     app.screen === "Dashboard"
                       ? {
-                          color: theme.palette.common.white,
+                          color: theme.palette.common.white,                          
                         }
                       : {}
                   }
@@ -103,14 +105,14 @@ class TopList extends Component {
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
                 : {
-                    height: theme.spacing(4),
+                    padding: theme.spacing(1),
                   }
             }
           >
-            <ListItemIcon>
+            <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <HourglassEmpty //style={{ color: "white" }}
                 style={
                   app.screen === "Queues"
@@ -123,6 +125,7 @@ class TopList extends Component {
               />
             </ListItemIcon>
             <ListItemText
+              style={{ margin: theme.spacing(0) }}
               primary={
                 <Typography
                   variant="caption" //style={{ color: "white" }}
