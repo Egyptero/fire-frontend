@@ -69,6 +69,9 @@ class PrimaryApp extends React.Component {
           loader.message = "Organization info loaded";
           app.updateProgress(loader);
           this.loadData();
+        }else {
+          loader.progress = 100;
+          app.updateProgress(loader);
         }
       });
     } else if (app.tenants.length > 0) {

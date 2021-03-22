@@ -75,9 +75,16 @@ class MyTodosCalendar extends Component {
               center: "title",
               right: "dayGridWeek,dayGridMonth",
             }}
-            
-            height={"75vh"}
-            contentHeight={"76vh"}
+            //stickyHeaderDates={true}
+            //showNonCurrentDates={false}
+            //fixedWeekCount={true}
+            // contentHeight={"100%"}
+            height={"auto"}
+            // eventOverlap={true}
+            //aspectRatio={1.5}
+            //_resize={true}
+            //_resize="false"
+            //            contentHeight={"76vh"}
             events={data}
             eventClick={(info) => {
               this.props.source.handleEditTodoOpen(info.event.id);
