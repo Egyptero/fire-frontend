@@ -87,7 +87,7 @@ class MainBar extends Component {
             />
             <Typography
               className={classes.title}
-              variant="bodt1"
+              variant="body1"
               color="inherit"
               noWrap
             >

@@ -260,7 +260,7 @@ class CallQueueCardSummary extends Component {
                       }}
                       spacing={1}
                     >
-                      <Grid item xs={9} alignContent="flex-start">
+                      <Grid item xs={9}>
                         <Typography
                           variant="caption"
                           color="inherit"
@@ -271,14 +271,14 @@ class CallQueueCardSummary extends Component {
                       </Grid>
                       <Grid item xs={3}>
                         <Grid container justify="flex-end">
-                        <Typography
-                          variant="caption"
-                          color="inherit"
-                          align="right"
-                          style={{ marginRight: theme.spacing(1) }}
-                        >
-                          {this.getQueue(skillgroup._id)}
-                        </Typography>
+                          <Typography
+                            variant="caption"
+                            color="inherit"
+                            align="right"
+                            style={{ marginRight: theme.spacing(1) }}
+                          >
+                            {this.getQueue(skillgroup._id)}
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
