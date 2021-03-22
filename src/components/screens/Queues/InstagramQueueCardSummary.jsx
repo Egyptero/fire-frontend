@@ -35,6 +35,7 @@ const styles = (theme) => ({
   },
   cardContent: {
     position: "relative",
+    padding: theme.spacing(1),
     overflow: "auto",
     height: "34vh",
     minWidth: "100%",
@@ -51,13 +52,13 @@ const styles = (theme) => ({
   },
   floatButton: {
     position: "absolute",
-    top: theme.spacing(1),
+    top: theme.spacing(2),
     right: theme.spacing(1),
     zIndex: 1,
   },
   floatButtonLeft: {
     position: "absolute",
-    top: theme.spacing(1),
+    top: theme.spacing(2),
     left: theme.spacing(1),
     zIndex: 1,
   },
@@ -223,13 +224,16 @@ class InstagramQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: theme.palette.error.dark }} //"#7f1734"
+            style={{
+              backgroundColor: theme.palette.error.dark,
+              padding: theme.spacing(1),
+            }} //"#7f1734"
             title={
               <Grid container alignContent="center" justify="center">
                 <img
                   src="./imgs/instagramwhitelogo.png"
                   alt="instagram"
-                  height={theme.spacing(3)}
+                  //height={theme.spacing(3)}
                   width={theme.spacing(3)}
                 />
               </Grid>
@@ -241,13 +245,19 @@ class InstagramQueueCardSummary extends Component {
                 <TableBody>
                   {this.state.data.map((row) => (
                     <TableRow key={row.label}>
-                      <TableCell component="th" scope="row">
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        style={{ fontSize: 11 }}
+                      >
                         {row.label}
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell align="center" style={{ fontSize: 11 }}>
                         {this.renderTrend(row.trend)}
                       </TableCell>
-                      <TableCell align="right">{row.value}</TableCell>
+                      <TableCell align="right" style={{ fontSize: 11 }}>
+                        {row.value}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -269,7 +279,7 @@ class InstagramQueueCardSummary extends Component {
                     >
                       <Grid item xs={9}>
                         <Typography
-                          variant="body2"
+                          variant="caption"
                           color="inherit"
                           style={{ marginLeft: theme.spacing(1) }}
                         >
@@ -278,7 +288,7 @@ class InstagramQueueCardSummary extends Component {
                       </Grid>
                       <Grid item xs={3}>
                         <Typography
-                          variant="body2"
+                          variant="caption"
                           color="inherit"
                           align="right"
                           style={{ marginRight: theme.spacing(1) }}
@@ -293,11 +303,15 @@ class InstagramQueueCardSummary extends Component {
             </Grid>
           </CardContent>
         </Card>
-        <IconButton className={classes.floatButton}>
-          <MoreVert style={{ color: "white" }} />
+        <IconButton className={classes.floatButton} size="small">
+          <MoreVert style={{ color: "white" }} fontSize="small" />
         </IconButton>
-        <IconButton className={classes.floatButtonLeft} onClick={this.reload}>
-          <Refresh style={{ color: "white" }} />
+        <IconButton
+          className={classes.floatButtonLeft}
+          onClick={this.reload}
+          size="small"
+        >
+          <Refresh style={{ color: "white" }} fontSize="small" />
         </IconButton>
       </React.Fragment>
     );
