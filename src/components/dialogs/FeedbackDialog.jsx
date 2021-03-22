@@ -123,13 +123,13 @@ class FeedbackDialog extends Component {
       >
         <DialogTitle
           id="form-dialog-title"
-          //disableTypography
+          disableTypography
           style={{
             backgroundColor: theme.palette.secondary.light,
           }}
         >
           <Typography
-            variant="subtitle2"
+            variant="subtitle1"
             style={
               {
                 //color: theme.palette.secondary.contrastText,
@@ -245,7 +245,7 @@ class FeedbackDialog extends Component {
             <Grid item xs={12}>
               <TextField
                 margin="dense"
-                rows="4"
+                rows="6"
                 multiline
                 onChange={this.handleDataChange}
                 name="description"
