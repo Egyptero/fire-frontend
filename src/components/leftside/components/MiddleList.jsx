@@ -69,10 +69,13 @@ class MiddelList extends Component {
                   app.screen === "Activities"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
@@ -118,10 +121,13 @@ class MiddelList extends Component {
                   app.screen === "History"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText

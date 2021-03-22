@@ -70,11 +70,13 @@ class TopList extends Component {
                   app.screen === "Dashboard"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
                     : {
+                      fontSize:18
                     }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText
@@ -118,10 +120,13 @@ class TopList extends Component {
                   app.screen === "Queues"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText

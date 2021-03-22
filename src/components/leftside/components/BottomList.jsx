@@ -58,10 +58,13 @@ class BottomList extends Component {
                   app.screen === "Channels"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
@@ -105,10 +108,13 @@ class BottomList extends Component {
                   app.screen === "Workflows"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
@@ -152,10 +158,13 @@ class BottomList extends Component {
                   app.screen === "Skillgroups"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
@@ -199,10 +208,13 @@ class BottomList extends Component {
                   app.screen === "Users"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
@@ -245,10 +257,13 @@ class BottomList extends Component {
                   app.screen === "Interactions"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
@@ -291,10 +306,13 @@ class BottomList extends Component {
                   app.screen === "Contacts"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
@@ -338,10 +356,13 @@ class BottomList extends Component {
                   app.screen === "Organizations"
                     ? {
                         color: theme.palette.common.white,
+                        fontSize:18
                       }
-                    : {}
+                    : {
+                      fontSize:18
+                    }
                 }
-                fontSize="small"
+                //fontSize="small"
               />
             </ListItemIcon>
             <ListItemText style={{ margin: theme.spacing(0) }}
