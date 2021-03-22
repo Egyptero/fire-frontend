@@ -26,9 +26,15 @@ class ProfileMenu extends React.Component {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={this.openProfile}><Typography variant="caption">Profile</Typography></MenuItem>
-        <MenuItem onClick={handleMenuClose}><Typography variant="caption">My account</Typography></MenuItem>
-        <MenuItem onClick={this.props.app.onLogout}><Typography variant="caption">Logout</Typography></MenuItem>
+        <MenuItem onClick={this.openProfile}>
+          <Typography variant="caption">Profile</Typography>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Typography variant="caption">My account</Typography>
+        </MenuItem>
+        <MenuItem onClick={this.props.app.onLogout}>
+          <Typography variant="caption">Logout</Typography>
+        </MenuItem>
       </Menu>
     );
   }
@@ -38,7 +44,7 @@ ProfileMenu.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(ProfileMenu);
