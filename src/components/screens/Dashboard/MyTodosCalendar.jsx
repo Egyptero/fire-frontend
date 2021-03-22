@@ -79,7 +79,12 @@ class MyTodosCalendar extends Component {
             //showNonCurrentDates={false}
             //fixedWeekCount={true}
             // contentHeight={"100%"}
-            height={"auto"}
+            height={"100%"}
+            dayMaxEventRows={true}
+            // editable={true}
+            // eventStartEditable={true}
+            // eventResourceEditable={true}
+            // droppable={true}
             // eventOverlap={true}
             //aspectRatio={1.5}
             //_resize={true}
