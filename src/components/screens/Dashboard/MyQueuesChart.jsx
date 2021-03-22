@@ -16,12 +16,12 @@ import Chart from "react-apexcharts";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
+  gridFull: {},
   card: {},
   cardContent: {
     position: "relative",
     overflow: "auto",
-//    height: "18vh",
+    //    height: "18vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -60,7 +60,10 @@ class MyQueues extends Component {
     const chartData = this.props.data;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Queues" titleTypographyProps={{variant:"body1"}}/>
+        <CardHeader
+          title="Queues"
+          titleTypographyProps={{ variant: "body1" }}
+        />
         <Divider />
         <CardContent
           className={classes.cardContent}

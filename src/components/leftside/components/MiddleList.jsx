@@ -61,7 +61,9 @@ class MiddelList extends Component {
                   }
             }
           >
-            <ListItemIcon style={{ margin: theme.spacing(0),minWidth:theme.spacing(5) }}>
+            <ListItemIcon
+              style={{ margin: theme.spacing(0), minWidth: theme.spacing(5) }}
+            >
               <Event //style={{ color: "white" }}
                 style={
                   app.screen === "To do"
@@ -108,7 +110,9 @@ class MiddelList extends Component {
                   }
             }
           >
-            <ListItemIcon style={{ margin: theme.spacing(0),minWidth:theme.spacing(5) }}>
+            <ListItemIcon
+              style={{ margin: theme.spacing(0), minWidth: theme.spacing(5) }}
+            >
               <History //style={{ color: "white" }}
                 style={
                   app.screen === "History"
