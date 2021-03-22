@@ -75,7 +75,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
-    else if (screen === "Types")
+    else if (screen === "Channels")
       return (
         <Types
           app={this.props.app}
@@ -152,7 +152,7 @@ class Main extends Component {
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
-    else if (screen === "To do")
+    else if (screen === "Activities")
       return (
         <Todos
           app={this.props.app}

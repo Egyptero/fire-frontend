@@ -15,7 +15,7 @@ import Chart from "react-apexcharts";
 const styles = (theme) => ({
   content: {},
   grid: {},
-  gridFull:{},
+  gridFull: {},
   card: {},
   cardContent: {
     position: "relative",
@@ -59,7 +59,7 @@ class MyTeams extends Component {
     let chartData = this.props.data;
     return (
       <Card className={classes.card}>
-        <CardHeader title="Team" titleTypographyProps={{variant:"body1"}}/>
+        <CardHeader title="Team" titleTypographyProps={{ variant: "body1" }} />
         <Divider />
         <CardContent
           className={classes.cardContent}
@@ -67,7 +67,7 @@ class MyTeams extends Component {
         >
           <Grid
             container
-            alignItems="center"
+            alignContent="center"
             justify="center"
             //style={{ height: "100%" }}
           >

@@ -8,6 +8,7 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  Typography,
 } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -36,6 +37,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
+    padding: 0,
     //    height: "24vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
@@ -116,20 +118,34 @@ class MyQueues extends Component {
           <Table style={{ margin: 0 }}>
             <TableHead>
               <TableRow>
-                <CustomTableCell>Queue</CustomTableCell>
-                <CustomTableCell>Waiting</CustomTableCell>
-                <CustomTableCell>Not ready</CustomTableCell>
+                <CustomTableCell size="small">
+                  <Typography style={{ fontSize: 10 }}>Queue</Typography>
+                </CustomTableCell>
+                <CustomTableCell size="small">
+                  <Typography style={{ fontSize: 10 }}>Waiting</Typography>
+                </CustomTableCell>
+                <CustomTableCell size="small">
+                  <Typography style={{ fontSize: 10 }}>Not ready</Typography>
+                </CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {skillgroups.map((skillgroup) => (
                 <TableRow className={classes.row} key={skillgroup._id}>
-                  <CustomTableCell>{skillgroup.name}</CustomTableCell>
-                  <CustomTableCell>
-                    {this.getSkillQueue(skillgroup._id)}
+                  <CustomTableCell size="small">
+                    <Typography style={{ fontSize: 10 }}>
+                      {skillgroup.name}
+                    </Typography>
                   </CustomTableCell>
-                  <CustomTableCell>
-                    {this.getSkillNotReady(skillgroup._id)}
+                  <CustomTableCell size="small">
+                    <Typography style={{ fontSize: 10 }}>
+                      {this.getSkillQueue(skillgroup._id)}
+                    </Typography>
+                  </CustomTableCell>
+                  <CustomTableCell size="small">
+                    <Typography style={{ fontSize: 10 }}>
+                      {this.getSkillNotReady(skillgroup._id)}
+                    </Typography>
                   </CustomTableCell>
                 </TableRow>
               ))}

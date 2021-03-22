@@ -37,11 +37,11 @@ class BottomList extends Component {
         >
           <ListItem
             button
-            key="Types"
-            onClick={() => handleScreenChange("Types")}
-            selected={app.screen === "Types"}
+            key="Channels"
+            onClick={() => handleScreenChange("Channels")}
+            selected={app.screen === "Channels"}
             style={
-              app.screen === "Types"
+              app.screen === "Channels"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
@@ -55,7 +55,7 @@ class BottomList extends Component {
             <ListItemIcon style={{ margin: theme.spacing(0) ,minWidth:theme.spacing(5)}}>
               <Input //style={{ color: "white" }}
                 style={
-                  app.screen === "Types"
+                  app.screen === "Channels"
                     ? {
                         color: theme.palette.common.white,
                       }
@@ -69,7 +69,7 @@ class BottomList extends Component {
                 <Typography
                   variant="caption" //style={{ color: "white" }}
                   style={
-                    app.screen === "Types"
+                    app.screen === "Channels"
                       ? {
                           color: theme.palette.common.white,
                         }

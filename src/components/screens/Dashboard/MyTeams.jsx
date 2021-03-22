@@ -8,6 +8,7 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  Typography,
 } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -37,6 +38,7 @@ const styles = (theme) => ({
     position: "relative",
     overflow: "auto",
     //height: "24vh",
+    padding:0,
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -95,22 +97,38 @@ class MyTeams extends Component {
           className={classes.cardContent}
           style={this.props.fullScreen ? { height: "75vh" } : {}}
         >
-          <Table style={{ margin: 0 }}>
+          <Table style={{ margin: 0 }} size="small">
             <TableHead>
               <TableRow>
-                <CustomTableCell>User</CustomTableCell>
-                <CustomTableCell>Status</CustomTableCell>
-                <CustomTableCell>Since</CustomTableCell>
+                <CustomTableCell size="small">
+                  <Typography style={{ fontSize: 10 }}>User</Typography>
+                </CustomTableCell>
+                <CustomTableCell size="small">
+                  <Typography style={{ fontSize: 10 }}>Status</Typography>
+                </CustomTableCell>
+                <CustomTableCell size="small">
+                  <Typography style={{ fontSize: 10 }}>Since</Typography>
+                </CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {teams.map((user) => (
                 <TableRow className={classes.row} key={user._id}>
                   <CustomTableCell>
-                    {user.firstname + " " + user.lastname}
+                    <Typography style={{ fontSize: 10 }}>
+                      {user.firstname + " " + user.lastname}
+                    </Typography>
                   </CustomTableCell>
-                  <CustomTableCell>{user.status}</CustomTableCell>
-                  <CustomTableCell>{"00:00:00"}</CustomTableCell>
+                  <CustomTableCell>
+                    <Typography style={{ fontSize: 10 }}>
+                      {user.status}
+                    </Typography>
+                  </CustomTableCell>
+                  <CustomTableCell>
+                    <Typography style={{ fontSize: 10 }}>
+                      {"00:00:00"}
+                    </Typography>
+                  </CustomTableCell>
                 </TableRow>
               ))}
             </TableBody>

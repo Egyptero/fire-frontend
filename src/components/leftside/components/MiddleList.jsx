@@ -46,11 +46,11 @@ class MiddelList extends Component {
           </ListItem> */}
           <ListItem
             button
-            key="To do"
-            onClick={() => handleScreenChange("To do")}
-            selected={app.screen === "To do"}
+            key="Activities"
+            onClick={() => handleScreenChange("Activities")}
+            selected={app.screen === "Activities"}
             style={
-              app.screen === "To do"
+              app.screen === "Activities"
                 ? {
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: "1px 1px 2px black",
@@ -66,7 +66,7 @@ class MiddelList extends Component {
             >
               <Event //style={{ color: "white" }}
                 style={
-                  app.screen === "To do"
+                  app.screen === "Activities"
                     ? {
                         color: theme.palette.common.white,
                       }
@@ -81,7 +81,7 @@ class MiddelList extends Component {
                 <Typography
                   variant="caption" //style={{ color: "white" }}
                   style={
-                    app.screen === "To do"
+                    app.screen === "Activities"
                       ? {
                           color: theme.palette.common.white,
                         }

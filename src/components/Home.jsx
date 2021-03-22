@@ -28,7 +28,7 @@ const styles = (theme) => ({
     left: 0,
     right: 0,
     margin: "auto",
-    maxWidth: "25em",
+    maxWidth: "23em",
     maxHeight: "25em",
   },
 });
@@ -194,8 +194,8 @@ class Home extends Component {
                   type="password"
                   style={{ width: "75%" }}
                   size="small"
-                  inputProps={{style:{fontSize:"0.8rem"}}}
-                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 />
               </Grid>
             </Grid>
@@ -283,9 +283,8 @@ class Home extends Component {
                   onKeyDown={this.handleEnterPressInEmail}
                   style={{ width: "75%" }}
                   size="small"
-                  inputProps={{style:{fontSize:"0.8rem"}}}
-                  InputLabelProps={{style:{fontSize:"0.8rem"}}}
-
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 />
               </Grid>
             </Grid>

@@ -278,8 +278,8 @@ class PrimaryApp extends React.Component {
             <img
               src="./imgs/loader.gif"
               alt="Loading organization"
-              height={this.props.theme.spacing(16)}
-              width={this.props.theme.spacing(16)}
+              //height={this.props.theme.spacing(16)}
+              width={"6%"}
             />
 
             {/* <CircularProgress
@@ -287,7 +287,7 @@ class PrimaryApp extends React.Component {
 //              variant="determinate"
 //              value={this.props.app.loader.progress}
             /> */}
-            <Typography color="inherit" variant="h6">
+            <Typography color="inherit" variant="subtitle1">
               Loading .....
             </Typography>
             <Typography color="inherit" variant="caption">
