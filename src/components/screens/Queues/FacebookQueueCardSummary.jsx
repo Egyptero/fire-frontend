@@ -284,14 +284,16 @@ class FacebookQueueCardSummary extends Component {
                         </Typography>
                       </Grid>
                       <Grid item xs={3}>
-                        <Typography
-                          variant="caption"
-                          color="inherit"
-                          align="right"
-                          style={{ marginRight: theme.spacing(1) }}
-                        >
-                          {this.getQueue(skillgroup._id)}
-                        </Typography>
+                        <Grid container justify="flex-end">
+                          <Typography
+                            variant="caption"
+                            color="inherit"
+                            align="right"
+                            style={{ marginRight: theme.spacing(1) }}
+                          >
+                            {this.getQueue(skillgroup._id)}
+                          </Typography>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>

@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardContent,
   IconButton,
-  Divider
+  Divider,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -15,12 +15,12 @@ import {
   ArrowDropUp,
   Remove,
   Refresh,
-  MoreVert
+  MoreVert,
 } from "@material-ui/icons";
 import loadMyQueues from "../../../functions/user/tenant/loadMyQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   fullgrid: {},
@@ -28,7 +28,7 @@ const styles = theme => ({
     overflow: "auto",
     maxHeight: "100%",
     minHeight: "100%",
-    minWidth: "100%"
+    minWidth: "100%",
   },
   cardContent: {},
   cardContentLong: {
@@ -37,50 +37,50 @@ const styles = theme => ({
     height: "70vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   floatButton: {
     position: "absolute",
     top: theme.spacing(1),
     right: theme.spacing(1),
-    zIndex: 1
+    zIndex: 1,
   },
   floatButtonLeft: {
     position: "absolute",
     top: theme.spacing(1),
     left: theme.spacing(1),
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 });
 
 class QueueCardSummary extends Component {
   state = {
     queue: 0,
-    trend: "neutral"
+    trend: "neutral",
   };
   componentDidMount() {
     const { app } = this.props;
 
     if (!app.mySkillgroups)
-      loadMySkillgroups(this, result => {
+      loadMySkillgroups(this, (result) => {
         if (!result.error) {
           if (!app.myQueues)
-            loadMyQueues(this, result => {
+            loadMyQueues(this, (result) => {
               if (!result.error) this.prepareData();
             });
           else this.prepareData();
         }
       });
     else if (!app.myQueues)
-      loadMyQueues(this, result => {
+      loadMyQueues(this, (result) => {
         if (!result.error) this.prepareData();
       });
     else this.prepareData();
@@ -88,29 +88,29 @@ class QueueCardSummary extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { app } = this.props;
     if (app.tenant !== prevProps.app.tenant)
-      loadMySkillgroups(this, result => {
+      loadMySkillgroups(this, (result) => {
         if (!result.error)
-          loadMyQueues(this, result => {
+          loadMyQueues(this, (result) => {
             if (!result.error) this.prepareData();
           });
       });
   }
   reload = () => {
-    loadMySkillgroups(this, result => {
+    loadMySkillgroups(this, (result) => {
       if (!result.error)
-        loadMyQueues(this, result => {
+        loadMyQueues(this, (result) => {
           if (!result.error) this.prepareData();
         });
     });
   };
-  switchToSkillQueue = skillId => {};
-  renderTrend = trend => {
+  switchToSkillQueue = (skillId) => {};
+  renderTrend = (trend) => {
     switch (trend) {
       case "up":
         return (
           <ArrowDropUp
             style={{
-              color: "red"
+              color: "red",
             }}
             fontSize="small"
           />
@@ -119,7 +119,7 @@ class QueueCardSummary extends Component {
         return (
           <Remove
             style={{
-              color: "orange"
+              color: "orange",
             }}
             fontSize="small"
           />
@@ -128,7 +128,7 @@ class QueueCardSummary extends Component {
         return (
           <ArrowDropDown
             style={{
-              color: "green"
+              color: "green",
             }}
             fontSize="small"
           />
@@ -141,7 +141,7 @@ class QueueCardSummary extends Component {
     const { app } = this.props;
     let queue = 0;
     if (app.myQueues) {
-      app.myQueues.forEach(allQueue => {
+      app.myQueues.forEach((allQueue) => {
         queue += allQueue.queue;
       });
     }
@@ -153,14 +153,14 @@ class QueueCardSummary extends Component {
 
     this.setState({
       queue,
-      trend
+      trend,
     });
   };
-  getQueue = skillId => {
+  getQueue = (skillId) => {
     const { app } = this.props;
     if (app.myQueues) {
       const targetQueues = app.myQueues.filter(
-        queue => queue.skillgroupId === skillId
+        (queue) => queue.skillgroupId === skillId
       );
       if (targetQueues.length > 0) return targetQueues[0].queue;
     }
@@ -192,11 +192,11 @@ class QueueCardSummary extends Component {
                 direction="column"
                 style={{
                   marginTop: theme.spacing(3),
-                  marginBottom: theme.spacing(1)
+                  marginBottom: theme.spacing(1),
                 }}
               >
                 <Grid container alignContent="center" justify="center">
-                  <Typography variant="h4">Queue now</Typography>
+                  <Typography variant="h5">Queue now</Typography>
                 </Grid>
               </Grid>
               <Grid
@@ -205,19 +205,19 @@ class QueueCardSummary extends Component {
                 justify="center"
                 style={{
                   marginTop: theme.spacing(1),
-                  marginBottom: theme.spacing(4)
+                  marginBottom: theme.spacing(4),
                 }}
               >
-                <Typography variant="h3">{this.state.queue}</Typography>
+                <Typography variant="h5">{this.state.queue}</Typography>
               </Grid>
 
-              {mySkillgroups.map(skillgroup => {
+              {mySkillgroups.map((skillgroup) => {
                 return (
                   <Grid
                     key={skillgroup._id}
                     item
                     style={{
-                      marginBottom: theme.spacing(1) * 0.5
+                      marginBottom: theme.spacing(1) * 0.5,
                     }}
                   >
                     <Grid container direction="column">
@@ -228,15 +228,15 @@ class QueueCardSummary extends Component {
                         justify="center"
                         style={{
                           marginTop: theme.spacing(1),
-                          marginBottom: theme.spacing(1) * 0.5
+                          marginBottom: theme.spacing(1) * 0.5,
                         }}
                       >
-                        <Typography variant="h5" color="inherit">
+                        <Typography variant="subtitle1" color="inherit">
                           {skillgroup.name}
                         </Typography>
                       </Grid>
                       <Grid container alignContent="center" justify="center">
-                        <Typography variant="h5" color="inherit">
+                        <Typography variant="subtitle1" color="inherit">
                           {this.getQueue(skillgroup._id)}
                         </Typography>
                       </Grid>
@@ -248,10 +248,10 @@ class QueueCardSummary extends Component {
           </CardContent>
         </Card>
         <IconButton className={classes.floatButton}>
-          <MoreVert />
+          <MoreVert fontSize="small"/>
         </IconButton>
         <IconButton className={classes.floatButtonLeft} onClick={this.reload}>
-          <Refresh />
+          <Refresh fontSize="small"/>
         </IconButton>
       </React.Fragment>
     );
@@ -263,7 +263,7 @@ QueueCardSummary.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(QueueCardSummary);

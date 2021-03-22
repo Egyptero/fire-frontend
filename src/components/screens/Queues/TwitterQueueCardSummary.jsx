@@ -224,7 +224,7 @@ class TwitterQueueCardSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ backgroundColor: "#00acee", padding: theme.spacing(1)  }}
+            style={{ backgroundColor: "#00acee", padding: theme.spacing(1) }}
             title={
               <Grid container alignContent="center" justify="center">
                 <img
@@ -284,14 +284,16 @@ class TwitterQueueCardSummary extends Component {
                         </Typography>
                       </Grid>
                       <Grid item xs={3}>
-                        <Typography
-                          variant="caption"
-                          color="inherit"
-                          align="right"
-                          style={{ marginRight: theme.spacing(1) }}
-                        >
-                          {this.getQueue(skillgroup._id)}
-                        </Typography>
+                        <Grid container justify="flex-end">
+                          <Typography
+                            variant="caption"
+                            color="inherit"
+                            align="right"
+                            style={{ marginRight: theme.spacing(1) }}
+                          >
+                            {this.getQueue(skillgroup._id)}
+                          </Typography>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -301,10 +303,14 @@ class TwitterQueueCardSummary extends Component {
           </CardContent>
         </Card>
         <IconButton className={classes.floatButton} size="small">
-          <MoreVert style={{ color: "white" }} fontSize="small"/>
+          <MoreVert style={{ color: "white" }} fontSize="small" />
         </IconButton>
-        <IconButton className={classes.floatButtonLeft} onClick={this.reload} size="small">
-          <Refresh style={{ color: "white" }} fontSize="small"/>
+        <IconButton
+          className={classes.floatButtonLeft}
+          onClick={this.reload}
+          size="small"
+        >
+          <Refresh style={{ color: "white" }} fontSize="small" />
         </IconButton>
       </React.Fragment>
     );

@@ -79,7 +79,7 @@ class MyTodosCalendar extends Component {
             //showNonCurrentDates={false}
             //fixedWeekCount={true}
             // contentHeight={"100%"}
-            titleFormat={ {year: 'numeric', month: 'long'} } 
+            titleFormat={{ year: "numeric", month: "long" }}
             height={"100%"}
             dayMaxEventRows={true}
             // editable={true}
