@@ -12,7 +12,8 @@ import {
   InputLabel,
   FormControl,
   Typography,
-  OutlinedInput
+  OutlinedInput,
+  Divider,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -20,20 +21,21 @@ import _ from "lodash";
 import updateFeedback from "../../functions/user/feedback/updateFeedback";
 import addFeedback from "../../functions/user/feedback/addFeedback";
 import styles from "../primaryapp/appStyles";
+import { Cancel, Save } from "@material-ui/icons";
 class FeedbackDialog extends Component {
   state = {
-    head: "New feedback",
+    head: "Your feedback is very valuable to us!",
     title: "",
     description: "",
     module: "Others",
-    type: "Defect"
+    type: "Defect",
   };
   componentDidMount() {
     const { edit, app, feedbackId } = this.props;
     if (edit) {
       const feedback = _.filter(
         app.myFeedbacks,
-        feedback => feedback._id === feedbackId
+        (feedback) => feedback._id === feedbackId
       );
       if (feedback.length > 0) this.setInitialState(feedback[0]);
     } else this.setInitialState();
@@ -46,7 +48,7 @@ class FeedbackDialog extends Component {
       if (edit) {
         const feedback = _.filter(
           app.myFeedbacks,
-          feedback => feedback._id === feedbackId
+          (feedback) => feedback._id === feedbackId
         );
         if (feedback.length > 0) this.setInitialState(feedback[0]);
       }
@@ -58,26 +60,26 @@ class FeedbackDialog extends Component {
         this.setInitialState();
     }
   }
-  setInitialState = feedback => {
+  setInitialState = (feedback) => {
     if (feedback)
       this.setState({
-        head: "Edit feedback",
+        head: "Edit your feedback",
         title: feedback.title,
         description: feedback.description,
         module: feedback.module,
-        type: feedback.type
+        type: feedback.type,
       });
     else
       this.setState({
-        head: "New feedback",
+        head: "Your feedback is very valuable to us!",
         title: "",
         description: "",
         module: "Others",
-        type: "Defect"
+        type: "Defect",
       });
   };
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.name === "title")
       this.setState({ title: event.target.value });
     else if (event.target.name === "description")
@@ -94,19 +96,19 @@ class FeedbackDialog extends Component {
       title: this.state.title,
       description: this.state.description,
       module: this.state.module,
-      type: this.state.type
+      type: this.state.type,
     };
     if (edit)
-      updateFeedback(feedbackId, data, this, result => {
+      updateFeedback(feedbackId, data, this, (result) => {
         if (!result.error) handleClose();
       });
     else
-      addFeedback(data, this, result => {
+      addFeedback(data, this, (result) => {
         if (!result.error) handleClose();
       });
   };
 
-  formattedDate = d => {
+  formattedDate = (d) => {
     const date = new Date(d);
     return date.toISOString().split("T")[0];
   };
@@ -117,29 +119,37 @@ class FeedbackDialog extends Component {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
-          disableTypography
+          //disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.light,
           }}
         >
           <Typography
-            variant="h6"
-            style={{
-              color: theme.palette.secondary.contrastText
-            }}
+            variant="subtitle2"
+            style={
+              {
+                //color: theme.palette.secondary.contrastText,
+              }
+            }
           >
             {this.state.head}
           </Typography>
         </DialogTitle>
+        <Divider />
         <DialogContent>
-          <Grid container spacing={1} style={{ padding: theme.spacing(2) }}>
+          <Grid container spacing={1} style={{ padding: theme.spacing(1) }}>
             <Grid item xs={6}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
                 <InputLabel shrink htmlFor="module-label">
-                  Module
+                  <Typography variant="caption">Module</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.module}
@@ -147,23 +157,47 @@ class FeedbackDialog extends Component {
                   name="module"
                   input={<OutlinedInput labelWidth={60} id="module-label" />}
                 >
-                  <MenuItem value="Types">Types</MenuItem>
-                  <MenuItem value="Workflows">Workflows</MenuItem>
-                  <MenuItem value="Skillgroups">Skillgroups</MenuItem>
-                  <MenuItem value="Users">Users</MenuItem>
-                  <MenuItem value="Dashboard">Dashboard</MenuItem>
-                  <MenuItem value="Queues">Queues</MenuItem>
-                  <MenuItem value="History">History</MenuItem>
-                  <MenuItem value="Organization">Organization</MenuItem>
-                  <MenuItem value="Welcome">Welcome</MenuItem>
-                  <MenuItem value="Others">Others</MenuItem>
+                  <MenuItem value="Types">
+                    <Typography variant="caption">Types</Typography>
+                  </MenuItem>
+                  <MenuItem value="Workflows">
+                    <Typography variant="caption">Workflows</Typography>
+                  </MenuItem>
+                  <MenuItem value="Skillgroups">
+                    <Typography variant="caption">Skillgroups</Typography>
+                  </MenuItem>
+                  <MenuItem value="Users">
+                    <Typography variant="caption">Users</Typography>
+                  </MenuItem>
+                  <MenuItem value="Dashboard">
+                    <Typography variant="caption">Dashboard</Typography>
+                  </MenuItem>
+                  <MenuItem value="Queues">
+                    <Typography variant="caption">Queues</Typography>
+                  </MenuItem>
+                  <MenuItem value="History">
+                    <Typography variant="caption">History</Typography>
+                  </MenuItem>
+                  <MenuItem value="Organization">
+                    <Typography variant="caption">Organization</Typography>
+                  </MenuItem>
+                  <MenuItem value="Welcome">
+                    <Typography variant="caption">Welcome</Typography>
+                  </MenuItem>
+                  <MenuItem value="Others">
+                    <Typography variant="caption">Others</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
                 <InputLabel shrink htmlFor="type-label">
-                  Type
+                  <Typography variant="caption">Type</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.type}
@@ -172,12 +206,24 @@ class FeedbackDialog extends Component {
                   fullWidth
                   input={<OutlinedInput labelWidth={60} id="type-label" />}
                 >
-                  <MenuItem value="Feedback">Feedback</MenuItem>
-                  <MenuItem value="Question">Question</MenuItem>
-                  <MenuItem value="Request">Request</MenuItem>
-                  <MenuItem value="Recommendation">Recommendation</MenuItem>
-                  <MenuItem value="Requirements">Requirements</MenuItem>
-                  <MenuItem value="Defect">Defect</MenuItem>
+                  <MenuItem value="Feedback">
+                    <Typography variant="caption">Feedback</Typography>
+                  </MenuItem>
+                  <MenuItem value="Question">
+                    <Typography variant="caption">Question</Typography>
+                  </MenuItem>
+                  <MenuItem value="Request">
+                    <Typography variant="caption">Request</Typography>
+                  </MenuItem>
+                  <MenuItem value="Recommendation">
+                    <Typography variant="caption">Recommendation</Typography>
+                  </MenuItem>
+                  <MenuItem value="Requirements">
+                    <Typography variant="caption">Requirements</Typography>
+                  </MenuItem>
+                  <MenuItem value="Defect">
+                    <Typography variant="caption">Defect</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -191,6 +237,8 @@ class FeedbackDialog extends Component {
                 value={this.state.title}
                 fullWidth
                 required
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </Grid>
@@ -205,20 +253,28 @@ class FeedbackDialog extends Component {
                 value={this.state.description}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="secondary" variant="contained">
-            Cancel
+          <Button
+            onClick={handleClose}
+            color="secondary"
+            variant="outlined"
+            size="small"
+          >
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddFeedback}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -234,6 +290,6 @@ FeedbackDialog.propTypes = {
   handleClose: PropTypes.func.isRequired,
   edit: PropTypes.bool,
   feedbackId: PropTypes.object,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(FeedbackDialog);
