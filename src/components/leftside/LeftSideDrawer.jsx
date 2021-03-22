@@ -48,14 +48,16 @@ class LeftSideDrawer extends React.Component {
                   <img
                     src="./imgs/firemisc.png"
                     alt="firemisc"
-                    height={theme.spacing(7)}
-                    width={theme.spacing(11)}
+                    
+                    height="100%"//{theme.spacing(7)}
+                    width="60%"//{theme.spacing(10)}
                   />
                 </Grid>
               </Grid>
               <Grid item xs={2}>
                 <IconButton onClick={handleDrawerClose} size="small">
                   <ChevronLeft //style={{ color: "white" }}
+                  fontSize="small"
                   />
                 </IconButton>
               </Grid>
