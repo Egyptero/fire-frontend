@@ -23,7 +23,7 @@ class ScoreKPI extends Component {
     return (
       <Grid container direction="column" alignItems="center">
         <GaugeChart
-          nrOfLevels={30}
+          nrOfLevels={8} //30
           colors={[
             theme.palette.error.dark,
             theme.palette.error.main,
@@ -40,12 +40,24 @@ class ScoreKPI extends Component {
           needleColor={theme.palette.secondary.light}
           needleBaseColor={theme.palette.secondary.main}
         />
-        <Typography variant="body1" gutterBottom={false}>{params.kpi}</Typography>
-        <Typography variant="caption" gutterBottom={false}>{params.caption}</Typography>
-        <Typography variant="body2" gutterBottom={false}>Target</Typography>
-        <Typography variant="caption" gutterBottom={false}>{params.target}</Typography>
-        <Typography variant="body2" gutterBottom={false}>Actual</Typography>
-        <Typography variant="caption" gutterBottom={false}>{params.actual}</Typography>
+        <Typography variant="body1" gutterBottom={false}>
+          {params.kpi}
+        </Typography>
+        <Typography variant="caption" gutterBottom={false}>
+          {params.caption}
+        </Typography>
+        <Typography variant="body2" gutterBottom={false}>
+          Target
+        </Typography>
+        <Typography variant="caption" gutterBottom={false}>
+          {params.target}
+        </Typography>
+        <Typography variant="body2" gutterBottom={false}>
+          Actual
+        </Typography>
+        <Typography variant="caption" gutterBottom={false}>
+          {params.actual}
+        </Typography>
       </Grid>
     );
   }

@@ -23,6 +23,15 @@ import {
   CallMade,
   CallMerge,
   Remove,
+  Cancel,
+  PlayCircleFilled,
+  PauseCircleFilled,
+  AddCircleOutlined,
+  SwapHorizontalCircle,
+  AddCircle,
+  CheckCircle,
+  AccountTree,
+  WhatsApp,
 } from "@material-ui/icons";
 const styles = (theme) => ({
   content: {},
@@ -43,24 +52,87 @@ class MyInteractionsItem extends Component {
   handleMenuClose = () => {
     this.setState({ openMenu: false, source: null });
   };
+  getAvatarIcon = (typeId) => {
+    const { app } = this.props;
+    let result = {
+      error: true,
+      typeName: "",
+      iconComponent: "",
+      color: this.props.theme.palette.secondary.light,
+    };
+    if (!app) return { error: true };
+    if (!app.types) return { error: true };
+    app.types.forEach((type) => {
+      if (type._id === typeId) {
+        switch (type.channel) {
+          case "Facebook Page":
+          case "Facebook DM":
+          case "Twitter Account":
+          case "Twitter DM":
+          case "Instagram Account":
+          case "Instagram DM":
+            break;
+          case "WhatsApp Business":
+            result.error = false;
+            result.typeName = type.name;
+            result.iconComponent = <WhatsApp fontSize="small" />;
+            result.color = "#25d366";
+            break;
+          case "LinkedIn":
+          case "Youtube":
+          case "Voice":
+          case "Vedio":
+          case "SMS":
+          case "Chat":
+          case "Email":
+          case "Webrtc":
+          case "Project":
+            result.error = false;
+            result.typeName = type.name;
+            // result.iconComponent = <AccountTree fontSize="small" />;
+            // result.color = this.props.theme.palette.warning.main;
+            result.iconComponent = <WhatsApp fontSize="small" />;
+            result.color = "#25d366";
+
+            break;
+          case "Custom":
+            break;
+          default:
+            break;
+        }
+      }
+    });
+    return result;
+  };
   render() {
     const { classes, myInteraction, source, app } = this.props;
-    let avatarColor = "grey";
-    //We should define here AVATAR type based on interaction type
-    //We will need to load type if it is not their.
-
-    // if (myInteraction.priority === "Critical") avatarColor = "darkred";
-    // else if (myInteraction.priority === "High") avatarColor = "red";
-    // else if (myInteraction.priority === "Low") avatarColor = "gray";
+    let avatarInfo = this.getAvatarIcon(myInteraction.interaction.typeId);
+    console.log(avatarInfo);
+    let avatarColor = avatarInfo.error
+      ? this.props.theme.palette.secondary.main
+      : avatarInfo.color;
 
     return (
-      <ListItem key={myInteraction.interaction._id}>
+      <ListItem
+        key={myInteraction.interaction._id}
+        style={{
+          padding: this.props.theme.spacing(1),
+        }}
+      >
         <ListItemAvatar>
-          <Avatar style={{ background: avatarColor }}>
-            {/* {myInteraction.priority[0]} */}
+          <Avatar
+            style={{
+              backgroundColor: avatarColor,
+              width: this.props.theme.spacing(4),
+              height: this.props.theme.spacing(4),
+            }}
+          >
+            {avatarInfo.iconComponent}
           </Avatar>
         </ListItemAvatar>
         <ListItemText
+          primaryTypographyProps={{ variant: "body2" }}
+          //secondaryTypographyProps={{variant:"caption"}}
           primary={myInteraction.interaction.attached.title}
           secondary={
             <Grid container direction="column">
@@ -68,27 +140,28 @@ class MyInteractionsItem extends Component {
                 component="span"
                 className={classes.inline}
                 color="textPrimary"
+                variant="caption"
               >
                 {(() => {
                   if (myInteraction.interaction.schedule.includes("T"))
                     return (
-                      myInteraction.interaction.schedule.split("T")[0] +
-                      " - " +
+                      //                      myInteraction.interaction.schedule.split("T")[0] +
+                      //                     " - " +
                       myInteraction.interaction.stage
                     );
                   else
                     return (
-                      myInteraction.interaction.schedule +
-                      " - " +
+                      //                      myInteraction.interaction.schedule +
+                      //                      " - " +
                       myInteraction.interaction.stage
                     );
                 })()}
               </Typography>
-
-              {(() => {
+              {this.props.view === "Detailed" ? avatarInfo.typeName : ""}
+              {/* {(() => {
                 if (this.props.view === "Detailed")
                   return myInteraction.interaction.attached.description;
-              })()}
+              })()} */}
             </Grid>
           }
         />
@@ -100,6 +173,7 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleAcceptInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
                 <Check fontSize="small" />
               </IconButton>
@@ -114,6 +188,7 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleRejectInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
                 <Close fontSize="small" />
               </IconButton>
@@ -128,8 +203,9 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleHoldInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
-                <Pause fontSize="small" />
+                <PauseCircleFilled fontSize="small" />
               </IconButton>
             </Tooltip>
           ) : (
@@ -142,8 +218,9 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleResumeInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
-                <PlayArrow fontSize="small" />
+                <PlayCircleFilled fontSize="small" />
               </IconButton>
             </Tooltip>
           ) : (
@@ -156,8 +233,9 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleCloseInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
-                <Close fontSize="small" />
+                <Cancel fontSize="small" />
               </IconButton>
             </Tooltip>
           ) : (
@@ -170,8 +248,9 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleTransferInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
-                <CallMade fontSize="small" />
+                <SwapHorizontalCircle fontSize="small" />
               </IconButton>
             </Tooltip>
           ) : (
@@ -186,8 +265,9 @@ class MyInteractionsItem extends Component {
                     myInteraction.interaction._id
                   );
                 }}
+                size="small"
               >
-                <CallMerge fontSize="small" />
+                <AddCircle fontSize="small" />
               </IconButton>
             </Tooltip>
           ) : (
@@ -200,22 +280,24 @@ class MyInteractionsItem extends Component {
                 onClick={(event) => {
                   app.handleTerminateInteraction(myInteraction.interaction._id);
                 }}
+                size="small"
               >
-                <Remove fontSize="small" />
+                <CheckCircle fontSize="small" />
               </IconButton>
             </Tooltip>
           ) : (
             ""
           )}
-          <IconButton
+          {/* <IconButton
             aria-haspopup="true"
             onClick={(event) => {
               this.handleMenuOpen(event);
             }}
+            size="small"
             //color="inherit"
           >
             <MoreVert fontSize="small" />
-          </IconButton>
+          </IconButton> */}
           <Menu
             anchorEl={this.state.source}
             anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -230,7 +312,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Accept
+                <Typography variant="caption">Accept</Typography>
               </MenuItem>
             ) : (
               ""
@@ -242,7 +324,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Reject
+                <Typography variant="caption">Reject</Typography>
               </MenuItem>
             ) : (
               ""
@@ -253,7 +335,7 @@ class MyInteractionsItem extends Component {
                 this.handleMenuClose();
               }}
             >
-              Open
+              <Typography variant="caption">Open</Typography>
             </MenuItem>
             {myInteraction.buttons.hold ? (
               <MenuItem
@@ -262,7 +344,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Hold
+                <Typography variant="caption">Hold</Typography>
               </MenuItem>
             ) : (
               ""
@@ -274,7 +356,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Retreive
+                <Typography variant="caption">Retreive</Typography>
               </MenuItem>
             ) : (
               ""
@@ -286,7 +368,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Terminate
+                <Typography variant="caption">Terminate</Typography>
               </MenuItem>
             ) : (
               ""
@@ -298,7 +380,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Close
+                <Typography variant="caption">Close</Typography>
               </MenuItem>
             ) : (
               ""
@@ -310,7 +392,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Transfer
+                <Typography variant="caption">Transfer</Typography>
               </MenuItem>
             ) : (
               ""
@@ -324,7 +406,7 @@ class MyInteractionsItem extends Component {
                   this.handleMenuClose();
                 }}
               >
-                Conference
+                <Typography variant="caption">Conference</Typography>
               </MenuItem>
             ) : (
               ""

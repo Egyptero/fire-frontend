@@ -24,7 +24,7 @@ import styles from "../primaryapp/appStyles";
 import { Cancel, Save } from "@material-ui/icons";
 class FeedbackDialog extends Component {
   state = {
-    head: "Your feedback is very valuable to us!",
+    head: "Your feedback is valuable to us!",
     title: "",
     description: "",
     module: "Others",
@@ -71,7 +71,7 @@ class FeedbackDialog extends Component {
       });
     else
       this.setState({
-        head: "Your feedback is very valuable to us!",
+        head: "Your feedback is valuable to us!",
         title: "",
         description: "",
         module: "Others",
@@ -125,14 +125,14 @@ class FeedbackDialog extends Component {
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.light,
+            backgroundColor: theme.palette.secondary.main,
           }}
         >
           <Typography
             variant="subtitle1"
             style={
               {
-                //color: theme.palette.secondary.contrastText,
+                color: theme.palette.secondary.contrastText,
               }
             }
           >

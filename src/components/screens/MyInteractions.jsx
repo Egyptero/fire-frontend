@@ -7,7 +7,7 @@ import MyInteraction from "./Dashboard/MyInteractionsSummary";
 const styles = theme => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    //height: "86vh"
   },
   grid: {
     display: "flex",

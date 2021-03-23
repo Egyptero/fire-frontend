@@ -11,6 +11,8 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
+  Typography,
+  Grid,
 } from "@material-ui/core";
 import MyInteractionsItem from "./MyInteractions/MyInteractionsItem";
 const styles = (theme) => ({
@@ -21,6 +23,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
+    padding: theme.spacing(1),
     height: "32vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
@@ -87,40 +90,42 @@ class MyInteractionsSummary extends Component {
           <CardHeader
             action={
               <div>
-                <FormControl className={classes.formControl}>
+                <FormControl className={classes.formControl} size="small">
                   <InputLabel shrink htmlFor="bot-label-placeholder">
-                    View
+                    <Typography variant="caption">View</Typography>
                   </InputLabel>
                   <Select value={this.state.view} onChange={this.changeView}>
-                    <MenuItem value={"Summary"}>Summary</MenuItem>
-                    <MenuItem value={"Detailed"}>Detailed</MenuItem>
+                    <MenuItem value={"Summary"}>
+                      <Typography variant="caption">Summary</Typography>
+                    </MenuItem>
+                    <MenuItem value={"Detailed"}>
+                      <Typography variant="caption">Detailed</Typography>
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </div>
             }
-            title="My work"
+            title="Running interactions"
+            titleTypographyProps={{ variant: "body1" }}
           />
           <Divider />
-          {this.props.fullScreen ? (
-            <CardContent
-              className={classes.cardContent}
-              style={{ height: "75vh" }}
-            >
-              <List>
-                {myInteractions.map((myInteraction) => {
-                  return this.renderMyInteractionList(myInteraction);
-                })}
-              </List>
-            </CardContent>
-          ) : (
-            <CardContent className={classes.cardContent}>
-              <List>
-                {myInteractions.map((myInteraction) => {
-                  return this.renderMyInteractionList(myInteraction);
-                })}
-              </List>
-            </CardContent>
-          )}
+          <CardContent
+            className={classes.cardContent}
+            style={{ height: this.props.fullScreen ? "80vh" : "" }}
+          >
+            <Grid container direction="row" style={{ height: "100%" }}>
+              <Grid md={3} item style={{ backgroundColor: "lightgray" }}>
+                <List disablePadding>
+                  {myInteractions.map((myInteraction) => {
+                    return this.renderMyInteractionList(myInteraction);
+                  })}
+                </List>
+              </Grid>
+              <Grid md={9} item style={{ backgroundColor: "gray" }}>
+                {/* <Typography variant="h5">Welcome to my interaction</Typography> */}
+              </Grid>
+            </Grid>
+          </CardContent>
         </Card>
         {/* <TodoDialog {...this.props} source={this.getSharedObject()} /> */}
       </React.Fragment>
