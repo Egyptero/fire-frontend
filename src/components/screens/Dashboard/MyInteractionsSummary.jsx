@@ -23,8 +23,8 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    padding: theme.spacing(1),
-    height: "32vh",
+    padding: theme.spacing(0),
+    //    height: "32vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -47,7 +47,7 @@ class MyInteractionsSummary extends Component {
     openInteraction: false,
     action: "new",
     interactionId: null,
-    view: "Detailed",
+    view: "Summary", //Detailed
   };
 
   handleMyInteractionOpen = (interactionId) => {
@@ -114,14 +114,26 @@ class MyInteractionsSummary extends Component {
             style={{ height: this.props.fullScreen ? "80vh" : "" }}
           >
             <Grid container direction="row" style={{ height: "100%" }}>
-              <Grid md={3} item style={{ backgroundColor: "lightgray" }}>
-                <List disablePadding>
+              <Grid md={3} item>
+                <List disablePadding style={{ width: "100%" }}>
                   {myInteractions.map((myInteraction) => {
                     return this.renderMyInteractionList(myInteraction);
                   })}
                 </List>
               </Grid>
-              <Grid md={9} item style={{ backgroundColor: "gray" }}>
+              <Grid
+                md={9}
+                item
+                style={{
+                  border: "2px solid",
+                  // borderRadius: "2px",
+                  borderColor: this.props.theme.palette.text.secondary,
+                  backgroundImage: `url("./imgs/chatbackground.png")`,
+                  backgroundColor: this.props.theme.palette.common.white,
+                  opacity: 0.05,
+                  filter: `grayscale(100%)`,
+                }}
+              >
                 {/* <Typography variant="h5">Welcome to my interaction</Typography> */}
               </Grid>
             </Grid>
