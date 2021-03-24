@@ -89,6 +89,7 @@ class MyInteractionsSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
+            style={{ padding: this.props.theme.spacing(1) }}
             action={
               <div>
                 <FormControl className={classes.formControl} size="small">

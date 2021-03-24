@@ -10,6 +10,7 @@ import {
   Divider,
   LinearProgress,
   CircularProgress,
+  Button,
 } from "@material-ui/core";
 import { Menu, AccountCircle, MoreVert, TouchApp } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -19,6 +20,7 @@ import FireClientConnect from "../../io/FireClientConnect";
 import FireClientStatus from "../../io/FireClientStatus";
 import PhoneClient from "../../phone/PhoneClient";
 import FeedbackAdd from "../../buttons/add/FeedbackAdd";
+import CreateInteractionBtn from "../../buttons/createinteraction/CreateInteractionBtn";
 
 //import FireClient from "../../io/FireClient";
 
@@ -136,6 +138,16 @@ class MainBar extends Component {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <CreateInteractionBtn {...this.props} />
+            <Divider
+              style={{
+                width: "2px",
+                height: "2em",
+                marginLeft: "1em",
+                marginRight: "1em",
+              }}
+            />
+
             {myInteractions.length > 0 ? (
               <React.Fragment>
                 <IconButton
