@@ -19,7 +19,7 @@ export default ref => {
     workflows: ref.state.workflows, //Tenant workflows
     types: ref.state.types, // Tenant Types
     customers: ref.state.customers, // Tenant Types
-    interactions: ref.state.interactions,
+    interactions: ref.state.interactions, // Tenant interactions
     myInteractions: ref.state.myInteractions, // Assigned interactions to user
     myCalls: ref.state.myCalls, // Calls assigned to user
 

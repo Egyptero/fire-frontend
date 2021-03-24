@@ -89,10 +89,10 @@ class MyInteractionsItem extends Component {
           case "Project":
             result.error = false;
             result.typeName = type.name;
-            // result.iconComponent = <AccountTree fontSize="small" />;
-            // result.color = this.props.theme.palette.warning.main;
-            result.iconComponent = <WhatsApp fontSize="small" />;
-            result.color = "#25d366";
+            result.iconComponent = <AccountTree fontSize="small" />;
+            result.color = this.props.theme.palette.warning.main;
+            // result.iconComponent = <WhatsApp fontSize="small" />;
+            // result.color = "#25d366";
 
             break;
           case "Custom":
