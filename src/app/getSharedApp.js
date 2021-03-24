@@ -21,6 +21,7 @@ export default ref => {
     customers: ref.state.customers, // Tenant Types
     interactions: ref.state.interactions, // Tenant interactions
     myInteractions: ref.state.myInteractions, // Assigned interactions to user
+    myInteraction:ref.state.myInteraction,//Running interaction at the user
     myCalls: ref.state.myCalls, // Calls assigned to user
 
     myQueues: ref.state.myQueues, // Assigned user queues summary (skill and queue size)
@@ -99,6 +100,7 @@ export default ref => {
     handleInteractionsListLoad: ref.handleInteractionsListLoad,
     handleUpdateMe: ref.handleUpdateMe,
     handleUpdateToken: ref.handleUpdateToken, //Update user token
+    handleUpdateMyInteraction: ref.handleUpdateMyInteraction, // Update user running interaction
     //User Related Data
     todos: ref.state.todos, // User Todos
     loader: ref.state.loader, //Loading loader state

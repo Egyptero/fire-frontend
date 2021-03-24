@@ -43,6 +43,7 @@ class App extends Component {
     customers: null,
     interactions: null,
     types: null,
+    myInteraction: null, // User running interaction
     myInteractions: [],
     myCalls: [],
 
@@ -290,8 +291,11 @@ class App extends Component {
   handleTenantsListLoad = (tenants) => {
     this.setState({ tenants });
   };
+  handleUpdateMyInteraction = (myInteraction)=> {
+    this.setState({myInteraction});
+  }
   updateProgress = (loader) => {
-    this.setState({loader})
+    this.setState({ loader });
   };
   render() {
     return this.isAuthenticated() ? (

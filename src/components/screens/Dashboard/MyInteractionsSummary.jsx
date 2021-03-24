@@ -123,19 +123,7 @@ class MyInteractionsSummary extends Component {
                   })}
                 </List>
               </Grid>
-              <Grid
-                md={9}
-                item
-                style={{
-                  border: "2px solid",
-                  // borderRadius: "2px",
-                  borderColor: this.props.theme.palette.text.secondary,
-                  backgroundImage: `url("./imgs/chatbackground.png")`,
-                  backgroundColor: this.props.theme.palette.common.white,
-                  opacity: 0.05,
-                  filter: `grayscale(100%)`,
-                }}
-              >
+              <Grid md={9} item>
                 <MyInteractionDetails {...this.props} />
                 {/* <Typography variant="h5">Welcome to my interaction</Typography> */}
               </Grid>

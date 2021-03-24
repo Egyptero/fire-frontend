@@ -52,7 +52,7 @@ class CreateInteractionBtn extends Component {
           size="small"
         >
           {/* <AssignmentLate /> */}
-          Add interaction
+          Interaction
         </Button>
         <NewInteractionDialog
           app={this.props.app}

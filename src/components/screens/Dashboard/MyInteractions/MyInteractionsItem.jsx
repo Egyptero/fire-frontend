@@ -1,41 +1,35 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
-  ListItem,
   Avatar,
-  ListItemText,
-  Typography,
-  ListItemSecondaryAction,
+  Grid,
   IconButton,
+  ListItem,
+  ListItemAvatar,
+  ListItemSecondaryAction,
+  ListItemText,
   Menu,
   MenuItem,
   Tooltip,
-  ListItemAvatar,
-  Grid,
+  Typography,
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import {
-  MoreVert,
-  Check,
-  Close,
-  Pause,
-  PlayArrow,
-  CallMade,
-  CallMerge,
-  Remove,
-  Cancel,
-  PlayCircleFilled,
-  PauseCircleFilled,
-  AddCircleOutlined,
-  SwapHorizontalCircle,
-  AddCircle,
-  CheckCircle,
   AccountTree,
+  AddCircle,
+  Cancel,
+  Check,
+  CheckCircle,
+  Close,
+  PauseCircleFilled,
+  PlayCircleFilled,
+  SwapHorizontalCircle,
   WhatsApp,
 } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 const styles = (theme) => ({
   content: {},
   grid: {},
+  gridFull: {},
   card: {},
   cardContent: {},
   formControl: {},
@@ -89,10 +83,10 @@ class MyInteractionsItem extends Component {
           case "Project":
             result.error = false;
             result.typeName = type.name;
-            // result.iconComponent = <AccountTree fontSize="small" />;
-            // result.color = this.props.theme.palette.warning.main;
-            result.iconComponent = <WhatsApp fontSize="small" />;
-            result.color = "#25d366";
+            result.iconComponent = <AccountTree fontSize="small" />;
+            result.color = this.props.theme.palette.warning.main;
+            // result.iconComponent = <WhatsApp fontSize="small" />;
+            // result.color = "#25d366";
 
             break;
           case "Custom":
@@ -114,7 +108,7 @@ class MyInteractionsItem extends Component {
 
     return (
       <ListItem
-        //selected
+        selected={true}
         key={myInteraction.interaction._id}
         style={{
           padding: this.props.theme.spacing(1),
@@ -134,6 +128,7 @@ class MyInteractionsItem extends Component {
         <ListItemText
           primaryTypographyProps={{ variant: "body2" }}
           //secondaryTypographyProps={{variant:"caption"}}
+          disableTypography
           primary={myInteraction.interaction.attached.title}
           secondary={
             <Grid container direction="column">

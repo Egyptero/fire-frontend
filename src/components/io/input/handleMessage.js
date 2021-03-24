@@ -16,17 +16,17 @@ export default (ref, data) => {
     case "addinteraction":
       console.log("ODI: New add interaction message");
       updateMyInteractions(ref, data, true, true);
-      if (ref.state.screen !== "Dashboard") ref.handleScreenChange("My work");
+      if (ref.state.screen !== "My work") ref.handleScreenChange("My work");
       break;
     case "updateinteraction":
       console.log("ODI: Update interaction message");
       updateMyInteractions(ref, data, false, true);
-      if (ref.state.screen !== "Dashboard") ref.handleScreenChange("My work");
+      if (ref.state.screen !== "My work") ref.handleScreenChange("My work");
       break;
     case "removeinteraction":
       console.log("ODI: Remove interaction message");
       updateMyInteractions(ref, data, false, false);
-      if (ref.state.screen !== "Dashboard") ref.handleScreenChange("My work");
+      if (ref.state.screen !== "My work") ref.handleScreenChange("My work");
       break;
     default:
       break;
@@ -49,7 +49,8 @@ const updateMyInteractions = (ref, data, offer, update) => {
   if (update) myInteractions.push(data.interactionDetails);
   ref.setState({
     myInteractions,
-    user
+    user,
+    myInteraction: data.interactionDetails,
   });
   if (offer) ref.offerInteraction(data.interactionDetails);
 };
@@ -61,9 +62,9 @@ const updateAppState = (ref, data) => {
       logout: data.buttons.logout,
       ready: data.buttons.ready,
       notready: data.buttons.notready,
-      wrapup: data.buttons.wrapup
+      wrapup: data.buttons.wrapup,
     },
     status: data.status,
-    nextStatus: data.nextStatus
+    nextStatus: data.nextStatus,
   });
 };
