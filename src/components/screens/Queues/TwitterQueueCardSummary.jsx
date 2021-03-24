@@ -17,6 +17,7 @@ import {
   MoreVert,
   Refresh,
   Remove,
+  Twitter,
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -227,12 +228,7 @@ class TwitterQueueCardSummary extends Component {
             style={{ backgroundColor: "#00acee", padding: theme.spacing(1) }}
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/twitterwhitelogo.png"
-                  alt="twitter"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <Twitter style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

@@ -15,6 +15,7 @@ import {
   Remove,
   Refresh,
   MoreVert,
+  Email,
 } from "@material-ui/icons";
 import loadMyEmailQueues from "../../../functions/user/tenant/loadMyEmailQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
@@ -177,12 +178,7 @@ class EmailQueueCardSummary extends Component {
             }} //"#7c9cb0"
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/emailwhitelogo.png"
-                  alt="email"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <Email style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

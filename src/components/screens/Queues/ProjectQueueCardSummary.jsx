@@ -15,6 +15,7 @@ import {
   Remove,
   Refresh,
   MoreVert,
+  AccountTree,
 } from "@material-ui/icons";
 import loadMyProjectQueues from "../../../functions/user/tenant/loadMyProjectQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
@@ -179,12 +180,7 @@ class ProjectQueueCardSummary extends Component {
             }} //"#468078"
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/projectwhitelogo.png"
-                  alt="email"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <AccountTree style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

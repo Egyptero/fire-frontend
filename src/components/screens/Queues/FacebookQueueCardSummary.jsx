@@ -19,6 +19,7 @@ import {
   Remove,
   Refresh,
   MoreVert,
+  Facebook,
 } from "@material-ui/icons";
 import loadMyFacebookQueues from "../../../functions/user/tenant/loadMyFacebookQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
@@ -227,12 +228,7 @@ class FacebookQueueCardSummary extends Component {
             style={{ backgroundColor: "#3b5998", padding: theme.spacing(1) }}
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/facebookwhitelogo.png"
-                  alt="facebook"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <Facebook style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

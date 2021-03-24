@@ -14,6 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 import {
   ArrowDropDown,
   ArrowDropUp,
+  Instagram,
   MoreVert,
   Refresh,
   Remove,
@@ -230,12 +231,7 @@ class InstagramQueueCardSummary extends Component {
             }} //"#7f1734"
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/instagramwhitelogo.png"
-                  alt="instagram"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <Instagram style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

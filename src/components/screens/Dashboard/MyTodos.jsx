@@ -73,7 +73,7 @@ class MyTodos extends Component {
     showType: "All",
     view: "Detailed",
     severity: "All",
-    screenView: "Graph", //Table
+    screenView: "Table", //Table
   };
   componentDidMount() {
     if (this.props.fullScreen) this.setState({ screenView: "Graph" });

@@ -15,6 +15,7 @@ import {
   Remove,
   Refresh,
   MoreVert,
+  WhatsApp,
 } from "@material-ui/icons";
 import loadMyWhatsAppQueues from "../../../functions/user/tenant/loadMyWhatsAppQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
@@ -174,12 +175,7 @@ class WhatsAppQueueCardSummary extends Component {
             style={{ backgroundColor: "#25d366", padding: theme.spacing(1) }}
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/whatsappwhitelogo.png"
-                  alt="whatsapp"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <WhatsApp style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

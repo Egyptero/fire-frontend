@@ -15,6 +15,7 @@ import {
   Remove,
   Refresh,
   MoreVert,
+  Chat,
 } from "@material-ui/icons";
 import loadMyChatQueues from "../../../functions/user/tenant/loadMyChatQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
@@ -177,12 +178,7 @@ class ChatQueueCardSummary extends Component {
             }} //"#203864"
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/chatwhitelogo.png"
-                  alt="chat"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <Chat style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

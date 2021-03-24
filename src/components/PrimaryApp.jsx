@@ -268,11 +268,11 @@ class PrimaryApp extends React.Component {
           primaryApp={this.getSharedObject()}
           enqueueSnackbar={this.props.enqueueSnackbar}
         />
-        <MasterAdd
+        {/* <MasterAdd
           app={this.props.app}
           primaryApp={this.getSharedObject()}
           enqueueSnackbar={this.props.enqueueSnackbar}
-        />
+        /> */}
         <Backdrop
           className={classes.backdrop}
           open={this.props.app.loader.progress != 100}

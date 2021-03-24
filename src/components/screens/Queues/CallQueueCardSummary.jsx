@@ -19,6 +19,7 @@ import {
   Remove,
   Refresh,
   MoreVert,
+  Call,
 } from "@material-ui/icons";
 import loadMyCallQueues from "../../../functions/user/tenant/loadMyCallQueues";
 import loadMySkillgroups from "../../../functions/user/tenant/loadMySkillgroups";
@@ -213,12 +214,7 @@ class CallQueueCardSummary extends Component {
             }} //"#548235"
             title={
               <Grid container alignContent="center" justify="center">
-                <img
-                  src="./imgs/phonewhitelogo.png"
-                  alt="call"
-                  //height={theme.spacing(3)}
-                  width={theme.spacing(3)}
-                />
+                <Call style={{ color: theme.palette.common.white }} />
               </Grid>
             }
           />

@@ -64,7 +64,7 @@ class MyTodosCalendar extends Component {
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "80vh" } : { height: "65vh" }
+            this.props.fullScreen ? { height: "84vh" } : { height: "65vh" }
           }
         >
           <FullCalendar
