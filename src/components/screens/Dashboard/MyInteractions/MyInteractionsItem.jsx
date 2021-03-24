@@ -114,6 +114,7 @@ class MyInteractionsItem extends Component {
 
     return (
       <ListItem
+        //selected
         key={myInteraction.interaction._id}
         style={{
           padding: this.props.theme.spacing(1),

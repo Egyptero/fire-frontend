@@ -38,7 +38,7 @@ const styles = (theme) => ({
     position: "relative",
     overflow: "auto",
     //height: "24vh",
-    padding:0,
+    padding: 0,
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -145,14 +145,23 @@ class MyTeams extends Component {
     return (
       <React.Fragment>
         {this.state.view === "Graph" ? this.renderChart() : this.renderTable()}
-        <IconButton className={classes.floatButton} onClick={this.toggelView}>
-          {this.state.view === "Graph" ? <TableChart /> : <BarChart />}
+        <IconButton
+          className={classes.floatButton}
+          onClick={this.toggelView}
+          size="small"
+        >
+          {this.state.view === "Graph" ? (
+            <TableChart fontSize="small" />
+          ) : (
+            <BarChart fontSize="small" />
+          )}
         </IconButton>
         <IconButton
           className={classes.floatButtonLeft}
           onClick={this.props.refresh}
+          size="small"
         >
-          <Refresh />
+          <Refresh fontSize="small" />
         </IconButton>
       </React.Fragment>
     );

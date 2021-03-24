@@ -63,6 +63,7 @@ class MyQueues extends Component {
         <CardHeader
           title="Queues"
           titleTypographyProps={{ variant: "body1" }}
+          style={{ padding: this.props.theme.spacing(1) }}
         />
         <Divider />
         <CardContent

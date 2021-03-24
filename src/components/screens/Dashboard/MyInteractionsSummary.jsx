@@ -15,6 +15,7 @@ import {
   Grid,
 } from "@material-ui/core";
 import MyInteractionsItem from "./MyInteractions/MyInteractionsItem";
+import MyInteractionDetails from "./MyInteractions/MyInteractionDetails";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -134,6 +135,7 @@ class MyInteractionsSummary extends Component {
                   filter: `grayscale(100%)`,
                 }}
               >
+                <MyInteractionDetails {...this.props} />
                 {/* <Typography variant="h5">Welcome to my interaction</Typography> */}
               </Grid>
             </Grid>

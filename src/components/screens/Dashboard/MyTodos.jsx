@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Add, Refresh, TableChart, BarChart } from "@material-ui/icons";
+import {
+  Add,
+  Refresh,
+  TableChart,
+  BarChart,
+  PieChart,
+} from "@material-ui/icons";
 import {
   Card,
   CardHeader,
@@ -67,7 +73,7 @@ class MyTodos extends Component {
     showType: "All",
     view: "Detailed",
     severity: "All",
-    screenView: "Table", //Table
+    screenView: "Graph", //Table
   };
   componentDidMount() {
     if (this.props.fullScreen) this.setState({ screenView: "Graph" });
@@ -141,48 +147,47 @@ class MyTodos extends Component {
     const { classes } = this.props;
     return (
       <CardHeader
-      //style={{height:this.props.theme.spacing(3)}}
+        style={{
+          padding: this.props.theme.spacing(1),
+        }}
         action={
-          <div>
-            {this.props.fullScreen ? (
-              <FormControl className={classes.formControl}>
-                <InputLabel
-                  shrink
-                  htmlFor="bot-label-placeholder"
-                  //style={{ paddingBottom: 0, marginBottom: 0 }}
-                >
-                  <Typography variant="caption">Severity</Typography>
-                </InputLabel>
-                <Select
-                  value={this.state.severity}
-                  onChange={this.changeSeverity}
-                  style={{ margin: 5 }}
-                >
-                  <MenuItem value={"All"}>
-                    <Typography variant="caption">All</Typography>
-                  </MenuItem>
-                  <MenuItem value={"Critical"}>
-                    <Typography variant="caption">Critical</Typography>
-                  </MenuItem>
-                  <MenuItem value={"High"}>
-                    <Typography variant="caption">High</Typography>
-                  </MenuItem>
-                  <MenuItem value={"Medium"}>
-                    <Typography variant="caption">Medium</Typography>
-                  </MenuItem>
-                  <MenuItem value={"Low"}>
-                    <Typography variant="caption">Low</Typography>
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            ) : (
-              ""
-            )}
-
-            {type === "calendar" ? (
+          <React.Fragment>
+            {/* {this.props.fullScreen ? ( */}
+            <FormControl className={classes.formControl} size="small">
+              <InputLabel
+                shrink
+                htmlFor="bot-label-placeholder"
+                //style={{ paddingBottom: 0, marginBottom: 0 }}
+              >
+                <Typography variant="caption">Severity</Typography>
+              </InputLabel>
+              <Select
+                value={this.state.severity}
+                onChange={this.changeSeverity}
+                style={{ margin: 5 }}
+              >
+                <MenuItem value={"All"}>
+                  <Typography variant="caption">All</Typography>
+                </MenuItem>
+                <MenuItem value={"Critical"}>
+                  <Typography variant="caption">Critical</Typography>
+                </MenuItem>
+                <MenuItem value={"High"}>
+                  <Typography variant="caption">High</Typography>
+                </MenuItem>
+                <MenuItem value={"Medium"}>
+                  <Typography variant="caption">Medium</Typography>
+                </MenuItem>
+                <MenuItem value={"Low"}>
+                  <Typography variant="caption">Low</Typography>
+                </MenuItem>
+              </Select>
+            </FormControl>
+            {/* // ) : ( // "" // )} */}
+            {type === "calendar" || type === "chart" ? (
               ""
             ) : (
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <InputLabel
                   shrink
                   htmlFor="bot-label-placeholder"
@@ -205,40 +210,51 @@ class MyTodos extends Component {
                 </Select>
               </FormControl>
             )}
-            <FormControl className={classes.formControl}>
-              <InputLabel
-                shrink
-                htmlFor="bot-label-placeholder"
-                //style={{ paddingBottom: 0, marginBottom: 0 }}
-              >
-                <Typography variant="caption">Status</Typography>
-              </InputLabel>
-              <Select
-                value={this.state.showType}
-                onChange={this.changeShowType}
-                style={{ margin: 5 }}
-              >
-                <MenuItem value={"All"}>
-                  <Typography variant="caption">All</Typography>
-                </MenuItem>
-                <MenuItem value={"New"}>
-                  <Typography variant="caption">New</Typography>
-                </MenuItem>
-                <MenuItem value={"Progress"}>
-                  <Typography variant="caption">Progress</Typography>
-                </MenuItem>
-                <MenuItem value={"Completed"}>
-                  <Typography variant="caption">Completed</Typography>
-                </MenuItem>
-              </Select>
-            </FormControl>
-            <IconButton onClick={this.reloadTodos}>
+            {type === "chart" ? (
+              ""
+            ) : (
+              <FormControl className={classes.formControl} size="small">
+                <InputLabel
+                  shrink
+                  htmlFor="bot-label-placeholder"
+                  //style={{ paddingBottom: 0, marginBottom: 0 }}
+                >
+                  <Typography variant="caption">Status</Typography>
+                </InputLabel>
+                <Select
+                  value={this.state.showType}
+                  onChange={this.changeShowType}
+                  style={{ margin: 5 }}
+                >
+                  <MenuItem value={"All"}>
+                    <Typography variant="caption">All</Typography>
+                  </MenuItem>
+                  <MenuItem value={"New"}>
+                    <Typography variant="caption">New</Typography>
+                  </MenuItem>
+                  <MenuItem value={"Progress"}>
+                    <Typography variant="caption">Progress</Typography>
+                  </MenuItem>
+                  <MenuItem value={"Completed"}>
+                    <Typography variant="caption">Completed</Typography>
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            )}
+            <IconButton onClick={this.reloadTodos} size="small">
               <Refresh fontSize="small" />
             </IconButton>
-            <IconButton onClick={this.handleNewTodoOpen}>
+            <IconButton onClick={this.toggelView} size="small">
+              {this.state.screenView === "Graph" ? (
+                <TableChart fontSize="small" />
+              ) : (
+                <PieChart fontSize="small" />
+              )}
+            </IconButton>
+            <IconButton onClick={this.handleNewTodoOpen} size="small">
               <Add fontSize="small" />
             </IconButton>
-          </div>
+          </React.Fragment>
         }
         title="Activities"
         titleTypographyProps={{ variant: "body1" }}
@@ -259,7 +275,7 @@ class MyTodos extends Component {
           <CardContent
             className={classes.cardContent}
             style={
-              this.props.fullScreen ? { height: "80vh" } : { height: "68vh" }
+              this.props.fullScreen ? { height: "80vh" } : { height: "70vh" }
             }
           >
             {/**className={classes.cardContent} */}
@@ -276,7 +292,7 @@ class MyTodos extends Component {
     );
   };
   renderChart = () => {
-    return <MyTodosChart {...this.props} />;
+    return <MyTodosChart {...this.props} source={this.getSharedObject()} />;
   };
   render() {
     const { classes } = this.props;
@@ -296,9 +312,9 @@ class MyTodos extends Component {
         <TodoDialog {...this.props} source={this.getSharedObject()} />
         {/* Hide graph switch in case of full screen */}
         {/* {!this.props.fullScreen ? ( */}
-        <IconButton className={classes.floatButton} onClick={this.toggelView}>
-          {this.state.screenView === "Graph" ? <TableChart /> : <BarChart />}
-        </IconButton>
+        {/* <IconButton className={classes.floatButton} onClick={this.toggelView}>
+          {this.state.screenView === "Graph" ? <TableChart /> : <PieChart />}
+        </IconButton> */}
         {/* ) : (
           ""
         )} */}
