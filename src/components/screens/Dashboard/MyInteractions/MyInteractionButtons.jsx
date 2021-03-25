@@ -12,6 +12,7 @@ import {
   Check,
   CheckCircle,
   Close,
+  MoreVert,
   PauseCircleFilled,
   PlayCircleFilled,
   SwapHorizontalCircle,
@@ -39,7 +40,8 @@ class MyInteractionButtons extends Component {
     this.setState({ openMenu: false, source: null });
   };
   render() {
-    const { classes, source, app } = this.props;
+    //source,
+    const { classes,  app } = this.props;
     const { myInteraction } = app;
     if (!myInteraction) return;
     return (
@@ -164,7 +166,7 @@ class MyInteractionButtons extends Component {
         ) : (
           ""
         )}
-        {/* <IconButton
+        <IconButton
             aria-haspopup="true"
             onClick={(event) => {
               this.handleMenuOpen(event);
@@ -173,7 +175,7 @@ class MyInteractionButtons extends Component {
             //color="inherit"
           >
             <MoreVert fontSize="small" />
-          </IconButton> */}
+          </IconButton>
         <Menu
           anchorEl={this.state.source}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -207,7 +209,7 @@ class MyInteractionButtons extends Component {
           )}
           <MenuItem
             onClick={() => {
-              source.handleMyInteractionOpen(myInteraction._id);
+              //source.handleMyInteractionOpen(myInteraction._id);
               this.handleMenuClose();
             }}
           >
@@ -297,7 +299,7 @@ MyInteractionButtons.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  source: PropTypes.object.isRequired,
-  view: PropTypes.string.isRequired,
+//  source: PropTypes.object.isRequired,
+//  view: PropTypes.string.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyInteractionButtons);

@@ -1,30 +1,7 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  IconButton,
-  TextField,
-  Typography,
-} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  AccountCircle,
-  Adb,
-  AddCircle,
-  Assignment,
-  CheckCircle,
-  Close,
-  Group,
-  PauseCircleFilled,
-  Send,
-  SwapHorizontalCircle,
-} from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import MyInteractionButtons from "./MyInteractionButtons";
+import RenderWhatsApp from "./RenderWhatsApp";
 
 const styles = (theme) => ({
   content: {},
@@ -35,7 +12,7 @@ const styles = (theme) => ({
     position: "relative",
     overflow: "auto",
     padding: theme.spacing(0),
-    height: "63.5vh",
+    height: "63vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -169,114 +146,7 @@ class MyInteractionDetails extends Component {
   };
   renderFacebookPostType = () => {};
   renderWhatsAppType = () => {
-    const { theme, classes } = this.props;
-    return (
-      <Card
-        style={{
-          backgroundImage: `url("./imgs/chatbackground.png")`,
-          backgroundRepeat: true,
-          //height: "100%",
-          boxShadow: "none",
-        }}
-      >
-        <CardHeader
-          title="Omar Mamdouh"
-          titleTypographyProps={{ variant: "body2" }}
-          style={{
-            padding: theme.spacing(1),
-          }}
-          action={<MyInteractionButtons {...this.props}/>}
-        />
-        <Divider />
-        <CardContent className={classes.cardContent}>
-          <Grid
-            container
-            direction="column"
-            style={{ padding: theme.spacing(2) }}
-          >
-            <Grid item xs={12}>
-              <Grid container>
-                <Card style={{ maxWidth: "50%", padding: theme.spacing(1) }}>
-                  <CardHeader
-                    title="Omar mamdouh"
-                    titleTypographyProps={{
-                      variant: "body2",
-                      paddingleft: theme.spacing(1),
-                    }}
-                    style={{ padding: theme.spacing(0) }}
-                  />
-                  <CardContent style={{ padding: theme.spacing(0) }}>
-                    <Typography variant="caption" gutterBottom={false}>
-                      Hello firemisc sales team , i want to see a demo for
-                      whatsapp services
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container direction="row-reverse">
-                <Card
-                  style={{
-                    maxWidth: "50%",
-                    padding: theme.spacing(1),
-                    backgroundColor: theme.palette.success.light,
-                  }}
-                >
-                  <CardContent style={{ padding: theme.spacing(0) }}>
-                    <Typography variant="caption" gutterBottom={false}>
-                      Hello Mr. Omar. Thank you for contacting us.
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container>
-                <Card style={{ maxWidth: "50%", padding: theme.spacing(1) }}>
-                  <CardHeader
-                    title="Omar mamdouh"
-                    titleTypographyProps={{
-                      variant: "body2",
-                      paddingLeft: theme.spacing(1),
-                    }}
-                    style={{ padding: theme.spacing(0) }}
-                  />
-                  <CardContent style={{ padding: theme.spacing(0) }}>
-                    <Typography variant="caption" gutterBottom={false}>
-                      How can i subscribe!!!
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-          </Grid>
-        </CardContent>
-        <CardActions
-          style={{
-            padding: theme.spacing(1),
-          }}
-        >
-          <TextField
-            margin="dense"
-            rows="2"
-            multiline
-            //onChange={this.handleDataChange}
-            name="chat"
-            //label="Send message"
-            //value={this.state.description}
-            fullWidth
-            variant="filled"
-            inputProps={{
-              className: classes.messageBox,
-            }}
-          />
-          <IconButton className={classes.floatButton}>
-            <Send />
-          </IconButton>
-        </CardActions>
-      </Card>
-    );
+    return <RenderWhatsApp {...this.props} />;
   };
   renderCallType = () => {};
   renderCustomType = () => {};
