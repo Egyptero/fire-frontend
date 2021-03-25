@@ -1,15 +1,76 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Divider,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, TextField } from "@material-ui/core";
+import {
+  AccountCircle,
+  Adb,
+  AddCircle,
+  Assignment,
+  CheckCircle,
+  Close,
+  Group,
+  PauseCircleFilled,
+  Send,
+  SwapHorizontalCircle,
+} from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import MyInteractionButtons from "./MyInteractionButtons";
 
 const styles = (theme) => ({
   content: {},
   grid: {},
   gridFull: {},
   card: {},
-  cardContent: {},
+  cardContent: {
+    position: "relative",
+    overflow: "auto",
+    padding: theme.spacing(0),
+    height: "63.5vh",
+    minWidth: "100%",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  floatButton: {
+    position: "absolute",
+    bottom: theme.spacing(2) + (theme.spacing(1) & 0.5),
+    right: theme.spacing(3),
+    // width: theme.spacing(4),
+    // height: theme.spacing(4),
+    zIndex: 1,
+  },
   formControl: {},
+  messageBox: {
+    fontSize: "0.8rem",
+    paddingRight: theme.spacing(8),
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class MyInteractionDetails extends Component {
@@ -108,28 +169,97 @@ class MyInteractionDetails extends Component {
   };
   renderFacebookPostType = () => {};
   renderWhatsAppType = () => {
-    const { theme } = this.props;
+    const { theme, classes } = this.props;
     return (
-      <Grid
-        container
+      <Card
         style={{
-          //          border: "2px solid",
-          // borderRadius: "2px",
-          //          borderColor: this.props.theme.palette.secondary.light,
           backgroundImage: `url("./imgs/chatbackground.png")`,
-          //backgroundColor: this.props.theme.palette.common.white,
           backgroundRepeat: true,
-          //opacity: 0.05,
-          //filter: `grayscale(100%)`,
-          height: "100%",
+          //height: "100%",
+          boxShadow: "none",
         }}
-        direction="column-reverse"
       >
-        {/* style={{ padding: theme.spacing(1) }} */}
-        <Grid item>
+        <CardHeader
+          title="Omar Mamdouh"
+          titleTypographyProps={{ variant: "body2" }}
+          style={{
+            padding: theme.spacing(1),
+          }}
+          action={<MyInteractionButtons {...this.props}/>}
+        />
+        <Divider />
+        <CardContent className={classes.cardContent}>
+          <Grid
+            container
+            direction="column"
+            style={{ padding: theme.spacing(2) }}
+          >
+            <Grid item xs={12}>
+              <Grid container>
+                <Card style={{ maxWidth: "50%", padding: theme.spacing(1) }}>
+                  <CardHeader
+                    title="Omar mamdouh"
+                    titleTypographyProps={{
+                      variant: "body2",
+                      paddingleft: theme.spacing(1),
+                    }}
+                    style={{ padding: theme.spacing(0) }}
+                  />
+                  <CardContent style={{ padding: theme.spacing(0) }}>
+                    <Typography variant="caption" gutterBottom={false}>
+                      Hello firemisc sales team , i want to see a demo for
+                      whatsapp services
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container direction="row-reverse">
+                <Card
+                  style={{
+                    maxWidth: "50%",
+                    padding: theme.spacing(1),
+                    backgroundColor: theme.palette.success.light,
+                  }}
+                >
+                  <CardContent style={{ padding: theme.spacing(0) }}>
+                    <Typography variant="caption" gutterBottom={false}>
+                      Hello Mr. Omar. Thank you for contacting us.
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container>
+                <Card style={{ maxWidth: "50%", padding: theme.spacing(1) }}>
+                  <CardHeader
+                    title="Omar mamdouh"
+                    titleTypographyProps={{
+                      variant: "body2",
+                      paddingLeft: theme.spacing(1),
+                    }}
+                    style={{ padding: theme.spacing(0) }}
+                  />
+                  <CardContent style={{ padding: theme.spacing(0) }}>
+                    <Typography variant="caption" gutterBottom={false}>
+                      How can i subscribe!!!
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </Grid>
+        </CardContent>
+        <CardActions
+          style={{
+            padding: theme.spacing(1),
+          }}
+        >
           <TextField
             margin="dense"
-            rows="3"
+            rows="2"
             multiline
             //onChange={this.handleDataChange}
             name="chat"
@@ -138,19 +268,14 @@ class MyInteractionDetails extends Component {
             fullWidth
             variant="filled"
             inputProps={{
-              style: {
-                fontSize: "0.8rem",
-                //backgroundColor: "white",
-                //borderColor: this.props.theme.palette.secondary.light,
-              },
-              disableUnderline: true,
+              className: classes.messageBox,
             }}
           />
-        </Grid>
-        <Grid item style={{ height: "80%" }}>
-          Welcome to my board
-        </Grid>
-      </Grid>
+          <IconButton className={classes.floatButton}>
+            <Send />
+          </IconButton>
+        </CardActions>
+      </Card>
     );
   };
   renderCallType = () => {};
