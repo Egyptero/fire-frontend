@@ -125,16 +125,15 @@ class FeedbackDialog extends Component {
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.main,
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
             variant="subtitle1"
-            style={
-              {
-                color: theme.palette.secondary.contrastText,
-              }
-            }
+            style={{
+              color: theme.palette.secondary.contrastText,
+            }}
           >
             {this.state.head}
           </Typography>

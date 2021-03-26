@@ -1,5 +1,6 @@
 export default (app) => {
-  if (!app.types || !app.myInteraction) return { channel: null, typeName: null };
+  if (!app.types || !app.myInteraction)
+    return { channel: null, typeName: null };
   let channel = null;
   let typeName = null;
   app.types.forEach((type) => {

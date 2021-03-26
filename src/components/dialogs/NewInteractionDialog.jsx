@@ -14,9 +14,10 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  OutlinedInput
+  OutlinedInput,
 } from "@material-ui/core";
-const styles = theme => ({
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
@@ -24,7 +25,7 @@ const styles = theme => ({
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class NewInteraction extends Component {
@@ -34,7 +35,7 @@ class NewInteraction extends Component {
     title: "",
     description: "",
     start: "",
-    due: ""
+    due: "",
   };
   componentDidMount() {
     // console.log("New interaction dialog opened");
@@ -55,13 +56,13 @@ class NewInteraction extends Component {
           title: "",
           description: "",
           start: "",
-          due: ""
+          due: "",
         });
       }
     }
   }
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.name === "type")
       this.setState({ typeId: event.target.value });
     else if (event.target.name === "customer")
@@ -85,12 +86,12 @@ class NewInteraction extends Component {
         title: this.state.title,
         description: this.state.description,
         start: this.state.start,
-        due: this.state.due
-      }
+        due: this.state.due,
+      },
     };
     source.handleAddInteraction(interaction);
   };
-  formattedDate = d => {
+  formattedDate = (d) => {
     if (!d) return "";
     const date = new Date(d);
     return date.toISOString().split("T")[0];
@@ -105,29 +106,37 @@ class NewInteraction extends Component {
         open={sourceState.openNewInteraction}
         onClose={handleNewInteractionClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
-            variant="h6"
+            variant="subtitle1"
             style={{
-              color: theme.palette.secondary.contrastText
+              color: theme.palette.secondary.contrastText,
             }}
           >
-            Add task to <b>{tenantName}</b>
+            Create interaction
           </Typography>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={2} style={{ padding: theme.spacing(2) }}>
+          <Grid container spacing={2} style={{ padding: theme.spacing(1) }}>
             {/** Interaction type */}
             <Grid item xs={12} sm={6} md={6} lg={6}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
-                <InputLabel htmlFor="type-label">Type</InputLabel>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
+                <InputLabel htmlFor="type-label">
+                  <Typography variant="caption">Type</Typography>
+                </InputLabel>
                 <Select
                   value={this.state.typeId}
                   onChange={this.handleDataChange}
@@ -140,14 +149,16 @@ class NewInteraction extends Component {
                   }
                 >
                   {app.types
-                    ? app.types.map(type => {
+                    ? app.types.map((type) => {
                         if (
                           type.channel === "Custom" ||
                           type.channel === "Project"
                         )
                           return (
                             <MenuItem value={type._id} key={type._id}>
-                              {type.name}
+                              <Typography variant="caption">
+                                {type.name}
+                              </Typography>
                             </MenuItem>
                           );
                         else return "";
@@ -158,8 +169,14 @@ class NewInteraction extends Component {
             </Grid>
             {/** Interaction customer */}
             <Grid item xs={12} sm={6} md={6} lg={6}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
-                <InputLabel htmlFor="customer-label">Customer</InputLabel>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
+                <InputLabel htmlFor="customer-label">
+                  <Typography variant="caption">Customer</Typography>
+                </InputLabel>
                 <Select
                   value={this.state.customerId}
                   onChange={this.handleDataChange}
@@ -172,10 +189,10 @@ class NewInteraction extends Component {
                   }
                 >
                   {app.customers
-                    ? app.customers.map(customer => {
+                    ? app.customers.map((customer) => {
                         return (
                           <MenuItem value={customer._id} key={customer._id}>
-                            {`${customer.firstname} ${customer.lastname}`}
+                            <Typography variant="caption">{`${customer.firstname} ${customer.lastname}`}</Typography>
                           </MenuItem>
                         );
                       })
@@ -192,8 +209,10 @@ class NewInteraction extends Component {
                 label="Title"
                 value={this.state.title}
                 required
-                variant="outlined"
+                //variant="outlined"
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             {/** Task description */}
@@ -201,13 +220,15 @@ class NewInteraction extends Component {
               <TextField
                 margin="dense"
                 multiline
-                rows="3"
+                rows="6"
                 onChange={this.handleDataChange}
                 name="description"
                 label="Description"
                 value={this.state.description}
                 variant="outlined"
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             {/** Schedule interaction */}
@@ -221,8 +242,12 @@ class NewInteraction extends Component {
                 type="Date"
                 placeholder=""
                 variant="outlined"
-                InputLabelProps={{ shrink: true }}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{
+                  style: { fontSize: "0.8rem" },
+                  shrink: true,
+                }}
               />
             </Grid>
             {/** Due interaction */}
@@ -236,8 +261,12 @@ class NewInteraction extends Component {
                 type="Date"
                 placeholder=""
                 variant="outlined"
-                InputLabelProps={{ shrink: true }}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{
+                  style: { fontSize: "0.8rem" },
+                  shrink: true,
+                }}
               />
             </Grid>
           </Grid>
@@ -246,16 +275,18 @@ class NewInteraction extends Component {
           <Button
             onClick={handleNewInteractionClose}
             color="secondary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Cancel
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddInteraction}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -269,6 +300,6 @@ NewInteraction.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(NewInteraction);
