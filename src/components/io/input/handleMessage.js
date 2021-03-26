@@ -26,7 +26,11 @@ export default (ref, data) => {
     case "removeinteraction":
       console.log("ODI: Remove interaction message");
       updateMyInteractions(ref, data, false, false);
-      if (ref.state.screen !== "My work") ref.handleScreenChange("My work");
+      if (
+        ref.state.screen === "My work" &&
+        (!ref.myInteractions || ref.myInteractions.length === 0)
+      )
+        ref.handleScreenChange("Dashboard");
       break;
     default:
       break;
@@ -50,7 +54,7 @@ const updateMyInteractions = (ref, data, offer, update) => {
   ref.setState({
     myInteractions,
     user,
-    myInteraction: data.interactionDetails,
+    myInteraction: update ? data.interactionDetails : null,
   });
   if (offer) ref.offerInteraction(data.interactionDetails);
 };

@@ -23,7 +23,7 @@ class ScoreKPI extends Component {
     return (
       <Grid container direction="column" alignItems="center">
         <GaugeChart
-          nrOfLevels={8} //30
+          nrOfLevels={15} //30
           colors={[
             theme.palette.error.dark,
             theme.palette.error.main,

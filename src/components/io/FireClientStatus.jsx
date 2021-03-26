@@ -65,27 +65,27 @@ class FireClientStatus extends Component {
               marginRight: theme.spacing(1),
             }}
           >
-            <Tooltip title="Change status" aria-label="Add">
-              <Select
-                value={this.state.selected}
-                onChange={this.onChangeStatus}
-                disableUnderline
-                inputProps={{
-                  classes: {
-                    root: classes.fireClientStatus.whiteColor,
-                    icon: classes.fireClientStatus.icon,
-                  },
-                }}
-              >
-                {this.state.statusList.map((status) => {
-                  return (
-                    <MenuItem key={status} value={status}>
-                      <Typography variant="caption">{status}</Typography>
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </Tooltip>
+            {/* <Tooltip title="Change status" aria-label="Add"> */}
+            <Select
+              value={this.state.selected}
+              onChange={this.onChangeStatus}
+              disableUnderline
+              inputProps={{
+                classes: {
+                  root: classes.fireClientStatus.whiteColor,
+                  icon: classes.fireClientStatus.icon,
+                },
+              }}
+            >
+              {this.state.statusList.map((status) => {
+                return (
+                  <MenuItem key={status} value={status}>
+                    <Typography variant="caption">{status}</Typography>
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            {/* </Tooltip> */}
           </FormControl>
         </Grid>
       );

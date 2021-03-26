@@ -41,9 +41,9 @@ class MyInteractionButtons extends Component {
   };
   render() {
     //source,
-    const { classes,  app } = this.props;
+    const { classes, app } = this.props;
     const { myInteraction } = app;
-    if (!myInteraction) return;
+    if (!myInteraction) return <React.Fragment />;
     return (
       <React.Fragment>
         {this.props.fullScreen && myInteraction.buttons.accept ? (
@@ -167,15 +167,15 @@ class MyInteractionButtons extends Component {
           ""
         )}
         <IconButton
-            aria-haspopup="true"
-            onClick={(event) => {
-              this.handleMenuOpen(event);
-            }}
-            size="small"
-            //color="inherit"
-          >
-            <MoreVert fontSize="small" />
-          </IconButton>
+          aria-haspopup="true"
+          onClick={(event) => {
+            this.handleMenuOpen(event);
+          }}
+          size="small"
+          //color="inherit"
+        >
+          <MoreVert fontSize="small" />
+        </IconButton>
         <Menu
           anchorEl={this.state.source}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -299,7 +299,7 @@ MyInteractionButtons.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-//  source: PropTypes.object.isRequired,
-//  view: PropTypes.string.isRequired,
+  //  source: PropTypes.object.isRequired,
+  //  view: PropTypes.string.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(MyInteractionButtons);

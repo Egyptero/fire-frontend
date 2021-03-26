@@ -1,4 +1,12 @@
-import { Box, Chip, Divider, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Chip,
+  Divider,
+  Grid,
+  Link,
+  Typography,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -34,17 +42,21 @@ class MyInteractionToolbar extends Component {
     });
     return customerName;
   };
+  openCRMLink = () => {};
   render() {
     const { theme, classes, app } = this.props;
     let { myInteraction } = app;
     let typeinfo = getType(app);
-    myInteraction.interaction.fromAddress = "+966552735808";
-    if (!myInteraction) return;
+    let customerName = this.getCustomerName();
+    //myInteraction.interaction.fromAddress = "+966552735808";
+    //myInteraction.interaction.crmlink = "https://www.google.com/search?q="+customerName;
+
+    if (!myInteraction) return <React.Fragment />;
 
     return (
       <Grid container direction="row">
         <Typography variant="body1">
-          <b>{this.getCustomerName()}</b>
+          <b>{customerName}</b>
         </Typography>
         <Divider className={classes.divider} />
         <Chip
@@ -80,6 +92,24 @@ class MyInteractionToolbar extends Component {
         <Typography variant="caption">
           <b>Name:</b> {getType(this.props.app).typeName}
         </Typography>
+        {myInteraction.interaction.crmlink ? (
+          <React.Fragment>
+            <Divider className={classes.divider} />
+            <Link
+              href={myInteraction.interaction.crmlink}
+              onClick={((e) => {
+                if (e) e.preventDefault();
+              })()}
+              variant="caption"
+              color="primary"
+              target="_blank"
+            >
+              <b>Open CRM</b>
+            </Link>
+          </React.Fragment>
+        ) : (
+          ""
+        )}
       </Grid>
     );
   }
