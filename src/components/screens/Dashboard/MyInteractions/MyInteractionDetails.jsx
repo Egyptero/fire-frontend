@@ -1,6 +1,7 @@
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import getType from "./getType";
 import RenderWhatsApp from "./RenderWhatsApp";
 
 const styles = (theme) => ({
@@ -66,24 +67,13 @@ class MyInteractionDetails extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { app } = this.props;
     const { app: prevApp } = prevProps;
-
-    if (app.myInteraction !== prevApp.myInteraction) {
-      this.updateType();
-    }
+    if (app.myInteraction !== prevApp.myInteraction) this.updateType();
   }
   updateType = () => {
     console.log("Updating type information");
-    const { app } = this.props;
-    if (!app.types) return { error: true };
-    let channel = null;
-    let typeName = null;
-    app.types.forEach((type) => {
-      if (type._id === app.myInteraction.interaction.typeId) {
-        channel = type.channel;
-        typeName = type.name;
-      }
-    });
-    this.setState({ type: channel, typeName });
+    let typeinfo = getType(this.props.app);
+    console.log("Type Info", typeinfo);
+    this.setState({ type: typeinfo.channel, typeName: typeinfo.typeName });
   };
   selectRenderScreen = () => {
     console.log("Selected Type", this.state.type);

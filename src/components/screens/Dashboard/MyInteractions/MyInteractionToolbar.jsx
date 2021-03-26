@@ -1,7 +1,8 @@
-import { Chip, Divider, Grid, Typography } from "@material-ui/core";
+import { Box, Chip, Divider, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import getType from "./getType";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -9,26 +10,43 @@ const styles = (theme) => ({
   card: {},
   cardContent: {},
   formControl: {},
+  divider: {
+    width: "2px",
+    height: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
 });
 
 class MyInteractionToolbar extends Component {
   state = {};
+  getCustomerName = () => {
+    const { theme, classes, app } = this.props;
+    const { myInteraction, customers } = app;
+    console.log("My interaction", myInteraction);
+    if (!myInteraction) return;
+    if (!customers) return "Unknown";
+    let customerName = "";
+    customers.forEach((customer) => {
+      console.log("Customer", customer);
+      if (customer._id === myInteraction.interaction.customerId)
+        customerName = customer.firstname + " " + customer.lastname;
+    });
+    return customerName;
+  };
   render() {
     const { theme, classes, app } = this.props;
-    const { myInteraction } = app;
+    let { myInteraction } = app;
+    let typeinfo = getType(app);
+    myInteraction.interaction.fromAddress = "+966552735808";
     if (!myInteraction) return;
 
     return (
       <Grid container direction="row">
-        <Typography variant="body1">Omar Mamdouh</Typography>
-        <Divider
-          style={{
-            width: "2px",
-            height: theme.spacing(3),
-            marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1),
-          }}
-        />
+        <Typography variant="body1">
+          <b>{this.getCustomerName()}</b>
+        </Typography>
+        <Divider className={classes.divider} />
         <Chip
           label={myInteraction.interaction.stage}
           size="small"
@@ -46,14 +64,7 @@ class MyInteractionToolbar extends Component {
         />
         {myInteraction.interaction.fromAddress ? (
           <React.Fragment>
-            <Divider
-              style={{
-                width: "2px",
-                height: theme.spacing(3),
-                marginLeft: theme.spacing(1),
-                marginRight: theme.spacing(1),
-              }}
-            />
+            <Divider className={classes.divider} />
             <Typography variant="body1">
               {myInteraction.interaction.fromAddress}
             </Typography>
@@ -61,6 +72,14 @@ class MyInteractionToolbar extends Component {
         ) : (
           ""
         )}
+        <Divider className={classes.divider} />
+        <Typography variant="caption">
+          <b>Type:</b> {getType(this.props.app).channel}
+        </Typography>
+        <Divider className={classes.divider} />
+        <Typography variant="caption">
+          <b>Name:</b> {getType(this.props.app).typeName}
+        </Typography>
       </Grid>
     );
   }
