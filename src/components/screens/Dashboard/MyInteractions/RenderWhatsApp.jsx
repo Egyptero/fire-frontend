@@ -29,7 +29,7 @@ class RenderWhatsApp extends Component {
     const { theme, classes, app } = this.props;
     const { myInteraction } = app;
     console.log("running interaction", myInteraction);
-    if (!myInteraction) return<React.Fragment/>;
+    if (!myInteraction) return <React.Fragment />;
     return (
       <Card
         style={{
