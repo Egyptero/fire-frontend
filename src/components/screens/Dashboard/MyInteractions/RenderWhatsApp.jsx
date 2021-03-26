@@ -15,6 +15,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import MyInteractionButtons from "./MyInteractionButtons";
 import MyInteractionToolbar from "./MyInteractionToolbar";
+import RenderWhatsAppMsgs from "./RenderWhatsAppMsgs";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -28,7 +29,7 @@ class RenderWhatsApp extends Component {
   render() {
     const { theme, classes, app } = this.props;
     const { myInteraction } = app;
-    console.log("running interaction", myInteraction);
+    //console.log("running interaction", myInteraction);
     if (!myInteraction) return <React.Fragment />;
     return (
       <Card
@@ -49,68 +50,7 @@ class RenderWhatsApp extends Component {
         />
         <Divider />
         <CardContent className={classes.cardContent}>
-          <Grid
-            container
-            direction="column"
-            style={{ padding: theme.spacing(2) }}
-          >
-            <Grid item xs={12}>
-              <Grid container>
-                <Card style={{ maxWidth: "50%", padding: theme.spacing(1) }}>
-                  <CardHeader
-                    title="Omar mamdouh"
-                    titleTypographyProps={{
-                      variant: "body2",
-                      paddingleft: theme.spacing(1),
-                    }}
-                    style={{ padding: theme.spacing(0) }}
-                  />
-                  <CardContent style={{ padding: theme.spacing(0) }}>
-                    <Typography variant="caption" gutterBottom={false}>
-                      Hello firemisc sales team , i want to see a demo for
-                      whatsapp services
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container direction="row-reverse">
-                <Card
-                  style={{
-                    maxWidth: "50%",
-                    padding: theme.spacing(1),
-                    backgroundColor: theme.palette.success.light,
-                  }}
-                >
-                  <CardContent style={{ padding: theme.spacing(0) }}>
-                    <Typography variant="caption" gutterBottom={false}>
-                      Hello Mr. Omar. Thank you for contacting us.
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container>
-                <Card style={{ maxWidth: "50%", padding: theme.spacing(1) }}>
-                  <CardHeader
-                    title="Omar mamdouh"
-                    titleTypographyProps={{
-                      variant: "body2",
-                      paddingleft: theme.spacing(1),
-                    }}
-                    style={{ padding: theme.spacing(0) }}
-                  />
-                  <CardContent style={{ padding: theme.spacing(0) }}>
-                    <Typography variant="caption" gutterBottom={false}>
-                      How can i subscribe!!!
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-          </Grid>
+          <RenderWhatsAppMsgs {...this.props} />
         </CardContent>
         <CardActions
           style={{

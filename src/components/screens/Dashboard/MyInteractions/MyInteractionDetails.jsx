@@ -70,13 +70,13 @@ class MyInteractionDetails extends Component {
     if (app.myInteraction !== prevApp.myInteraction) this.updateType();
   }
   updateType = () => {
-    console.log("Updating type information");
+    //console.log("Updating type information");
     let typeinfo = getType(this.props.app);
-    console.log("Type Info", typeinfo);
+    //console.log("Type Info", typeinfo);
     this.setState({ type: typeinfo.channel, typeName: typeinfo.typeName });
   };
   selectRenderScreen = () => {
-    console.log("Selected Type", this.state.type);
+    //console.log("Selected Type", this.state.type);
     if (!this.state.type) return this.renderUnknownType();
     switch (this.state.type) {
       case "Facebook Page":
@@ -110,8 +110,7 @@ class MyInteractionDetails extends Component {
       case "Webrtc":
         return this.renderWebrtcType();
       case "Project":
-        return this.renderWhatsAppType();
-      //return this.renderProjectType();
+        return this.renderProjectType();
       case "Custom":
         return this.renderCustomType();
       default:
@@ -132,7 +131,8 @@ class MyInteractionDetails extends Component {
   renderChatType = () => {};
   renderProjectType = () => {
     console.log("We should render project type now");
-    return <React.Fragment />;
+    //return <React.Fragment />;
+    return this.renderWhatsAppType();
   };
   renderFacebookPostType = () => {};
   renderWhatsAppType = () => {

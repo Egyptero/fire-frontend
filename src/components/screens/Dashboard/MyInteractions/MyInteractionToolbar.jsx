@@ -31,12 +31,12 @@ class MyInteractionToolbar extends Component {
   getCustomerName = () => {
     const { theme, classes, app } = this.props;
     const { myInteraction, customers } = app;
-    console.log("My interaction", myInteraction);
+    //console.log("My interaction", myInteraction);
     if (!myInteraction) return;
     if (!customers) return "Unknown";
     let customerName = "";
     customers.forEach((customer) => {
-      console.log("Customer", customer);
+      //console.log("Customer", customer);
       if (customer._id === myInteraction.interaction.customerId)
         customerName = customer.firstname + " " + customer.lastname;
     });
