@@ -8,6 +8,7 @@ export default ref => {
     buttons: ref.state.buttons, //Agent buttons to be enabled
     status: ref.state.status, //Agent status
     nextStatus: ref.state.nextStatus, //Agent Next Status
+    inStateTime:ref.state.inStateTime, //In state timer
     screen: ref.state.screen,
     sipUA: ref.state.sipUA,
     sipState: ref.state.sipState,

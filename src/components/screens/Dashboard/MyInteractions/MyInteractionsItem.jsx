@@ -1,32 +1,18 @@
 import {
   Avatar,
   Grid,
-  IconButton,
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Menu,
-  MenuItem,
-  Tooltip,
   Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  AccountTree,
-  AddCircle,
-  Cancel,
-  Check,
-  CheckCircle,
-  Close,
-  PauseCircleFilled,
-  PlayCircleFilled,
-  SwapHorizontalCircle,
-  WhatsApp,
-} from "@material-ui/icons";
+import { AccountTree, WhatsApp } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import MyInteractionButtons from "./MyInteractionButtons";
+import MyInteractionTimer from "./MyInteractionTimer";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -165,14 +151,18 @@ class MyInteractionsItem extends Component {
             </Grid>
           }
         />
-        {myInteraction.interaction._id ===
-        this.props.app.myInteraction.interaction._id ? (
-          ""
-        ) : (
-          <ListItemSecondaryAction>
+        <ListItemSecondaryAction>
+          {myInteraction.interaction._id ===
+          this.props.app.myInteraction.interaction._id ? (
+            <MyInteractionTimer
+              {...this.props}
+              myInteraction={myInteraction}
+              variant="h6"
+            />
+          ) : (
             <MyInteractionButtons {...this.props} />
-          </ListItemSecondaryAction>
-        )}
+          )}
+        </ListItemSecondaryAction>
       </ListItem>
     );
   }

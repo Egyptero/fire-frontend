@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import getType from "./getType";
+import MyInteractionTimer from "./MyInteractionTimer";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -48,8 +49,8 @@ class MyInteractionToolbar extends Component {
     let { myInteraction } = app;
     let typeinfo = getType(app);
     let customerName = this.getCustomerName();
-    //myInteraction.interaction.fromAddress = "+966552735808";
-    //myInteraction.interaction.crmlink = "https://www.google.com/search?q="+customerName;
+    myInteraction.interaction.fromAddress = "+966552735808";
+    myInteraction.interaction.crmlink = "https://www.google.com/search?q="+customerName;
 
     if (!myInteraction) return <React.Fragment />;
 
@@ -110,6 +111,8 @@ class MyInteractionToolbar extends Component {
         ) : (
           ""
         )}
+        {/* <Divider className={classes.divider} />
+        <MyInteractionTimer {...this.props} /> */}
       </Grid>
     );
   }

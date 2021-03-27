@@ -32,6 +32,7 @@ class App extends Component {
     buttons: null,
     status: "Unknown",
     nextStatus: "",
+    inStateTime:null,
     tenants: null,
     tenant: null,
     users: null,

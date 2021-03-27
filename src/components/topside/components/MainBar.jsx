@@ -11,6 +11,8 @@ import {
   LinearProgress,
   CircularProgress,
   Button,
+  Box,
+  Grid,
 } from "@material-ui/core";
 import { Menu, AccountCircle, MoreVert, TouchApp } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -21,6 +23,7 @@ import FireClientStatus from "../../io/FireClientStatus";
 import PhoneClient from "../../phone/PhoneClient";
 import FeedbackAdd from "../../buttons/add/FeedbackAdd";
 import CreateInteractionBtn from "../../buttons/createinteraction/CreateInteractionBtn";
+import StatusTimer from "../../io/StatusTimer";
 
 //import FireClient from "../../io/FireClient";
 
@@ -129,6 +132,19 @@ class MainBar extends Component {
               <div>
                 <FireClientStatus {...this.props} />
               </div>
+              {this.props.app.buttons &&
+              (this.props.app.buttons.ready ||
+                this.props.app.buttons.notready ||
+                this.props.app.buttons.wrapup) ? (
+                <Box>
+                  <Grid container direction="column" justify="center" alignItems="center">
+                    <Typography variant="caption">In state since</Typography>
+                    <StatusTimer {...this.props} variant="subtitle1" />
+                  </Grid>
+                </Box>
+              ) : (
+                ""
+              )}
             </React.Fragment>
           ) : (
             ""

@@ -6,9 +6,10 @@ export default (ref, data) => {
       logout: data.buttons.logout,
       ready: data.buttons.ready,
       notready: data.buttons.notready,
-      wrapup: data.buttons.wrapup
+      wrapup: data.buttons.wrapup,
     },
     status: data.status,
-    nextStatus: data.nextStatus
+    nextStatus: data.nextStatus,
+    inStateTime: data.inStateTime,
   });
 };
