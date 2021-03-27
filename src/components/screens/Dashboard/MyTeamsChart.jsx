@@ -60,7 +60,7 @@ class MyTeams extends Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title="Team"
+          title={<b>Team</b>}
           titleTypographyProps={{ variant: "body1" }}
           style={{ padding: this.props.theme.spacing(1) }}
         />

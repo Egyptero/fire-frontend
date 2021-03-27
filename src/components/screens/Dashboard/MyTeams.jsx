@@ -91,7 +91,11 @@ class MyTeams extends Component {
     const teams = app.myTeams ? app.myTeams : [];
     return (
       <Card className={classes.card}>
-        <CardHeader title="Team" />
+        <CardHeader
+          title={<b>Team</b>}
+          titleTypographyProps={{ variant: "body1" }}
+          style={{ padding: this.props.theme.spacing(1) }}
+        />
         <Divider />
         <CardContent
           className={classes.cardContent}

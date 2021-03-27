@@ -256,7 +256,7 @@ class MyTodos extends Component {
             </IconButton>
           </React.Fragment>
         }
-        title="Activities"
+        title={<b>Activities</b>}
         titleTypographyProps={{ variant: "body1" }}
       />
     );
@@ -270,8 +270,7 @@ class MyTodos extends Component {
         {this.props.fullScreen ? "" : ""}
         <Card className={classes.card}>
           {this.renderTodoDetailedHeader()}
-          {/* <Divider /> */}
-
+          <Divider />
           <CardContent
             className={classes.cardContent}
             style={

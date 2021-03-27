@@ -45,9 +45,9 @@ class MyScroreCard extends Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title="Score card"
+          title={<b>Score card</b>}
           titleTypographyProps={{ variant: "body1" }}
-          style={{padding:this.props.theme.spacing(1)}}
+          style={{ padding: this.props.theme.spacing(1) }}
         ></CardHeader>
         <Divider />
         <CardContent className={classes.cardContent}>

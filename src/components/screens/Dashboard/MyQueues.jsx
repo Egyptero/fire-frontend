@@ -109,7 +109,11 @@ class MyQueues extends Component {
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
     return (
       <Card className={classes.card}>
-        <CardHeader title="Queues" />
+        <CardHeader
+          title={<b>Queues</b>}
+          titleTypographyProps={{ variant: "body1" }}
+          style={{ padding: this.props.theme.spacing(1) }}
+        />
         <Divider />
         <CardContent
           className={classes.cardContent}

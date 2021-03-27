@@ -154,12 +154,13 @@ class MyInteractionsItem extends Component {
         <ListItemSecondaryAction>
           {myInteraction.interaction._id ===
           this.props.app.myInteraction.interaction._id ? (
-            <MyInteractionTimer
-              {...this.props}
-              myInteraction={myInteraction}
-              variant="h6"
-            />
+            ""
           ) : (
+            // <MyInteractionTimer
+            //   {...this.props}
+            //   myInteraction={myInteraction}
+            //   variant="h6"
+            // />
             <MyInteractionButtons {...this.props} />
           )}
         </ListItemSecondaryAction>

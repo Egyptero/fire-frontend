@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { Card, CardContent } from "@material-ui/core";
+import { Card, CardContent, Divider } from "@material-ui/core";
 
 const styles = (theme) => ({
   content: {},
@@ -61,10 +61,11 @@ class MyTodosCalendar extends Component {
     return (
       <Card className={classes.card}>
         {this.props.source.renderTodoDetailedHeader("calendar")}
+        <Divider />
         <CardContent
           className={classes.cardContent}
           style={
-            this.props.fullScreen ? { height: "84vh" } : { height: "65vh" }
+            this.props.fullScreen ? { height: "83vh" } : { height: "65vh" }
           }
         >
           <FullCalendar

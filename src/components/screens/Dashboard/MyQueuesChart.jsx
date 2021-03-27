@@ -61,7 +61,7 @@ class MyQueues extends Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title="Queues"
+          title={<b>Queues</b>}
           titleTypographyProps={{ variant: "body1" }}
           style={{ padding: this.props.theme.spacing(1) }}
         />

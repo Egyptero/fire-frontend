@@ -50,7 +50,8 @@ class MyInteractionToolbar extends Component {
     let typeinfo = getType(app);
     let customerName = this.getCustomerName();
     myInteraction.interaction.fromAddress = "+966552735808";
-    myInteraction.interaction.crmlink = "https://www.google.com/search?q="+customerName;
+    myInteraction.interaction.crmlink =
+      "https://www.google.com/search?q=" + customerName;
 
     if (!myInteraction) return <React.Fragment />;
 
@@ -111,8 +112,8 @@ class MyInteractionToolbar extends Component {
         ) : (
           ""
         )}
-        {/* <Divider className={classes.divider} />
-        <MyInteractionTimer {...this.props} /> */}
+        <Divider className={classes.divider} />
+        <MyInteractionTimer {...this.props} />
       </Grid>
     );
   }
