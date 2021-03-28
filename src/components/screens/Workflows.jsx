@@ -14,7 +14,7 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     position: "relative",
-    height: "86vh"
+    height: "90vh"
   },
   grid: {
     display: "flex",

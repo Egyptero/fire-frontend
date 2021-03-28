@@ -133,11 +133,15 @@ class MyTeams extends Component {
                   </CustomTableCell>
                   <CustomTableCell>
                     <Typography style={{ fontSize: 10 }}>
-                      <StatusTimer
-                        {...this.props}
-                        inStateTime={user.inStateTime}
-                        variant="caption"
-                      />
+                      {user.status !== "Logged Out" ? (
+                        <StatusTimer
+                          {...this.props}
+                          inStateTime={user.inStateTime}
+                          variant="caption"
+                        />
+                      ) : (
+                        "Not avaliable"
+                      )}
                     </Typography>
                   </CustomTableCell>
                 </TableRow>

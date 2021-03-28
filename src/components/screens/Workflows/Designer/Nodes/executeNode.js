@@ -9,12 +9,21 @@ export default (x, y) => {
     size: { width: 80, height: 60 },
     attrs: {
       body: {
-        fill: "transparent", //EFE5B0
-        stroke: "#7F7F7F"
+        fill: "#9E9E9E", //EFE5B0
+        stroke: "#666262",
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
+
       },
       bodyText: {
         text: "Execute",
-        fill: "#000000",
+        fill: "#FFFFFF",
         function: `var func= async (interaction,save) => {
 /*
   * interaction is the running interaction. You can read the following

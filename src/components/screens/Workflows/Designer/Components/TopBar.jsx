@@ -10,10 +10,10 @@ import {
   Visibility,
   Maximize,
   Refresh,
-  Save
+  Save,
 } from "@material-ui/icons";
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   gridWithBorder: {},
@@ -22,17 +22,17 @@ const styles = theme => ({
     display: "flex",
     position: "relative",
     backgroundColor: "lightgrey",
-    height: "6vh",
-    maxHeight: "6vh"
+    height: theme.spacing(4),
+    maxHeight: theme.spacing(4),
   },
   list: {},
   card: {},
-  graph: {}
+  graph: {},
 });
 
 class TopBar extends Component {
   state = {};
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     const { designer } = this.props;
     if (event.target.id === "workflow")
       designer.updateWorkflowName(event.target.value);
@@ -48,7 +48,7 @@ class TopBar extends Component {
     return (
       <React.Fragment>
         <Grid item xs={6} sm={6} className={classes.topBar}>
-          <IconButton onClick={designer.switchToolsBarView}>
+          <IconButton onClick={designer.switchToolsBarView} size="small">
             {this.renderIcon()}
           </IconButton>
           <TextField
@@ -56,39 +56,45 @@ class TopBar extends Component {
             value={sourceState.selectedWorkflow.name}
             onChange={this.handleDataChange}
             disabled={!designer.designerState.canSave}
+            inputProps={{ style: { fontSize: "0.8rem" } }}
+            InputLabelProps={{ style: { fontSize: "0.8rem" } }}
           />
         </Grid>
         <Grid className={classes.topBar} item xs={6} sm={6}>
           <Grid container justify="flex-end">
             <IconButton
+              size="small"
               onClick={designer.saveWorkFlow}
               disabled={!designer.designerState.canSave}
             >
-              <Save />
+              <Save fontSize="small" />
             </IconButton>
             <IconButton
+              size="small"
               onClick={designer.refreshWorkFlow}
               disabled={!designer.designerState.canRefresh}
             >
-              <Refresh />
+              <Refresh fontSize="small" />
             </IconButton>
             <IconButton
+              size="small"
               onClick={designer.watchWorkFlow}
               disabled={!designer.designerState.canWatch}
             >
-              <Visibility />
+              <Visibility fontSize="small" />
             </IconButton>
             <IconButton
+              size="small"
               onClick={designer.editWorkFlow}
               disabled={!designer.designerState.canEdit}
             >
-              <Edit />
+              <Edit fontSize="small" />
             </IconButton>
-            <IconButton onClick={designer.deleteWorkFlow}>
-              <Delete />
+            <IconButton onClick={designer.deleteWorkFlow} size="small">
+              <Delete fontSize="small" />
             </IconButton>
-            <IconButton onClick={source.switchDrawerView}>
-              <Maximize />
+            <IconButton onClick={source.switchDrawerView} size="small">
+              <Maximize fontSize="small" />
             </IconButton>
           </Grid>
         </Grid>
@@ -104,7 +110,7 @@ TopBar.propTypes = {
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
   designer: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(TopBar);

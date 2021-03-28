@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 import Designer from "./Designer/Designer";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   card: {
     display: "flex",
@@ -22,9 +22,9 @@ const styles = theme => ({
     overflow: "hidden",
     maxHeight: "100%",
     //    maxWidth: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
     //    minWidth: "100%"
-  }
+  },
 });
 
 class WorkflowDetails extends Component {
@@ -54,7 +54,7 @@ WorkflowDetails.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(WorkflowDetails);

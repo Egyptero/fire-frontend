@@ -3,27 +3,35 @@ import joint from "jointjs";
 export default (x, y, bot) => {
   return new joint.shapes.standard.HeaderedRectangle({
     root: {
-      title: "Bot"
+      title: "Bot",
     },
     position: { x: x, y: y },
     size: { width: 180, height: 60 },
     attrs: {
       header: {
-        fill: "#7F7F7F", //C00000
-        stroke: "#7F7F7F"
+        fill: "#FF9800", //C00000
+        stroke: "#FF9800",
       },
       body: {
-        fill: "transparent",
-        stroke: "#7F7F7F"
+        fill: "#FFB74D",
+        stroke: "#FF9800",
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
       },
       headerText: {
         text: "Send to bot",
-        fill: "#FFFFFF"
+        fill: "#FFFFFF",
       },
       bodyText: {
         text: bot,
-        fill: "#000000"
-      }
-    }
+        fill: "#FFFFFF",
+      },
+    },
   });
 };

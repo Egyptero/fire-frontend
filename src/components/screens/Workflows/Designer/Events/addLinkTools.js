@@ -13,6 +13,7 @@ export default (link, ref) => {
 };
 
 const buildLinkTools = (link, ref, hide) => {
+  console.log("Inside build tools");
   let linkView = ref.paper.findViewByModel(link);
   if (!linkView) return;
   let verticesTool = new joint.linkTools.Vertices();

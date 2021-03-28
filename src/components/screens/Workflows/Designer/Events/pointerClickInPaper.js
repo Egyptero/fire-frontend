@@ -2,6 +2,7 @@ import highlightCell from "./highlightCell";
 import addGraphCell from "./addGraphCell";
 
 export default (cellView, evt, x, y, ref) => {
+  console.log("Pointer Click down on paper ==========>");
   if (!ref.state.canSave) {
     evt.stopPropagation();
     return;

@@ -1,10 +1,11 @@
 import unhighlightCells from "./unhighlightCells";
 export default (cell, ref) => {
+  console.log("We should highlight element here ==== >");
   if (cell.model.isLink()) {
     console.log("trying to highlight link");
     return;
   }
-  unhighlightCells(ref);
+  unhighlightCells(ref); // Temp stop
 
   let element = cell.model;
   element.attr({
@@ -48,4 +49,5 @@ export default (cell, ref) => {
       "stroke-dasharray": 2
     }
   });
+  console.log("element after rendering ..",element);
 };

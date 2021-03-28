@@ -4,6 +4,7 @@ import connectElement from "../Events/connectElement";
 import settingsElement from "./settingsElement";
 
 export default ref => {
+  console.log("initial events of the work flow");
   ref.paper.on("blank:pointerdown", (evt, x, y) =>
     pointerClickInPaper(null, evt, x, y, ref)
   );

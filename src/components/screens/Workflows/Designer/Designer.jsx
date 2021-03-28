@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import shapes from "./Shapes/Shapes";
 import ToolsBox from "./Components/ToolsBox";
 import TopBar from "./Components/TopBar";
 import joint from "jointjs/index";
@@ -9,15 +10,15 @@ import initiateEvents from "./Events/initiateEvents";
 import unhighlightCells from "./Events/unhighlightCells";
 import addLinkTools from "./Events/addLinkTools";
 import ElementSettingsDialog from "./Components/ElementSettingsDialog";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   gridWithBorder: {},
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
+    height: "85vh", //79
+    maxHeight: "85vh",
   },
   topBar: {},
   list: {},
@@ -26,23 +27,23 @@ const styles = theme => ({
     display: "block",
     position: "absolute",
     overflow: "auto",
-    height: "79vh",
-    maxHeight: "79vh",
+    height: "85vh",
+    maxHeight: "85vh",
     whiteSpace: "nowrap",
     width: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class Designer extends Component {
@@ -54,7 +55,7 @@ class Designer extends Component {
     canEdit: true,
     canWatch: true,
     openElementSetting: false,
-    selectedElementView: null
+    selectedElementView: null,
   };
   constructor(props) {
     super(props);
@@ -71,12 +72,12 @@ class Designer extends Component {
       drawGrid: true,
       background: { color: "whitesmoke" },
       autoResize: true,
-      model: this.graph
+      model: this.graph,
     });
     this.refs.placeholder.scrollIntoView({
       behavior: "auto",
       block: "center",
-      inline: "center"
+      inline: "center",
     });
     if (selectedWorkflow && selectedWorkflow.data) {
       this.graph.addCells(selectedWorkflow.data);
@@ -86,7 +87,7 @@ class Designer extends Component {
         canSave: false,
         canRefresh: false,
         canEdit: true,
-        canWatch: true
+        canWatch: true,
       });
       this.paper.drawBackground({ color: "whitesmoke" });
     }
@@ -95,7 +96,7 @@ class Designer extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     const {
-      selectedWorkflow: prevSelectedWorkflow
+      selectedWorkflow: prevSelectedWorkflow,
     } = prevProps.source.sourceState;
     const { selectedWorkflow } = this.props.source.sourceState;
 
@@ -108,12 +109,12 @@ class Designer extends Component {
         canSave: false,
         canRefresh: false,
         canEdit: true,
-        canWatch: true
+        canWatch: true,
       });
       this.paper.drawBackground({ color: "whitesmoke" });
     }
   }
-  changeToolsBoxSelection = selection => {
+  changeToolsBoxSelection = (selection) => {
     this.setState({ selectedAction: selection });
   };
   switchToolsBarView = () => {
@@ -126,11 +127,11 @@ class Designer extends Component {
   getDrawerWidth = () => {
     return 12 - this.getToolsBarWidth();
   };
-  updateWorkflowName = name => {
+  updateWorkflowName = (name) => {
     const { source } = this.props;
     let { selectedWorkflow } = source.sourceState;
     selectedWorkflow.data = [];
-    this.graph.getCells().forEach(cell => {
+    this.graph.getCells().forEach((cell) => {
       selectedWorkflow.data.push(cell);
     });
     selectedWorkflow.name = name;
@@ -141,7 +142,7 @@ class Designer extends Component {
     let { selectedWorkflow } = source.sourceState;
     unhighlightCells(this);
     selectedWorkflow.data = [];
-    this.graph.getCells().forEach(cell => {
+    this.graph.getCells().forEach((cell) => {
       selectedWorkflow.data.push(cell);
     });
     source.handleUpdateWorkflow(selectedWorkflow);
@@ -152,7 +153,7 @@ class Designer extends Component {
       canSave: true,
       canRefresh: false,
       canEdit: false,
-      canWatch: true
+      canWatch: true,
     });
     this.paper.drawBackground({ color: "white" });
   };
@@ -164,7 +165,7 @@ class Designer extends Component {
       canSave: false,
       canRefresh: true,
       canEdit: true,
-      canWatch: true
+      canWatch: true,
     });
     if (this.state.canSave) this.saveWorkFlow();
     this.paper.drawBackground({ color: "whitesmoke" });
@@ -181,7 +182,7 @@ class Designer extends Component {
   handleElementSettingsClose = () => {
     this.setState({ openElementSetting: false, selectedElementView: null });
   };
-  handleElementSettingsOpen = selectedElementView => {
+  handleElementSettingsOpen = (selectedElementView) => {
     this.setState({ openElementSetting: true, selectedElementView });
   };
   getSharedObject = () => {
@@ -198,7 +199,7 @@ class Designer extends Component {
       deleteWorkFlow: this.deleteWorkFlow,
       updateWorkflowName: this.updateWorkflowName,
       handleElementSettingsOpen: this.handleElementSettingsOpen,
-      handleElementSettingsClose: this.handleElementSettingsClose
+      handleElementSettingsClose: this.handleElementSettingsClose,
     };
   };
   render() {
@@ -210,7 +211,7 @@ class Designer extends Component {
           style={{
             overflow: "auto",
             position: "relative",
-            display: "flex"
+            display: "flex",
           }}
         >
           <TopBar {...this.props} designer={this.getSharedObject()} />
@@ -223,7 +224,7 @@ class Designer extends Component {
             <Grid container className={classes.graph} spacing={0}>
               <div
                 style={{
-                  position: "absolute"
+                  position: "absolute",
                 }}
                 ref="placeholder"
               />
@@ -245,7 +246,7 @@ Designer.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Designer);

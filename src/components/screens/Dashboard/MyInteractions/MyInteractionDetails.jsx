@@ -144,7 +144,11 @@ class MyInteractionDetails extends Component {
   renderEmailType = () => {};
   renderVedioType = () => {};
   renderSMSType = () => {};
-  renderCustomType = () => {};
+  renderCustomType = () => {
+    console.log("We should render project type now");
+    //return <React.Fragment />;
+    return this.renderWhatsAppType();
+  };
   renderYoutubeType = () => {};
   render() {
     return <React.Fragment>{this.selectRenderScreen()}</React.Fragment>;

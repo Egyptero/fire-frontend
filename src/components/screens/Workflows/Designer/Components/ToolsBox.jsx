@@ -5,7 +5,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider
+  Divider,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -25,10 +25,10 @@ import {
   RemoveCircleOutline,
   CloudCircleOutlined,
   CloudCircle,
-  PlayCircleFilledOutlined
+  PlayCircleFilledOutlined,
 } from "@material-ui/icons";
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   gridWithBorder: {
@@ -37,17 +37,17 @@ const styles = theme => ({
     borderColor: "lightgrey",
     border: 1,
     borderStyle: "solid",
-    height: "79vh",
-    maxHeight: "79vh",
-    overflowY: "auto"
+    height: "85vh",
+    maxHeight: "85vh",
+    overflowY: "auto",
   },
   gridWithoutBorder: {},
   topBar: {},
   list: {
-    width: "100%"
+    width: "100%",
   },
   card: {},
-  graph: {}
+  graph: {},
 });
 
 class ToolsBox extends Component {
@@ -69,40 +69,49 @@ class ToolsBox extends Component {
           <ListItem
             button
             selected={designerState.selectedAction === "Wit"}
-            onClick={event => this.handleListItemClick(event, "Wit")}
+            onClick={(event) => this.handleListItemClick(event, "Wit")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <CloudCircleOutlined />
+              <CloudCircleOutlined fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Wit" />
+              <ListItemText
+                primary="Wit"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
           <ListItem
             button
             selected={designerState.selectedAction === "Watson"}
-            onClick={event => this.handleListItemClick(event, "Watson")}
+            onClick={(event) => this.handleListItemClick(event, "Watson")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <CloudCircle />
+              <CloudCircle fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Watson" />
+              <ListItemText
+                primary="Watson"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
           <ListItem
             button
             selected={designerState.selectedAction === "Speak"}
-            onClick={event => this.handleListItemClick(event, "Speak")}
+            onClick={(event) => this.handleListItemClick(event, "Speak")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <PlayCircleFilledOutlined />
+              <PlayCircleFilledOutlined fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Speak" />
+              <ListItemText
+                primary="Speak"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
         </React.Fragment>
@@ -121,53 +130,65 @@ class ToolsBox extends Component {
           <ListItem
             button
             selected={designerState.selectedAction === "Menu"}
-            onClick={event => this.handleListItemClick(event, "Menu")}
+            onClick={(event) => this.handleListItemClick(event, "Menu")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <ChromeReaderMode />
+              <ChromeReaderMode fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Menu" />
+              <ListItemText
+                primary="Menu"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
           <ListItem
             button
             selected={designerState.selectedAction === "Input"}
-            onClick={event => this.handleListItemClick(event, "Input")}
+            onClick={(event) => this.handleListItemClick(event, "Input")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <Mic />
+              <Mic fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Input" />
+              <ListItemText
+                primary="Input"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
           <ListItem
             button
             selected={designerState.selectedAction === "Output"}
-            onClick={event => this.handleListItemClick(event, "Output")}
+            onClick={(event) => this.handleListItemClick(event, "Output")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <VolumeUp />
+              <VolumeUp fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Output" />
+              <ListItemText
+                primary="Output"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
           <ListItem
             button
             selected={designerState.selectedAction === "Terminate"}
-            onClick={event => this.handleListItemClick(event, "Terminate")}
+            onClick={(event) => this.handleListItemClick(event, "Terminate")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <RemoveCircleOutline />
+              <RemoveCircleOutline fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Terminate" />
+              <ListItemText
+                primary="Terminate"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
         </React.Fragment>
@@ -185,14 +206,17 @@ class ToolsBox extends Component {
           <ListItem
             button
             selected={designerState.selectedAction === "Queue"}
-            onClick={event => this.handleListItemClick(event, "Queue")}
+            onClick={(event) => this.handleListItemClick(event, "Queue")}
             disabled={!designer.designerState.canSave}
           >
             <ListItemIcon>
-              <GroupWorkOutlined />
+              <GroupWorkOutlined fontSize="small" />
             </ListItemIcon>
             <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-              <ListItemText primary="Queue" />
+              <ListItemText
+                primary="Queue"
+                primaryTypographyProps={{ variant: "caption" }}
+              />
             </div>
           </ListItem>
         </React.Fragment>
@@ -209,57 +233,69 @@ class ToolsBox extends Component {
           className={classes.gridWithBorder}
           xs={designer.getToolsBarWidth()}
         >
-          <List className={classes.list}>
+          <List className={classes.list} disablePadding>
             <ListItem
               button
               selected={designerState.selectedAction === "Cursor"}
-              onClick={event => this.handleListItemClick(event, "Cursor")}
+              onClick={(event) => this.handleListItemClick(event, "Cursor")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
-                <PanTool />
+                <PanTool fontSize="small" />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Cursor" />
+                <ListItemText
+                  primary="Cursor"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             <ListItem
               button
               selected={designerState.selectedAction === "Start"}
-              onClick={event => this.handleListItemClick(event, "Start")}
+              onClick={(event) => this.handleListItemClick(event, "Start")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
-                <LensOutlined />
+                <LensOutlined fontSize="small" />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Start" />
+                <ListItemText
+                  primary="Start"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             <ListItem
               button
               selected={designerState.selectedAction === "Stop"}
-              onClick={event => this.handleListItemClick(event, "Stop")}
+              onClick={(event) => this.handleListItemClick(event, "Stop")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
-                <Lens />
+                <Lens fontSize="small" />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Stop" />
+                <ListItemText
+                  primary="Stop"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             <ListItem
               button
               selected={designerState.selectedAction === "Condition"}
-              onClick={event => this.handleListItemClick(event, "Condition")}
+              onClick={(event) => this.handleListItemClick(event, "Condition")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
-                <ControlCameraOutlined />
+                <ControlCameraOutlined fontSize="small" />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Condition" />
+                <ListItemText
+                  primary="Condition"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             <Divider />
@@ -267,54 +303,66 @@ class ToolsBox extends Component {
             <ListItem
               button
               selected={designerState.selectedAction === "Bot"}
-              onClick={event => this.handleListItemClick(event, "Bot")}
+              onClick={(event) => this.handleListItemClick(event, "Bot")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
                 <FaceOutlined />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Bot" />
+                <ListItemText
+                  primary="Bot"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             <ListItem
               button
               selected={designerState.selectedAction === "IVR"}
-              onClick={event => this.handleListItemClick(event, "IVR")}
+              onClick={(event) => this.handleListItemClick(event, "IVR")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
                 <DeviceHub />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="IVR" />
+                <ListItemText
+                  primary="IVR"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             <ListItem
               button
               selected={designerState.selectedAction === "Routing"}
-              onClick={event => this.handleListItemClick(event, "Routing")}
+              onClick={(event) => this.handleListItemClick(event, "Routing")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
                 <CallSplit />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Routing" />
+                <ListItemText
+                  primary="Routing"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             {this.renderIVRToolbox()}
             <ListItem
               button
               selected={designerState.selectedAction === "Execute"}
-              onClick={event => this.handleListItemClick(event, "Execute")}
+              onClick={(event) => this.handleListItemClick(event, "Execute")}
               disabled={!designer.designerState.canSave}
             >
               <ListItemIcon>
                 <Code />
               </ListItemIcon>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                <ListItemText primary="Execute" />
+                <ListItemText
+                  primary="Execute"
+                  primaryTypographyProps={{ variant: "caption" }}
+                />
               </div>
             </ListItem>
             {this.renderBotToolbox()}
@@ -333,7 +381,7 @@ ToolsBox.propTypes = {
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
   designer: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(ToolsBox);

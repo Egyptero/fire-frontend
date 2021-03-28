@@ -14,7 +14,16 @@ export default (x, y, routing) => {
       },
       body: {
         fill: "transparent", //C3C3C3
-        stroke: "#7F7F7F"
+        stroke: "#7F7F7F",
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
+
       },
       headerText: {
         text: "Send to routing",

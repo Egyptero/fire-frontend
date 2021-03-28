@@ -9,12 +9,21 @@ export default (x, y, skill) => {
     size: { width: 180, height: 60 },
     attrs: {
       header: {
-        fill: "#7F7F7F",
-        stroke: "#7F7F7F"
+        fill: "#2196F3",
+        stroke: "#2196F3"
       },
       body: {
-        fill: "transparent", //EFE5B0
-        stroke: "#7F7F7F"
+        fill: "#64B5F6", //EFE5B0 
+        stroke: "#2196F3",
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
+
       },
       headerText: {
         text: "Queue to skill",
@@ -22,7 +31,7 @@ export default (x, y, skill) => {
       },
       bodyText: {
         text: skill,
-        fill: "#000000"
+        fill: "#FFFFFF"
       }
     }
   });

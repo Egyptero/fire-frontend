@@ -9,12 +9,21 @@ export default (x, y) => {
     size: { width: 60, height: 60 },
     attrs: {
       body: {
-        fill: "transparent",
-        stroke: "#C80000"
+        fill: "#E57373",
+        stroke: "#F44336",
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
+
       },
       label: {
         text: "Stop",
-        fill: "#C80000"
+        fill: "#FFFFFF"
       }
     }
   });

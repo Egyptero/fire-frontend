@@ -10,12 +10,21 @@ export default (x, y) => {
     cursor: "hand",
     attrs: {
       body: {
-        fill: "transparent",
-        stroke: "#000078"
+        fill: "#81C784",//transparent
+        stroke: "#4EAC50",//
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
+
       },
       label: {
         text: "Start",
-        fill: "#000078"
+        fill: "#FFFFFF"
       }
     }
   });

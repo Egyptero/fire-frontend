@@ -9,13 +9,22 @@ export default (x, y) => {
     size: { width: 60, height: 60 },
     attrs: {
       body: {
-        fill: "transparent",
-        stroke: "#400080",
-        refPoints: "0,10 10,0 20,10 10,20"
+        fill: "#E57373",
+        stroke: "#F44336",
+        refPoints: "0,10 10,0 20,10 10,20",
+        filter: {
+          name: "dropShadow",
+          args: {
+            dx: 2,
+            dy: 2,
+            blur: 3,
+          },
+        },
+
       },
       label: {
         text: "If",
-        fill: "#400080",
+        fill: "#FFFFFF",
         function: `var func= async (interaction,save) => {
   /*
    * interaction is the running interaction. You can read the following
