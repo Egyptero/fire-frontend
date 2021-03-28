@@ -17,7 +17,8 @@ class StatusTimer extends Component {
     interval: null,
   };
   componentDidMount() {
-    const { inStateTime } = this.props.app;
+    let { inStateTime } = this.props;
+    if (!inStateTime) inStateTime = this.props.app.inStateTime;
     if (!inStateTime) return;
     console.log("Time CDU and inStateTime", inStateTime);
     let startTime = Date.now() - Date.parse(inStateTime);
@@ -25,9 +26,17 @@ class StatusTimer extends Component {
     this.startTimer(startTime);
   }
   componentDidUpdate(prevProps, prevState) {
-    const { inStateTime } = this.props.app;
-    console.log("Time CDU and inStateTime", inStateTime);
-    const { inStateTime: oldInStateTime } = prevProps.app;
+    let inStateTime;
+    let oldInStateTime;
+
+    if(this.props.inStateTime){
+       inStateTime = this.props.inStateTime;
+       oldInStateTime = prevProps.inStateTime;
+    }else
+    {
+      inStateTime = this.props.app.inStateTime;
+      oldInStateTime = prevProps.app.inStateTime;
+    }
     if (inStateTime !== oldInStateTime) {
       this.stopTimer();
       let startTime = Date.now() - Date.parse(inStateTime);
@@ -47,7 +56,7 @@ class StatusTimer extends Component {
     if (this.state.interval) clearInterval(this.state.interval);
   };
   startTimer = async (time) => {
-    if(time)this.setState({time});
+    if (time) this.setState({ time });
     let interval = setInterval(this.processInterval, this.state.step * 1000);
     this.setState({ interval });
   };
@@ -95,5 +104,6 @@ StatusTimer.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   variant: PropTypes.string,
+  inStateTime: PropTypes.string,
 };
 export default withStyles(styles, { withTheme: true })(StatusTimer);

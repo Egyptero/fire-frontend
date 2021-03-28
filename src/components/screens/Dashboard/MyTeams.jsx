@@ -17,6 +17,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 //import _ from "lodash";
 import MyTeamsChart from "./MyTeamsChart";
+import StatusTimer from "../../io/StatusTimer";
 const CustomTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.secondary.main,
@@ -89,6 +90,8 @@ class MyTeams extends Component {
     const { classes } = this.props;
     const { app } = this.props;
     const teams = app.myTeams ? app.myTeams : [];
+
+    console.log("My teams", teams);
     return (
       <Card className={classes.card}>
         <CardHeader
@@ -130,7 +133,11 @@ class MyTeams extends Component {
                   </CustomTableCell>
                   <CustomTableCell>
                     <Typography style={{ fontSize: 10 }}>
-                      {"00:00:00"}
+                      <StatusTimer
+                        {...this.props}
+                        inStateTime={user.inStateTime}
+                        variant="caption"
+                      />
                     </Typography>
                   </CustomTableCell>
                 </TableRow>
