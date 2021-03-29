@@ -134,12 +134,13 @@ class UsersList extends Component {
                         onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
-                        style={{padding:theme.spacing(1)}}
+                        style={{ padding: theme.spacing(0) }}
                       >
-                        <ListItemAvatar>
+                        <ListItemAvatar style={{ padding: theme.spacing(1) }}>
                           {this.renderAvatar(user)}
                         </ListItemAvatar>
                         <ListItemText
+                          style={{ padding: theme.spacing(0) }}
                           primary={
                             <b>{`${user.firstname} ${user.lastname}`}</b>
                           }

@@ -145,12 +145,13 @@ class WorkflowsList extends Component {
                         onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
-                        style={{ padding: theme.spacing(1) }}
+                        style={{ padding: theme.spacing(0) }}
                       >
-                        <ListItemAvatar>
+                        <ListItemAvatar style={{ padding: theme.spacing(1) }}>
                           {this.renderAvatar(workflow)}
                         </ListItemAvatar>
                         <ListItemText
+                        style={{ padding: theme.spacing(0) }}
                           primary={<b>{workflow.name}</b>}
                           secondary={workflow.type}
                           primaryTypographyProps={{ variant: "caption" }}

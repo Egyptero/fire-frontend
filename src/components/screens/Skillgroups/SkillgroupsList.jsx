@@ -130,12 +130,13 @@ class SkillgroupsList extends Component {
                         onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
-                        style={{padding:theme.spacing(1)}}
+                        style={{padding:theme.spacing(0)}}
                       >
-                        <ListItemAvatar>
+                        <ListItemAvatar style={{ padding: theme.spacing(1) }}>
                           {this.renderAvatar(skillgroup)}
                         </ListItemAvatar>
                         <ListItemText
+                        style={{ padding: theme.spacing(0) }}
                           primary={<b>{skillgroup.name}</b>}
                           secondary={skillgroup.description}
                           primaryTypographyProps={{ variant: "caption" }}
