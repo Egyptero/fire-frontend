@@ -153,7 +153,7 @@ class TypesList extends Component {
                 </IconButton>
               </div>
             }
-            title="Channels"
+            title={<b>Channels</b>}
             titleTypographyProps={{ variant: "body1" }}
             style={{ padding: theme.spacing(1) }}
           />
@@ -174,6 +174,7 @@ class TypesList extends Component {
                         onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
+                        style={{padding:theme.spacing(1)}}
                       >
                         <ListItemAvatar>
                           {this.renderAvatar(type.channel)}

@@ -224,11 +224,10 @@ class BasicTypeInfo extends Component {
             </FormControl>
           </Grid>
         </Grid>
-                {/* Divider */}
-                <Grid item xs={12}>
+        {/* Divider */}
+        <Grid item xs={12}>
           <Divider style={{ margin: "1%" }} />
         </Grid>
-
       </React.Fragment>
     );
   }

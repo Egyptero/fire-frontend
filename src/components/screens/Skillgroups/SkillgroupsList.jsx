@@ -11,6 +11,7 @@ import {
   Avatar,
   Divider,
   ListItemAvatar,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -75,7 +76,7 @@ class SkillgroupsList extends Component {
           backgroundColor: theme.palette.info.light,
         }}
       >
-        {skillgroup.name[0]}
+        <Typography variant="caption">{skillgroup.name[0]}</Typography>
       </Avatar>
     );
   };
@@ -107,14 +108,14 @@ class SkillgroupsList extends Component {
                 </IconButton>
               </div>
             }
-            title="Skillgroups"
+            title={<b>Skillgroups</b>}
             titleTypographyProps={{ variant: "body1" }}
             style={{ padding: theme.spacing(1) }}
           />
           <Divider />
           <CardContent className={classes.cardContent}>
             {/** List of skillgroups , it will be loaded from the app state. */}
-            <List component="nav">
+            <List component="nav" disablePadding>
               {app.skillgroups
                 ? app.skillgroups.map((skillgroup, index) => {
                     return (
@@ -129,6 +130,7 @@ class SkillgroupsList extends Component {
                         onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
+                        style={{padding:theme.spacing(1)}}
                       >
                         <ListItemAvatar>
                           {this.renderAvatar(skillgroup)}

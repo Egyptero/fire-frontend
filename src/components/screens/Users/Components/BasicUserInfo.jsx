@@ -10,35 +10,33 @@ import {
   Select,
   FormControlLabel,
   Switch,
-  Avatar
+  Avatar,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import ChangePasswordDialog from "./ChangePasswordDialog";
-const styles = theme => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh"
-  },
+const styles = (theme) => ({
+  content: {},
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
     height: "79vh",
-    maxHeight: "79vh"
+    maxHeight: "79vh",
   },
   card: {
     display: "flex",
     position: "relative",
     overflow: "hidden",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   details: {
     display: "block",
@@ -51,20 +49,20 @@ const styles = theme => ({
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
     margin: theme.spacing(0.2),
-    maxWidth: "90%"
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
@@ -76,16 +74,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -97,16 +95,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -118,25 +116,25 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class BasicUserInfo extends Component {
   state = {
-    changePasswordDialog: false
+    changePasswordDialog: false,
   };
   componentDidMount() {}
-  onDataChange = event => {
+  onDataChange = (event) => {
     const { source } = this.props;
     let { selectedUser } = source.sourceState;
     if (event.target.name === "firstname")
@@ -164,7 +162,7 @@ class BasicUserInfo extends Component {
     source.updateSelectedUser(selectedUser);
   };
 
-  changePassword = password => {
+  changePassword = (password) => {
     const { source } = this.props;
     let { selectedUser } = source.sourceState;
     selectedUser.password = password;
@@ -187,18 +185,20 @@ class BasicUserInfo extends Component {
         </Grid>
         {/* User profile pic */}
         <Grid item xs={6} sm={6} md={3} lg={3}>
-          <FormControl className={classes.formControl}>
-            <Avatar
-              src="/imgs/nopic.jpg"
-              style={{ width: "5em", height: "5em" }}
-            />
-          </FormControl>
+          <Grid container justify="center">
+            <FormControl className={classes.formControl}>
+              <Avatar
+                src="/imgs/nopic.jpg"
+                style={{ width: theme.spacing(12), height: theme.spacing(12) }}
+              />
+            </FormControl>
+          </Grid>
         </Grid>
         {/* User SIP Server*/}
         <Grid item xs={6} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User SIP Server */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="sipServer"
                 label="SIP Server"
@@ -211,7 +211,8 @@ class BasicUserInfo extends Component {
                     : ""
                 }
                 fullWidth
-                //variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
           </Grid>
@@ -220,7 +221,7 @@ class BasicUserInfo extends Component {
         <Grid item xs={6} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User SIP Uri */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="sipUri"
                 label="SIP Uri"
@@ -233,7 +234,8 @@ class BasicUserInfo extends Component {
                     : ""
                 }
                 fullWidth
-                //variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
           </Grid>
@@ -245,8 +247,11 @@ class BasicUserInfo extends Component {
               variant="outlined"
               className={classes.formControl}
               style={{ width: "100%" }}
+              size="small"
             >
-              <InputLabel htmlFor="role-label">Role</InputLabel>
+              <InputLabel htmlFor="role-label">
+                <Typography variant="caption">Role</Typography>
+              </InputLabel>
               <Select
                 value={source.sourceState.selectedUser.role}
                 onChange={this.onDataChange}
@@ -255,11 +260,21 @@ class BasicUserInfo extends Component {
                   <OutlinedInput labelWidth={40} name="role" id="role-label" />
                 }
               >
-                <MenuItem value="User">User</MenuItem>
-                <MenuItem value="Agent">Agent</MenuItem>
-                <MenuItem value="Supervisor">Supervisor</MenuItem>
-                <MenuItem value="Business">Business</MenuItem>
-                <MenuItem value="Administrator">Administrator</MenuItem>
+                <MenuItem value="User">
+                  <Typography variant="caption">User</Typography>
+                </MenuItem>
+                <MenuItem value="Agent">
+                  <Typography variant="caption">Agent</Typography>
+                </MenuItem>
+                <MenuItem value="Supervisor">
+                  <Typography variant="caption">Supervisor</Typography>
+                </MenuItem>
+                <MenuItem value="Business">
+                  <Typography variant="caption">Business</Typography>
+                </MenuItem>
+                <MenuItem value="Administrator">
+                  <Typography variant="caption">Administrator</Typography>
+                </MenuItem>
               </Select>
             </FormControl>
             {/* User Phone */}
@@ -272,9 +287,11 @@ class BasicUserInfo extends Component {
                     disabled={!source.sourceState.canSave}
                     color="primary"
                     name="phone"
+                    size="small"
                   />
                 }
-                label="Phone"
+                label={<Typography variant="caption">Phone</Typography>}
+                size="small"
               />
             </FormControl>
           </Grid>
@@ -283,7 +300,7 @@ class BasicUserInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User First Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="firstname"
                 label="First name"
@@ -292,11 +309,13 @@ class BasicUserInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedUser.firstname}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </FormControl>
             {/* User Email */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="email"
                 label="Email"
@@ -306,6 +325,8 @@ class BasicUserInfo extends Component {
                 value={source.sourceState.selectedUser.email}
                 type="Email"
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </FormControl>
@@ -315,7 +336,7 @@ class BasicUserInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User Last Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="lastname"
                 label="Last name"
@@ -324,11 +345,13 @@ class BasicUserInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedUser.lastname}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </FormControl>
             {/* User User Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="username"
                 label="User"
@@ -337,6 +360,8 @@ class BasicUserInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedUser.username}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </FormControl>
@@ -346,7 +371,7 @@ class BasicUserInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User SIP User Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="sipUserName"
                 label="SIP User name"
@@ -359,11 +384,13 @@ class BasicUserInfo extends Component {
                     : ""
                 }
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </FormControl>
             {/* User User Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="sipPassword"
                 label="SIP Password"
@@ -376,6 +403,8 @@ class BasicUserInfo extends Component {
                     : ""
                 }
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 //variant="outlined"
               />
             </FormControl>
@@ -385,20 +414,21 @@ class BasicUserInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User Change Password Button */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <Button
                 variant="contained"
                 color="secondary"
                 type="Change password"
                 disabled={!source.sourceState.canSave}
                 onClick={this.handlePasswordDialogOpen}
+                size="small"
               >
-                Change password
+                <Typography variant="caption">Change password</Typography>
               </Button>
             </FormControl>
             <Grid container direction="row">
               {/* User SharedAgent */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <FormControlLabel
                   control={
                     <Switch
@@ -407,13 +437,14 @@ class BasicUserInfo extends Component {
                       disabled={!source.sourceState.canSave}
                       color="primary"
                       name="sharedAgent"
+                      size="small"
                     />
                   }
-                  label="Shared"
+                  label={<Typography variant="caption">Shared</Typography>}
                 />
               </FormControl>
               {/* User ODI */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <FormControlLabel
                   control={
                     <Switch
@@ -422,9 +453,10 @@ class BasicUserInfo extends Component {
                       disabled={!source.sourceState.canSave}
                       color="primary"
                       name="odi"
+                      size="small"
                     />
                   }
-                  label="ODI"
+                  label={<Typography variant="caption">ODI</Typography>}
                 />
               </FormControl>
             </Grid>
@@ -447,7 +479,7 @@ BasicUserInfo.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(BasicUserInfo);

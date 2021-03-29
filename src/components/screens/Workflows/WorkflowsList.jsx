@@ -124,7 +124,7 @@ class WorkflowsList extends Component {
                 </IconButton>
               </div>
             }
-            title="Robots"
+            title={<b>Robots</b>}
             titleTypographyProps={{ variant: "body1" }}
             style={{ padding: theme.spacing(1) }}
           />
@@ -145,6 +145,7 @@ class WorkflowsList extends Component {
                         onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
+                        style={{ padding: theme.spacing(1) }}
                       >
                         <ListItemAvatar>
                           {this.renderAvatar(workflow)}

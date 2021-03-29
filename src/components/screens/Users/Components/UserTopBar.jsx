@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Edit, Delete, Visibility, Maximize, Save } from "@material-ui/icons";
 
-const styles = theme => ({
+const styles = (theme) => ({
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
   },
   content: {},
   grid: {},
@@ -15,10 +15,9 @@ const styles = theme => ({
   topBar: {
     display: "flex",
     position: "relative",
-    overflow: "hidden",
     backgroundColor: "lightgrey",
-    height: "6vh",
-    maxHeight: "6vh"
+    height: theme.spacing(4),
+    maxHeight: theme.spacing(4),
   },
   topBarItem: {
     display: "flex",
@@ -26,14 +25,14 @@ const styles = theme => ({
     top: "50%",
     marginLeft: theme.spacing(1),
     "-ms-transform": "translateY(-50%)",
-    transform: "translateY(-50%)"
+    transform: "translateY(-50%)",
   },
   list: {},
   card: {},
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class UserTopBar extends Component {
@@ -61,14 +60,12 @@ class UserTopBar extends Component {
             {/* <Grid item>{this.renderAvatar()}</Grid> */}
             <Grid item>
               <Typography
-                variant="h6"
+                variant="body2"
                 className={classes.topBarItem}
                 color="textPrimary"
                 inline="true"
               >
-                {`${sourceState.selectedUser.firstname} ${
-                  sourceState.selectedUser.lastname
-                }`}
+                {`${sourceState.selectedUser.firstname} ${sourceState.selectedUser.lastname}`}
               </Typography>
             </Grid>
           </Grid>
@@ -78,26 +75,29 @@ class UserTopBar extends Component {
             <IconButton
               onClick={source.saveUser}
               disabled={!source.sourceState.canSave}
+              size="small"
             >
-              <Save />
+              <Save fontSize="small" />
             </IconButton>
             <IconButton
               onClick={source.watchUser}
               disabled={!source.sourceState.canWatch}
+              size="small"
             >
-              <Visibility />
+              <Visibility fontSize="small" />
             </IconButton>
             <IconButton
               onClick={source.editUser}
               disabled={!source.sourceState.canEdit}
+              size="small"
             >
-              <Edit />
+              <Edit fontSize="small" />
             </IconButton>
-            <IconButton onClick={source.deleteUser}>
-              <Delete />
+            <IconButton onClick={source.deleteUser} size="small">
+              <Delete fontSize="small" />
             </IconButton>
-            <IconButton onClick={source.switchDetailsView}>
-              <Maximize />
+            <IconButton onClick={source.switchDetailsView} size="small">
+              <Maximize fontSize="small" />
             </IconButton>
           </Grid>
         </Grid>
@@ -112,7 +112,7 @@ UserTopBar.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(UserTopBar);
