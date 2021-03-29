@@ -10,21 +10,21 @@ import {
   ListItemText,
   Avatar,
   Divider,
-  ListItemAvatar
+  ListItemAvatar,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Add, Refresh } from "@material-ui/icons";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    //height: "86vh"
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   card: {
     overflow: "auto",
@@ -32,44 +32,55 @@ const styles = theme => ({
     minHeight: "100%",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "73vh",
+    height: "83vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
-      width: "0.4em"
+      width: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 class SkillgroupsList extends Component {
   state = {};
-  renderAvatar = skillgroup => {
-    return <Avatar>{skillgroup.name[0]}</Avatar>;
+  renderAvatar = (skillgroup) => {
+    const { theme } = this.props;
+    return (
+      <Avatar
+        style={{
+          width: theme.spacing(4),
+          height: theme.spacing(4),
+          backgroundColor: theme.palette.info.light,
+        }}
+      >
+        {skillgroup.name[0]}
+      </Avatar>
+    );
   };
   render() {
-    const { classes, source, app } = this.props;
+    const { classes, source, app, theme } = this.props;
     if (source.getListWidth() === 0) return <React.Fragment />;
     return (
       <Grid
@@ -85,15 +96,20 @@ class SkillgroupsList extends Component {
           <CardHeader
             action={
               <div>
-                <IconButton onClick={source.reloadSkillgroups}>
-                  <Refresh />
+                <IconButton onClick={source.reloadSkillgroups} size="small">
+                  <Refresh fontSize="small" />
                 </IconButton>
-                <IconButton onClick={source.handleNewSkillgroupClickOpen}>
-                  <Add />
+                <IconButton
+                  onClick={source.handleNewSkillgroupClickOpen}
+                  size="small"
+                >
+                  <Add fontSize="small" />
                 </IconButton>
               </div>
             }
-            title="Skill-groups"
+            title="Skillgroups"
+            titleTypographyProps={{ variant: "body1" }}
+            style={{ padding: theme.spacing(1) }}
           />
           <Divider />
           <CardContent className={classes.cardContent}>
@@ -110,7 +126,7 @@ class SkillgroupsList extends Component {
                         }
                         button
                         key={index}
-                        onClick={event =>
+                        onClick={(event) =>
                           source.handleListItemClick(event, index)
                         }
                       >
@@ -118,12 +134,10 @@ class SkillgroupsList extends Component {
                           {this.renderAvatar(skillgroup)}
                         </ListItemAvatar>
                         <ListItemText
-                          primary={skillgroup.name}
-                          secondary={
-                            <React.Fragment>
-                              {skillgroup.description}
-                            </React.Fragment>
-                          }
+                          primary={<b>{skillgroup.name}</b>}
+                          secondary={skillgroup.description}
+                          primaryTypographyProps={{ variant: "caption" }}
+                          secondaryTypographyProps={{ variant: "caption" }}
                         />
                       </ListItem>
                     );
@@ -143,7 +157,7 @@ SkillgroupsList.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(SkillgroupsList);

@@ -7,7 +7,7 @@ import Designer from "./Designer/Designer";
 const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh",
+    //height: "86vh",
   },
   grid: {
     display: "flex",

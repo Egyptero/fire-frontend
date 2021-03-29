@@ -7,62 +7,27 @@ import {
   ListItem,
   ListItemText,
   FormLabel,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import _ from "lodash";
 import loadUsers from "../../../../functions/tenant/user/loadUsers";
 import updateUser from "../../../../functions/tenant/user/updateUser";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
-    flexGrow: 1,
-    height: "86vh"
   },
   grid: {
-    display: "flex",
-    position: "relative",
-    maxHeight: "100%",
-    minHeight: "100%",
-    overflow: "hidden"
   },
   gridWithoutBorder: {
-    display: "flex",
-    position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
   },
   card: {
-    display: "flex",
-    position: "relative",
-    overflow: "hidden",
-    maxHeight: "100%",
-    minHeight: "100%"
   },
   details: {
-    display: "block",
-    position: "absolute",
-    overflow: "auto",
-    height: "78vh",
-    maxHeight: "78vh",
-    //    minWidth: "100%",
-    whiteSpace: "nowrap",
-    //width: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em"
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
   },
   formControl: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
     //maxWidth: "90%"
   },
   list: {
@@ -71,69 +36,31 @@ const styles = theme => ({
     border: "1px solid",
     borderColor: theme.palette.secondary.light,
     "border-radius": "5px",
-    height: "18em",
+    maxHeight: theme.spacing(24),
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.light,
-    "border-radius": "5px",
-    height: "6.2em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em"
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
   },
   listUsers: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.light,
-    "border-radius": "5px",
-    height: "14.7em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em"
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+  },
 });
 
 class SkillUsersManagement extends Component {
   state = {
     selectedOrgUserId: null,
-    selectedSkillUserId: null
+    selectedSkillUserId: null,
   };
   componentDidMount() {
     const { app } = this.props;
@@ -150,13 +77,13 @@ class SkillUsersManagement extends Component {
 
     let orgUsers = _.filter(
       users,
-      user => user._id === this.state.selectedOrgUserId
+      (user) => user._id === this.state.selectedOrgUserId
     );
     if (orgUsers && orgUsers.length > 0) {
       let user = orgUsers[0];
       if (!user.skillIds) user.skillIds = [];
       user.skillIds.push(selectedSkillgroup._id);
-      updateUser(user._id, _.pick(user, ["skillIds"]), this, result => {
+      updateUser(user._id, _.pick(user, ["skillIds"]), this, (result) => {
         if (!result.error) this.setState({ selectedOrgUserId: null });
       });
     }
@@ -168,7 +95,7 @@ class SkillUsersManagement extends Component {
 
     let skillUsers = _.filter(
       users,
-      user => user._id === this.state.selectedSkillUserId
+      (user) => user._id === this.state.selectedSkillUserId
     );
     if (skillUsers && skillUsers.length > 0) {
       let user = skillUsers[0];
@@ -176,21 +103,21 @@ class SkillUsersManagement extends Component {
 
       user.skillIds = _.filter(
         user.skillIds,
-        skillId => skillId !== selectedSkillgroup._id
+        (skillId) => skillId !== selectedSkillgroup._id
       );
-      updateUser(user._id, _.pick(user, ["skillIds"]), this, result => {
+      updateUser(user._id, _.pick(user, ["skillIds"]), this, (result) => {
         if (!result.error) this.setState({ selectedSkillUserId: null });
       });
     }
   };
-  renderSkillgroupUser = user => {
-    const { source } = this.props;
+  renderSkillgroupUser = (user) => {
+    const { source,theme } = this.props;
     const { selectedSkillgroup } = this.props.source.sourceState;
     let found;
     if (user.skillIds) {
       found = _.filter(
         user.skillIds,
-        skillId => skillId === selectedSkillgroup._id
+        (skillId) => skillId === selectedSkillgroup._id
       );
     }
     if (found && found.length > 0) {
@@ -204,8 +131,12 @@ class SkillUsersManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedSkillUserId: user._id });
           }}
+          style={{padding:theme.spacing(1)}}
         >
-          <ListItemText primary={`${user.firstname} ${user.lastname}`} />
+          <ListItemText
+            primary={`${user.firstname} ${user.lastname}`}
+            primaryTypographyProps={{ variant: "small" }}
+          />
           {user._id === this.state.selectedSkillUserId ? (
             <ListItemSecondaryAction>
               <Button
@@ -215,7 +146,7 @@ class SkillUsersManagement extends Component {
                 color="primary"
                 onClick={this.removeUserFromSkill}
               >
-                Remove
+                <Typography variant="caption">Remove</Typography>
               </Button>
             </ListItemSecondaryAction>
           ) : (
@@ -225,14 +156,14 @@ class SkillUsersManagement extends Component {
       );
     } else return;
   };
-  renderOrganizationUser = user => {
-    const { source } = this.props;
+  renderOrganizationUser = (user) => {
+    const { source,theme } = this.props;
     const { selectedSkillgroup } = this.props.source.sourceState;
     let found;
     if (user.skillIds) {
       found = _.filter(
         user.skillIds,
-        skillId => skillId === selectedSkillgroup._id
+        (skillId) => skillId === selectedSkillgroup._id
       );
     }
     if (found && found.length > 0) return;
@@ -247,8 +178,12 @@ class SkillUsersManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedOrgUserId: user._id });
           }}
+          style={{padding:theme.spacing(1)}}
         >
-          <ListItemText primary={`${user.firstname} ${user.lastname}`} />
+          <ListItemText
+            primary={`${user.firstname} ${user.lastname}`}
+            primaryTypographyProps={{ variant: "caption" }}
+          />
           {user._id === this.state.selectedOrgUserId ? (
             <ListItemSecondaryAction>
               <Button
@@ -258,7 +193,7 @@ class SkillUsersManagement extends Component {
                 color="primary"
                 onClick={this.assignUserToSkill}
               >
-                Assign
+                <Typography variant="caption">Assign</Typography>
               </Button>
             </ListItemSecondaryAction>
           ) : (
@@ -275,16 +210,16 @@ class SkillUsersManagement extends Component {
         {/* Organization userss except those with skill */}
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
-                Available users
+                <Typography variant="caption">Available users</Typography>
               </FormLabel>
               <List
                 disabled={!source.sourceState.canSave}
                 className={classes.list}
               >
                 {users
-                  ? users.map(user => {
+                  ? users.map((user) => {
                       return this.renderOrganizationUser(user);
                     })
                   : ""}
@@ -295,16 +230,16 @@ class SkillUsersManagement extends Component {
         {/* Skillgroup users*/}
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
-                Users in group
+                <Typography variant="caption">Users in group</Typography>
               </FormLabel>
               <List
                 disabled={!source.sourceState.canSave}
                 className={classes.list}
               >
                 {users
-                  ? users.map(user => {
+                  ? users.map((user) => {
                       return this.renderSkillgroupUser(user);
                     })
                   : ""}
@@ -323,7 +258,7 @@ SkillUsersManagement.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(SkillUsersManagement);

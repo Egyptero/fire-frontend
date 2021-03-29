@@ -150,8 +150,10 @@ class WorkflowsList extends Component {
                           {this.renderAvatar(workflow)}
                         </ListItemAvatar>
                         <ListItemText
-                          primary={workflow.name}
+                          primary={<b>{workflow.name}</b>}
+                          secondary={workflow.type}
                           primaryTypographyProps={{ variant: "caption" }}
+                          secondaryTypographyProps={{ variant: "caption" }}
                         />
                       </ListItem>
                     );

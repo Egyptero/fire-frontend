@@ -7,32 +7,33 @@ import {
   InputLabel,
   OutlinedInput,
   MenuItem,
-  Divider
+  Divider,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import loadWorkflows from "../../../../functions/tenant/workflow/loadWorkflows";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {},
   card: {},
   details: {},
   formControl: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   list: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class BasicTypeInfo extends Component {
@@ -41,7 +42,7 @@ class BasicTypeInfo extends Component {
     const { workflows } = this.props.app;
     if (!workflows) loadWorkflows(this);
   }
-  onDataChange = event => {
+  onDataChange = (event) => {
     const { source } = this.props;
     let { selectedType } = source.sourceState;
     if (event.target.name === "name") selectedType.name = event.target.value;
@@ -55,18 +56,18 @@ class BasicTypeInfo extends Component {
     source.updateSelectedType(selectedType);
   };
   render() {
-    const { classes, source, app } = this.props;
+    const { classes, source, app, theme } = this.props;
     const { workflows } = app;
     return (
       <React.Fragment>
         {/* Empty space*/}
         <Grid item xs={12}>
-          <p style={{ margin: "2%" }} />
+          <p style={{ margin: theme.spacing(1) }} />
         </Grid>
         {/* Type name */}
         <Grid item xs={6} sm={5} md={3} lg={3}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="name"
                 label="Type name"
@@ -75,41 +76,61 @@ class BasicTypeInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedType.name}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
           </Grid>
         </Grid>
-        {/* Empty space*/}
-        <Grid item xs={12}>
-          <p style={{ margin: "2%" }} />
+        <Grid item xs={6} sm={5} md={6} lg={6}></Grid>
+        <Grid item xs={6} sm={5} md={3} lg={3}>
+          <Grid container direction="column">
+            <FormControl className={classes.formControl} size="small">
+              <TextField
+                name="_id"
+                value={source.sourceState.selectedType._id}
+                label="Id"
+                placeholder="Type Id"
+                disabled
+                fullWidth
+                //variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+              />
+            </FormControl>
+          </Grid>
         </Grid>
         {/* Type description */}
         <Grid item xs={12}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="description"
                 label="Description"
                 multiline
-                rows="4"
+                rows="2"
                 placeholder="Type description"
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedType.description}
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
           </Grid>
         </Grid>
-        {/* Divider */}
-        <Grid item xs={12}>
-          <Divider style={{ margin: "1%" }} />
-        </Grid>
         {/* Type channel */}
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <Grid container direction="column">
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel htmlFor="channel-label">Channel</InputLabel>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              size="small"
+            >
+              <InputLabel htmlFor="channel-label">
+                <Typography variant="caption">Channel</Typography>
+              </InputLabel>
               <Select
                 value={source.sourceState.selectedType.channel}
                 name="channel"
@@ -118,49 +139,49 @@ class BasicTypeInfo extends Component {
                 input={<OutlinedInput labelWidth={60} id="channel-label" />}
               >
                 <MenuItem key="Facebook Page" value="Facebook Page">
-                  Facebook Page
+                  <Typography variant="caption">Facebook Page</Typography>
                 </MenuItem>
                 <MenuItem key="Facebook DM" value="Facebook DM">
-                  Facebook DM
+                  <Typography variant="caption">Facebook DM</Typography>
                 </MenuItem>
                 <MenuItem key="Twitter Account" value="Twitter Account">
-                  Twitter Account
+                  <Typography variant="caption">Twitter Account</Typography>
                 </MenuItem>
                 <MenuItem key="Twitter DM" value="Twitter DM">
-                  Twitter DM
+                  <Typography variant="caption">Twitter DM</Typography>
                 </MenuItem>
                 <MenuItem key="Intsagram Account" value="Intsagram Account">
-                  Intsagram Account
+                  <Typography variant="caption">Intsagram Account</Typography>
                 </MenuItem>
                 <MenuItem key="Youtube" value="Youtube">
-                  Youtube
+                  <Typography variant="caption">Youtube</Typography>
                 </MenuItem>
                 <MenuItem key="Voice" value="Voice">
-                  Voice
+                  <Typography variant="caption">Voice</Typography>
                 </MenuItem>
                 <MenuItem key="Vedio" value="Vedio">
-                  Vedio
+                  <Typography variant="caption">Vedio</Typography>
                 </MenuItem>
                 <MenuItem key="SMS" value="SMS">
-                  SMS
+                  <Typography variant="caption">SMS</Typography>
                 </MenuItem>
                 <MenuItem key="Chat" value="Chat">
-                  Chat
+                  <Typography variant="caption">Chat</Typography>
                 </MenuItem>
                 <MenuItem key="Email" value="Email">
-                  Email
+                  <Typography variant="caption">Email</Typography>
                 </MenuItem>
                 <MenuItem key="Webrtc" value="Webrtc">
-                  Webrtc
+                  <Typography variant="caption">Webrtc</Typography>
                 </MenuItem>
                 <MenuItem key="WhatsApp Business" value="WhatsApp Business">
-                  WhatsApp Business
+                  <Typography variant="caption">WhatsApp Business</Typography>
                 </MenuItem>
                 <MenuItem key="Project" value="Project">
-                  Project
+                  <Typography variant="caption">Project</Typography>
                 </MenuItem>
                 <MenuItem key="Custom" value="Custom">
-                  Custom
+                  <Typography variant="caption">Custom</Typography>
                 </MenuItem>
               </Select>
             </FormControl>
@@ -169,8 +190,14 @@ class BasicTypeInfo extends Component {
         {/* Type Workflow */}
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <Grid container direction="column">
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel htmlFor="workflow-label">Workflow</InputLabel>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              size="small"
+            >
+              <InputLabel htmlFor="workflow-label">
+                <Typography variant="caption">Workflow</Typography>
+              </InputLabel>
               <Select
                 value={
                   source.sourceState.selectedType.workflowId
@@ -183,10 +210,12 @@ class BasicTypeInfo extends Component {
                 input={<OutlinedInput labelWidth={60} id="workflow-label" />}
               >
                 {workflows
-                  ? workflows.map(workflow => {
+                  ? workflows.map((workflow) => {
                       return (
                         <MenuItem key={workflow._id} value={workflow._id}>
-                          {workflow.name}
+                          <Typography variant="caption">
+                            {workflow.name}
+                          </Typography>
                         </MenuItem>
                       );
                     })
@@ -195,19 +224,11 @@ class BasicTypeInfo extends Component {
             </FormControl>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Grid container direction="column">
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="_id"
-                value={source.sourceState.selectedType._id}
-                label="Id"
-                disabled
-                variant="outlined"
-              />
-            </FormControl>
-          </Grid>
+                {/* Divider */}
+                <Grid item xs={12}>
+          <Divider style={{ margin: "1%" }} />
         </Grid>
+
       </React.Fragment>
     );
   }
@@ -219,7 +240,7 @@ BasicTypeInfo.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(BasicTypeInfo);

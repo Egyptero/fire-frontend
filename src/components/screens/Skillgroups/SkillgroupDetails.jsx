@@ -8,55 +8,55 @@ import SkillUsersManagement from "./Components/SkillUsersManagement";
 // import BasicUserInfo from "./Components/BasicUserInfo";
 // import UserSkillManagement from "./Components/UserSkillManagement";
 // import UserAdvancedManagement from "./Components/UserAdvancedManagement";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    height: "86vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
+    height: "83vh",
+    maxHeight: "83vh",
   },
   card: {
     display: "flex",
     position: "relative",
     overflow: "hidden",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   details: {
     display: "block",
     position: "absolute",
     overflow: "auto",
-    height: "78vh",
-    maxHeight: "78vh",
+    height: "83vh",
+    //maxHeight: "78vh",
     //    minWidth: "100%",
     whiteSpace: "nowrap",
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
     //maxWidth: "90%"
   },
   list: {
@@ -69,16 +69,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -90,16 +90,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -111,24 +111,24 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class SkillgroupDetails extends Component {
   state = {};
   componentDidMount() {}
   render() {
-    const { classes, source } = this.props;
+    const { classes, source, theme } = this.props;
     return (
       <Grid
         item
@@ -144,7 +144,7 @@ class SkillgroupDetails extends Component {
             style={{
               overflow: "auto",
               position: "relative",
-              display: "flex"
+              display: "flex",
             }}
           >
             {/** User Topbar running all user capabilities like save , edit , watch */}
@@ -155,12 +155,12 @@ class SkillgroupDetails extends Component {
                 <Grid container spacing={0}>
                   {/**Basic User Information like pic , name , email */}
                   <BasicSkillgroupInfo {...this.props} />
-                  {/* Divider */}
-                  <Grid item xs={12}>
-                    <Divider style={{ margin: "1%" }} />
-                  </Grid>
                   {/**User skillgroups management where you can assign or remove skill from user */}
                   <SkillUsersManagement {...this.props} />
+                  {/* Divider */}
+                  <Grid item xs={12}>
+                    <Divider style={{ margin: theme.spacing(1) }} />
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -177,7 +177,7 @@ SkillgroupDetails.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(SkillgroupDetails);

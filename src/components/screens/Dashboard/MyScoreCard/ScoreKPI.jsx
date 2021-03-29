@@ -34,7 +34,7 @@ class ScoreKPI extends Component {
             theme.palette.success.main,
             theme.palette.success.dark,
           ]}
-          arcPadding={0}
+          arcPadding={0}//3
           arcWidth={0.3}
           percent={params.value}
           textColor={theme.palette.secondary.dark}
