@@ -9,7 +9,6 @@ import DashboardHeader from "./Dashboard/DashboardHeader";
 import loadMyQueues from "../../functions/user/tenant/loadMyQueues";
 import loadMySkillgroups from "../../functions/user/tenant/loadMySkillgroups";
 import loadMyTeams from "../../functions/user/team/loadMyTeams";
-import loadTodos from "../../functions/user/loadTodos";
 
 import _ from "lodash";
 import {
@@ -29,7 +28,7 @@ import MyScroreCard from "./Dashboard/MyScroreCard";
 
 const styles = (theme) => ({
   content: {
-    flexGrow: 1,
+    // flexGrow: 1,
     //height: "86vh",
     //background: theme.palette.primary.light
   },
@@ -104,7 +103,7 @@ class Dashboard extends Component {
     }
   }
 
-  refreshTeams = () => {
+  refreshTeams = async () => {
     loadMyTeams(this, (result) => {
       if (!result.error) {
         this.calcTeamData();
@@ -113,7 +112,7 @@ class Dashboard extends Component {
     });
   };
 
-  refreshQueues = () => {
+  refreshQueues = async () => {
     loadMySkillgroups(this, (result) => {
       if (!result.error)
         loadMyQueues(this, (result) => {
@@ -154,7 +153,7 @@ class Dashboard extends Component {
     return users.length;
   };
 
-  calcTodoData = () => {
+  calcTodoData = async () => {
     const { app } = this.props;
     const todos = app.todos ? app.todos : [];
     if (!todos) return;
@@ -187,7 +186,7 @@ class Dashboard extends Component {
     data.push(statusCount.completed);
     this.setState({ todoData: { data, categories }, todoStatus: statusCount });
   };
-  calcQueueData = () => {
+  calcQueueData = async () => {
     const { app } = this.props;
     const skillgroups = app.mySkillgroups ? app.mySkillgroups : [];
 
@@ -217,7 +216,7 @@ class Dashboard extends Component {
     data.push(queueSeries, notreadySeries);
     this.setState({ queueData: { data, categories }, customersWaiting });
   };
-  calcTeamData = () => {
+  calcTeamData = async () => {
     const { app } = this.props;
     const teams = app.myTeams ? app.myTeams : [];
     if (!teams) return;

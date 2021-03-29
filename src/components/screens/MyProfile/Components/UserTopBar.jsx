@@ -15,10 +15,9 @@ const styles = theme => ({
   topBar: {
     display: "flex",
     position: "relative",
-    overflow: "hidden",
     backgroundColor: "lightgrey",
-    height: "6vh",
-    maxHeight: "6vh"
+    height: theme.spacing(4),
+    maxHeight: theme.spacing(4),
   },
   topBarItem: {
     display: "flex",
@@ -61,14 +60,14 @@ class UserTopBar extends Component {
             {/* <Grid item>{this.renderAvatar()}</Grid> */}
             <Grid item>
               <Typography
-                variant="h6"
+                variant="body2"
                 className={classes.topBarItem}
                 color="textPrimary"
                 inline="true"
               >
-                {`${sourceState.selectedUser.firstname} ${
+                <b>{`${sourceState.selectedUser.firstname} ${
                   sourceState.selectedUser.lastname
-                }`}
+                }`}</b>
               </Typography>
             </Grid>
           </Grid>
@@ -78,20 +77,23 @@ class UserTopBar extends Component {
             <IconButton
               onClick={source.saveUser}
               disabled={!source.sourceState.canSave}
+              size="small"
             >
-              <Save />
+              <Save fontSize="small"/>
             </IconButton>
             <IconButton
               onClick={source.watchUser}
               disabled={!source.sourceState.canWatch}
+              size="small"
             >
-              <Visibility />
+              <Visibility fontSize="small"/>
             </IconButton>
             <IconButton
               onClick={source.editUser}
               disabled={!source.sourceState.canEdit}
+              size="small"
             >
-              <Edit />
+              <Edit fontSize="small"/>
             </IconButton>
           </Grid>
         </Grid>

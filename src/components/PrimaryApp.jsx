@@ -40,6 +40,23 @@ class PrimaryApp extends React.Component {
     //We need to loadd application data now
 
     //Load Admin related information
+    this.loadAtMount();
+  }
+  componentDidUpdate(prevProps) {
+    const { app } = this.props;
+    const { app: prevApp } = prevProps;
+    if (!app || !prevApp) return;
+    if (!app.tenant || !prevApp.tenant) return;
+    //    let reload = app.tenant && !prevApp ? true : false;
+    //    if (!reload) reload = app.tenant && !prevApp.tenant ? true : false;
+    let reload = app.tenant._id !== prevApp.tenant._id;
+    //let changed =
+    if (reload) {
+      console.log("Loading Tenant Admin Data in update");
+      this.loadAtUpdate();
+    }
+  }
+  loadAtMount = async () => {
     const { app } = this.props;
     if (!app) return;
     let loader = {
@@ -67,40 +84,32 @@ class PrimaryApp extends React.Component {
         }
       });
     });
-  }
-  componentDidUpdate(prevProps) {
+  };
+  loadAtUpdate = async () => {
     const { app } = this.props;
-    const { app: prevApp } = prevProps;
-    if (!app || !prevApp) return;
-    if (!app.tenant || !prevApp.tenant) return;
-    //    let reload = app.tenant && !prevApp ? true : false;
-    //    if (!reload) reload = app.tenant && !prevApp.tenant ? true : false;
-    let reload = app.tenant._id !== prevApp.tenant._id;
-    //let changed =
-    if (reload) {
-      console.log("Loading Tenant Admin Data in update");
-      let loader = {
-        progress: 5,
-        message: "Loading your data .....",
-      };
-      app.updateProgress(loader);
+    if (!app) return;
+    let loader = {
+      progress: 5,
+      message: "Loading your data .....",
+    };
+    app.updateProgress(loader);
 
-      loadMyTenants(this, (result) => {
-        if (!result.error && result.tenants) {
-          app.handleTenantsListLoad(result.tenants);
-          app.handleTenantChange(result.tenants[0]);
-          loader.progress += 5;
-          loader.message = "Organization information loaded";
-          app.updateProgress(loader);
-          this.loadData();
-        } else {
-          this.loadData();
-          loader.progress = 100;
-          app.updateProgress(loader);
-        }
-      });
-    }
-  }
+    loadMyTenants(this, (result) => {
+      if (!result.error && result.tenants) {
+        app.handleTenantsListLoad(result.tenants);
+        app.handleTenantChange(result.tenants[0]);
+        loader.progress += 5;
+        loader.message = "Organization information loaded";
+        app.updateProgress(loader);
+        this.loadData();
+      } else {
+        this.loadData();
+        loader.progress = 100;
+        app.updateProgress(loader);
+      }
+    });
+  };
+
   loadData = () => {
     const { app } = this.props;
     const loadAdminData = true;

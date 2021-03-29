@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Edit, Delete, Visibility, Maximize, Save } from "@material-ui/icons";
 
-const styles = theme => ({
+const styles = (theme) => ({
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
   },
   content: {},
   grid: {},
@@ -15,10 +15,9 @@ const styles = theme => ({
   topBar: {
     display: "flex",
     position: "relative",
-    overflow: "hidden",
     backgroundColor: "lightgrey",
-    height: "6vh",
-    maxHeight: "6vh"
+    height: theme.spacing(4),
+    maxHeight: theme.spacing(4),
   },
   topBarItem: {
     display: "flex",
@@ -26,14 +25,14 @@ const styles = theme => ({
     top: "50%",
     marginLeft: theme.spacing(),
     "-ms-transform": "translateY(-50%)",
-    transform: "translateY(-50%)"
+    transform: "translateY(-50%)",
   },
   list: {},
   card: {},
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class CustomerTopBar extends Component {
@@ -57,7 +56,7 @@ class CustomerTopBar extends Component {
             {/* <Grid item>{this.renderAvatar()}</Grid> */}
             <Grid item>
               <Typography
-                variant="h6"
+                variant="body2"
                 color="textPrimary"
                 className={classes.topBarItem}
                 inline="true"
@@ -72,26 +71,29 @@ class CustomerTopBar extends Component {
             <IconButton
               onClick={source.saveCustomer}
               disabled={!source.sourceState.canSave}
+              size="small"
             >
-              <Save />
+              <Save fontSize="small" />
             </IconButton>
             <IconButton
+              size="small"
               onClick={source.watchCustomer}
               disabled={!source.sourceState.canWatch}
             >
-              <Visibility />
+              <Visibility fontSize="small" />
             </IconButton>
             <IconButton
+              size="small"
               onClick={source.editCustomer}
               disabled={!source.sourceState.canEdit}
             >
-              <Edit />
+              <Edit fontSize="small" />
             </IconButton>
-            <IconButton onClick={source.deleteCustomer}>
-              <Delete />
+            <IconButton onClick={source.deleteCustomer} size="small">
+              <Delete fontSize="small" />
             </IconButton>
-            <IconButton onClick={source.switchDetailsView}>
-              <Maximize />
+            <IconButton onClick={source.switchDetailsView} size="small">
+              <Maximize fontSize="small" />
             </IconButton>
           </Grid>
         </Grid>
@@ -106,7 +108,7 @@ CustomerTopBar.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CustomerTopBar);

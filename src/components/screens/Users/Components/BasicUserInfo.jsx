@@ -278,7 +278,7 @@ class BasicUserInfo extends Component {
               </Select>
             </FormControl>
             {/* User Phone */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormControlLabel
                 control={
                   <Switch
@@ -291,7 +291,7 @@ class BasicUserInfo extends Component {
                   />
                 }
                 label={<Typography variant="caption">Phone</Typography>}
-                size="small"
+                
               />
             </FormControl>
           </Grid>
@@ -453,7 +453,7 @@ class BasicUserInfo extends Component {
                       disabled={!source.sourceState.canSave}
                       color="primary"
                       name="odi"
-                      size="small"
+                      
                     />
                   }
                   label={<Typography variant="caption">ODI</Typography>}

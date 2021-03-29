@@ -8,12 +8,13 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-  Button
+  Button,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import _ from "lodash";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   gridWithoutBorder: {},
@@ -21,7 +22,7 @@ const styles = theme => ({
   details: {},
   formControl: {
     margin: theme.spacing(),
-    maxWidth: "90%"
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
@@ -33,19 +34,19 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class CustomerAdvancedInfo extends Component {
@@ -53,15 +54,15 @@ class CustomerAdvancedInfo extends Component {
     selectedUserEmail: "",
     selectedUserPhone: "",
     newPhone: "",
-    newEmail: ""
+    newEmail: "",
   };
-  onChange = event => {
+  onChange = (event) => {
     if (event.target.name === "newemail")
       this.setState({ newEmail: event.target.value });
     if (event.target.name === "newphone")
       this.setState({ newPhone: event.target.value });
   };
-  onDataChange = event => {
+  onDataChange = (event) => {
     const { source } = this.props;
     let { selectedCustomer } = source.sourceState;
     if (event.target.name === "phone")
@@ -86,7 +87,7 @@ class CustomerAdvancedInfo extends Component {
     let { selectedCustomer } = source.sourceState;
     selectedCustomer.emails = _.filter(
       selectedCustomer.emails,
-      email => email !== this.state.selectedUserEmail
+      (email) => email !== this.state.selectedUserEmail
     );
     source.updateSelectedCustomer(selectedCustomer);
     this.setState({ selectedUserEmail: "" });
@@ -102,7 +103,7 @@ class CustomerAdvancedInfo extends Component {
     if (selectedCustomer.emails) {
       const found = _.filter(
         selectedCustomer.emails,
-        email => email === this.state.newEmail
+        (email) => email === this.state.newEmail
       );
       if (found && found.length > 0) {
         enqueueSnackbar("Same email exist already");
@@ -113,7 +114,7 @@ class CustomerAdvancedInfo extends Component {
     source.updateSelectedCustomer(selectedCustomer);
     this.setState({ newEmail: "" });
   };
-  renderUserEmail = email => {
+  renderUserEmail = (email) => {
     const { source } = this.props;
     return (
       <ListItem
@@ -126,7 +127,10 @@ class CustomerAdvancedInfo extends Component {
             this.setState({ selectedUserEmail: email });
         }}
       >
-        <ListItemText primary={email} />
+        <ListItemText
+          primary={email}
+          primaryTypographyProps={{ variant: "caption" }}
+        />
         {email === this.state.selectedUserEmail ? (
           <ListItemSecondaryAction>
             <Button
@@ -135,8 +139,9 @@ class CustomerAdvancedInfo extends Component {
               size="small"
               color="primary"
               onClick={this.removeEmail}
+              style={{ textTransform: "none" }}
             >
-              Remove
+              <Typography variant="small">Remove</Typography>
             </Button>
           </ListItemSecondaryAction>
         ) : (
@@ -150,7 +155,7 @@ class CustomerAdvancedInfo extends Component {
     let { selectedCustomer } = source.sourceState;
     selectedCustomer.phones = _.filter(
       selectedCustomer.phones,
-      phone => phone !== this.state.selectedUserPhone
+      (phone) => phone !== this.state.selectedUserPhone
     );
     source.updateSelectedCustomer(selectedCustomer);
     this.setState({ selectedUserPhone: "" });
@@ -166,7 +171,7 @@ class CustomerAdvancedInfo extends Component {
     if (selectedCustomer.phones) {
       const found = _.filter(
         selectedCustomer.phones,
-        phone => phone === this.state.newPhone
+        (phone) => phone === this.state.newPhone
       );
       if (found && found.length > 0) {
         enqueueSnackbar("Same phone exist already");
@@ -177,7 +182,7 @@ class CustomerAdvancedInfo extends Component {
     source.updateSelectedCustomer(selectedCustomer);
     this.setState({ newPhone: "" });
   };
-  renderUserPhone = phone => {
+  renderUserPhone = (phone) => {
     const { source } = this.props;
     return (
       <ListItem
@@ -190,7 +195,10 @@ class CustomerAdvancedInfo extends Component {
             this.setState({ selectedUserPhone: phone });
         }}
       >
-        <ListItemText primary={phone} />
+        <ListItemText
+          primary={phone}
+          primaryTypographyProps={{ variant: "caption" }}
+        />
         {phone === this.state.selectedUserPhone ? (
           <ListItemSecondaryAction>
             <Button
@@ -199,8 +207,9 @@ class CustomerAdvancedInfo extends Component {
               size="small"
               color="primary"
               onClick={this.removePhone}
+              style={{ textTransform: "none" }}
             >
-              Remove
+              <Typography variant="caption">Remove</Typography>
             </Button>
           </ListItemSecondaryAction>
         ) : (
@@ -218,13 +227,14 @@ class CustomerAdvancedInfo extends Component {
         <Grid item xs={12} sm={12} md={6} lg={3}>
           <Grid container direction="column">
             {/** Other emails */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
-                Other emails
+                <Typography variant="caption">Other emails</Typography>
               </FormLabel>
               <List
                 disabled={!source.sourceState.canSave}
                 className={classes.list}
+                disablePadding
               >
                 <ListItem>
                   <TextField
@@ -234,8 +244,10 @@ class CustomerAdvancedInfo extends Component {
                     onChange={this.onChange}
                     style={{
                       width: "80%",
-                      padding: "0"
+                      padding: "0",
                     }}
+                    inputProps={{ style: { fontSize: "0.8rem" } }}
+                    InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   />
 
                   <ListItemSecondaryAction>
@@ -245,13 +257,14 @@ class CustomerAdvancedInfo extends Component {
                       color="primary"
                       size="small"
                       onClick={this.addEmail}
+                      style={{ textTransform: "none" }}
                     >
-                      Add
+                      <Typography variant="caption">Add</Typography>
                     </Button>
                   </ListItemSecondaryAction>
                 </ListItem>
                 {selectedCustomer && selectedCustomer.emails
-                  ? selectedCustomer.emails.map(email => {
+                  ? selectedCustomer.emails.map((email) => {
                       return this.renderUserEmail(email);
                     })
                   : ""}
@@ -263,13 +276,14 @@ class CustomerAdvancedInfo extends Component {
         <Grid item xs={12} sm={12} md={6} lg={3}>
           <Grid container direction="column">
             {/** Other phones */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
-                Other phones
+                <Typography variant="caption">Other phones</Typography>
               </FormLabel>
               <List
                 disabled={!source.sourceState.canSave}
                 className={classes.list}
+                disablePadding
               >
                 <ListItem>
                   <TextField
@@ -279,8 +293,10 @@ class CustomerAdvancedInfo extends Component {
                     onChange={this.onChange}
                     style={{
                       width: "80%",
-                      padding: "0"
+                      padding: "0",
                     }}
+                    inputProps={{ style: { fontSize: "0.8rem" } }}
+                    InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   />
 
                   <ListItemSecondaryAction>
@@ -290,13 +306,14 @@ class CustomerAdvancedInfo extends Component {
                       color="primary"
                       size="small"
                       onClick={this.addPhone}
+                      style={{ textTransform: "none" }}
                     >
-                      Add
+                      <Typography variant="caption">Add</Typography>
                     </Button>
                   </ListItemSecondaryAction>
                 </ListItem>
                 {selectedCustomer && selectedCustomer.phones
-                  ? selectedCustomer.phones.map(phone => {
+                  ? selectedCustomer.phones.map((phone) => {
                       return this.renderUserPhone(phone);
                     })
                   : ""}
@@ -308,7 +325,7 @@ class CustomerAdvancedInfo extends Component {
         <Grid item xs={12} sm={3} md={3} lg={3}>
           <Grid container direction="column">
             {/* Customer User Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="username"
                 label="User"
@@ -317,10 +334,13 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.username}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="facebookId"
                 label="Facebook ID"
@@ -329,10 +349,13 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.ids.facebookId}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="twitterId"
                 label="Twitter ID"
@@ -341,6 +364,9 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.ids.twitterId}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
@@ -349,7 +375,7 @@ class CustomerAdvancedInfo extends Component {
         {/* Group of controls (Mode , Manager , Organization , Add Organization*/}
         <Grid item xs={12} sm={3} md={3} lg={3}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="linkedId"
                 label="Linkedin ID"
@@ -358,10 +384,13 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.ids.linkedId}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="googleId"
                 label="Google ID"
@@ -370,10 +399,13 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.ids.googleId}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="instagramId"
                 label="Instagram ID"
@@ -382,10 +414,13 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.ids.instagramId}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="smoochId"
                 label="Smooch ID"
@@ -394,6 +429,9 @@ class CustomerAdvancedInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.ids.smoochId}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
@@ -410,7 +448,7 @@ CustomerAdvancedInfo.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CustomerAdvancedInfo);

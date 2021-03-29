@@ -1,66 +1,58 @@
 import React, { Component } from "react";
-import {
-  Grid,
-  TextField,
-  FormControl,
-  Avatar
-} from "@material-ui/core";
+import { Grid, TextField, FormControl, Avatar } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-const styles = theme => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh"
-  },
+const styles = (theme) => ({
+  content: {},
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
+    height: "83vh",
+    maxHeight: "83vh",
   },
   card: {
     display: "flex",
     position: "relative",
     overflow: "hidden",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   details: {
     display: "block",
     position: "absolute",
     overflow: "auto",
-    height: "78vh",
-    maxHeight: "78vh",
+    height: "83vh",
+    maxHeight: "83vh",
     //    minWidth: "100%",
     whiteSpace: "nowrap",
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    margin: theme.spacing(),
-    maxWidth: "90%"
+    margin: theme.spacing(1),
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
-    marginTop: theme.spacing(),
+    marginTop: theme.spacing(1),
     border: "1px solid",
     borderColor: theme.palette.secondary.dark,
     "border-radius": "5px",
@@ -68,16 +60,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -89,16 +81,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -110,23 +102,23 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class BasicCustomerInfo extends Component {
   state = {};
   componentDidMount() {}
-  onDataChange = event => {
+  onDataChange = (event) => {
     const { source } = this.props;
     let { selectedCustomer } = source.sourceState;
     if (event.target.name === "firstname")
@@ -146,27 +138,29 @@ class BasicCustomerInfo extends Component {
   };
 
   render() {
-    const { classes, source } = this.props;
+    const { theme, classes, source } = this.props;
     return (
       <React.Fragment>
         {/* Empty space*/}
         <Grid item xs={12}>
-          <p style={{ margin: "2%" }} />
+          <p style={{ margin: theme.spacing(1) }} />
         </Grid>
         {/* Customer profile pic */}
         <Grid item xs={6} sm={5} md={3} lg={3}>
-          <FormControl className={classes.formControl}>
-            <Avatar
-              src="/imgs/nopic.jpg"
-              style={{ width: "5em", height: "5em" }}
-            />
-          </FormControl>
+          <Grid container justify="center">
+            <FormControl className={classes.formControl} size="small">
+              <Avatar
+                src="/imgs/nopic.jpg"
+                style={{ width: theme.spacing(12), height: theme.spacing(12) }}
+              />
+            </FormControl>
+          </Grid>
         </Grid>
         {/* Empty space*/}
         <Grid item xs={1} sm={2} md={6} lg={6} />
         {/* Customer Score*/}
         <Grid item xs={6} sm={5} md={3} lg={3}>
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} size="small">
             <TextField
               name="score"
               label="Score"
@@ -176,6 +170,8 @@ class BasicCustomerInfo extends Component {
               value={source.sourceState.selectedCustomer.score}
               fullWidth
               variant="outlined"
+              inputProps={{ style: { fontSize: "0.8rem" } }}
+              InputLabelProps={{ style: { fontSize: "0.8rem" } }}
             />
           </FormControl>
         </Grid>
@@ -183,7 +179,7 @@ class BasicCustomerInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User First Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="firstname"
                 label="First name"
@@ -192,11 +188,14 @@ class BasicCustomerInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.firstname}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
             {/* User Email */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="email"
                 label="Email"
@@ -206,6 +205,9 @@ class BasicCustomerInfo extends Component {
                 value={source.sourceState.selectedCustomer.email}
                 type="Email"
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
@@ -215,7 +217,7 @@ class BasicCustomerInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* User Last Name */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="lastname"
                 label="Last name"
@@ -224,10 +226,13 @@ class BasicCustomerInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.lastname}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="phone"
                 label="Primary Phone"
@@ -236,6 +241,9 @@ class BasicCustomerInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.phone}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
@@ -247,7 +255,7 @@ class BasicCustomerInfo extends Component {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Grid container direction="column">
             {/* Title */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="title"
                 label="Title"
@@ -256,11 +264,14 @@ class BasicCustomerInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.title}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
             {/* Profession */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 name="profession"
                 label="Profession"
@@ -269,6 +280,9 @@ class BasicCustomerInfo extends Component {
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedCustomer.profession}
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+
                 //variant="outlined"
               />
             </FormControl>
@@ -285,7 +299,7 @@ BasicCustomerInfo.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(BasicCustomerInfo);

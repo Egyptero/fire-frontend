@@ -76,45 +76,43 @@ class DashboardHeader extends Component {
   render() {
     const { classes, params } = this.props;
     return (
-      <Grow in={true} style={{ transformOrigin: "0 0 0" }} timeout={1000}>
-        <Grid container alignItems="center" direction="column">
-          <Avatar
-            aria-label="recipe"
-            className={classes.avatarOver}
-            variant="square"
-            style={{ backgroundColor: params.topAvatarColor }}
-          >
-            <Typography variant="h6">{params.bottomValue}</Typography>
-          </Avatar>
-          <Card className={classes.card}>
-            <CardContent style={{ height: this.props.theme.spacing(0) }}>
-              <Grid container alignItems="center" direction="column">
-                <Avatar
-                  aria-label="recipe"
-                  className={classes.avatar}
-                  variant="square"
-                  style={{ backgroundColor: params.bottomAvatarColor }}
-                >
-                  {params.icon ? params.icon() : ""}
-                </Avatar>
-              </Grid>
-              <Divider />
-            </CardContent>
-            <CardActions>
-              <Grid
-                container
-                alignItems="center"
-                direction="column"
-                justify="center"
+      <Grid container alignItems="center" direction="column">
+        <Avatar
+          aria-label="recipe"
+          className={classes.avatarOver}
+          variant="square"
+          style={{ backgroundColor: params.topAvatarColor }}
+        >
+          <Typography variant="h6">{params.bottomValue}</Typography>
+        </Avatar>
+        <Card className={classes.card}>
+          <CardContent style={{ height: this.props.theme.spacing(0) }}>
+            <Grid container alignItems="center" direction="column">
+              <Avatar
+                aria-label="recipe"
+                className={classes.avatar}
+                variant="square"
+                style={{ backgroundColor: params.bottomAvatarColor }}
               >
-                <Typography variant="caption" style={{ margin: 0 }}>
-                  {params.message}
-                </Typography>
-              </Grid>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grow>
+                {params.icon ? params.icon() : ""}
+              </Avatar>
+            </Grid>
+            <Divider />
+          </CardContent>
+          <CardActions>
+            <Grid
+              container
+              alignItems="center"
+              direction="column"
+              justify="center"
+            >
+              <Typography variant="caption" style={{ margin: 0 }}>
+                {params.message}
+              </Typography>
+            </Grid>
+          </CardActions>
+        </Card>
+      </Grid>
     );
   }
 }
