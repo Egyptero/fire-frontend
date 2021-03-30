@@ -34,27 +34,29 @@ class ScoreKPI extends Component {
             theme.palette.success.main,
             theme.palette.success.dark,
           ]}
-          arcPadding={0}//3
+          arcPadding={0} //3
           arcWidth={0.3}
           percent={params.value}
           textColor={theme.palette.secondary.dark}
           needleColor={theme.palette.secondary.light}
           needleBaseColor={theme.palette.secondary.main}
+          animate={true}
+          animDelay={200}
         />
-        <Typography variant="body1" gutterBottom={false}>
-          {params.kpi}
+        <Typography variant="caption" gutterBottom={false}>
+          <b>{params.kpi}</b>
         </Typography>
         <Typography variant="caption" gutterBottom={false}>
           {params.caption}
         </Typography>
-        <Typography variant="body2" gutterBottom={false}>
-          Target
+        <Typography variant="caption" gutterBottom={false}>
+          <b>Target</b>
         </Typography>
         <Typography variant="caption" gutterBottom={false}>
           {params.target}
         </Typography>
-        <Typography variant="body2" gutterBottom={false}>
-          Actual
+        <Typography variant="caption" gutterBottom={false}>
+          <b>Actual</b>
         </Typography>
         <Typography variant="caption" gutterBottom={false}>
           {params.actual}

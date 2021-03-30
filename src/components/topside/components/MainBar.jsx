@@ -92,11 +92,11 @@ class MainBar extends Component {
             />
             <Typography
               className={classes.title}
-              variant="body1"
+              variant="caption"
               color="inherit"
               noWrap
             >
-              {app.screen}
+              <b>{app.screen}</b>
             </Typography>
             <Divider
               style={{

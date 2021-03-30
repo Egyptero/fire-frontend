@@ -81,6 +81,19 @@ class MyQueues extends Component {
                 series={chartData.data}
                 options={{
                   chart: {
+                    animations: {
+                      enabled: true,
+                      easing: 'easeinout',
+                      speed: 500,
+                      animateGradually: {
+                          enabled: true,
+                          delay: 100
+                      },
+                      dynamicAnimation: {
+                          enabled: true,
+                          speed: 250
+                      }
+                    },
                     id: "queuecChart",
                     toolbar: {
                       show: false,
@@ -90,7 +103,7 @@ class MyQueues extends Component {
                     categories: chartData.categories,
                   },
                 }}
-                width="90%"
+                width="85%"
               />
             ) : (
               <Typography variant="h6">No skillgroups defined</Typography>
