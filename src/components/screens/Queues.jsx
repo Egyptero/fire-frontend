@@ -14,7 +14,7 @@ import QueueCardSummary from "./Queues/QueueCardSummary";
 const styles = theme => ({
   content: {
     flexGrow: 1,
-    height: "86vh"
+    height: "90vh"
   },
   grid: {
     display: "flex",
@@ -37,7 +37,7 @@ const styles = theme => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    height: "34vh",
+    height: "38vh",//38vh
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em"
@@ -58,7 +58,7 @@ class Queues extends Component {
     const { classes  } = this.props;
     return (
       <React.Fragment>
-        <Grid className={classes.content} container spacing={2}>
+        <Grid className={classes.content} container spacing={1}>
           <Grid
             item
             xs={12}
@@ -67,7 +67,7 @@ class Queues extends Component {
             lg={9}
             className={classes.fullgrid}
           >
-            <Grid className={classes.content} container spacing={2}>
+            <Grid className={classes.content} container spacing={1}>
               <Grid item xs={12} sm={6} md={4} lg={3} className={classes.grid}>
                 <FacebookQueueCardSummary {...this.props} />
               </Grid>
