@@ -7,36 +7,34 @@ import {
   ListItem,
   ListItemText,
   FormLabel,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import _ from "lodash";
 import loadSkillgroups from "../../../../functions/tenant/skillgroup/loadSkillgroups";
-const styles = theme => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh"
-  },
+const styles = (theme) => ({
+  content: {},
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
     height: "79vh",
-    maxHeight: "79vh"
+    maxHeight: "79vh",
   },
   card: {
     display: "flex",
     position: "relative",
     overflow: "hidden",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   details: {
     display: "block",
@@ -49,20 +47,20 @@ const styles = theme => ({
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "90%"
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
@@ -74,16 +72,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -95,16 +93,16 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -116,23 +114,23 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class UserSkillManagement extends Component {
   state = {
     selectedOrgSkillId: null,
-    selectedUserSkillId: null
+    selectedUserSkillId: null,
   };
   componentDidMount() {
     const { app } = this.props;
@@ -156,18 +154,18 @@ class UserSkillManagement extends Component {
     if (selectedUser.skillIds) {
       const skillIds = _.filter(
         selectedUser.skillIds,
-        skillId => skillId !== this.state.selectedUserSkillId
+        (skillId) => skillId !== this.state.selectedUserSkillId
       );
       selectedUser.skillIds = skillIds;
       source.updateSelectedUser(selectedUser);
       this.setState({ selectedUserSkillId: null });
     }
   };
-  renderUserSkillgroup = skillId => {
-    const { source, app } = this.props;
+  renderUserSkillgroup = (skillId) => {
+    const { source, app, theme } = this.props;
     const skillgroups = _.filter(
       app.skillgroups,
-      skillgroup => skillgroup._id === skillId
+      (skillgroup) => skillgroup._id === skillId
     );
     if (skillgroups && skillgroups.length > 0) {
       const skillgroup = skillgroups[0];
@@ -181,18 +179,24 @@ class UserSkillManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedUserSkillId: skillgroup._id });
           }}
+          style={{ padding: theme.spacing(1) }}
         >
-          <ListItemText primary={skillgroup.name} />
+          <ListItemText
+            primary={skillgroup.name}
+            primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
+          />
           {skillgroup._id === this.state.selectedUserSkillId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled
                 variant="text"
                 size="small"
                 color="primary"
                 onClick={this.removeSkillFromUser}
+                style={{ textTransform: "none" }}
               >
-                Remove
+                <Typography variant="caption">Remove</Typography>
               </Button>
             </ListItemSecondaryAction>
           ) : (
@@ -202,14 +206,14 @@ class UserSkillManagement extends Component {
       );
     } else return;
   };
-  renderOrganizationSkillgroup = skillgroup => {
-    const { source } = this.props;
+  renderOrganizationSkillgroup = (skillgroup) => {
+    const { source, theme } = this.props;
     const { selectedUser } = this.props.source.sourceState;
     let found;
     if (selectedUser.skillIds) {
       found = _.filter(
         selectedUser.skillIds,
-        skillId => skillId === skillgroup._id
+        (skillId) => skillId === skillgroup._id
       );
     }
     if (found && found.length > 0) return;
@@ -224,18 +228,24 @@ class UserSkillManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedOrgSkillId: skillgroup._id });
           }}
+          style={{ padding: theme.spacing(1) }}
         >
-          <ListItemText primary={skillgroup.name} />
+          <ListItemText
+            primary={skillgroup.name}
+            primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
+          />
           {skillgroup._id === this.state.selectedOrgSkillId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled
                 variant="text"
                 size="small"
                 color="primary"
                 onClick={this.assignSkillToUser}
+                style={{ textTransform: "none" }}
               >
-                Assign
+                <Typography variant="caption">Assign</Typography>
               </Button>
             </ListItemSecondaryAction>
           ) : (
@@ -252,11 +262,13 @@ class UserSkillManagement extends Component {
         {/* Organization skills except those with user */}
         <Grid item xs={12} sm={6} md={6} lg={3}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
-              <FormLabel disabled>Available skillgroups</FormLabel>
-              <List disabled className={classes.list}>
+            <FormControl className={classes.formControl} size="small">
+              <FormLabel disabled>
+                <Typography variant="caption">Available skillgroups</Typography>
+              </FormLabel>
+              <List disabled className={classes.list} disablePadding>
                 {skillgroups
-                  ? skillgroups.map(skillgroup => {
+                  ? skillgroups.map((skillgroup) => {
                       return this.renderOrganizationSkillgroup(skillgroup);
                     })
                   : ""}
@@ -267,11 +279,13 @@ class UserSkillManagement extends Component {
         {/* User skill groups*/}
         <Grid item xs={12} sm={6} md={6} lg={3}>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
-              <FormLabel disabled>User skillgroups</FormLabel>
-              <List disabled className={classes.list}>
+            <FormControl className={classes.formControl} size="small">
+              <FormLabel disabled>
+                <Typography variant="caption">User skillgroups</Typography>
+              </FormLabel>
+              <List disabled className={classes.list} disablePadding>
                 {source.sourceState.selectedUser.skillIds
-                  ? source.sourceState.selectedUser.skillIds.map(skillId => {
+                  ? source.sourceState.selectedUser.skillIds.map((skillId) => {
                       return this.renderUserSkillgroup(skillId);
                     })
                   : ""}
@@ -290,7 +304,7 @@ UserSkillManagement.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(UserSkillManagement);

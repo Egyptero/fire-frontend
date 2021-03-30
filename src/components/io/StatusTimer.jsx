@@ -15,7 +15,6 @@ class StatusTimer extends Component {
     let { inStateTime } = this.props;
     if (!inStateTime) inStateTime = this.props.app.inStateTime;
     if (!inStateTime) return;
-    console.log("Time CDU and inStateTime", inStateTime);
     let startTime = Date.now() - Date.parse(inStateTime);
     // console.log("start time", startTime);
     this.startTimer(startTime);
@@ -24,11 +23,10 @@ class StatusTimer extends Component {
     let inStateTime;
     let oldInStateTime;
 
-    if(this.props.inStateTime){
-       inStateTime = this.props.inStateTime;
-       oldInStateTime = prevProps.inStateTime;
-    }else
-    {
+    if (this.props.inStateTime) {
+      inStateTime = this.props.inStateTime;
+      oldInStateTime = prevProps.inStateTime;
+    } else {
       inStateTime = this.props.app.inStateTime;
       oldInStateTime = prevProps.app.inStateTime;
     }

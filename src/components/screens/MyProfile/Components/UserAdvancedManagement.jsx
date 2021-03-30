@@ -12,7 +12,8 @@ import {
   ListItemText,
   FormLabel,
   ListItemSecondaryAction,
-  Input
+  Input,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -20,7 +21,7 @@ import _ from "lodash";
 import updateUser from "../../../../functions/tenant/user/updateUser";
 import AddTeamMemberDialog from "./AddTeamMemberDialog";
 import AssignTenantDialog from "./AssignTenantDialog";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   gridWithoutBorder: {},
@@ -28,7 +29,7 @@ const styles = theme => ({
   details: {},
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "90%"
+    maxWidth: "90%",
   },
   list: {},
   listOrganizations: {},
@@ -42,17 +43,17 @@ const styles = theme => ({
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class UserAdvancedManagement extends Component {
@@ -60,9 +61,9 @@ class UserAdvancedManagement extends Component {
     selectedTeamMemberId: null,
     selectedUserTenantId: null,
     addTeamMemberDialog: false,
-    addUserTenantDialog: false
+    addUserTenantDialog: false,
   };
-  onDataChange = event => {
+  onDataChange = (event) => {
     const { source } = this.props;
     let { selectedUser } = source.sourceState;
     if (event.target.name === "mode") selectedUser.mode = event.target.value;
@@ -82,13 +83,13 @@ class UserAdvancedManagement extends Component {
 
     const tenantIds = _.filter(
       selectedUser.tenantIds,
-      tenantId => tenantId !== this.state.selectedUserTenantId
+      (tenantId) => tenantId !== this.state.selectedUserTenantId
     );
     selectedUser.tenantIds = tenantIds;
     source.updateSelectedUser(selectedUser);
     this.setState({ selectedUserTenantId: null });
   };
-  addUserTenant = tenantId => {
+  addUserTenant = (tenantId) => {
     const { source } = this.props;
     let { selectedUser } = source.sourceState;
     if (!selectedUser.tenantIds) selectedUser.tenantIds = [];
@@ -103,9 +104,9 @@ class UserAdvancedManagement extends Component {
     this.setState({ addUserTenantDialog: true });
   };
 
-  addTeamMember = userId => {
+  addTeamMember = (userId) => {
     const { selectedUser } = this.props.source.sourceState;
-    updateUser(userId, { managerId: selectedUser._id }, this, result => {
+    updateUser(userId, { managerId: selectedUser._id }, this, (result) => {
       if (!result.error) this.setState({ selectedTeamMemberId: userId });
     });
   };
@@ -116,7 +117,7 @@ class UserAdvancedManagement extends Component {
     this.setState({ addTeamMemberDialog: true });
   };
 
-  renderTeamMember = user => {
+  renderTeamMember = (user) => {
     const { source } = this.props;
     const { selectedUser } = this.props.source.sourceState;
 
@@ -132,7 +133,10 @@ class UserAdvancedManagement extends Component {
               this.setState({ selectedTeamMemberId: user._id });
           }}
         >
-          <ListItemText primary={`${user.firstname} ${user.lastname}`} />
+          <ListItemText
+            primary={`${user.firstname} ${user.lastname}`}
+            primaryTypographyProps={{ variant: "caption" }}
+          />
           {user._id === this.state.selectedTeamMemberId ? (
             <ListItemSecondaryAction>
               <Button
@@ -141,8 +145,9 @@ class UserAdvancedManagement extends Component {
                 size="small"
                 color="primary"
                 onClick={this.removeTeamMember}
+                style={{ textTransform: "none" }}
               >
-                Remove
+                <Typography variant="caption">Remove</Typography>
               </Button>
             </ListItemSecondaryAction>
           ) : (
@@ -153,7 +158,7 @@ class UserAdvancedManagement extends Component {
     }
     return;
   };
-  renderUserTenant = tenant => {
+  renderUserTenant = (tenant) => {
     const { source } = this.props;
     const { selectedUser } = source.sourceState;
 
@@ -161,7 +166,7 @@ class UserAdvancedManagement extends Component {
     if (!selectedUser.tenantIds) return "";
     const result = _.filter(
       selectedUser.tenantIds,
-      tenantId => tenantId === tenant._id
+      (tenantId) => tenantId === tenant._id
     );
     if (result && result.length > 0)
       return (
@@ -175,7 +180,10 @@ class UserAdvancedManagement extends Component {
               this.setState({ selectedUserTenantId: tenant._id });
           }}
         >
-          <ListItemText primary={tenant.name} />
+          <ListItemText
+            primary={tenant.name}
+            primaryTypographyProps={{ variant: "caption" }}
+          />
           {tenant._id === this.state.selectedUserTenantId ? (
             <ListItemSecondaryAction>
               <Button
@@ -184,8 +192,9 @@ class UserAdvancedManagement extends Component {
                 size="small"
                 color="primary"
                 onClick={this.removeUserTenant}
+                style={{ textTransform: "none" }}
               >
-                Remove
+                <Typography variant="caption">Remove</Typography>
               </Button>
             </ListItemSecondaryAction>
           ) : (
@@ -208,8 +217,11 @@ class UserAdvancedManagement extends Component {
               //variant="outlined"
               className={classes.formControl}
               style={{ minWidth: "50%" }}
+              size="small"
             >
-              <InputLabel htmlFor="user-mode-label">Mode</InputLabel>
+              <InputLabel htmlFor="user-mode-label">
+                <Typography variant="caption">Mode</Typography>
+              </InputLabel>
               <Select
                 value={
                   source.sourceState.selectedUser.mode
@@ -220,14 +232,26 @@ class UserAdvancedManagement extends Component {
                 disabled
                 input={<Input name="mode" id="user-mode-label" />}
               >
-                <MenuItem value="Push">Push</MenuItem>
-                <MenuItem value="Pull">Pull</MenuItem>
-                <MenuItem value="Mix">Mix</MenuItem>
+                <MenuItem value="Push">
+                  <Typography variant="caption">Push</Typography>
+                </MenuItem>
+                <MenuItem value="Pull">
+                  <Typography variant="caption">Pull</Typography>
+                </MenuItem>
+                <MenuItem value="Mix">
+                  <Typography variant="caption">Mix</Typography>
+                </MenuItem>
               </Select>
             </FormControl>
             {/* User Manager */}
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel htmlFor="manager-label">Manager</InputLabel>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              size="small"
+            >
+              <InputLabel htmlFor="manager-label">
+                <Typography variant="caption">Manager</Typography>
+              </InputLabel>
               <Select
                 value={
                   source.sourceState.selectedUser.managerId
@@ -248,13 +272,13 @@ class UserAdvancedManagement extends Component {
                   {""}
                 </MenuItem>
                 {this.props.app.users
-                  ? this.props.app.users.map(user => {
+                  ? this.props.app.users.map((user) => {
                       if (user.role !== "Agent" && user.role !== "User")
                         // You are signed in as agent
                         return (
-                          <MenuItem key={user._id} value={user._id}>{`${
-                            user.firstname
-                          } ${user.lastname}`}</MenuItem>
+                          <MenuItem key={user._id} value={user._id}>
+                            <Typography variant="caption">{`${user.firstname} ${user.lastname}`}</Typography>
+                          </MenuItem>
                         );
 
                       return "";
@@ -263,28 +287,33 @@ class UserAdvancedManagement extends Component {
               </Select>
             </FormControl>
             {/* User Organizations */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
-                Organizations
+                <Typography variant="caption">Organizations</Typography>
               </FormLabel>
-              <List disabled className={classes.listOrganizations}>
+              <List
+                disabled
+                className={classes.listOrganizations}
+                disablePadding
+              >
                 {tenants
-                  ? tenants.map(tenant => {
+                  ? tenants.map((tenant) => {
                       return this.renderUserTenant(tenant);
                     })
                   : ""}
               </List>
             </FormControl>
             {/* Add organization button */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <Button
                 disabled
                 variant="contained"
                 style={{ width: "100%" }}
                 color="secondary"
                 onClick={this.handleAddTenantDialogOpen}
+                style={{ textTransform: "none" }}
               >
-                Add organization
+                <Typography variant="caption">Add organization</Typography>
               </Button>
             </FormControl>
           </Grid>
@@ -293,28 +322,29 @@ class UserAdvancedManagement extends Component {
         <Grid item xs={12} sm={6} md={6} lg={3}>
           <Grid container direction="column">
             {/* Team members */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
-                Team members
+                <Typography variant="caption">Team members</Typography>
               </FormLabel>
-              <List disabled className={classes.listUsers}>
+              <List disabled className={classes.listUsers} disablePadding>
                 {users
-                  ? users.map(user => {
+                  ? users.map((user) => {
                       return this.renderTeamMember(user);
                     })
                   : ""}
               </List>
             </FormControl>
             {/* Add user button */}
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <Button
                 variant="contained"
                 color="secondary"
                 style={{ width: "100%" }}
                 disabled
                 onClick={this.handleAddMemberDialogOpen}
+                style={{ textTransform: "none" }}
               >
-                Add member
+                <Typography variant="caption">Add member</Typography>
               </Button>
             </FormControl>
           </Grid>
@@ -342,7 +372,7 @@ UserAdvancedManagement.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(UserAdvancedManagement);
