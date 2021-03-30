@@ -156,28 +156,8 @@ class BasicCustomerInfo extends Component {
             InputLabelProps={{ style: { fontSize: "0.8rem" } }}
           />
         );
+      else return <React.Fragment />;
     }
-    //Reaching to this point means that we can not find the type in case , so let us load type
-    loadType(source.sourceState.selectedInteraction.typeId, this, (result) => {
-      if (!result.error) {
-        const type = result.type;
-        if (type) {
-          return (
-            <TextField
-              name="type"
-              label="Type"
-              placeholder="Type"
-              disabled
-              value={`${type.name}`}
-              fullWidth
-              variant="outlined"
-              inputProps={{ style: { fontSize: "0.8rem" } }}
-              InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-            />
-          );
-        }
-      }
-    });
   };
   renderCustomerData = () => {
     const { source, app } = this.props;
@@ -203,32 +183,8 @@ class BasicCustomerInfo extends Component {
             InputLabelProps={{ style: { fontSize: "0.8rem" } }}
           />
         );
+      else return <React.Fragment />;
     }
-    //Reaching to this point means that we can not find the customer in case , so let us load customer
-    loadCustomer(
-      source.sourceState.selectedInteraction.customerId,
-      this,
-      (result) => {
-        if (!result.error) {
-          const customer = result.customer;
-          if (customer) {
-            return (
-              <TextField
-                name="customer"
-                label="Customer"
-                placeholder="Customer"
-                disabled
-                value={`${customer.firstname} ${customer.lastname}`}
-                fullWidth
-                variant="outlined"
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-              />
-            );
-          }
-        }
-      }
-    );
   };
   render() {
     const { classes, source, theme } = this.props;

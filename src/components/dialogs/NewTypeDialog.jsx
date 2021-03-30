@@ -12,27 +12,28 @@ import {
   FormControl,
   InputLabel,
   OutlinedInput,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-const styles = theme => ({
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
   cardContent: {},
   formControl: {},
-  details: {}
+  details: {},
 });
 
 class NewType extends Component {
   state = {
     name: "",
     description: "",
-    channel: "Facebook Page"
+    channel: "Facebook Page",
   };
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.name === "name")
       this.setState({ name: event.target.value });
     else if (event.target.name === "description")
@@ -46,7 +47,7 @@ class NewType extends Component {
     source.handleAddType({
       name: this.state.name,
       description: this.state.description,
-      channel: this.state.channel
+      channel: this.state.channel,
     });
   };
 
@@ -59,18 +60,20 @@ class NewType extends Component {
         open={sourceState.openNewType}
         onClose={handleNewTypeClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
-            variant="h6"
+            variant="subtitle1"
             style={{
-              color: theme.palette.secondary.contrastText
+              color: theme.palette.secondary.contrastText,
             }}
           >
             Add type to <b>{tenantName}</b>
@@ -88,14 +91,16 @@ class NewType extends Component {
                 value={this.state.name}
                 fullWidth
                 required
-                variant="outlined"
+                //variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 margin="dense"
                 multiline
-                rows="3"
+                rows="2"
                 onChange={this.handleDataChange}
                 name="description"
                 label="Description"
@@ -103,11 +108,19 @@ class NewType extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
-                <InputLabel htmlFor="channel-label">Channel</InputLabel>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
+                <InputLabel htmlFor="channel-label">
+                  <Typography variant="caption">Channel</Typography>
+                </InputLabel>
                 <Select
                   value={this.state.channel}
                   name="channel"
@@ -115,49 +128,49 @@ class NewType extends Component {
                   input={<OutlinedInput labelWidth={60} id="channel-label" />}
                 >
                   <MenuItem key="Facebook Page" value="Facebook Page">
-                    Facebook Page
+                    <Typography variant="caption">Facebook Page</Typography>
                   </MenuItem>
                   <MenuItem key="Facebook DM" value="Facebook DM">
-                    Facebook DM
+                    <Typography variant="caption">Facebook DM</Typography>
                   </MenuItem>
                   <MenuItem key="Twitter Account" value="Twitter Account">
-                    Twitter Account
+                    <Typography variant="caption">Twitter Account</Typography>
                   </MenuItem>
                   <MenuItem key="Twitter DM" value="Twitter DM">
-                    Twitter DM
+                    <Typography variant="caption">Twitter DM</Typography>
                   </MenuItem>
                   <MenuItem key="Intsagram Account" value="Intsagram Account">
-                    Intsagram Account
+                    <Typography variant="caption">Intsagram Account</Typography>
                   </MenuItem>
                   <MenuItem key="Youtube" value="Youtube">
-                    Youtube
+                    <Typography variant="caption">Youtube</Typography>
                   </MenuItem>
                   <MenuItem key="Voice" value="Voice">
-                    Voice
+                    <Typography variant="caption">Voice</Typography>
                   </MenuItem>
                   <MenuItem key="Vedio" value="Vedio">
-                    Vedio
+                    <Typography variant="caption">Vedio</Typography>
                   </MenuItem>
                   <MenuItem key="SMS" value="SMS">
-                    SMS
+                    <Typography variant="caption">SMS</Typography>
                   </MenuItem>
                   <MenuItem key="Chat" value="Chat">
-                    Chat
+                    <Typography variant="caption">Chat</Typography>
                   </MenuItem>
                   <MenuItem key="Email" value="Email">
-                    Email
+                    <Typography variant="caption">Email</Typography>
                   </MenuItem>
                   <MenuItem key="Webrtc" value="Webrtc">
-                    Webrtc
+                    <Typography variant="caption">Webrtc</Typography>
                   </MenuItem>
                   <MenuItem key="WhatsApp Business" value="WhatsApp Business">
-                    WhatsApp Business
+                    <Typography variant="caption">WhatsApp Business</Typography>
                   </MenuItem>
                   <MenuItem key="Project" value="Project">
-                    Project
+                    <Typography variant="caption">Project</Typography>
                   </MenuItem>
                   <MenuItem key="Custom" value="Custom">
-                    Custom
+                    <Typography variant="caption">Custom</Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -168,16 +181,18 @@ class NewType extends Component {
           <Button
             onClick={handleNewTypeClose}
             color="secondary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Cancel
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddType}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -191,6 +206,6 @@ NewType.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(NewType);

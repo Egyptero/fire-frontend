@@ -9,8 +9,6 @@ import BasicInteractionInfo from "./Components/BasicInteractionInfo";
 // import InteractionAdvancedInfo from "./Components/InteractionAdvancedInfo";
 const styles = theme => ({
   content: {
-    flexGrow: 1,
-    height: "86vh"
   },
   grid: {
     display: "flex",
@@ -22,8 +20,8 @@ const styles = theme => ({
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
+    height: "83vh",
+    maxHeight: "83vh"
   },
   card: {
     display: "flex",
@@ -36,8 +34,8 @@ const styles = theme => ({
     display: "block",
     position: "absolute",
     overflow: "auto",
-    height: "78vh",
-    maxHeight: "78vh",
+    height: "83vh",
+    maxHeight: "83vh",
     //    minWidth: "100%",
     whiteSpace: "nowrap",
     //width: "auto",

@@ -1,35 +1,39 @@
 import {
   Button,
-
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl, Grid,
-  InputLabel, MenuItem,
-  OutlinedInput, Select, TextField,
-  Typography
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  TextField,
+  Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { Cancel, Save } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
   cardContent: {},
-  formControl: {}
+  formControl: {},
 });
 
 class NewWorkflow extends Component {
   state = {
     name: "",
-    type: "ROUTE"
+    type: "ROUTE",
   };
-  changeWorkflowType = event => {
+  changeWorkflowType = (event) => {
     this.setState({ type: event.target.value });
   };
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.id === "name") this.setState({ name: event.target.value });
   };
 
@@ -37,7 +41,7 @@ class NewWorkflow extends Component {
     const { source } = this.props;
     source.handleAddWorkflow({
       name: this.state.name,
-      type: this.state.type
+      type: this.state.type,
     });
   };
 
@@ -50,25 +54,27 @@ class NewWorkflow extends Component {
         open={sourceState.openNewWorkflow}
         onClose={handleNewWorkflowClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
-            variant="h6"
+            variant="subtitle1"
             style={{
-              color: theme.palette.secondary.contrastText
+              color: theme.palette.secondary.contrastText,
             }}
           >
             Add workflow to <b>{tenantName}</b>
           </Typography>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={2} style={{ padding: theme.spacing(2) }}>
+          <Grid container spacing={2} style={{ padding: theme.spacing(1) }}>
             <Grid item xs={12}>
               <TextField
                 autoFocus
@@ -79,12 +85,16 @@ class NewWorkflow extends Component {
                 value={this.state.name}
                 fullWidth
                 required
-                variant="outlined"
+                //variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
-                <InputLabel htmlFor="type-label">Type</InputLabel>
+              <FormControl variant="outlined" style={{ width: "100%"}} size="small">
+                <InputLabel htmlFor="type-label">
+                  <Typography variant="caption">Type</Typography>
+                </InputLabel>
                 <Select
                   value={this.state.type}
                   displayEmpty
@@ -99,9 +109,15 @@ class NewWorkflow extends Component {
                     />
                   }
                 >
-                  <MenuItem value={"ROUTE"}>ROUTE</MenuItem>
-                  <MenuItem value={"BOT"}>BOT</MenuItem>
-                  <MenuItem value={"IVR"}>IVR</MenuItem>
+                  <MenuItem value={"ROUTE"}>
+                    <Typography variant="caption">ROUTE</Typography>
+                  </MenuItem>
+                  <MenuItem value={"BOT"}>
+                    <Typography variant="caption">BOT</Typography>
+                  </MenuItem>
+                  <MenuItem value={"IVR"}>
+                    <Typography variant="caption">IVR</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -111,16 +127,18 @@ class NewWorkflow extends Component {
           <Button
             onClick={handleNewWorkflowClose}
             color="secondary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Cancel
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddWorkflow}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -133,6 +151,6 @@ NewWorkflow.propTypes = {
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(NewWorkflow);

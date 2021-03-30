@@ -14,6 +14,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { Cancel, Save } from "@material-ui/icons";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -149,16 +150,18 @@ class NewTodo extends Component {
         open={sourceState.openTodo}
         onClose={handleTodoClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
           disableTypography
           style={{
             backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
-            variant="h6"
+            variant="subtitle1"
             style={{
               color: theme.palette.secondary.contrastText,
             }}
@@ -169,9 +172,13 @@ class NewTodo extends Component {
         <DialogContent>
           <Grid container spacing={1} style={{ padding: theme.spacing(2) }}>
             <Grid item xs={6}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
                 <InputLabel shrink htmlFor="status-label">
-                  Status
+                  <Typography variant="caption">Status</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.status}
@@ -179,16 +186,26 @@ class NewTodo extends Component {
                   name="status"
                   input={<OutlinedInput labelWidth={60} id="status-label" />}
                 >
-                  <MenuItem value="New">New</MenuItem>
-                  <MenuItem value="Progress">Progress</MenuItem>
-                  <MenuItem value="Completed">Completed</MenuItem>
+                  <MenuItem value="New">
+                    <Typography variant="caption">New</Typography>
+                  </MenuItem>
+                  <MenuItem value="Progress">
+                    <Typography variant="caption">Progress</Typography>
+                  </MenuItem>
+                  <MenuItem value="Completed">
+                    <Typography variant="caption">Completed</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <FormControl variant="outlined" style={{ width: "100%" }}>
+              <FormControl
+                variant="outlined"
+                style={{ width: "100%" }}
+                size="small"
+              >
                 <InputLabel shrink htmlFor="priority-label">
-                  Priority
+                  <Typography variant="caption">Priority</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.priority}
@@ -197,10 +214,18 @@ class NewTodo extends Component {
                   fullWidth
                   input={<OutlinedInput labelWidth={60} id="priority-label" />}
                 >
-                  <MenuItem value="Critical">Critical</MenuItem>
-                  <MenuItem value="High">High</MenuItem>
-                  <MenuItem value="Medium">Medium</MenuItem>
-                  <MenuItem value="Low">Low</MenuItem>
+                  <MenuItem value="Critical">
+                    <Typography variant="caption">Critical</Typography>
+                  </MenuItem>
+                  <MenuItem value="High">
+                    <Typography variant="caption">High</Typography>
+                  </MenuItem>
+                  <MenuItem value="Medium">
+                    <Typography variant="caption">Medium</Typography>
+                  </MenuItem>
+                  <MenuItem value="Low">
+                    <Typography variant="caption">Low</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -214,13 +239,15 @@ class NewTodo extends Component {
                 value={this.state.title}
                 fullWidth
                 required
-                variant="outlined"
+                //variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 margin="dense"
-                rows="4"
+                rows="2"
                 multiline
                 onChange={this.handleDataChange}
                 name="description"
@@ -228,6 +255,8 @@ class NewTodo extends Component {
                 value={this.state.description}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={6}>
@@ -241,6 +270,8 @@ class NewTodo extends Component {
                 required
                 variant="outlined"
                 fullWidth
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
           </Grid>
@@ -249,16 +280,18 @@ class NewTodo extends Component {
           <Button
             onClick={handleTodoClose}
             color="secondary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Cancel
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddTodo}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>

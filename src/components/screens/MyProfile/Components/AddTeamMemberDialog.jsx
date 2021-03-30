@@ -12,39 +12,38 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  OutlinedInput
+  OutlinedInput,
+  Typography,
 } from "@material-ui/core";
 import compareGrade from "../../../../app/compareGrade";
-const styles = theme => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh"
-  },
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
+  content: {},
   grid: {
     minHeight: "4em",
-    minWidth: "16rem"
+    minWidth: "16rem",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
     height: "79vh",
-    maxHeight: "79vh"
+    maxHeight: "79vh",
   },
   card: {},
   details: {},
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   list: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class AddTeamMemberDialog extends Component {
   state = {
     selectedMemberId: "",
-    error: ""
+    error: "",
   };
   componentDidUpdate(prevProps, prevState) {
     const { dialogTrigger } = this.props;
@@ -58,19 +57,19 @@ class AddTeamMemberDialog extends Component {
       handleAddMemberDialogClose();
     }
   };
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ selectedMemberId: event.target.value });
   };
-  renderTeamMember = user => {
+  renderTeamMember = (user) => {
     const { selectedUser } = this.props.source.sourceState;
     //Not under user management
     if (selectedUser._id !== user.managerId) {
       //We need to check that user has higher privilage
       if (compareGrade(selectedUser.role, user.role) === 1)
         return (
-          <MenuItem value={user._id} key={user._id}>{`${user.firstname} ${
-            user.lastname
-          }`}</MenuItem>
+          <MenuItem value={user._id} key={user._id}>
+            <Typography variant="caption">{`${user.firstname} ${user.lastname}`}</Typography>
+          </MenuItem>
         );
     } else return "";
   };
@@ -80,7 +79,8 @@ class AddTeamMemberDialog extends Component {
       dialogTrigger,
       handleAddMemberDialogClose,
       classes,
-      app
+      app,
+      theme,
     } = this.props;
     const { users } = app;
     return (
@@ -88,12 +88,35 @@ class AddTeamMemberDialog extends Component {
         open={dialogTrigger}
         onClose={handleAddMemberDialogClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
-        <DialogTitle id="form-dialog-title">Add user to team</DialogTitle>
+        <DialogTitle
+          id="form-dialog-title"
+          disableTypography
+          style={{
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            style={{
+              color: theme.palette.secondary.contrastText,
+            }}
+          >
+            Add user to team
+          </Typography>
+        </DialogTitle>
         <DialogContent>
           <Grid container direction="column" className={classes.grid}>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel htmlFor="user-label">Select user</InputLabel>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              size="small"
+            >
+              <InputLabel htmlFor="user-label">
+                <Typography variant="caption">Select user</Typography>
+              </InputLabel>
               <Select
                 value={this.state.selectedMemberId}
                 onChange={this.onChange}
@@ -102,7 +125,7 @@ class AddTeamMemberDialog extends Component {
                 }
               >
                 {users
-                  ? users.map(user => {
+                  ? users.map((user) => {
                       return this.renderTeamMember(user);
                     })
                   : ""}
@@ -111,11 +134,21 @@ class AddTeamMemberDialog extends Component {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleAddMemberDialogClose} color="secondary">
-            Cancel
+          <Button
+            onClick={handleAddMemberDialogClose}
+            color="secondary"
+            variant="outlined"
+            size="small"
+          >
+            <Cancel fontSize="small" />
           </Button>
-          <Button color="secondary" onClick={this.addUserTeamMember}>
-            Update
+          <Button
+            onClick={this.addUserTeamMember}
+            color="primary"
+            variant="outlined"
+            size="small"
+          >
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -132,7 +165,7 @@ AddTeamMemberDialog.propTypes = {
   primaryApp: PropTypes.object.isRequired,
   handleAddMemberDialogClose: PropTypes.func.isRequired,
   addTeamMember: PropTypes.func.isRequired,
-  dialogTrigger: PropTypes.bool.isRequired
+  dialogTrigger: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(AddTeamMemberDialog);

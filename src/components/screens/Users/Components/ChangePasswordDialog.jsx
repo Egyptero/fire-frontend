@@ -12,47 +12,34 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-const styles = theme => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh"
-  },
-  grid: {
-    display: "flex",
-    position: "relative",
-    maxHeight: "100%",
-    minHeight: "100%",
-    overflow: "hidden"
-  },
-  gridWithoutBorder: {
-    display: "flex",
-    position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
-  },
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
+  content: {},
+  grid: {},
+  gridWithoutBorder: {},
   card: {},
   details: {},
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   list: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class ChangePasswordDialog extends Component {
   state = {
     password: "",
     passwordConfirm: "",
-    error: ""
+    error: "",
   };
   componentDidUpdate(prevProps, prevState) {
     const { dialogTrigger } = this.props;
     if (dialogTrigger !== prevProps.dialogTrigger)
       this.setState({ password: "", passwordConfirm: "", error: "" });
   }
-  onTextChange = event => {
+  onTextChange = (event) => {
     if (event.target.name === "password") {
       this.setState({ password: event.target.value });
       if (this.state.passwordConfirm === event.target.value)
@@ -77,17 +64,39 @@ class ChangePasswordDialog extends Component {
     }
   };
   render() {
-    const { dialogTrigger, handlePasswordDialogClose, classes } = this.props;
+    const {
+      dialogTrigger,
+      handlePasswordDialogClose,
+      classes,
+      theme,
+    } = this.props;
     return (
       <Dialog
         open={dialogTrigger}
         onClose={handlePasswordDialogClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
-        <DialogTitle id="form-dialog-title">Change password</DialogTitle>
+        <DialogTitle
+          id="form-dialog-title"
+          disableTypography
+          style={{
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            style={{
+              color: theme.palette.secondary.contrastText,
+            }}
+          >
+            Change password
+          </Typography>
+        </DialogTitle>
         <DialogContent>
           <Grid container direction="column">
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 label="New password"
                 value={this.state.password}
@@ -96,9 +105,11 @@ class ChangePasswordDialog extends Component {
                 name="password"
                 variant="outlined"
                 type="password"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <TextField
                 label="Confirm new password"
                 value={this.state.passwordConfirm}
@@ -107,19 +118,31 @@ class ChangePasswordDialog extends Component {
                 name="passwordConfirm"
                 variant="outlined"
                 type="password"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} size="small">
               <Typography variant="caption">{this.state.error}</Typography>
             </FormControl>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handlePasswordDialogClose} color="secondary">
-            Cancel
+          <Button
+            onClick={handlePasswordDialogClose}
+            color="secondary"
+            variant="outlined"
+            size="small"
+          >
+            <Cancel fontSize="small" />
           </Button>
-          <Button color="secondary" onClick={this.changeUserPassword}>
-            Update
+          <Button
+            onClick={this.changeUserPassword}
+            color="primary"
+            variant="outlined"
+            size="small"
+          >
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -136,7 +159,7 @@ ChangePasswordDialog.propTypes = {
   primaryApp: PropTypes.object.isRequired,
   handlePasswordDialogClose: PropTypes.func.isRequired,
   changePassword: PropTypes.func.isRequired,
-  dialogTrigger: PropTypes.bool.isRequired
+  dialogTrigger: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(ChangePasswordDialog);

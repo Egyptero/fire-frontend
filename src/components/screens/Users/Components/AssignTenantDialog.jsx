@@ -12,39 +12,33 @@ import {
   Select,
   InputLabel,
   OutlinedInput,
-  MenuItem
+  MenuItem,
+  Typography,
 } from "@material-ui/core";
 import _ from "lodash";
-const styles = theme => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh"
-  },
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
+  content: {},
   grid: {
     minHeight: "4em",
-    minWidth: "16rem"
+    minWidth: "16rem",
   },
-  gridWithoutBorder: {
-    display: "flex",
-    position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh"
-  },
+  gridWithoutBorder: {},
   card: {},
   details: {},
   formControl: {
     margin: theme.spacing(1),
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   list: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class AssignTenantDialog extends Component {
   state = {
     selectedTenantId: "",
-    error: ""
+    error: "",
   };
   componentDidUpdate(prevProps, prevState) {
     const { dialogTrigger } = this.props;
@@ -58,24 +52,24 @@ class AssignTenantDialog extends Component {
       handleAddTenantDialogClose();
     }
   };
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ selectedTenantId: event.target.value });
   };
-  renderTenant = tenant => {
+  renderTenant = (tenant) => {
     const { selectedUser } = this.props.source.sourceState;
     if (selectedUser.tenantIds) {
       const tenantIds = _.filter(
         selectedUser.tenantIds,
-        tenantId => tenantId === tenant._id
+        (tenantId) => tenantId === tenant._id
       );
       if (tenantIds && tenantIds.length > 0)
         // already exist
         return;
     }
     return (
-      <MenuItem value={tenant._id} key={tenant._id}>{`${
-        tenant.name
-      }`}</MenuItem>
+      <MenuItem value={tenant._id} key={tenant._id}>
+        <Typography variant="caption">{`${tenant.name}`}</Typography>
+      </MenuItem>
     );
   };
 
@@ -84,7 +78,8 @@ class AssignTenantDialog extends Component {
       dialogTrigger,
       handleAddTenantDialogClose,
       classes,
-      app
+      app,
+      theme,
     } = this.props;
     const { tenants } = app;
     return (
@@ -92,13 +87,34 @@ class AssignTenantDialog extends Component {
         open={dialogTrigger}
         onClose={handleAddTenantDialogClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
-        <DialogTitle id="form-dialog-title">Assign organization</DialogTitle>
+        <DialogTitle
+          id="form-dialog-title"
+          disableTypography
+          style={{
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            style={{
+              color: theme.palette.secondary.contrastText,
+            }}
+          >
+            Assign organization
+          </Typography>
+        </DialogTitle>
         <DialogContent>
           <Grid container direction="column" className={classes.grid}>
-            <FormControl variant="outlined" className={classes.formControl}>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              size="small"
+            >
               <InputLabel htmlFor="tenant-label">
-                Select organization
+                <Typography variant="caption">Select organization</Typography>
               </InputLabel>
               <Select
                 value={this.state.selectedTenantId}
@@ -112,7 +128,7 @@ class AssignTenantDialog extends Component {
                 }
               >
                 {tenants
-                  ? tenants.map(tenant => {
+                  ? tenants.map((tenant) => {
                       return this.renderTenant(tenant);
                     })
                   : ""}
@@ -121,11 +137,21 @@ class AssignTenantDialog extends Component {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleAddTenantDialogClose} color="secondary">
-            Cancel
+          <Button
+            onClick={handleAddTenantDialogClose}
+            color="secondary"
+            variant="outlined"
+            size="small"
+          >
+            <Cancel fontSize="small" />
           </Button>
-          <Button color="secondary" onClick={this.assignUserTenant}>
-            Update
+          <Button
+            onClick={this.assignUserTenant}
+            color="primary"
+            variant="outlined"
+            size="small"
+          >
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -142,7 +168,7 @@ AssignTenantDialog.propTypes = {
   primaryApp: PropTypes.object.isRequired,
   handleAddTenantDialogClose: PropTypes.func.isRequired,
   addUserTenant: PropTypes.func.isRequired,
-  dialogTrigger: PropTypes.bool.isRequired
+  dialogTrigger: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(AssignTenantDialog);

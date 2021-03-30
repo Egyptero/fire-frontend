@@ -9,9 +9,10 @@ import {
   DialogContent,
   Grid,
   DialogTitle,
-  Typography
+  Typography,
 } from "@material-ui/core";
-const styles = theme => ({
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
@@ -19,7 +20,7 @@ const styles = theme => ({
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class NewCustomer extends Component {
@@ -34,7 +35,7 @@ class NewCustomer extends Component {
     facebookId: "",
     twitterId: "",
     linkedId: "",
-    smoochId: ""
+    smoochId: "",
   };
   componentDidUpdate(prevProps, prevState) {
     const { source } = this.props;
@@ -54,13 +55,13 @@ class NewCustomer extends Component {
           facebookId: "",
           twitterId: "",
           linkedId: "",
-          smoochId: ""
+          smoochId: "",
         });
       }
     }
   }
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.id === "firstname")
       this.setState({ firstname: event.target.value });
     else if (event.target.id === "lastname")
@@ -98,8 +99,8 @@ class NewCustomer extends Component {
         facebookId: this.state.facebookId,
         twitterId: this.state.twitterId,
         linkedId: this.state.linkedId,
-        smoochId: this.state.smoochId
-      }
+        smoochId: this.state.smoochId,
+      },
     };
     source.handleAddCustomer(customer);
   };
@@ -113,25 +114,27 @@ class NewCustomer extends Component {
         open={sourceState.openNewCustomer}
         onClose={handleNewCustomerClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
-            variant="h6"
+            variant="subtitle1"
             style={{
-              color: theme.palette.secondary.contrastText
+              color: theme.palette.secondary.contrastText,
             }}
           >
             Register customer at <b>{tenantName}</b>
           </Typography>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={2} style={{ padding: theme.spacing(2) }}>
+          <Grid container spacing={1} style={{ padding: theme.spacing(2) }}>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <TextField
                 autoFocus
@@ -142,6 +145,8 @@ class NewCustomer extends Component {
                 value={this.state.firstname}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -153,6 +158,8 @@ class NewCustomer extends Component {
                 value={this.state.title}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -164,6 +171,8 @@ class NewCustomer extends Component {
                 value={this.state.lastname}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -175,6 +184,8 @@ class NewCustomer extends Component {
                 value={this.state.profession}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -187,6 +198,8 @@ class NewCustomer extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -198,6 +211,8 @@ class NewCustomer extends Component {
                 value={this.state.phone}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -209,6 +224,8 @@ class NewCustomer extends Component {
                 value={this.state.facebookId}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -220,6 +237,8 @@ class NewCustomer extends Component {
                 value={this.state.twitterId}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -231,6 +250,8 @@ class NewCustomer extends Component {
                 value={this.state.linkedId}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -242,6 +263,8 @@ class NewCustomer extends Component {
                 value={this.state.smoochId}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12}>
@@ -254,6 +277,8 @@ class NewCustomer extends Component {
                 value={this.state.email}
                 fullWidth
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
           </Grid>
@@ -262,16 +287,18 @@ class NewCustomer extends Component {
           <Button
             onClick={handleNewCustomerClose}
             color="secondary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Cancel
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddCustomer}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -284,6 +311,6 @@ NewCustomer.propTypes = {
   admin: PropTypes.bool,
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
-  theme: PropTypes.object
+  theme: PropTypes.object,
 };
 export default withStyles(styles, { withTheme: true })(NewCustomer);

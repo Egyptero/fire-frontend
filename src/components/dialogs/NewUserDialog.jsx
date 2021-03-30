@@ -13,10 +13,11 @@ import {
   Typography,
   FormControl,
   InputLabel,
-  OutlinedInput
+  OutlinedInput,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-const styles = theme => ({
+import { Cancel, Save } from "@material-ui/icons";
+const styles = (theme) => ({
   content: {},
   grid: {},
   card: {},
@@ -24,7 +25,7 @@ const styles = theme => ({
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class NewUser extends Component {
@@ -34,10 +35,10 @@ class NewUser extends Component {
     username: "",
     email: "",
     password: "",
-    role: "User"
+    role: "User",
   };
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     if (event.target.id === "firstname")
       this.setState({ firstname: event.target.value });
     else if (event.target.id === "lastname")
@@ -59,7 +60,7 @@ class NewUser extends Component {
       lastname: this.state.lastname,
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
     if (this.props.admin) user.role = this.state.role;
     source.handleAddUser(user);
@@ -70,8 +71,14 @@ class NewUser extends Component {
       return (
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Grid container>
-            <FormControl variant="outlined" style={{ width: "100%" }}>
-              <InputLabel htmlFor="role-label">Role</InputLabel>
+            <FormControl
+              variant="outlined"
+              style={{ width: "100%" }}
+              size="small"
+            >
+              <InputLabel htmlFor="role-label">
+                <Typography variant="caption">Role</Typography>
+              </InputLabel>
               <Select
                 value={this.state.role}
                 onChange={this.handleDataChange}
@@ -80,22 +87,22 @@ class NewUser extends Component {
                 }
               >
                 <MenuItem value="User" key="User">
-                  User
+                  <Typography variant="caption">User</Typography>
                 </MenuItem>
                 <MenuItem value="Agent" key="Agent">
-                  Agent
+                  <Typography variant="caption">Agent</Typography>
                 </MenuItem>
                 <MenuItem value="Supervisor" key="Supervisor">
-                  Supervisor
+                  <Typography variant="caption">Supervisor</Typography>
                 </MenuItem>
                 <MenuItem value="Leader" key="Leader">
-                  Leader
+                  <Typography variant="caption">Leader</Typography>
                 </MenuItem>
                 <MenuItem value="Business" key="Business">
-                  Business
+                  <Typography variant="caption">Business</Typography>
                 </MenuItem>
                 <MenuItem value="Administrator" key="Administrator">
-                  Administrator
+                  <Typography variant="caption">Administrator</Typography>
                 </MenuItem>
               </Select>
             </FormControl>
@@ -114,21 +121,23 @@ class NewUser extends Component {
         open={sourceState.openNewUser}
         onClose={handleNewUserClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="xs"
       >
         <DialogTitle
           id="form-dialog-title"
           disableTypography
           style={{
-            backgroundColor: theme.palette.secondary.dark
+            backgroundColor: theme.palette.secondary.dark,
+            padding: theme.spacing(1),
           }}
         >
           <Typography
-            variant="h6"
+            variant="subtitle1"
             style={{
-              color: theme.palette.secondary.contrastText
+              color: theme.palette.secondary.contrastText,
             }}
           >
-            Register user at <b>{tenantName}</b>
+            Register user to <b>{tenantName}</b>
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -144,6 +153,8 @@ class NewUser extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -156,6 +167,8 @@ class NewUser extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -168,6 +181,8 @@ class NewUser extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -181,6 +196,8 @@ class NewUser extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12}>
@@ -194,6 +211,8 @@ class NewUser extends Component {
                 fullWidth
                 required
                 variant="outlined"
+                inputProps={{ style: { fontSize: "0.8rem" } }}
+                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </Grid>
             {this.renderAdminOptions()}
@@ -203,16 +222,18 @@ class NewUser extends Component {
           <Button
             onClick={handleNewUserClose}
             color="secondary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Cancel
+            <Cancel fontSize="small" />
           </Button>
           <Button
             onClick={this.handleAddUser}
             color="primary"
-            variant="contained"
+            variant="outlined"
+            size="small"
           >
-            Save
+            <Save fontSize="small" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -227,6 +248,6 @@ NewUser.propTypes = {
   primaryApp: PropTypes.object,
   theme: PropTypes.object,
   source: PropTypes.object.isRequired,
-  admin: PropTypes.bool
+  admin: PropTypes.bool,
 };
 export default withStyles(styles, { withTheme: true })(NewUser);
