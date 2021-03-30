@@ -37,35 +37,50 @@ class PrimaryApp extends React.Component {
   };
 
   componentDidMount() {
-    //We need to loadd application data now
+    // console.log(
+    //   "Primary App will mount and will update row data if needed ..."
+    // );
+    // let time = Date.now();
 
-    //Load Admin related information
-    this.loadAtMount();
+    this.load();
+    // console.log(
+    //   "Primary App mounted and time consumed ...",
+    //   Date.now() - time,
+    //   " in Miliseconds"
+    // );
   }
   componentDidUpdate(prevProps) {
+    // console.log(
+    //   "Primary App will update and will update row data if needed ..."
+    // );
+    // let time = Date.now();
+
     const { app } = this.props;
     const { app: prevApp } = prevProps;
     if (!app || !prevApp) return;
     if (!app.tenant || !prevApp.tenant) return;
-    //    let reload = app.tenant && !prevApp ? true : false;
-    //    if (!reload) reload = app.tenant && !prevApp.tenant ? true : false;
     let reload = app.tenant._id !== prevApp.tenant._id;
-    //let changed =
     if (reload) {
-      console.log("Loading Tenant Admin Data in update");
-      this.loadAtUpdate();
+      console.log("Loading Tenant Data in update");
+      this.load();
     }
+    // console.log(
+    //   "Primary App updated and time consumed ...",
+    //   Date.now() - time,
+    //   " in Miliseconds"
+    // );
   }
-  loadAtMount = async () => {
+  load = async () => {
     const { app } = this.props;
     if (!app) return;
     let loader = {
       progress: 0,
       message: "Loading your data .....",
     };
+    console.log("Data Loading started");
     loadMe(this, (result) => {
       loader.progress += 5;
-      console.log("user", loader.progress);
+      //console.log("user", loader.progress);
       if (!result.error) loader.message = "User data loaded";
       app.updateProgress(loader);
       loadMyTenants(this, (resultA) => {
@@ -73,7 +88,7 @@ class PrimaryApp extends React.Component {
           app.handleTenantsListLoad(resultA.tenants);
           app.handleTenantChange(resultA.tenants[0]);
           loader.progress += 5;
-          console.log("tenants", loader.progress);
+          //console.log("tenants", loader.progress);
           loader.message = "Organization information loaded";
           app.updateProgress(loader);
           this.loadData();
@@ -85,30 +100,6 @@ class PrimaryApp extends React.Component {
       });
     });
   };
-  loadAtUpdate = async () => {
-    const { app } = this.props;
-    if (!app) return;
-    let loader = {
-      progress: 5,
-      message: "Loading your data .....",
-    };
-    app.updateProgress(loader);
-
-    loadMyTenants(this, (result) => {
-      if (!result.error && result.tenants) {
-        app.handleTenantsListLoad(result.tenants);
-        app.handleTenantChange(result.tenants[0]);
-        loader.progress += 5;
-        loader.message = "Organization information loaded";
-        app.updateProgress(loader);
-        this.loadData();
-      } else {
-        this.loadData();
-        loader.progress = 100;
-        app.updateProgress(loader);
-      }
-    });
-  };
 
   loadData = () => {
     const { app } = this.props;
@@ -117,11 +108,11 @@ class PrimaryApp extends React.Component {
     let loader = app.loader;
     app.updateProgress(loader);
     //Loading Admin Data
-    console.log("Loading admin data at mount time");
+    //console.log("Loading admin data at mount time");
     if (!app.users && compareGrade(app.user.role, "Business") === 1)
       loadUsers(this, (result) => {
         loader.progress += 5;
-        console.log("Users", loader.progress);
+        //console.log("Users", loader.progress);
         if (!result.error) loader.message = "Users loaded";
         app.updateProgress(loader);
       });
@@ -129,7 +120,7 @@ class PrimaryApp extends React.Component {
     if (!app.types)
       loadTypes(this, (result) => {
         loader.progress += 5;
-        console.log("Types", loader.progress);
+        //console.log("Types", loader.progress);
         if (!result.error) loader.message = "Types loaded";
         app.updateProgress(loader);
       });
@@ -137,7 +128,7 @@ class PrimaryApp extends React.Component {
     if (!app.workflows)
       loadWorkflows(this, (result) => {
         loader.progress += 5;
-        console.log("Workflows", loader.progress);
+        //console.log("Workflows", loader.progress);
         if (!result.error) loader.message = "Workflows loaded";
         app.updateProgress(loader);
       });
@@ -145,7 +136,7 @@ class PrimaryApp extends React.Component {
     if (!app.interactions)
       loadInteractions(this, (result) => {
         loader.progress += 20;
-        console.log("Interactions", loader.progress);
+        //console.log("Interactions", loader.progress);
         if (!result.error) loader.message = "Interactions loaded";
         app.updateProgress(loader);
       });
@@ -153,7 +144,7 @@ class PrimaryApp extends React.Component {
     if (!app.customers)
       loadCustomers(this, (result) => {
         loader.progress += 15;
-        console.log("customers", loader.progress);
+        //console.log("customers", loader.progress);
         if (!result.error) loader.message = "Customers loaded";
         app.updateProgress(loader);
       });
@@ -161,19 +152,19 @@ class PrimaryApp extends React.Component {
     if (!app.skillgroups)
       loadSkillgroups(this, (result) => {
         loader.progress += 5;
-        console.log("Skill grous", loader.progress);
+        //console.log("Skill grous", loader.progress);
         if (!result.error) loader.message = "Skillgroups loaded";
         app.updateProgress(loader);
       });
     else loader.progress += 5;
 
     //Load user data
-    console.log("Loading user data at mount time");
+    //console.log("Loading user data at mount time");
 
     if (!app.mySkillgroups)
       loadMySkillgroups(this, (result) => {
         loader.progress += 5;
-        console.log("My skills", loader.progress);
+        //console.log("My skills", loader.progress);
         if (!result.error) loader.message = "My skillgroups loaded";
         app.updateProgress(loader);
       });
@@ -182,7 +173,7 @@ class PrimaryApp extends React.Component {
     if (!app.myQueues)
       loadMyQueues(this, (result) => {
         loader.progress += 10;
-        console.log("My queues", loader.progress);
+        //console.log("My queues", loader.progress);
         if (!result.error) loader.message = "My queues loaded";
         app.updateProgress(loader);
       });
@@ -190,7 +181,7 @@ class PrimaryApp extends React.Component {
     if (!app.myTeams)
       loadMyTeams(this, (result) => {
         loader.progress += 10;
-        console.log("My teams", loader.progress);
+        //console.log("My teams", loader.progress);
         if (!result.error) loader.message = "My teams loaded";
         app.updateProgress(loader);
       });
@@ -198,7 +189,7 @@ class PrimaryApp extends React.Component {
     if (!app.todos)
       loadTodos(this, (result) => {
         loader.progress += 10;
-        console.log("Todos", loader.progress);
+        //console.log("Todos", loader.progress);
         if (!result.error) loader.message = "Activities loaded";
         app.updateProgress(loader);
       });

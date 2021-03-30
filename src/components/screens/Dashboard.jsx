@@ -62,45 +62,32 @@ class Dashboard extends Component {
     todoStatus: {},
   };
   componentDidMount() {
+    // console.log("Dashboard will mount now ...");
+    let time = Date.now();
     if (this.props.app.mySkillgroups && this.props.app.myQueues)
       this.calcQueueData();
     if (this.props.app.myTeams) this.calcTeamData();
     if (this.props.app.todos) this.calcTodoData();
+    // console.log("Dashboard mounted ...", Date.now() - time, " in Miliseconds");
   }
   componentDidUpdate(prevProps, prevState) {
-    // if (this.props.app.mySkillgroups && !prevProps.app.mySkillgroups)
-    //   this.calcQueueData();
-    // if (this.props.app.myTeams && !prevProps.app.myTeams) this.calcTeamData();
-    // if (this.props.app.todos && !prevProps.app.todos) this.calcTodoData();
+    // console.log("Dashboard did update and will update row data if needed ...");
+    // let time = Date.now();
+
     const { app } = this.props;
-    // if (app.tenant !== prevProps.app.tenant) {
-    //   loadMySkillgroups(this, (result) => {
-    //     if (!result.error)
-    //       loadMyQueues(this, (result) => {
-    //         if (!result.error) this.calcQueueData();
-    //       });
-    //   });
-    //   loadMyTeams(this, (result) => {
-    //     if (!result.error) this.calcTeamData();
-    //   });
-    // }
     if (
-      app.mySkillgroups !== prevProps.app.mySkillgroups ||
-      app.myQueues !== prevProps.app.myQueues
+      JSON.stringify(app.mySkillgroups) ==
+        JSON.stringify(prevProps.app.mySkillgroups) &&
+      JSON.stringify(app.myQueues) == JSON.stringify(prevProps.app.myQueues)
     ) {
-      console.log("My skills calc will run now");
-      this.calcQueueData();
-    }
+    } else this.calcQueueData();
 
-    if (app.myTeams !== prevProps.app.myTeams) {
-      console.log("My team calc will run now");
-      this.calcTeamData();
-    }
+    if (JSON.stringify(app.myTeams) == JSON.stringify(prevProps.app.myTeams)) {
+    } else this.calcTeamData();
 
-    if (app.todos !== prevProps.app.todos) {
-      console.log("Todo calc will run now");
-      this.calcTodoData();
-    }
+    if (JSON.stringify(app.todos) == JSON.stringify(prevProps.app.todos)) {
+    } else this.calcTodoData();
+    // console.log("Dashboard Updated ...", Date.now() - time, " in Miliseconds");
   }
 
   refreshTeams = async () => {

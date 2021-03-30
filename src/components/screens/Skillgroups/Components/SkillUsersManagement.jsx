@@ -135,7 +135,7 @@ class SkillUsersManagement extends Component {
         >
           <ListItemText
             primary={`${user.firstname} ${user.lastname}`}
-            primaryTypographyProps={{ variant: "small" }}
+            primaryTypographyProps={{ variant: "caption" }}
           />
           {user._id === this.state.selectedSkillUserId ? (
             <ListItemSecondaryAction>

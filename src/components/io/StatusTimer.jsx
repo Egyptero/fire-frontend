@@ -2,12 +2,7 @@ import { Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-const styles = (theme) => ({
-  timerStyle: {
-    margin: theme.spacing(0),
-    padding: theme.spacing(1),
-  },
-});
+import styles from "../primaryapp/appStyles";
 
 class StatusTimer extends Component {
   state = {

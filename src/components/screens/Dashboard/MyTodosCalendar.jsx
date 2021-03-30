@@ -21,9 +21,21 @@ const styles = (theme) => ({
 });
 
 class MyTodosCalendar extends Component {
-  state = {};
-
-  prepareData = () => {
+  state = {
+    data: [],
+  };
+  componentDidMount() {
+    this.prepareData();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      JSON.stringify(this.props.app.todos) ==
+      JSON.stringify(prevProps.app.todos)
+    )
+      return;
+    this.prepareData();
+  }
+  prepareData = async () => {
     const { theme } = this.props;
     const todos = this.props.app.todos;
     const sourceState = this.props.source.sourceState;
@@ -53,11 +65,12 @@ class MyTodosCalendar extends Component {
         });
       }
     });
-    return data;
+    this.setState({ data });
   };
   render() {
     const { classes } = this.props;
-    let data = this.prepareData();
+    const { data } = this.state;
+    if (!data || data.length < 1) return <React.Fragment />;
     return (
       <Card className={classes.card}>
         {this.props.source.renderTodoDetailedHeader("calendar")}
