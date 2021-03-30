@@ -118,7 +118,7 @@ class UserAdvancedManagement extends Component {
   };
 
   renderTeamMember = (user) => {
-    const { source } = this.props;
+    const { source, theme } = this.props;
     const { selectedUser } = this.props.source.sourceState;
 
     if (user.managerId === selectedUser._id) {
@@ -132,13 +132,15 @@ class UserAdvancedManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedTeamMemberId: user._id });
           }}
+          style={{ padding: theme.spacing(1) * 0.2 }}
         >
           <ListItemText
             primary={`${user.firstname} ${user.lastname}`}
             primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
           />
           {user._id === this.state.selectedTeamMemberId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled={!source.sourceState.canSave}
                 variant="text"
@@ -158,7 +160,7 @@ class UserAdvancedManagement extends Component {
     return;
   };
   renderUserTenant = (tenant) => {
-    const { source } = this.props;
+    const { source, theme } = this.props;
     const { selectedUser } = source.sourceState;
 
     //We need to ensure that organization is part of user tenantIds
@@ -178,19 +180,22 @@ class UserAdvancedManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedUserTenantId: tenant._id });
           }}
+          style={{ padding: theme.spacing(1) * 0.2 }}
         >
           <ListItemText
             primary={tenant.name}
             primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
           />
           {tenant._id === this.state.selectedUserTenantId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled={!source.sourceState.canSave}
                 variant="text"
                 size="small"
                 color="primary"
                 onClick={this.removeUserTenant}
+                style={{ textTransform: "none" }}
               >
                 <Typography variant="caption">Remove</Typography>
               </Button>
@@ -310,6 +315,7 @@ class UserAdvancedManagement extends Component {
                 color="secondary"
                 onClick={this.handleAddTenantDialogOpen}
                 size="small"
+                style={{ textTransform: "none" }}
               >
                 <Typography variant="caption">Add organization</Typography>
               </Button>
@@ -345,6 +351,7 @@ class UserAdvancedManagement extends Component {
                 disabled={!source.sourceState.canSave}
                 onClick={this.handleAddMemberDialogOpen}
                 size="small"
+                style={{ textTransform: "none" }}
               >
                 <Typography variant="caption">Add member</Typography>
               </Button>

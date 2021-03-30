@@ -179,7 +179,7 @@ class UserSkillManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedUserSkillId: skillgroup._id });
           }}
-          style={{ padding: theme.spacing(1) }}
+          style={{ padding: theme.spacing(1) *0.2 }}
         >
           <ListItemText
             primary={skillgroup.name}
@@ -228,7 +228,7 @@ class UserSkillManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedOrgSkillId: skillgroup._id });
           }}
-          style={{ padding: theme.spacing(1) }}
+          style={{ padding: theme.spacing(1) *0.2 }}
         >
           <ListItemText
             primary={skillgroup.name}

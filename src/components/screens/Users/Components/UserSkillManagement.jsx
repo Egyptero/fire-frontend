@@ -162,7 +162,7 @@ class UserSkillManagement extends Component {
     }
   };
   renderUserSkillgroup = (skillId) => {
-    const { source, app } = this.props;
+    const { source, app, theme } = this.props;
     const skillgroups = _.filter(
       app.skillgroups,
       (skillgroup) => skillgroup._id === skillId
@@ -179,19 +179,22 @@ class UserSkillManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedUserSkillId: skillgroup._id });
           }}
+          style={{ padding: theme.spacing(1) * 0.2 }}
         >
           <ListItemText
             primary={skillgroup.name}
             primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
           />
           {skillgroup._id === this.state.selectedUserSkillId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled={!source.sourceState.canSave}
                 variant="text"
                 size="small"
                 color="primary"
                 onClick={this.removeSkillFromUser}
+                style={{textTransform:"none"}}
               >
                 <Typography variant="caption">Remove</Typography>
               </Button>
@@ -204,7 +207,7 @@ class UserSkillManagement extends Component {
     } else return;
   };
   renderOrganizationSkillgroup = (skillgroup) => {
-    const { source } = this.props;
+    const { source, theme } = this.props;
     const { selectedUser } = this.props.source.sourceState;
     let found;
     if (selectedUser.skillIds) {
@@ -225,19 +228,22 @@ class UserSkillManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedOrgSkillId: skillgroup._id });
           }}
+          style={{ padding: theme.spacing(1) * 0.2 }}
         >
           <ListItemText
             primary={skillgroup.name}
             primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
           />
           {skillgroup._id === this.state.selectedOrgSkillId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled={!source.sourceState.canSave}
                 variant="text"
                 size="small"
                 color="primary"
                 onClick={this.assignSkillToUser}
+                style={{textTransform:"none"}}
               >
                 <Typography variant="caption">Assign</Typography>
               </Button>

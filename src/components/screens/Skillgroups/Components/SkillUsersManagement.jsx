@@ -16,16 +16,11 @@ import _ from "lodash";
 import loadUsers from "../../../../functions/tenant/user/loadUsers";
 import updateUser from "../../../../functions/tenant/user/updateUser";
 const styles = (theme) => ({
-  content: {
-  },
-  grid: {
-  },
-  gridWithoutBorder: {
-  },
-  card: {
-  },
-  details: {
-  },
+  content: {},
+  grid: {},
+  gridWithoutBorder: {},
+  card: {},
+  details: {},
   formControl: {
     margin: theme.spacing(1),
     //maxWidth: "90%"
@@ -51,10 +46,8 @@ const styles = (theme) => ({
       outline: "1px solid slategrey",
     },
   },
-  listOrganizations: {
-  },
-  listUsers: {
-  },
+  listOrganizations: {},
+  listUsers: {},
 });
 
 class SkillUsersManagement extends Component {
@@ -111,7 +104,7 @@ class SkillUsersManagement extends Component {
     }
   };
   renderSkillgroupUser = (user) => {
-    const { source,theme } = this.props;
+    const { source, theme } = this.props;
     const { selectedSkillgroup } = this.props.source.sourceState;
     let found;
     if (user.skillIds) {
@@ -131,14 +124,15 @@ class SkillUsersManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedSkillUserId: user._id });
           }}
-          style={{padding:theme.spacing(1)}}
+          style={{ padding: theme.spacing(1) * 0.2 }}
         >
           <ListItemText
             primary={`${user.firstname} ${user.lastname}`}
             primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
           />
           {user._id === this.state.selectedSkillUserId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled={!source.sourceState.canSave}
                 variant="text"
@@ -157,7 +151,7 @@ class SkillUsersManagement extends Component {
     } else return;
   };
   renderOrganizationUser = (user) => {
-    const { source,theme } = this.props;
+    const { source, theme } = this.props;
     const { selectedSkillgroup } = this.props.source.sourceState;
     let found;
     if (user.skillIds) {
@@ -178,14 +172,15 @@ class SkillUsersManagement extends Component {
             if (source.sourceState.canSave)
               this.setState({ selectedOrgUserId: user._id });
           }}
-          style={{padding:theme.spacing(1)}}
+          style={{ padding: theme.spacing(1) * 0.2 }}
         >
           <ListItemText
             primary={`${user.firstname} ${user.lastname}`}
             primaryTypographyProps={{ variant: "caption" }}
+            style={{ padding: theme.spacing(0) }}
           />
           {user._id === this.state.selectedOrgUserId ? (
-            <ListItemSecondaryAction>
+            <ListItemSecondaryAction style={{ padding: theme.spacing(0) }}>
               <Button
                 disabled={!source.sourceState.canSave}
                 variant="text"

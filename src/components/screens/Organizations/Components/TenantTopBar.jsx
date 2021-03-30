@@ -15,10 +15,9 @@ const styles = (theme) => ({
   topBar: {
     display: "flex",
     position: "relative",
-    overflow: "hidden",
     backgroundColor: "lightgrey",
-    height: "6vh",
-    maxHeight: "6vh",
+    height: theme.spacing(4),
+    maxHeight: theme.spacing(4),
   },
   topBarItem: {
     display: "flex",
@@ -39,11 +38,25 @@ const styles = (theme) => ({
 class TenantTopBar extends Component {
   state = {};
   renderAvatar = () => {
-    const { classes } = this.props;
+    const { classes,theme } = this.props;
     const { tenant } = this.props.app;
     if (tenant.logo)
-      return <Avatar className={classes.topBarItem} src={tenant.pic} />;
-    else return <Avatar className={classes.topBarItem}>{tenant.name}</Avatar>;
+      return (
+        <Avatar
+          className={classes.topBarItem}
+          src={tenant.pic}
+          style={{ width: theme.spacing(4), height: theme.spacing(4) }}
+        />
+      );
+    else
+      return (
+        <Avatar
+          className={classes.topBarItem}
+          style={{ width: theme.spacing(4), height: theme.spacing(4) }}
+        >
+          {tenant.name}
+        </Avatar>
+      );
   };
 
   render() {
@@ -57,7 +70,7 @@ class TenantTopBar extends Component {
             {/* <Grid item>{this.renderAvatar()}</Grid> */}
             <Grid item>
               <Typography
-                variant="h6"
+                variant="body2"
                 className={classes.topBarItem}
                 color="textPrimary"
                 inline="true"
@@ -72,20 +85,23 @@ class TenantTopBar extends Component {
             <IconButton
               onClick={source.saveTenant}
               disabled={!source.sourceState.canSave}
+              size="small"
             >
-              <Save />
+              <Save fontSize="small" />
             </IconButton>
             <IconButton
               onClick={source.watchTenant}
               disabled={!source.sourceState.canWatch}
+              size="small"
             >
-              <Visibility />
+              <Visibility fontSize="small" />
             </IconButton>
             <IconButton
               onClick={source.editTenant}
               disabled={!source.sourceState.canEdit}
+              size="small"
             >
-              <Edit />
+              <Edit fontSize="small" />
             </IconButton>
           </Grid>
         </Grid>

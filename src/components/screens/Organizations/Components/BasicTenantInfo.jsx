@@ -9,14 +9,12 @@ import {
   Select,
   Avatar,
   Button,
+  Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 const styles = (theme) => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh",
-  },
+  content: {},
   grid: {
     display: "flex",
     position: "relative",
@@ -27,8 +25,8 @@ const styles = (theme) => ({
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh",
+    height: "83vh",
+    maxHeight: "83vh",
   },
   card: {
     display: "flex",
@@ -41,8 +39,8 @@ const styles = (theme) => ({
     display: "block",
     position: "absolute",
     overflow: "auto",
-    height: "78vh",
-    maxHeight: "78vh",
+    height: "83vh",
+    maxHeight: "83vh",
     //    minWidth: "100%",
     whiteSpace: "nowrap",
     //width: "auto",
@@ -129,13 +127,9 @@ const styles = (theme) => ({
 });
 
 class BasicTenantInfo extends Component {
-  state = {
-    
-  };
-  componentDidMount() {
-  }
-  componentDidUpdate(prevProps) {
-  }
+  state = {};
+  componentDidMount() {}
+  componentDidUpdate(prevProps) {}
   onDataChange = (event) => {
     let { tenant } = this.props.source.sourceState;
     if (event.target.name === "name") tenant.name = event.target.value;
@@ -145,7 +139,7 @@ class BasicTenantInfo extends Component {
     if (event.target.name === "phone") tenant.phone = event.target.value;
     if (event.target.name === "website") tenant.website = event.target.value;
     if (event.target.name === "mobile") tenant.mobile = event.target.value;
-    this.props.source.updateTenantOnChange( tenant );
+    this.props.source.updateTenantOnChange(tenant);
   };
   render() {
     const { classes, source, theme } = this.props;
@@ -160,18 +154,23 @@ class BasicTenantInfo extends Component {
           </Grid>
           {/* Tenant profile pic */}
           <Grid item xs={6} sm={6} md={3} lg={3}>
-            <FormControl className={classes.formControl}>
-              <Avatar
-                src="/imgs/nopic.jpg"
-                style={{ width: "5em", height: "5em" }}
-              />
-            </FormControl>
+            <Grid container justify="center">
+              <FormControl className={classes.formControl}>
+                <Avatar
+                  src="/imgs/nopic.jpg"
+                  style={{
+                    width: theme.spacing(12),
+                    height: theme.spacing(12),
+                  }}
+                />
+              </FormControl>
+            </Grid>
           </Grid>
           {/* Tenant Verification Status*/}
           <Grid item xs={6} sm={6} md={3} lg={3}>
             <Grid container direction="column">
               {/* Tenant Verification Status */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="verified"
                   label="Verified"
@@ -180,6 +179,8 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.verified ? "Verified" : "Not yet"}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                 />
               </FormControl>
             </Grid>
@@ -188,7 +189,7 @@ class BasicTenantInfo extends Component {
           <Grid item xs={6} sm={6} md={3} lg={3}>
             <Grid container direction="column">
               {/* Organization status */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="status"
                   label="Status"
@@ -197,6 +198,8 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.status ? tenant.status : ""}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
@@ -209,8 +212,11 @@ class BasicTenantInfo extends Component {
                 variant="outlined"
                 className={classes.formControl}
                 style={{ width: "100%" }}
+                size="small"
               >
-                <InputLabel htmlFor="role-label">Your role</InputLabel>
+                <InputLabel htmlFor="role-label">
+                  <Typography variant="caption">Your role</Typography>
+                </InputLabel>
                 <Select
                   value={this.props.app.user.role}
                   onChange={this.onDataChange}
@@ -223,11 +229,21 @@ class BasicTenantInfo extends Component {
                     />
                   }
                 >
-                  <MenuItem value="User">User</MenuItem>
-                  <MenuItem value="Agent">Agent</MenuItem>
-                  <MenuItem value="Supervisor">Supervisor</MenuItem>
-                  <MenuItem value="Business">Business</MenuItem>
-                  <MenuItem value="Administrator">Administrator</MenuItem>
+                  <MenuItem value="User">
+                    <Typography variant="caption">User</Typography>
+                  </MenuItem>
+                  <MenuItem value="Agent">
+                    <Typography variant="caption">Agent</Typography>
+                  </MenuItem>
+                  <MenuItem value="Supervisor">
+                    <Typography variant="caption">Supervisor</Typography>
+                  </MenuItem>
+                  <MenuItem value="Business">
+                    <Typography variant="caption">Business</Typography>
+                  </MenuItem>
+                  <MenuItem value="Administrator">
+                    <Typography variant="caption">Administrator</Typography>
+                  </MenuItem>
                 </Select>
               </FormControl>
               {/* <FormControl className={classes.formControl}>
@@ -250,7 +266,7 @@ class BasicTenantInfo extends Component {
           <Grid item xs={12} sm={6} md={3} lg={3}>
             <Grid container direction="column">
               {/* Business Name */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="name"
                   label="Business name"
@@ -259,11 +275,13 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.name}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
               {/* Tenant Email */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="email"
                   label="Business email"
@@ -273,6 +291,8 @@ class BasicTenantInfo extends Component {
                   value={tenant.email}
                   type="Email"
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
@@ -282,7 +302,7 @@ class BasicTenantInfo extends Component {
           <Grid item xs={12} sm={6} md={3} lg={3}>
             <Grid container direction="column">
               {/* Legal Name */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="legalName"
                   label="Legal business name"
@@ -291,11 +311,13 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.legalName}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
               {/* Business Phone */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="phone"
                   label="Business phone"
@@ -304,6 +326,8 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.phone}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
@@ -313,7 +337,7 @@ class BasicTenantInfo extends Component {
           <Grid item xs={12} sm={6} md={3} lg={3}>
             <Grid container direction="column">
               {/* Website */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="website"
                   label="Website"
@@ -322,11 +346,13 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.website ? tenant.website : ""}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
               {/* Business Mobile */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <TextField
                   name="mobile"
                   label="Business mobile"
@@ -335,6 +361,8 @@ class BasicTenantInfo extends Component {
                   onChange={this.onDataChange}
                   value={tenant.mobile ? tenant.mobile : ""}
                   fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   //variant="outlined"
                 />
               </FormControl>
@@ -344,28 +372,32 @@ class BasicTenantInfo extends Component {
           <Grid item xs={12} sm={6} md={3} lg={3}>
             <Grid container direction="column">
               {/* tenant admin */}
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} size="small">
                 <Button
                   variant="contained"
                   color="secondary"
                   type="Tenant admin"
                   disabled={!source.sourceState.canSave}
+                  style={{ textTransform: "none" }}
                   //  onClick={this.handlePasswordDialogOpen}
                 >
-                  Manage Adnin
+                  <Typography variant="caption">Manage Adnin</Typography>
                 </Button>
               </FormControl>
               <Grid container direction="column">
                 {/* Delete Organization */}
-                <FormControl className={classes.formControl}>
+                <FormControl className={classes.formControl} size="small">
                   <Button
                     variant="outlined"
                     color="primary"
                     type="Delete organization"
                     disabled={!source.sourceState.canSave}
                     onClick={source.deleteTenant}
+                    style={{ textTransform: "none" }}
                   >
-                    Delete organization
+                    <Typography variant="caption">
+                      Delete organization
+                    </Typography>
                   </Button>
                 </FormControl>
                 {/* User ODI */}

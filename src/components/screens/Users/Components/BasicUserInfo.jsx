@@ -422,6 +422,7 @@ class BasicUserInfo extends Component {
                 disabled={!source.sourceState.canSave}
                 onClick={this.handlePasswordDialogOpen}
                 size="small"
+                style={{textTransform:"none"}}
               >
                 <Typography variant="caption">Change password</Typography>
               </Button>

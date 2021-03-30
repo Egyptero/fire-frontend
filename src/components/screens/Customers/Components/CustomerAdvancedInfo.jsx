@@ -115,7 +115,7 @@ class CustomerAdvancedInfo extends Component {
     this.setState({ newEmail: "" });
   };
   renderUserEmail = (email) => {
-    const { source } = this.props;
+    const { source ,theme} = this.props;
     return (
       <ListItem
         disabled={!source.sourceState.canSave}
@@ -126,13 +126,15 @@ class CustomerAdvancedInfo extends Component {
           if (source.sourceState.canSave)
             this.setState({ selectedUserEmail: email });
         }}
+        style={{padding:theme.spacing(1) * 0.2}}
       >
         <ListItemText
           primary={email}
           primaryTypographyProps={{ variant: "caption" }}
+          style={{padding:theme.spacing(0)}}
         />
         {email === this.state.selectedUserEmail ? (
-          <ListItemSecondaryAction>
+          <ListItemSecondaryAction style={{padding:theme.spacing(0)}}>
             <Button
               disabled={!source.sourceState.canSave}
               variant="text"
@@ -183,7 +185,7 @@ class CustomerAdvancedInfo extends Component {
     this.setState({ newPhone: "" });
   };
   renderUserPhone = (phone) => {
-    const { source } = this.props;
+    const { source,theme } = this.props;
     return (
       <ListItem
         disabled={!source.sourceState.canSave}
@@ -194,13 +196,15 @@ class CustomerAdvancedInfo extends Component {
           if (source.sourceState.canSave)
             this.setState({ selectedUserPhone: phone });
         }}
+        style={{padding:theme.spacing(1) * 0.2}}
       >
         <ListItemText
           primary={phone}
           primaryTypographyProps={{ variant: "caption" }}
+          style={{padding:theme.spacing(0)}}
         />
         {phone === this.state.selectedUserPhone ? (
-          <ListItemSecondaryAction>
+          <ListItemSecondaryAction style={{padding:theme.spacing(0)}}>
             <Button
               disabled={!source.sourceState.canSave}
               variant="text"
@@ -219,7 +223,7 @@ class CustomerAdvancedInfo extends Component {
     );
   };
   render() {
-    const { classes, source } = this.props;
+    const { classes, source,theme } = this.props;
     const { selectedCustomer } = source.sourceState;
     return (
       <React.Fragment>
@@ -236,7 +240,7 @@ class CustomerAdvancedInfo extends Component {
                 className={classes.list}
                 disablePadding
               >
-                <ListItem>
+                <ListItem style={{padding:theme.spacing(1) * 0.2}}>
                   <TextField
                     disabled={!source.sourceState.canSave}
                     value={this.state.newEmail}
@@ -248,9 +252,10 @@ class CustomerAdvancedInfo extends Component {
                     }}
                     inputProps={{ style: { fontSize: "0.8rem" } }}
                     InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                    
                   />
 
-                  <ListItemSecondaryAction>
+                  <ListItemSecondaryAction style={{padding:theme.spacing(0)}}>
                     <Button
                       disabled={!source.sourceState.canSave}
                       variant="text"
@@ -285,7 +290,7 @@ class CustomerAdvancedInfo extends Component {
                 className={classes.list}
                 disablePadding
               >
-                <ListItem>
+                <ListItem style={{padding:theme.spacing(1) * 0.2}}>
                   <TextField
                     disabled={!source.sourceState.canSave}
                     value={this.state.newPhone}
@@ -299,7 +304,7 @@ class CustomerAdvancedInfo extends Component {
                     InputLabelProps={{ style: { fontSize: "0.8rem" } }}
                   />
 
-                  <ListItemSecondaryAction>
+                  <ListItemSecondaryAction style={{padding:theme.spacing(0)}}>
                     <Button
                       disabled={!source.sourceState.canSave}
                       variant="text"

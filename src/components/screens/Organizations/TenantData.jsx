@@ -71,6 +71,7 @@ class TenantData extends Component {
             onClick={() => {
               this.handleTenantEdit();
             }}
+            size="small"
           >
             <Edit />
           </IconButton>
@@ -80,6 +81,7 @@ class TenantData extends Component {
             onClick={() => {
               this.handleTenantDelete();
             }}
+            size="small"
           >
             <Delete />
           </IconButton>
