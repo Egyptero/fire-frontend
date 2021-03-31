@@ -75,6 +75,11 @@ class Dashboard extends Component {
     // let time = Date.now();
 
     const { app } = this.props;
+    console.log(
+      "Dashboard did update and data is",
+      app.myTeams,
+      prevProps.app.myTeams
+    );
     if (
       JSON.stringify(app.mySkillgroups) ==
         JSON.stringify(prevProps.app.mySkillgroups) &&
@@ -274,6 +279,7 @@ class Dashboard extends Component {
     data.push(statusCount.loggedout);
     data.push(statusCount.unknown);
 
+    //return { teamData: { data, categories }, teamStatus: statusCount });
     this.setState({ teamData: { data, categories }, teamStatus: statusCount });
   };
 
