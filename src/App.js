@@ -275,7 +275,6 @@ class App extends Component {
     this.setState({ mySkillgroups });
   };
   handleMyTeamsListLoad = (myTeams) => {
-    console.log("Updating my teams",myTeams);
     this.setState({ myTeams });
   };
   handleMyTenantsListLoad = (myTenants) => {

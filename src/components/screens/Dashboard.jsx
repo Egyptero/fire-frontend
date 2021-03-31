@@ -92,7 +92,6 @@ class Dashboard extends Component {
 
     if (JSON.stringify(app.todos) == JSON.stringify(prevProps.app.todos)) {
     } else this.calcTodoData();
-    // console.log("Dashboard Updated ...", Date.now() - time, " in Miliseconds");
   }
 
   refreshTeams = async () => {
