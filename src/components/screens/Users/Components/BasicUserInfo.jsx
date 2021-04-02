@@ -38,9 +38,7 @@ const styles = (theme) => ({
 });
 
 class BasicUserInfo extends Component {
-  state = {
-    
-  };
+  state = {};
 
   onDataChange = (event) => {
     const { source } = this.props;
@@ -412,6 +410,23 @@ class BasicUserInfo extends Component {
                     }
                   />
                 </FormControl>
+                {/* Work bin */}
+                <FormControl className={classes.formControl} size="small">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={source.sourceState.selectedUser.autoAnswer}
+                        //onChange={this.onDataChange}
+                        disabled={!source.sourceState.canSave}
+                        color="primary"
+                        name="workbin"
+                        size="small"
+                        className={classes.switch}
+                      />
+                    }
+                    label={<Typography variant="caption">Workbin</Typography>}
+                  />
+                </FormControl>
               </Grid>
               {/* , Wrap up on/off , Freelander on/off , Auto accept*/}
               <Grid item container direction="column" xs={6}>
@@ -465,6 +480,25 @@ class BasicUserInfo extends Component {
                     }
                     label={
                       <Typography variant="caption">Auto accept</Typography>
+                    }
+                  />
+                </FormControl>
+                {/* Notify feature */}
+                <FormControl className={classes.formControl} size="small">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={source.sourceState.selectedUser.autoAnswer}
+                        //onChange={this.onDataChange}
+                        disabled={!source.sourceState.canSave}
+                        color="primary"
+                        name="notify"
+                        size="small"
+                        className={classes.switch}
+                      />
+                    }
+                    label={
+                      <Typography variant="caption">Notifications</Typography>
                     }
                   />
                 </FormControl>

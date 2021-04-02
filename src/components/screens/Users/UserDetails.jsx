@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Grid, Card, Divider } from "@material-ui/core";
+import {
+  Grid,
+  Card,
+  Divider,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import UserTopBar from "./Components/UserTopBar";
@@ -7,6 +15,7 @@ import BasicUserInfo from "./Components/BasicUserInfo";
 import UserSkillManagement from "./Components/UserSkillManagement";
 import UserAdvancedManagement from "./Components/UserAdvancedManagement";
 import UserConfigurationManagement from "./Components/UserConfigurationManagement";
+import { ExpandMore } from "@material-ui/icons";
 const styles = (theme) => ({
   content: {},
   grid: {
@@ -124,7 +133,7 @@ class UserDetails extends Component {
   state = {};
   componentDidMount() {}
   render() {
-    const { classes, source,theme } = this.props;
+    const { classes, source, theme } = this.props;
     return (
       <Grid
         item
@@ -148,23 +157,50 @@ class UserDetails extends Component {
             {/**User Details part. Having user basic info and skill management , and advanced management */}
             <Grid item className={classes.gridWithoutBorder} xs={12}>
               <Grid container className={classes.details}>
-                <Grid container spacing={0} style={{ padding: theme.spacing(1) }}>
+                <Grid
+                  container
+                  spacing={0}
+                  //style={{ padding: theme.spacing(1) }}
+                >
                   {/**Basic User Information like pic , name , email */}
                   <BasicUserInfo {...this.props} />
-                  {/* Divider  */}
-                  <Grid item xs={12}>
-                    <Divider style={{ margin: "1%" }} />
-                  </Grid>
-                  {/**User skillgroups management where you can assign or remove skill from user */}
-                  <UserSkillManagement {...this.props} />
-                  {/** User Team Management */}
-                  <UserAdvancedManagement {...this.props} />
+                  <Accordion style={{ width: "100%", boxShadow: "none`" }}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      style={{ boxShadow: "none`" }}
+                    >
+                      <Typography variant="caption">
+                        <b>Advanced configuration</b>
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{ boxShadow: "none`" }}>
+                      {/**User skillgroups management where you can assign or remove skill from user */}
+                      <UserSkillManagement {...this.props} />
+                      {/** User Team Management */}
+                      <UserAdvancedManagement {...this.props} />
+                    </AccordionDetails>
+                  </Accordion>
                   {/* Divider  */}
                   <Grid item xs={12}>
                     <Divider />
                   </Grid>
-
-                  <UserConfigurationManagement {...this.props} />
+                  <Accordion style={{ width: "100%", boxShadow: "none`" }}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      style={{ boxShadow: "none`" }}
+                    >
+                      <Typography variant="caption">
+                        <b>KPIs and parameters</b>
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{ boxShadow: "none`" }}>
+                      <UserConfigurationManagement {...this.props} />
+                    </AccordionDetails>
+                  </Accordion>
                 </Grid>
               </Grid>
             </Grid>
