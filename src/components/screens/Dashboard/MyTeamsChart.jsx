@@ -104,16 +104,16 @@ class MyTeams extends Component {
                   chart: {
                     animations: {
                       enabled: true,
-                      easing: 'easeinout',
-                      speed: 500,
-                      animateGradually: {
-                          enabled: true,
-                          delay: 100
-                      },
-                      dynamicAnimation: {
-                          enabled: true,
-                          speed: 250
-                      }
+                      // easing: 'easeinout',
+                      // speed: 500,
+                      // animateGradually: {
+                      //     enabled: true,
+                      //     delay: 100
+                      // },
+                      // dynamicAnimation: {
+                      //     enabled: true,
+                      //     speed: 250
+                      // }
                     },
                     id: "teamChart",
                     toolbar: {

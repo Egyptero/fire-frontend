@@ -25,17 +25,24 @@ class MyTodosCalendar extends Component {
     data: [],
   };
   componentDidMount() {
-    this.prepareData();
+    //this.prepareData();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (
-      JSON.stringify(this.props.app.todos) ==
-      JSON.stringify(prevProps.app.todos)
-    )
-      return;
-    this.prepareData();
+    console.log("Data will update in calendar");
+    // if (
+    //   JSON.stringify(this.props.app.todos) ==
+    //     JSON.stringify(prevProps.app.todos) &&
+    //   this.props.source.sourceState.showType ===
+    //     prevProps.source.sourceState.showType &&
+    //   this.props.source.sourceState.severity ===
+    //     prevProps.source.sourceState.severity
+    // )
+    //   return;
+
+    console.log("Data will calc data in calendar");
+    //this.prepareData();
   }
-  prepareData = async () => {
+  prepareData = () => {
     const { theme } = this.props;
     const todos = this.props.app.todos;
     const sourceState = this.props.source.sourceState;
@@ -65,12 +72,13 @@ class MyTodosCalendar extends Component {
         });
       }
     });
-    this.setState({ data });
+    //this.setState({ data });
+    return data;
   };
   render() {
     const { classes } = this.props;
-    const { data } = this.state;
-    if (!data || data.length < 1) return <React.Fragment />;
+    // const { data } = this.state;
+    // if (!data || data.length < 1) return <React.Fragment />;
     return (
       <Card className={classes.card}>
         {this.props.source.renderTodoDetailedHeader("calendar")}
@@ -105,7 +113,7 @@ class MyTodosCalendar extends Component {
             //_resize={true}
             //_resize="false"
             //            contentHeight={"76vh"}
-            events={data}
+            events={this.prepareData()}
             eventClick={(info) => {
               this.props.source.handleEditTodoOpen(info.event.id);
             }}

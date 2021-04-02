@@ -16,115 +16,14 @@ import _ from "lodash";
 import loadSkillgroups from "../../../../functions/tenant/skillgroup/loadSkillgroups";
 const styles = (theme) => ({
   content: {},
-  grid: {
-    display: "flex",
-    position: "relative",
-    maxHeight: "100%",
-    minHeight: "100%",
-    overflow: "hidden",
-  },
-  gridWithoutBorder: {
-    display: "flex",
-    position: "relative", //
-    height: "79vh",
-    maxHeight: "79vh",
-  },
-  card: {
-    display: "flex",
-    position: "relative",
-    overflow: "hidden",
-    maxHeight: "100%",
-    minHeight: "100%",
-  },
-  details: {
-    display: "block",
-    position: "absolute",
-    overflow: "auto",
-    height: "78vh",
-    maxHeight: "78vh",
-    //    minWidth: "100%",
-    whiteSpace: "nowrap",
-    //width: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    maxWidth: "90%",
-  },
-  list: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.light,
-    "border-radius": "5px",
-    height: "18em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  listOrganizations: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.light,
-    "border-radius": "5px",
-    height: "6.2em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  listUsers: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.light,
-    "border-radius": "5px",
-    height: "14.7em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
+  grid: {},
+  gridWithoutBorder: {},
+  card: {},
+  details: {},
+  formControl: {},
+  list: {},
+  listOrganizations: {},
+  listUsers: {},
 });
 
 class UserSkillManagement extends Component {
@@ -194,7 +93,7 @@ class UserSkillManagement extends Component {
                 size="small"
                 color="primary"
                 onClick={this.removeSkillFromUser}
-                style={{textTransform:"none"}}
+                style={{ textTransform: "none" }}
               >
                 <Typography variant="caption">Remove</Typography>
               </Button>
@@ -243,7 +142,7 @@ class UserSkillManagement extends Component {
                 size="small"
                 color="primary"
                 onClick={this.assignSkillToUser}
-                style={{textTransform:"none"}}
+                style={{ textTransform: "none" }}
               >
                 <Typography variant="caption">Assign</Typography>
               </Button>

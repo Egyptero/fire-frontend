@@ -19,7 +19,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    //height: "29vh", //32 vh
+    height: "29vh", //32 vh
     //minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",

@@ -122,7 +122,7 @@ class NewInteraction extends Component {
               color: theme.palette.secondary.contrastText,
             }}
           >
-            Create interaction
+            Create new case
           </Typography>
         </DialogTitle>
         <DialogContent>

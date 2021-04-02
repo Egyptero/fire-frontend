@@ -6,28 +6,28 @@ import UserTopBar from "./Components/UserTopBar";
 import BasicUserInfo from "./Components/BasicUserInfo";
 import UserSkillManagement from "./Components/UserSkillManagement";
 import UserAdvancedManagement from "./Components/UserAdvancedManagement";
-const styles = theme => ({
-  content: {
-  },
+import UserConfigurationManagement from "./Components/UserConfigurationManagement";
+const styles = (theme) => ({
+  content: {},
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
     minHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   gridWithoutBorder: {
     display: "flex",
     position: "relative", //
     height: "83vh",
-    maxHeight: "83vh"
+    maxHeight: "83vh",
   },
   card: {
     display: "flex",
     position: "relative",
     overflow: "hidden",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   details: {
     display: "block",
@@ -40,20 +40,20 @@ const styles = theme => ({
     //width: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   formControl: {
-    margin: theme.spacing(1),
-    maxWidth: "90%"
+    margin: theme.spacing(1) * 0.4,
+    maxWidth: "90%",
   },
   list: {
     width: "100%",
@@ -61,20 +61,20 @@ const styles = theme => ({
     border: "1px solid",
     borderColor: theme.palette.secondary.light,
     "border-radius": "5px",
-    height: "18em",
+    height: theme.spacing(26), //"18em",
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listOrganizations: {
     width: "100%",
@@ -82,20 +82,20 @@ const styles = theme => ({
     border: "1px solid",
     borderColor: theme.palette.secondary.light,
     "border-radius": "5px",
-    height: "6.2em",
+    height: theme.spacing(11), //"6.2em",
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
+      outline: "1px solid slategrey",
+    },
   },
   listUsers: {
     width: "100%",
@@ -103,28 +103,28 @@ const styles = theme => ({
     border: "1px solid",
     borderColor: theme.palette.secondary.light,
     "border-radius": "5px",
-    height: "14.7em",
+    height: theme.spacing(22), //"14.7em",
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",
-      height: "0.4em"
+      height: "0.4em",
     },
     "&::-webkit-scrollbar-track": {
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary //"whitesmoke" //"rgba(255,255,255,0.1)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey"
-    }
-  }
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class UserDetails extends Component {
   state = {};
   componentDidMount() {}
   render() {
-    const { classes, source } = this.props;
+    const { classes, source,theme } = this.props;
     return (
       <Grid
         item
@@ -140,7 +140,7 @@ class UserDetails extends Component {
             style={{
               overflow: "auto",
               position: "relative",
-              display: "flex"
+              display: "flex",
             }}
           >
             {/** User Topbar running all user capabilities like save , edit , watch */}
@@ -148,10 +148,10 @@ class UserDetails extends Component {
             {/**User Details part. Having user basic info and skill management , and advanced management */}
             <Grid item className={classes.gridWithoutBorder} xs={12}>
               <Grid container className={classes.details}>
-                <Grid container spacing={0}>
+                <Grid container spacing={0} style={{ padding: theme.spacing(1) }}>
                   {/**Basic User Information like pic , name , email */}
                   <BasicUserInfo {...this.props} />
-                  {/* Divider */}
+                  {/* Divider  */}
                   <Grid item xs={12}>
                     <Divider style={{ margin: "1%" }} />
                   </Grid>
@@ -159,6 +159,12 @@ class UserDetails extends Component {
                   <UserSkillManagement {...this.props} />
                   {/** User Team Management */}
                   <UserAdvancedManagement {...this.props} />
+                  {/* Divider  */}
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+
+                  <UserConfigurationManagement {...this.props} />
                 </Grid>
               </Grid>
             </Grid>
@@ -175,7 +181,7 @@ UserDetails.propTypes = {
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
   source: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(UserDetails);

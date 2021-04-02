@@ -10,6 +10,6 @@ export default (ref, data) => {
     },
     status: data.status,
     nextStatus: data.nextStatus,
-    inStateTime: data.inStateTime,
+    //inStateTime: data.inStateTime,
   });
 };

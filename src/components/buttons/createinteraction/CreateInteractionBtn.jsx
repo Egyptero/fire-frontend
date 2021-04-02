@@ -45,14 +45,14 @@ class CreateInteractionBtn extends Component {
         </IconButton> */}
 
         <Button
-          variant="outlined"
-          color="inherit"
+          variant="contained"
+          color="primary"
           onClick={this.handleNewInteractionClickOpen}
           style={{ textTransform: "none" }}
           size="small"
         >
           {/* <AssignmentLate /> */}
-          Interaction
+          Create case
         </Button>
         <NewInteractionDialog
           app={this.props.app}

@@ -21,39 +21,17 @@ import _ from "lodash";
 import updateUser from "../../../../functions/tenant/user/updateUser";
 import AddTeamMemberDialog from "./AddTeamMemberDialog";
 import AssignTenantDialog from "./AssignTenantDialog";
+import ChangePasswordDialog from "./ChangePasswordDialog";
 const styles = (theme) => ({
   content: {},
   grid: {},
   gridWithoutBorder: {},
   card: {},
   details: {},
-  formControl: {
-    margin: theme.spacing(1),
-    maxWidth: "90%",
-  },
+  formControl: {},
   list: {},
   listOrganizations: {},
-  listUsers: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.light,
-    "border-radius": "5px",
-    height: "14.7em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
+  listUsers: {},
 });
 
 class UserAdvancedManagement extends Component {
@@ -62,13 +40,24 @@ class UserAdvancedManagement extends Component {
     selectedUserTenantId: null,
     addTeamMemberDialog: false,
     addUserTenantDialog: false,
+    changePasswordDialog: false,
+  };
+  changePassword = (password) => {
+    const { source } = this.props;
+    let { selectedUser } = source.sourceState;
+    selectedUser.password = password;
+    source.updateSelectedUser(selectedUser);
+  };
+  handlePasswordDialogClose = () => {
+    this.setState({ changePasswordDialog: false });
+  };
+  handlePasswordDialogOpen = () => {
+    this.setState({ changePasswordDialog: true });
   };
   onDataChange = (event) => {
     const { source } = this.props;
     let { selectedUser } = source.sourceState;
     if (event.target.name === "mode") selectedUser.mode = event.target.value;
-    if (event.target.name === "manager")
-      selectedUser.managerId = event.target.value;
 
     source.updateSelectedUser(selectedUser);
   };
@@ -103,7 +92,6 @@ class UserAdvancedManagement extends Component {
   handleAddTenantDialogOpen = () => {
     this.setState({ addUserTenantDialog: true });
   };
-
   addTeamMember = (userId) => {
     const { selectedUser } = this.props.source.sourceState;
     updateUser(userId, { managerId: selectedUser._id }, this, (result) => {
@@ -116,7 +104,6 @@ class UserAdvancedManagement extends Component {
   handleAddMemberDialogOpen = () => {
     this.setState({ addTeamMemberDialog: true });
   };
-
   renderTeamMember = (user) => {
     const { source, theme } = this.props;
     const { selectedUser } = this.props.source.sourceState;
@@ -212,83 +199,9 @@ class UserAdvancedManagement extends Component {
     const { users, tenants } = app;
     return (
       <React.Fragment>
-        {/* Group of controls (Mode , Manager , Organization , Add Organization*/}
+        {/* Group of controls (Mode, Change password , Organization , Add Organization*/}
         <Grid item xs={12} sm={6} md={6} lg={3}>
           <Grid container direction="column">
-            {/* User Mode */}
-            <FormControl
-              //variant="outlined"
-              className={classes.formControl}
-              style={{ minWidth: "50%" }}
-              size="small"
-            >
-              <InputLabel htmlFor="user-mode-label">
-                <Typography variant="caption">Mode</Typography>
-              </InputLabel>
-              <Select
-                value={
-                  source.sourceState.selectedUser.mode
-                    ? source.sourceState.selectedUser.mode
-                    : "Push"
-                }
-                onChange={this.onDataChange}
-                disabled={!source.sourceState.canSave}
-                input={<Input name="mode" id="user-mode-label" />}
-              >
-                <MenuItem value="Push">
-                  <Typography variant="caption">Push</Typography>
-                </MenuItem>
-                <MenuItem value="Pull">
-                  <Typography variant="caption">Pull</Typography>
-                </MenuItem>
-                <MenuItem value="Mix">
-                  <Typography variant="caption">Mix</Typography>
-                </MenuItem>
-              </Select>
-            </FormControl>
-            {/* User Manager */}
-            <FormControl
-              variant="outlined"
-              className={classes.formControl}
-              size="small"
-            >
-              <InputLabel htmlFor="manager-label">
-                <Typography variant="caption">Manager</Typography>
-              </InputLabel>
-              <Select
-                value={
-                  source.sourceState.selectedUser.managerId
-                    ? source.sourceState.selectedUser.managerId
-                    : ""
-                }
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                input={
-                  <OutlinedInput
-                    labelWidth={80}
-                    name="manager"
-                    id="manager-label"
-                  />
-                }
-              >
-                <MenuItem key="Empty-Manager" value="">
-                  {""}
-                </MenuItem>
-                {this.props.app.users
-                  ? this.props.app.users.map((user) => {
-                      if (user.role !== "Agent" && user.role !== "User")
-                        // You are signed in as agent
-                        return (
-                          <MenuItem key={user._id} value={user._id}>
-                            <Typography variant="caption">{`${user.firstname} ${user.lastname}`}</Typography>
-                          </MenuItem>
-                        );
-
-                      return "";
-                    })
-                  : ""}
-              </Select>
-            </FormControl>
             {/* User Organizations */}
             <FormControl className={classes.formControl} size="small">
               <FormLabel disabled={!source.sourceState.canSave}>
@@ -318,6 +231,46 @@ class UserAdvancedManagement extends Component {
                 style={{ textTransform: "none" }}
               >
                 <Typography variant="caption">Add organization</Typography>
+              </Button>
+            </FormControl>
+            {/* User Mode */}
+            <FormControl className={classes.formControl} size="small">
+              <InputLabel htmlFor="user-mode-label">
+                <Typography variant="caption">Mode</Typography>
+              </InputLabel>
+              <Select
+                value={
+                  source.sourceState.selectedUser.mode
+                    ? source.sourceState.selectedUser.mode
+                    : "Push"
+                }
+                onChange={this.onDataChange}
+                disabled={!source.sourceState.canSave}
+                input={<Input name="mode" id="user-mode-label" />}
+              >
+                <MenuItem value="Push">
+                  <Typography variant="caption">Push</Typography>
+                </MenuItem>
+                <MenuItem value="Pull">
+                  <Typography variant="caption">Pull</Typography>
+                </MenuItem>
+                <MenuItem value="Mix">
+                  <Typography variant="caption">Mix</Typography>
+                </MenuItem>
+              </Select>
+            </FormControl>
+            {/* User Change Password Button */}
+            <FormControl className={classes.formControl} size="small">
+              <Button
+                variant="contained"
+                color="secondary"
+                type="Change password"
+                disabled={!source.sourceState.canSave}
+                onClick={this.handlePasswordDialogOpen}
+                size="small"
+                style={{ textTransform: "none" }}
+              >
+                <Typography variant="caption">Change password</Typography>
               </Button>
             </FormControl>
           </Grid>
@@ -369,6 +322,12 @@ class UserAdvancedManagement extends Component {
           dialogTrigger={this.state.addUserTenantDialog}
           addUserTenant={this.addUserTenant}
           handleAddTenantDialogClose={this.handleAddTenantDialogClose}
+        />
+        <ChangePasswordDialog
+          {...this.props}
+          dialogTrigger={this.state.changePasswordDialog}
+          changePassword={this.changePassword}
+          handlePasswordDialogClose={this.handlePasswordDialogClose}
         />
       </React.Fragment>
     );

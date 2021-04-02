@@ -19,23 +19,32 @@ export default (interaction, ref, callback) => {
           return callback({
             error: true,
             message: "error adding interaction item",
-            sysmessage: res && res.text ? res.text : "Error adding interaction"
+            sysmessage: res && res.text ? res.text : "Error adding interaction",
           });
-      } else {
+      } else if (interactions) {
         let payload = [];
-        interactions.forEach(u => {
+
+        interactions.forEach((u) => {
           payload.push(u);
         });
         payload.push(res.body);
 
         app.handleInteractionsListLoad(payload);
         console.log("Interaction added and interactions are=>" + payload);
-        enqueueSnackbar("Interaction added");
+        enqueueSnackbar("case created");
         if (callback)
           return callback({
             error: false,
             message: "added",
-            interaction: res.body
+            interaction: res.body,
+          });
+      }else {
+        enqueueSnackbar("case created");
+        if (callback)
+          return callback({
+            error: false,
+            message: "added",
+            interaction: res.body,
           });
       }
     });

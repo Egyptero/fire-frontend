@@ -292,7 +292,7 @@ class Dashboard extends Component {
           </Grid> */}
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Grid container spacing={2}>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -306,7 +306,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -320,7 +320,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -334,7 +334,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -348,7 +348,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -362,7 +362,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -376,7 +376,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -390,7 +390,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -404,7 +404,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -418,7 +418,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -432,7 +432,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{
@@ -446,7 +446,7 @@ class Dashboard extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={4} sm={2} md={1} lg={1}>
+              <Grid item xs={4} sm={2} md={2} lg={1}>
                 <DashboardHeader
                   {...this.props}
                   params={{

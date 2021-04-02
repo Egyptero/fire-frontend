@@ -14,6 +14,7 @@ export default (ref, callback) => {
     }
     return;
   }
+  console.log("Loading tenant now and let us check the url");
   request
     .get(url() + "/api/v1.0/tenants/" + app.tenant._id + "/interactions")
     .set("x-auth-token", app.token)

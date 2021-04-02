@@ -21,7 +21,7 @@ const styles = (theme) => ({
   cardContent: {
     position: "relative",
     overflow: "auto",
-    //    height: "18vh",
+    //height: "18vh",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -80,19 +80,22 @@ class MyQueues extends Component {
               <Chart
                 series={chartData.data}
                 options={{
+                  legend: {
+                    show: false,
+                  },
                   chart: {
                     animations: {
                       enabled: true,
-                      easing: 'easeinout',
-                      speed: 500,
-                      animateGradually: {
-                          enabled: true,
-                          delay: 100
-                      },
-                      dynamicAnimation: {
-                          enabled: true,
-                          speed: 250
-                      }
+                      // easing: 'easeinout',
+                      // speed: 500,
+                      // animateGradually: {
+                      //     enabled: true,
+                      //     delay: 100
+                      // },
+                      // dynamicAnimation: {
+                      //     enabled: true,
+                      //     speed: 250
+                      // }
                     },
                     id: "queuecChart",
                     toolbar: {
@@ -103,7 +106,7 @@ class MyQueues extends Component {
                     categories: chartData.categories,
                   },
                 }}
-                width="85%"
+                //width="85%"
               />
             ) : (
               <Typography variant="h6">No skillgroups defined</Typography>

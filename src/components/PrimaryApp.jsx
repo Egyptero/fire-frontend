@@ -125,7 +125,7 @@ class PrimaryApp extends React.Component {
         app.updateProgress(loader);
       });
     else loader.progress += 5;
-    if (!app.workflows)
+    if (!app.workflows && compareGrade(app.user.role, "Leader") > 0)
       loadWorkflows(this, (result) => {
         loader.progress += 5;
         //console.log("Workflows", loader.progress);
@@ -133,7 +133,7 @@ class PrimaryApp extends React.Component {
         app.updateProgress(loader);
       });
     else loader.progress += 5;
-    if (!app.interactions)
+    if (!app.interactions && compareGrade(app.user.role, "Leader") > 0)
       loadInteractions(this, (result) => {
         loader.progress += 20;
         //console.log("Interactions", loader.progress);
