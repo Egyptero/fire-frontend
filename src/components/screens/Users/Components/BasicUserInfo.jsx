@@ -66,6 +66,16 @@ class BasicUserInfo extends Component {
       selectedUser.phone = event.target.checked;
     if (event.target.name === "manager")
       selectedUser.managerId = event.target.value;
+    if (event.target.name === "notifications")
+      selectedUser.notifications = event.target.checked;
+    if (event.target.name === "autoAccept")
+      selectedUser.autoAccept = event.target.checked;
+    if (event.target.name === "wrapup")
+      selectedUser.wrapup = event.target.checked;
+    if (event.target.name === "workbin")
+      selectedUser.workbin = event.target.checked;
+    if (event.target.name === "autoLogin")
+      selectedUser.autoLogin = event.target.checked;
 
     source.updateSelectedUser(selectedUser);
   };
@@ -95,7 +105,7 @@ class BasicUserInfo extends Component {
                 //
               />
             </FormControl>
-            {/* User Change Password Button */}
+            {/* User Change Photo Button */}
             <FormControl className={classes.formControl} size="small">
               <Button
                 //variant="contained"
@@ -396,8 +406,8 @@ class BasicUserInfo extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={source.sourceState.selectedUser.autoAnswer}
-                        //onChange={this.onDataChange}
+                        checked={source.sourceState.selectedUser.autoLogin}
+                        onChange={this.onDataChange}
                         disabled={!source.sourceState.canSave}
                         color="primary"
                         name="autoLogin"
@@ -415,8 +425,8 @@ class BasicUserInfo extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={source.sourceState.selectedUser.autoAnswer}
-                        //onChange={this.onDataChange}
+                        checked={source.sourceState.selectedUser.workbin}
+                        onChange={this.onDataChange}
                         disabled={!source.sourceState.canSave}
                         color="primary"
                         name="workbin"
@@ -436,7 +446,7 @@ class BasicUserInfo extends Component {
                     control={
                       <Checkbox
                         checked={source.sourceState.selectedUser.wrapup}
-                        //onChange={this.onDataChange}
+                        onChange={this.onDataChange}
                         disabled={!source.sourceState.canSave}
                         color="primary"
                         name="wrapup"
@@ -469,8 +479,8 @@ class BasicUserInfo extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={source.sourceState.selectedUser.autoAnswer}
-                        //onChange={this.onDataChange}
+                        checked={source.sourceState.selectedUser.autoAccept}
+                        onChange={this.onDataChange}
                         disabled={!source.sourceState.canSave}
                         color="primary"
                         name="autoAccept"
@@ -488,11 +498,11 @@ class BasicUserInfo extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={source.sourceState.selectedUser.autoAnswer}
-                        //onChange={this.onDataChange}
+                        checked={source.sourceState.selectedUser.notifications}
+                        onChange={this.onDataChange}
                         disabled={!source.sourceState.canSave}
                         color="primary"
-                        name="notify"
+                        name="notifications"
                         size="small"
                         className={classes.switch}
                       />

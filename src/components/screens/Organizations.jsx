@@ -29,10 +29,95 @@ const styles = (theme) => ({
     minHeight: "100%",
     minWidth: "100%",
   },
-  details: {},
-  formControl: {},
-  listOrganizations: {},
-  listUsers: {},
+  details: {
+    display: "block",
+    position: "absolute",
+    overflow: "auto",
+    height: "83vh",
+    maxHeight: "83vh",
+    //    minWidth: "100%",
+    whiteSpace: "nowrap",
+    //width: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  formControl: {
+    margin: theme.spacing(1) * 0.4,
+    maxWidth: "90%",
+  },
+  list: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.dark,
+    "border-radius": "5px",
+    height: "18em",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  listOrganizations: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.dark,
+    "border-radius": "5px",
+    height: "6.2em",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
+  listUsers: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.dark,
+    "border-radius": "5px",
+    height: "14.7em",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
 });
 
 class Organizations extends Component {
@@ -61,9 +146,9 @@ class Organizations extends Component {
     }
   }
 
-  updateTenantOnChange = (tenant) =>{
-    this.setState({tenant});
-  }
+  updateTenantOnChange = (tenant) => {
+    this.setState({ tenant });
+  };
   handleDeleteTenant = (index) => {
     deleteTenant(index, this);
   };

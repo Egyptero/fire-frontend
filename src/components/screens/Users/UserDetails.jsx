@@ -164,7 +164,11 @@ class UserDetails extends Component {
                 >
                   {/**Basic User Information like pic , name , email */}
                   <BasicUserInfo {...this.props} />
-                  <Accordion style={{ width: "100%", boxShadow: "none`" }}>
+                  <Accordion
+                    style={{ width: "100%", boxShadow: "none`" }}
+                    //disabled={!source.sourceState.canSave}
+                    defaultExpanded={true}
+                  >
                     <AccordionSummary
                       expandIcon={<ExpandMore />}
                       aria-controls="panel1a-content"
@@ -186,15 +190,19 @@ class UserDetails extends Component {
                   <Grid item xs={12}>
                     <Divider />
                   </Grid>
-                  <Accordion style={{ width: "100%", boxShadow: "none`" }}>
+                  <Accordion
+                    style={{ width: "100%", boxShadow: "none`" }}
+                    //disabled={!source.sourceState.canSave}
+                  >
                     <AccordionSummary
                       expandIcon={<ExpandMore />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                       style={{ boxShadow: "none`" }}
                     >
-                      <Typography variant="caption">
-                        <b>KPIs and parameters</b>
+                      <Typography variant="caption" >
+                        <b>Quality configuration</b>
+                        
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails style={{ boxShadow: "none`" }}>

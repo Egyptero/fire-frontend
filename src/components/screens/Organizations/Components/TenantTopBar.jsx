@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, IconButton, Typography, Avatar } from "@material-ui/core";
+import { Grid, IconButton, Typography, Avatar, Chip } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Edit, Visibility, Save } from "@material-ui/icons";
@@ -38,7 +38,7 @@ const styles = (theme) => ({
 class TenantTopBar extends Component {
   state = {};
   renderAvatar = () => {
-    const { classes,theme } = this.props;
+    const { classes, theme } = this.props;
     const { tenant } = this.props.app;
     if (tenant.logo)
       return (
@@ -60,8 +60,7 @@ class TenantTopBar extends Component {
   };
 
   render() {
-    const { classes, source } = this.props;
-    const { sourceState } = source;
+    const { classes, source, theme } = this.props;
     const { tenant } = this.props.app;
     return (
       <React.Fragment>
@@ -75,13 +74,32 @@ class TenantTopBar extends Component {
                 color="textPrimary"
                 inline="true"
               >
-                {tenant.name}
+                <b>{tenant.name}</b>
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography
+                variant="caption"
+                inline="true"
+                className={classes.topBarItem}
+              >
+                <b>{tenant.status ? tenant.status : ""}</b>
               </Typography>
             </Grid>
           </Grid>
         </Grid>
         <Grid className={classes.topBar} item xs={6} sm={6}>
           <Grid container justify="flex-end">
+            <Grid item>
+              <Chip
+                className={classes.topBarItem}
+                avatar={<Avatar>{this.props.app.user.role[0]}</Avatar>}
+                label={this.props.app.user.role}
+                variant="outlined"
+                color="primary"
+                size="small"
+              />
+            </Grid>
             <IconButton
               onClick={source.saveTenant}
               disabled={!source.sourceState.canSave}

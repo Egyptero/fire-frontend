@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import {
   Grid,
-  Card,
-  Divider,
   FormControl,
   TextField,
-  FormControlLabel,
   Typography,
-  Switch,
   Button,
+  InputAdornment,
+  Input,
+  InputLabel,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -26,6 +25,31 @@ const styles = (theme) => ({
 
 class UserConfigurationManagement extends Component {
   state = {};
+  onDataChange = (event) => {
+    const { source } = this.props;
+    let { selectedUser } = source.sourceState;
+    if (event.target.name === "interactionCapacity")
+      selectedUser.interactionCapacity = event.target.value;
+    if (event.target.name === "caseCapacity")
+      selectedUser.caseCapacity = event.target.value;
+    if (event.target.name === "offerTimeout")
+      selectedUser.offerTimeout = event.target.value;
+    if (event.target.name === "wrapupTimeout")
+      selectedUser.wrapupTimeout = event.target.value;
+    if (event.target.name === "dailyInteractionTarget")
+      selectedUser.dailyInteractionTarget = event.target.value;
+    if (event.target.name === "dailyCaseTarget")
+      selectedUser.dailyCaseTarget = event.target.value;
+    if (event.target.name === "dailyUtilizationTarget")
+      selectedUser.dailyUtilizationTarget = event.target.value;
+    if (event.target.name === "offlineASATarget")
+      selectedUser.offlineASATarget = event.target.value;
+    if (event.target.name === "onlineASATarget")
+      selectedUser.onlineASATarget = event.target.value;
+
+    source.updateSelectedUser(selectedUser);
+  };
+
   render() {
     const { classes, source, app, theme } = this.props;
     return (
@@ -35,38 +59,58 @@ class UserConfigurationManagement extends Component {
             <Grid container direction="column">
               {/* Capacity of interactions per user */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">
+                    Interaction capacity
+                  </Typography>
+                </InputLabel>
+                <Input
                   name="interactionCapacity"
-                  label="Interaction capacity"
+                  type="number"
                   placeholder="5"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.interactionCapacity
                       ? source.sourceState.selectedUser.interactionCapacity
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Interactions</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               {/* Capacity of interactions per user */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">Case capacity</Typography>
+                </InputLabel>
+                <Input
                   name="caseCapacity"
-                  label="Case capacity"
+                  type="number"
                   placeholder="5"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.caseCapacity
                       ? source.sourceState.selectedUser.caseCapacity
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Cases</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
             </Grid>
@@ -75,38 +119,57 @@ class UserConfigurationManagement extends Component {
             <Grid container direction="column">
               {/* Offer timeout in case of manaual answer */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">Offer timeout</Typography>
+                </InputLabel>
+                <Input
                   name="offerTimeout"
-                  label="Offer timeout"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.offerTimeout
                       ? source.sourceState.selectedUser.offerTimeout
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Seconds</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               {/* Wrap up timeout in case of manaual answer */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">Wrapup timeout</Typography>
+                </InputLabel>
+
+                <Input
                   name="wrapupTimeout"
-                  label="Wrapup timeout"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.wrapupTimeout
                       ? source.sourceState.selectedUser.wrapupTimeout
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Seconds</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
             </Grid>
@@ -115,56 +178,87 @@ class UserConfigurationManagement extends Component {
             <Grid container direction="column">
               {/* Daily interaction target */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">
+                    Daily interaction target
+                  </Typography>
+                </InputLabel>
+                <Input
                   name="dailyInteractionTarget"
-                  label="Daily interaction target"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.dailyInteractionTarget
                       ? source.sourceState.selectedUser.dailyInteractionTarget
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Interactions</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               {/* Daily cases target */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">Daily case target</Typography>
+                </InputLabel>
+                <Input
                   name="dailyCaseTarget"
-                  label="Daily case target"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.dailyCaseTarget
                       ? source.sourceState.selectedUser.dailyCaseTarget
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Cases</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               {/* Daily Utilization target */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
-                  name="DailyUtilizationTarget"
-                  label="Daily utilization target"
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">
+                    Daily utilization target
+                  </Typography>
+                </InputLabel>
+                <Input
+                  name="dailyUtilizationTarget"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.dailyUtilizationTarget
                       ? source.sourceState.selectedUser.dailyUtilizationTarget
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">%</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
             </Grid>
@@ -173,38 +267,60 @@ class UserConfigurationManagement extends Component {
             <Grid container direction="column">
               {/* Offline ASA target */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">
+                    Offline channels ASA
+                  </Typography>
+                </InputLabel>
+
+                <Input
                   name="offlineASATarget"
-                  label="Offline channels ASA"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.offlineASATarget
                       ? source.sourceState.selectedUser.offlineASATarget
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Seconds</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               {/* Online ASA target */}
               <FormControl className={classes.formControl} size="small">
-                <TextField
+                <InputLabel htmlFor="component-helper">
+                  <Typography variant="caption">Online channels ASA</Typography>
+                </InputLabel>
+
+                <Input
                   name="onlineASATarget"
-                  label="Online channels ASA"
+                  type="number"
                   placeholder="20"
                   disabled={!source.sourceState.canSave}
-                  //              onChange={this.onDataChange}
+                  onChange={this.onDataChange}
                   value={
                     source.sourceState.selectedUser.onlineASATarget
                       ? source.sourceState.selectedUser.onlineASATarget
                       : ""
                   }
                   fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  inputProps={{
+                    style: { fontSize: "0.8rem" },
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Typography variant="caption">Seconds</Typography>
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               {/* Extra KPIs buttons */}
@@ -216,7 +332,7 @@ class UserConfigurationManagement extends Component {
                   disabled={!source.sourceState.canSave}
                   //onClick={this.handlePasswordDialogOpen}
                   size="small"
-                  style={{ textTransform: "none",marginTop:theme.spacing(2) }}
+                  style={{ textTransform: "none", marginTop: theme.spacing(2) }}
                 >
                   <Typography variant="caption">More KPIs</Typography>
                 </Button>

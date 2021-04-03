@@ -101,7 +101,22 @@ class Users extends Component {
       "sipUri",
       "sipServer",
       "sipUserName",
-      "sipPassword"
+      "sipPassword",
+      "notifications",
+      "autoAccept",
+      "wrapup",
+      "workbin",
+      "autoLogin",
+      "interactionCapacity",
+      "caseCapacity",
+      "offerTimeout",
+      "wrapupTimeout",
+      "dailyInteractionTarget",
+      "dailyCaseTarget",
+      "dailyUtilizationTarget",
+      "offlineASATarget",
+      "onlineASATarget",
+
     ];
     //Select password in case it will be updated
     if (selectedUser.password) pickUp.push("password");

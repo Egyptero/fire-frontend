@@ -11,14 +11,14 @@ import {
 } from "@material-ui/core";
 import TenantTopBar from "./Components/TenantTopBar";
 import BasicTenantInfo from "./Components/BasicTenantInfo";
+import TenantSetting from "./Components/setting/TenantSetting";
+
 
 //import { ExpandMore } from "@material-ui/icons";
 //import TenantData from "./TenantData";
 
 const styles = (theme) => ({
   content: {
-    flexGrow: 1,
-    //height: "86vh"
   },
   gridWithoutBorder: {},
   gridWithoutBorder: {},
@@ -55,13 +55,14 @@ class TenantsDetails extends Component {
           <TenantTopBar {...this.props} />
           {/**User Details part. Having user basic info and skill management , and advanced management */}
           <Grid item xs={12}>
-            <Grid container spacing={0}>
+            <Grid container>
               {/**Basic User Information like pic , name , email */}
               <BasicTenantInfo {...this.props} />
+              <TenantSetting {...this.props} />
               {/* Divider */}
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Divider style={{ margin: "1%" }} />
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
         </Grid>

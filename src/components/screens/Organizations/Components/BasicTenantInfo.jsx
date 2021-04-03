@@ -1,135 +1,28 @@
-import React, { Component } from "react";
 import {
-  Grid,
-  TextField,
-  FormControl,
-  MenuItem,
-  InputLabel,
-  OutlinedInput,
-  Select,
   Avatar,
   Button,
+  FormControl,
+  Grid,
+  TextField,
   Typography,
 } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 const styles = (theme) => ({
   content: {},
-  grid: {
-    display: "flex",
-    position: "relative",
-    maxHeight: "100%",
-    minHeight: "100%",
-    overflow: "hidden",
-  },
-  gridWithoutBorder: {
-    display: "flex",
-    position: "relative", //
-    height: "83vh",
-    maxHeight: "83vh",
-  },
-  card: {
-    display: "flex",
-    position: "relative",
-    overflow: "hidden",
-    maxHeight: "100%",
-    minHeight: "100%",
-  },
-  details: {
-    display: "block",
-    position: "absolute",
-    overflow: "auto",
-    height: "83vh",
-    maxHeight: "83vh",
-    //    minWidth: "100%",
-    whiteSpace: "nowrap",
-    //width: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": "whitesmoke", //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    maxWidth: "90%",
-  },
-  list: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    "border-radius": "5px",
-    height: "18em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  listOrganizations: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    "border-radius": "5px",
-    height: "6.2em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  listUsers: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    "border-radius": "5px",
-    height: "14.7em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
+  grid: {},
+  gridWithoutBorder: {},
+  card: {},
+  details: {},
+  formControl: {},
+  list: {},
+  listOrganizations: {},
+  listUsers: {},
 });
 
 class BasicTenantInfo extends Component {
   state = {};
-  componentDidMount() {}
-  componentDidUpdate(prevProps) {}
   onDataChange = (event) => {
     let { tenant } = this.props.source.sourceState;
     if (event.target.name === "name") tenant.name = event.target.value;
@@ -148,123 +41,58 @@ class BasicTenantInfo extends Component {
     else
       return (
         <React.Fragment>
-          {/* Empty space*/}
-          <Grid item xs={12}>
-            <p style={{ margin: theme.spacing(1) }} />
-          </Grid>
-          {/* Tenant profile pic */}
-          <Grid item xs={6} sm={6} md={3} lg={3}>
-            <Grid container justify="center">
-              <FormControl className={classes.formControl}>
-                <Avatar
-                  src="/imgs/nopic.jpg"
-                  style={{
-                    width: theme.spacing(12),
-                    height: theme.spacing(12),
-                  }}
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
-          {/* Tenant Verification Status*/}
-          <Grid item xs={6} sm={6} md={3} lg={3}>
-            <Grid container direction="column">
-              {/* Tenant Verification Status */}
-              <FormControl className={classes.formControl} size="small">
-                <TextField
-                  name="verified"
-                  label="Verified"
-                  placeholder="Organization verification status"
-                  disabled
-                  onChange={this.onDataChange}
-                  value={tenant.verified ? "Verified" : "Not yet"}
-                  fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
-          {/* Organization status*/}
-          <Grid item xs={6} sm={6} md={3} lg={3}>
-            <Grid container direction="column">
-              {/* Organization status */}
-              <FormControl className={classes.formControl} size="small">
-                <TextField
-                  name="status"
-                  label="Status"
-                  placeholder="Organization subscription status"
-                  disabled
-                  onChange={this.onDataChange}
-                  value={tenant.status ? tenant.status : ""}
-                  fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-                  //variant="outlined"
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
-          {/* Your Role*/}
-          <Grid item xs={6} sm={5} md={3} lg={3}>
-            <Grid container direction="row">
-              <FormControl
-                variant="outlined"
-                className={classes.formControl}
-                style={{ width: "100%" }}
-                size="small"
+          {/* Tenant basic information */}
+          <Grid item xs={12} sm={12} md={3} lg={3}>
+            <Grid
+              container
+              direction="column"
+              style={{ padding: theme.spacing(2) }}
+            >
+              <Grid
+                container
+                alignItems="center"
+                alignContent="center"
+                justify="center"
+                direction="column"
               >
-                <InputLabel htmlFor="role-label">
-                  <Typography variant="caption">Your role</Typography>
-                </InputLabel>
-                <Select
-                  value={this.props.app.user.role}
-                  onChange={this.onDataChange}
-                  disabled
-                  input={
-                    <OutlinedInput
-                      labelWidth={40}
-                      name="role"
-                      id="role-label"
+                {/* Tenant Pic */}
+                <FormControl className={classes.formControl}>
+                  <Avatar
+                    //src="/imgs/firemisc.png"
+                    //srcSet="/imgs/firemisc.png"
+                    //
+
+                    style={{
+                      width: theme.spacing(20),
+                      height: theme.spacing(20),
+                      backgroundColor: theme.palette.common.white,
+                    }}
+                    //
+                  >
+                    <img
+                      src="/imgs/firemisc.png"
+                      style={{
+                        width: theme.spacing(20),
+                        height: theme.spacing(20),
+                      }}
                     />
-                  }
-                >
-                  <MenuItem value="User">
-                    <Typography variant="caption">User</Typography>
-                  </MenuItem>
-                  <MenuItem value="Agent">
-                    <Typography variant="caption">Agent</Typography>
-                  </MenuItem>
-                  <MenuItem value="Supervisor">
-                    <Typography variant="caption">Supervisor</Typography>
-                  </MenuItem>
-                  <MenuItem value="Business">
-                    <Typography variant="caption">Business</Typography>
-                  </MenuItem>
-                  <MenuItem value="Administrator">
-                    <Typography variant="caption">Administrator</Typography>
-                  </MenuItem>
-                </Select>
-              </FormControl>
-              {/* <FormControl className={classes.formControl}>
-              <FormControlLabel
-                control={
-                  <Switch
-//                    checked={source.sourceState.selectedUser.phone}
-                    onChange={this.onDataChange}
-                    disabled
-                    color="primary"
-                    name="phone"
-                  />
-                }
-                label="Phone"
-              />
-            </FormControl> */}
-            </Grid>
-          </Grid>
-          {/* Group Tenant Name , Email */}
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Grid container direction="column">
+                  </Avatar>
+                </FormControl>
+                {/* Change Photo Button */}
+                <FormControl className={classes.formControl} size="small">
+                  <Button
+                    //variant="contained"
+                    color="secondary"
+                    type="Change photo"
+                    disabled={!source.sourceState.canSave}
+                    //                onClick={this.handlePasswordDialogOpen}
+                    size="small"
+                    style={{ textTransform: "none" }}
+                  >
+                    <Typography variant="caption">Change photo</Typography>
+                  </Button>
+                </FormControl>
+              </Grid>
               {/* Business Name */}
               <FormControl className={classes.formControl} size="small">
                 <TextField
@@ -280,27 +108,6 @@ class BasicTenantInfo extends Component {
                   //variant="outlined"
                 />
               </FormControl>
-              {/* Tenant Email */}
-              <FormControl className={classes.formControl} size="small">
-                <TextField
-                  name="email"
-                  label="Business email"
-                  placeholder="Business offical email"
-                  disabled={!source.sourceState.canSave}
-                  onChange={this.onDataChange}
-                  value={tenant.email}
-                  type="Email"
-                  fullWidth
-                  inputProps={{ style: { fontSize: "0.8rem" } }}
-                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-                  //variant="outlined"
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
-          {/* Group Legal Name , Business Phone */}
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Grid container direction="column">
               {/* Legal Name */}
               <FormControl className={classes.formControl} size="small">
                 <TextField
@@ -331,20 +138,16 @@ class BasicTenantInfo extends Component {
                   //variant="outlined"
                 />
               </FormControl>
-            </Grid>
-          </Grid>
-          {/* Website , Business Mobile */}
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Grid container direction="column">
-              {/* Website */}
+              {/* Tenant Email */}
               <FormControl className={classes.formControl} size="small">
                 <TextField
-                  name="website"
-                  label="Website"
-                  placeholder="Business website"
+                  name="email"
+                  label="Business email"
+                  placeholder="Business offical email"
                   disabled={!source.sourceState.canSave}
                   onChange={this.onDataChange}
-                  value={tenant.website ? tenant.website : ""}
+                  value={tenant.email}
+                  type="Email"
                   fullWidth
                   inputProps={{ style: { fontSize: "0.8rem" } }}
                   InputLabelProps={{ style: { fontSize: "0.8rem" } }}
@@ -366,56 +169,46 @@ class BasicTenantInfo extends Component {
                   //variant="outlined"
                 />
               </FormControl>
-            </Grid>
-          </Grid>
-          {/* Group tenant admin*/}
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Grid container direction="column">
-              {/* tenant admin */}
+              {/* Website */}
               <FormControl className={classes.formControl} size="small">
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  type="Tenant admin"
+                <TextField
+                  name="website"
+                  label="Website"
+                  placeholder="Business website"
                   disabled={!source.sourceState.canSave}
-                  style={{ textTransform: "none" }}
-                  //  onClick={this.handlePasswordDialogOpen}
-                >
-                  <Typography variant="caption">Manage Adnin</Typography>
-                </Button>
-              </FormControl>
-              <Grid container direction="column">
-                {/* Delete Organization */}
-                <FormControl className={classes.formControl} size="small">
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    type="Delete organization"
-                    disabled={!source.sourceState.canSave}
-                    onClick={source.deleteTenant}
-                    style={{ textTransform: "none" }}
-                  >
-                    <Typography variant="caption">
-                      Delete organization
-                    </Typography>
-                  </Button>
-                </FormControl>
-                {/* User ODI */}
-                {/* <FormControl className={classes.formControl}>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={source.sourceState.selectedUser.odi}
-                      onChange={this.onDataChange}
-                      disabled
-                      color="primary"
-                      name="odi"
-                    />
-                  }
-                  label="ODI"
+                  onChange={this.onDataChange}
+                  value={tenant.website ? tenant.website : ""}
+                  fullWidth
+                  inputProps={{ style: { fontSize: "0.8rem" } }}
+                  InputLabelProps={{ style: { fontSize: "0.8rem" } }}
+                  //variant="outlined"
                 />
-              </FormControl> */}
-              </Grid>
+              </FormControl>
+              {tenant.verified ? (
+                <Grid
+                  container
+                  alignItems="center"
+                  alignContent="center"
+                  justify="center"
+                  direction="column"
+                  style={{ padding: theme.spacing(2) }}
+                >
+                  {/* Tenant Pic */}
+                  <FormControl className={classes.formControl}>
+                    <Avatar
+                      src="/imgs/verified.png"
+                      //
+                      style={{
+                        width: theme.spacing(20),
+                        height: theme.spacing(20),
+                      }}
+                      //
+                    />
+                  </FormControl>
+                </Grid>
+              ) : (
+                ""
+              )}
             </Grid>
           </Grid>
         </React.Fragment>
