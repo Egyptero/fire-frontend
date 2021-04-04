@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Grid,
   Card,
-  Divider,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -37,6 +36,7 @@ const styles = (theme) => ({
     overflow: "hidden",
     maxHeight: "100%",
     minHeight: "100%",
+    backgroundColor: "transparent",
   },
   details: {
     display: "block",
@@ -167,7 +167,7 @@ class UserDetails extends Component {
                   <Accordion
                     style={{ width: "100%", boxShadow: "none`" }}
                     //disabled={!source.sourceState.canSave}
-                    defaultExpanded={true}
+                    defaultExpanded={false}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMore />}
@@ -187,11 +187,9 @@ class UserDetails extends Component {
                     </AccordionDetails>
                   </Accordion>
                   {/* Divider  */}
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
                   <Accordion
                     style={{ width: "100%", boxShadow: "none`" }}
+                    defaultExpanded={true}
                     //disabled={!source.sourceState.canSave}
                   >
                     <AccordionSummary
@@ -200,9 +198,8 @@ class UserDetails extends Component {
                       id="panel1a-header"
                       style={{ boxShadow: "none`" }}
                     >
-                      <Typography variant="caption" >
+                      <Typography variant="caption">
                         <b>Quality configuration</b>
-                        
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails style={{ boxShadow: "none`" }}>

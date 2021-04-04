@@ -59,7 +59,7 @@ class QualityConfiguration extends Component {
     if (!tenant) return <React.Fragment />;
 
     return (
-      <Accordion defaultExpanded={true}>
+      <Accordion defaultExpanded={false}>
         <AccordionSummary
           expandIcon={<ExpandMore />}
           aria-controls="panel1a-content"

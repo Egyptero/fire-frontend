@@ -1,5 +1,6 @@
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import Notification from "react-web-notification";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 const styles = (theme) => ({});
@@ -17,7 +18,8 @@ class OfferInteractionSnackbarMinimum extends Component {
   };
   render() {
     //interactionDetails,
-    const {   theme } = this.props;
+    const { theme, interactionDetails } = this.props;
+
     console.log("trying to render new content");
     return (
       <Grid container direction="row-reverse">
@@ -40,6 +42,13 @@ class OfferInteractionSnackbarMinimum extends Component {
         >
           Reject
         </Button>
+        <Notification
+          title="Alert"
+          options={{
+            body: "New interaction ....",
+            renotify: true,
+          }}
+        />
       </Grid>
     );
   }
