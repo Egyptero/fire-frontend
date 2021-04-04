@@ -32,7 +32,7 @@ class App extends Component {
     buttons: null,
     status: "Unknown",
     nextStatus: "",
-    inStateTime:null,
+    inStateTime: null,
     tenants: null,
     tenant: null,
     users: null,
@@ -202,6 +202,9 @@ class App extends Component {
       });
     }
   };
+  handleUpdateTenant = (tenant) => {
+    this.setState({ tenant });
+  };
   handleTodoListLoad = (todos) => {
     this.setState({ todos });
   };
@@ -292,9 +295,9 @@ class App extends Component {
   handleTenantsListLoad = (tenants) => {
     this.setState({ tenants });
   };
-  handleUpdateMyInteraction = (myInteraction)=> {
-    this.setState({myInteraction});
-  }
+  handleUpdateMyInteraction = (myInteraction) => {
+    this.setState({ myInteraction });
+  };
   updateProgress = (loader) => {
     this.setState({ loader });
   };

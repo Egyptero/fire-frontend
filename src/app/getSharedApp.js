@@ -63,6 +63,7 @@ export default ref => {
     handleMakeVoiceCall: ref.handleMakeVoiceCall,
     handleMakeVideoCall: ref.handleMakeVideoCall,
     handleTenantChange: ref.handleTenantChange, //Function to handle tenant selection change
+    handleUpdateTenant : ref.handleUpdateTenant,
     handleTenantsListLoad: ref.handleTenantsListLoad,
     handleWorkflowsListLoad: ref.handleWorkflowsListLoad,
     handleUsersListLoad: ref.handleUsersListLoad, //Function to update the users list at any time.

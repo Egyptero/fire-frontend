@@ -33,10 +33,25 @@ const styles = (theme) => ({
 
 class UserConfiguration extends Component {
   state = {};
+  onDataChange = (event) => {
+    let { tenant } = this.props.source.sourceState;
+    if (event.target.name === "odi") tenant.odi = event.target.checked;
+    if (event.target.name === "voip") tenant.voip = event.target.checked;
+    if (event.target.name === "notifications")
+      tenant.notifications = event.target.checked;
+    if (event.target.name === "autoAccept")
+      tenant.autoAccept = event.target.checked;
+    if (event.target.name === "wrapup") tenant.wrapup = event.target.checked;
+    if (event.target.name === "workbin") tenant.workbin = event.target.checked;
+    if (event.target.name === "autoLogin")
+      tenant.autoLogin = event.target.checked;
+
+    this.props.source.updateTenantOnChange(tenant);
+  };
   render() {
     const { classes, source, theme } = this.props;
     const { tenant } = source.sourceState;
-    if (tenant == null) return <React.Fragment />;
+    if (!tenant) return <React.Fragment />;
 
     return (
       <Accordion defaultExpanded={true}>
@@ -76,11 +91,11 @@ class UserConfiguration extends Component {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={source.sourceState.tenant.voipphone}
+                      checked={source.sourceState.tenant.voip}
                       onChange={this.onDataChange}
                       disabled={!source.sourceState.canSave}
                       color="primary"
-                      name="phone"
+                      name="voip"
                       size="small"
                       className={classes.switch}
                     />

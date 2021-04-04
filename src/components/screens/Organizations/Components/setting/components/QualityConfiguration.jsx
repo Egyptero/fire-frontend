@@ -29,10 +29,34 @@ const styles = (theme) => ({
 
 class QualityConfiguration extends Component {
   state = {};
+  onDataChange = (event) => {
+    let { tenant } = this.props.source.sourceState;
+    if (event.target.name === "interactionCapacity")
+      tenant.interactionCapacity = event.target.value;
+    if (event.target.name === "caseCapacity")
+      tenant.caseCapacity = event.target.value;
+    if (event.target.name === "offerTimeout")
+      tenant.offerTimeout = event.target.value;
+    if (event.target.name === "wrapupTimeout")
+      tenant.wrapupTimeout = event.target.value;
+    if (event.target.name === "dailyInteractionTarget")
+      tenant.dailyInteractionTarget = event.target.value;
+    if (event.target.name === "dailyCaseTarget")
+      tenant.dailyCaseTarget = event.target.value;
+    if (event.target.name === "dailyUtilizationTarget")
+      tenant.dailyUtilizationTarget = event.target.value;
+    if (event.target.name === "offlineASATarget")
+      tenant.offlineASATarget = event.target.value;
+    if (event.target.name === "onlineASATarget")
+      tenant.onlineASATarget = event.target.value;
+
+    this.props.source.updateTenantOnChange(tenant);
+  };
+
   render() {
     const { classes, source, theme } = this.props;
     const { tenant } = source.sourceState;
-    if (tenant == null) return <React.Fragment />;
+    if (!tenant) return <React.Fragment />;
 
     return (
       <Accordion defaultExpanded={true}>
@@ -161,7 +185,6 @@ class QualityConfiguration extends Component {
                     }
                   />
                 </FormControl>
-
               </Grid>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>

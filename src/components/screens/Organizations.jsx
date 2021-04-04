@@ -51,73 +51,10 @@ const styles = (theme) => ({
       outline: "1px solid slategrey",
     },
   },
-  formControl: {
-    margin: theme.spacing(1) * 0.4,
-    maxWidth: "90%",
-  },
-  list: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    "border-radius": "5px",
-    height: "18em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  listOrganizations: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    "border-radius": "5px",
-    height: "6.2em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
-  listUsers: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    border: "1px solid",
-    borderColor: theme.palette.secondary.dark,
-    "border-radius": "5px",
-    height: "14.7em",
-    overflow: "auto",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-      height: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
-  },
+  formControl: {},
+  list: {},
+  listOrganizations: {},
+  listUsers: {},
 });
 
 class Organizations extends Component {
@@ -129,20 +66,28 @@ class Organizations extends Component {
   };
 
   componentDidMount() {
-    if (this.props.app.user._id == this.props.app.tenant.adminId)
-      this.setState({
-        canEdit: true,
-        tenant: _.cloneDeep(this.props.app.tenant),
-      });
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.app.tenant !== this.props.app.tenant) {
-      if (this.props.app.user._id == this.props.app.tenant.adminId)
+    if (
+      this.props.app.user._id === this.props.app.tenant.adminId ||
+      this.props.app.tenant.adminIds.includes(this.props.app.user._id)
+    )
+      if (!this.state.canSave)
         this.setState({
           canEdit: true,
           tenant: _.cloneDeep(this.props.app.tenant),
         });
-      else this.setState({ canEdit: false, tenant: null });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.app.tenant !== this.props.app.tenant) {
+      if (
+        this.props.app.user._id === this.props.app.tenant.adminId ||
+        this.props.app.tenant.adminIds.includes(this.props.app.user._id)
+      ) {
+        if (!this.state.canSave)
+          this.setState({
+            canEdit: true,
+            tenant: _.cloneDeep(this.props.app.tenant),
+          });
+      } else this.setState({ canEdit: false, tenant: null });
     }
   }
 
@@ -162,12 +107,13 @@ class Organizations extends Component {
     this.setState({ tenants });
   };
   watchTenant = () => {
+    this.saveTenant();
     //We need to reset tenant here
     this.setState({
       canSave: false,
       canWatch: false,
       canEdit: true,
-      tenant: _.cloneDeep(this.props.app.tenant),
+      //      tenant: _.cloneDeep(this.props.app.tenant),
     });
   };
   editTenant = () => {
@@ -179,7 +125,7 @@ class Organizations extends Component {
   };
   saveTenant = () => {
     // We need to send tenant "Cloned"
-    let tenant = _.cloneDeep(this.props.app.tenant);
+    let tenant = _.cloneDeep(this.state.tenant);
     tenant = _.pick(tenant, [
       "name",
       "legalName",
@@ -187,13 +133,32 @@ class Organizations extends Component {
       "phone",
       "website",
       "mobile",
+      "notifications",
+      "autoAccept",
+      "wrapup",
+      "workbin",
+      "autoLogin",
+      "odi",
+      "voip",
+      "interactionCapacity",
+      "caseCapacity",
+      "offerTimeout",
+      "wrapupTimeout",
+      "dailyInteractionTarget",
+      "dailyCaseTarget",
+      "dailyUtilizationTarget",
+      "offlineASATarget",
+      "onlineASATarget",
+      "adminIds",
+      "adminId",
     ]);
     //delete tenant.confguration;
     console.log(tenant);
-    updateTenant(this.props.app.tenant._id, tenant, this);
-    this.setState({
-      canSave: false,
-      canEdit: true,
+    updateTenant(this.props.app.tenant._id, tenant, this, (result) => {
+      if (result.error) return;
+      else {
+        this.props.app.handleUpdateTenant(result.tenant);
+      }
     });
   };
   deleteTenant = () => {

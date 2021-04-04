@@ -25,7 +25,7 @@ class TenantSetting extends Component {
   render() {
     const { classes, source, theme } = this.props;
     const { tenant } = source.sourceState;
-    if (tenant == null) return <React.Fragment />;
+    if (!tenant) return <React.Fragment />;
 
     return (
       <React.Fragment>

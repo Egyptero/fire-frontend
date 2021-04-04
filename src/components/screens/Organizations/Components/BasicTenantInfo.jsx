@@ -37,7 +37,7 @@ class BasicTenantInfo extends Component {
   render() {
     const { classes, source, theme } = this.props;
     const { tenant } = source.sourceState;
-    if (tenant == null) return <React.Fragment />;
+    if (!tenant) return <React.Fragment />;
     else
       return (
         <React.Fragment>
@@ -191,16 +191,16 @@ class BasicTenantInfo extends Component {
                   alignContent="center"
                   justify="center"
                   direction="column"
-                  style={{ padding: theme.spacing(2) }}
+                  style={{ padding: theme.spacing(4) }}
                 >
                   {/* Tenant Pic */}
                   <FormControl className={classes.formControl}>
-                    <Avatar
+                    <img
                       src="/imgs/verified.png"
                       //
                       style={{
                         width: theme.spacing(20),
-                        height: theme.spacing(20),
+                        // height: theme.spacing(20),
                       }}
                       //
                     />

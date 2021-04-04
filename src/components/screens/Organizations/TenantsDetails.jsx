@@ -13,19 +13,40 @@ import TenantTopBar from "./Components/TenantTopBar";
 import BasicTenantInfo from "./Components/BasicTenantInfo";
 import TenantSetting from "./Components/setting/TenantSetting";
 
-
 //import { ExpandMore } from "@material-ui/icons";
 //import TenantData from "./TenantData";
 
 const styles = (theme) => ({
-  content: {
-  },
+  content: {},
   gridWithoutBorder: {},
   gridWithoutBorder: {},
   card: {},
   details: {},
-  formControl: {},
-  list: {},
+  formControl: {
+    margin: theme.spacing(1) * 0.4,
+    maxWidth: "90%",
+  },
+  list: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    border: "1px solid",
+    borderColor: theme.palette.secondary.light,
+    "border-radius": "5px",
+    height: theme.spacing(12),
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      height: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      "background-color": theme.palette.secondary, //"whitesmoke" //"rgba(255,255,255,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.dark, //"rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
   listOrganizations: {},
   listUsers: {},
 });
