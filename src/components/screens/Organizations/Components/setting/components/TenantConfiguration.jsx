@@ -57,7 +57,7 @@ class TenantConfiguration extends Component {
     const { source, theme } = this.props;
     const { tenant } = this.props.source.sourceState;
     if (!tenant) return;
-    if(adminId === tenant.adminId && !superAdmin) return;
+    if (adminId === tenant.adminId && !superAdmin) return;
     let userList = _.filter(
       this.props.app.users,
       (user) => user._id === adminId
@@ -94,16 +94,20 @@ class TenantConfiguration extends Component {
               >
                 <Typography variant="caption">Remove</Typography>
               </Button>
-              <Button
-                disabled={!source.sourceState.canSave}
-                variant="text"
-                size="small"
-                color="primary"
-                onClick={this.setTenantSuperAdmin}
-                style={{ textTransform: "none" }}
-              >
-                <Typography variant="caption">Make super</Typography>
-              </Button>
+              {tenant.adminId === this.props.app.user._id ? (
+                <Button
+                  disabled={!source.sourceState.canSave}
+                  variant="text"
+                  size="small"
+                  color="primary"
+                  onClick={this.setTenantSuperAdmin}
+                  style={{ textTransform: "none" }}
+                >
+                  <Typography variant="caption">Make super</Typography>
+                </Button>
+              ) : (
+                ""
+              )}
             </ListItemSecondaryAction>
           ) : (
             ""
@@ -176,7 +180,7 @@ class TenantConfiguration extends Component {
         </AccordionSummary>
         <AccordionDetails>
           <Grid container direction="row">
-            <Grid item md={4} lg={4}>
+            <Grid item md={8}>
               <Grid container direction="column">
                 <FormControl className={classes.formControl} size="small">
                   <FormLabel disabled={!source.sourceState.canSave}>
@@ -203,7 +207,6 @@ class TenantConfiguration extends Component {
                 </FormControl>
               </Grid>
             </Grid>
-            <Grid item md={4}></Grid>
             <Grid item md={4}>
               <Grid container direction="row-reverse">
                 {/* Delete Organization */}
