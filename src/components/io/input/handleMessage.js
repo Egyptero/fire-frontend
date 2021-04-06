@@ -2,11 +2,11 @@
 export default (ref, data) => {
   switch (data.action) {
     case "login":
-      console.log("ODI: Login message",data);
+      console.log("ODI: Login message", data);
       updateAppState(ref, data);
       break;
     case "logout":
-      console.log("ODI: Logout message",data);
+      console.log("ODI: Logout message", data);
       updateAppState(ref, data);
       break;
     case "state":
@@ -14,7 +14,7 @@ export default (ref, data) => {
       updateAppState(ref, data);
       break;
     case "addinteraction":
-      console.log("ODI: New add interaction message",data);
+      console.log("ODI: New add interaction message", data);
       updateMyInteractions(ref, data, true, true);
       if (ref.state.screen !== "My work") ref.handleScreenChange("My work");
       break;
@@ -57,6 +57,8 @@ const updateMyInteractions = (ref, data, offer, update) => {
     myInteraction: update ? data.interactionDetails : null,
   });
   if (offer) ref.offerInteraction(data.interactionDetails);
+  if (!update && !offer)
+    ref.closeInteractionOffer(data.interactionDetails.interaction._id); // Remove offering in case interaction will  be removed
 };
 
 const updateAppState = (ref, data) => {

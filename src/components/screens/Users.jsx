@@ -11,28 +11,28 @@ import updateUser from "../../functions/tenant/user/updateUser";
 import _ from "lodash";
 import deleteUser from "../../functions/tenant/user/deleteUser";
 import loadUser from "../../functions/tenant/user/loadUser";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
     position: "relative",
-    height: "90vh"
+    height: "90vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   card: {
     overflow: "auto",
     maxHeight: "100%",
     minHeight: "100%",
-    minWidth: "100%"
+    minWidth: "100%",
   },
   details: {},
   formControl: {},
   listOrganizations: {},
-  listUsers: {}
+  listUsers: {},
 });
 
 class Users extends Component {
@@ -42,7 +42,7 @@ class Users extends Component {
     selectedUser: null,
     canSave: false,
     canEdit: true,
-    canWatch: true
+    canWatch: true,
   };
   componentDidMount() {
     const { app } = this.props;
@@ -59,7 +59,7 @@ class Users extends Component {
     const { app } = this.props;
     const { app: prevApp } = prevProps;
     if (app.tenant._id !== prevApp.tenant._id)
-      loadUsers(this, result => {
+      loadUsers(this, (result) => {
         if (!result.error && result.users && result.users.length > 0)
           this.setState({ selectedUser: result.users[0] });
         else this.setState({ selectedUser: null });
@@ -77,7 +77,7 @@ class Users extends Component {
     else this.setState({ width: 3 });
   };
   //Used during user updates at run time
-  updateSelectedUser = user => {
+  updateSelectedUser = (user) => {
     this.setState({ selectedUser: user });
   };
   reloadUsers = () => {
@@ -116,7 +116,8 @@ class Users extends Component {
       "dailyUtilizationTarget",
       "offlineASATarget",
       "onlineASATarget",
-
+      "overrideUserConf",
+      "overrideKPIsConf",
     ];
     //Select password in case it will be updated
     if (selectedUser.password) pickUp.push("password");
@@ -127,7 +128,7 @@ class Users extends Component {
       canSave: true,
       canRefresh: false,
       canEdit: false,
-      canWatch: true
+      canWatch: true,
     });
   };
   watchUser = () => {
@@ -135,7 +136,7 @@ class Users extends Component {
       canSave: false,
       canRefresh: true,
       canEdit: true,
-      canWatch: true
+      canWatch: true,
     });
 
     //We need to warn about saving
@@ -143,7 +144,7 @@ class Users extends Component {
   };
   deleteUser = () => {
     let { selectedUser } = this.state;
-    deleteUser(selectedUser._id, this, result => {
+    deleteUser(selectedUser._id, this, (result) => {
       if (!result.error) this.setState({ selectedUser: null });
     });
   };
@@ -159,7 +160,7 @@ class Users extends Component {
       canSave: false,
       canRefresh: true,
       canEdit: true,
-      canWatch: true
+      canWatch: true,
     });
   };
   handleNewUserClickOpen = () => {
@@ -168,8 +169,8 @@ class Users extends Component {
   handleNewUserClose = () => {
     this.setState({ openNewUser: false });
   };
-  handleAddUser = user => {
-    addUser(user, this, result => {
+  handleAddUser = (user) => {
+    addUser(user, this, (result) => {
       if (!result.error) {
         this.handleNewUserClose();
         this.setState({ selectedUser: result.user });
@@ -192,7 +193,7 @@ class Users extends Component {
       watchUser: this.watchUser,
       deleteUser: this.deleteUser,
       updateSelectedUser: this.updateSelectedUser,
-      sourceState: this.state
+      sourceState: this.state,
     };
   };
 
@@ -223,7 +224,7 @@ Users.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Users);

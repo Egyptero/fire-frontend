@@ -76,6 +76,10 @@ class BasicUserInfo extends Component {
       selectedUser.workbin = event.target.checked;
     if (event.target.name === "autoLogin")
       selectedUser.autoLogin = event.target.checked;
+    if (event.target.name === "overrideUserConf")
+      selectedUser.overrideUserConf = event.target.checked;
+    if (event.target.name === "overrideKPIsConf")
+      selectedUser.overrideKPIsConf = event.target.checked;
 
     source.updateSelectedUser(selectedUser);
   };
@@ -437,6 +441,27 @@ class BasicUserInfo extends Component {
                     label={<Typography variant="caption">Workbin</Typography>}
                   />
                 </FormControl>
+                {/* Override user config on Org config */}
+                <FormControl className={classes.formControl} size="small">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={
+                          source.sourceState.selectedUser.overrideUserConf
+                        }
+                        onChange={this.onDataChange}
+                        disabled={!source.sourceState.canSave}
+                        color="primary"
+                        name="overrideUserConf"
+                        size="small"
+                        className={classes.switch}
+                      />
+                    }
+                    label={
+                      <Typography variant="caption">Override user</Typography>
+                    }
+                  />
+                </FormControl>
               </Grid>
               {/* , Wrap up on/off , Freelander on/off , Auto accept*/}
               <Grid item container direction="column" xs={6}>
@@ -509,6 +534,27 @@ class BasicUserInfo extends Component {
                     }
                     label={
                       <Typography variant="caption">Notifications</Typography>
+                    }
+                  />
+                </FormControl>
+                {/* Override user KPIs */}
+                <FormControl className={classes.formControl} size="small">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={
+                          source.sourceState.selectedUser.overrideKPIsConf
+                        }
+                        onChange={this.onDataChange}
+                        disabled={!source.sourceState.canSave}
+                        color="primary"
+                        name="overrideKPIsConf"
+                        size="small"
+                        className={classes.switch}
+                      />
+                    }
+                    label={
+                      <Typography variant="caption">Override KPIs</Typography>
                     }
                   />
                 </FormControl>
