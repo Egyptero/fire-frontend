@@ -191,7 +191,7 @@ class BasicTenantInfo extends Component {
                   alignContent="center"
                   justify="center"
                   direction="column"
-                  style={{ padding: theme.spacing(4) }}
+                  style={{ padding: theme.spacing(1) }}
                 >
                   {/* Tenant Pic */}
                   <FormControl className={classes.formControl}>
@@ -199,7 +199,7 @@ class BasicTenantInfo extends Component {
                       src="/imgs/verified.png"
                       //
                       style={{
-                        width: theme.spacing(20),
+                        width: theme.spacing(18),
                         // height: theme.spacing(20),
                       }}
                       //

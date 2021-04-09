@@ -13,13 +13,13 @@ export default (ref, callback) => {
         if (res && res.text) enqueueSnackbar(res.text, { variant: "error" });
         else
           enqueueSnackbar("Error loading user teams , please try again", {
-            variant: "error"
+            variant: "error",
           });
         if (callback)
           return callback({
             error: true,
             message: "error loading user teams",
-            sysmessage: res.body
+            sysmessage: res ? res.body : "",
           });
       } else {
         app.handleMyTeamsListLoad(res.body);
@@ -27,7 +27,7 @@ export default (ref, callback) => {
           return callback({
             error: false,
             message: "loaded",
-            teams: res.body
+            teams: res.body,
           });
       }
     });

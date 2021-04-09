@@ -32,7 +32,7 @@ const styles = (theme) => ({
     border: "1px solid",
     borderColor: theme.palette.secondary.light,
     "border-radius": "5px",
-    height: theme.spacing(12),
+    height: theme.spacing(18),
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",

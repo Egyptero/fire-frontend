@@ -151,9 +151,12 @@ class Organizations extends Component {
       "onlineASATarget",
       "adminIds",
       "adminId",
+      "notReadyReasons", //Not ready reasons
+      "logoutReasons",   //Logout reasons
+      "wrapupReasons",   //Wrap up reasons
     ]);
     //delete tenant.confguration;
-    console.log(tenant);
+    //console.log(tenant);
     updateTenant(this.props.app.tenant._id, tenant, this, (result) => {
       if (result.error) return;
       else {

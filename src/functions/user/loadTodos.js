@@ -12,13 +12,13 @@ export default (ref, callback) => {
         if (res && res.text) enqueueSnackbar(res.text, { variant: "error" });
         else
           enqueueSnackbar("Error loading to do list , please try again", {
-            variant: "error"
+            variant: "error",
           });
         if (callback)
           return callback({
             error: true,
             message: "error loading to do list",
-            sysmessage: res.body
+            sysmessage: res ? res.body : "",
           });
       } else {
         app.handleTodoListLoad(res.body);
@@ -26,7 +26,7 @@ export default (ref, callback) => {
           return callback({
             error: false,
             message: "loaded",
-            todos: res.body
+            todos: res.body,
           });
       }
     });
