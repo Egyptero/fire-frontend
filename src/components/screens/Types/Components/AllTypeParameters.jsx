@@ -137,7 +137,7 @@ class AllTypeParameters extends Component {
     return (
       <Accordion
         style={{ width: "100%", boxShadow: "none`" }}
-        defaultExpanded={true}
+        defaultExpanded={false}
       >
         <AccordionSummary
           expandIcon={<ExpandMore />}

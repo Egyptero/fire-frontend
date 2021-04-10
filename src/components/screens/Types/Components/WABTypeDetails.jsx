@@ -1,7 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
+import { ExpandMore } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import AllTypeParameters from "./AllTypeParameters";
 
 const styles = (theme) => ({
@@ -22,7 +29,39 @@ class WABTypeDetails extends Component {
     return (
       <Grid container>
         <AllTypeParameters {...this.props} />
-        <Typography variant="h6">WhatsApp Type Details</Typography>
+        <Accordion
+          style={{ width: "100%", boxShadow: "none`" }}
+          defaultExpanded={false}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMore />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            style={{ boxShadow: "none`" }}
+          >
+            <Typography variant="caption">
+              <b>WhatsApp KPIs configuration</b>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
+        </Accordion>
+        <Accordion
+          style={{ width: "100%", boxShadow: "none`" }}
+          defaultExpanded={false}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMore />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            style={{ boxShadow: "none`" }}
+          >
+            <Typography variant="caption">
+              <b>WhatsApp setup</b>
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
+        </Accordion>
+
       </Grid>
     );
   }
