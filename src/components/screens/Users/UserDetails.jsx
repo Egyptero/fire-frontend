@@ -37,6 +37,7 @@ const styles = (theme) => ({
     maxHeight: "100%",
     minHeight: "100%",
     backgroundColor: "transparent",
+    boxShadow: "none",
   },
   details: {
     display: "block",

@@ -106,6 +106,20 @@ class App extends Component {
     this.setState({ snackbars });
   };
   offerInteraction = (interactionDetails) => {
+    //Check auto accept
+    const { user, tenant } = this.state;
+    if (user && tenant) {
+      if (user.overrideUserConf) {
+        if (user.autoAccept) {
+          this.handleAcceptInteraction(interactionDetails.interaction._id);
+          return;
+        }
+      } else if (tenant.autoAccept) {
+        this.handleAcceptInteraction(interactionDetails.interaction._id);
+        return;
+      }
+    }
+
     let { snackbars } = this.state;
     const key = this.props.enqueueSnackbar(
       "Would you like to receive new interaction",

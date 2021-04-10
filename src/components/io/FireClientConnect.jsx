@@ -15,18 +15,24 @@ class FireClientConnect extends Component {
       client.emit("message", {
         action: "logout",
         date: Date.now(),
-        token: this.props.app.token
+        token: this.props.app.token,
       });
     } else if (login && !logout) {
       client.emit("message", {
         action: "login",
         date: Date.now(),
-        token: this.props.app.token
+        token: this.props.app.token,
       });
     }
   };
 
   render() {
+    let { user, tenant } = this.props.app;
+    if (!user || !tenant) return <React.Fragment />;
+    if (user.overrideUserConf) {
+      if (!user.odi) return <React.Fragment />;
+    } else if (!tenant.odi) return <React.Fragment />;
+
     const { app, classes } = this.props;
     const { buttons } = app;
     if (buttons) {
@@ -47,7 +53,7 @@ class FireClientConnect extends Component {
                 className={classColor}
                 size="small"
               >
-                <PowerSettingsNew fontSize="small"/>
+                <PowerSettingsNew fontSize="small" />
               </Fab>
             </Tooltip>
           </Grid>
@@ -64,7 +70,7 @@ FireClientConnect.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(FireClientConnect);

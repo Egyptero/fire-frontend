@@ -11,26 +11,26 @@ import updateType from "../../functions/tenant/type/updateType";
 import deleteType from "../../functions/tenant/type/deleteType";
 import loadType from "../../functions/tenant/type/loadType";
 import addType from "../../functions/tenant/type/addType";
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     flexGrow: 1,
     position: "relative",
-    height: "90vh"
+    height: "90vh",
   },
   grid: {
     display: "flex",
     position: "relative",
     maxHeight: "100%",
-    minHeight: "100%"
+    minHeight: "100%",
   },
   card: {
     overflow: "auto",
     maxHeight: "100%",
     minHeight: "100%",
-    minWidth: "100%"
+    minWidth: "100%",
   },
   formControl: {},
-  details: {}
+  details: {},
 });
 
 class Types extends Component {
@@ -40,12 +40,12 @@ class Types extends Component {
     selectedType: null,
     canSave: false,
     canEdit: true,
-    canWatch: true
+    canWatch: true,
   };
   componentDidMount() {
     const { app } = this.props;
     if (app.tenant && !app.types)
-      loadTypes(this, result => {
+      loadTypes(this, (result) => {
         if (!result.error && result.types && result.types.length > 0)
           this.setState({ selectedType: result.types[0] });
         else this.setState({ selectedType: null });
@@ -57,7 +57,7 @@ class Types extends Component {
     const { app } = this.props;
     const { app: prevApp } = prevProps;
     if (app.tenant._id !== prevApp.tenant._id)
-      loadTypes(this, result => {
+      loadTypes(this, (result) => {
         if (!result.error && result.types && result.types.length > 0)
           this.setState({ selectedType: result.types[0] });
         else this.setState({ selectedType: null });
@@ -74,7 +74,7 @@ class Types extends Component {
     if (width === 3) this.setState({ width: 0 });
     else this.setState({ width: 3 });
   };
-  updateSelectedType = type => {
+  updateSelectedType = (type) => {
     this.setState({ selectedType: type });
   };
   reloadTypes = () => {
@@ -82,21 +82,27 @@ class Types extends Component {
   };
   saveType = () => {
     let { selectedType } = this.state;
-    let pickUp = ["name", "description", "channel", "workflowId"];
+    let pickUp = [
+      "name",
+      "description",
+      "channel",
+      "workflowId",
+      "configuration",
+    ];
     updateType(selectedType._id, _.pick(selectedType, pickUp), this);
   };
   editType = () => {
     this.setState({
       canSave: true,
       canEdit: false,
-      canWatch: true
+      canWatch: true,
     });
   };
   watchType = () => {
     this.setState({
       canSave: false,
       canEdit: true,
-      canWatch: true
+      canWatch: true,
     });
 
     //We need to warn about saving
@@ -104,7 +110,7 @@ class Types extends Component {
   };
   deleteType = () => {
     let { selectedType } = this.state;
-    deleteType(selectedType._id, this, result => {
+    deleteType(selectedType._id, this, (result) => {
       if (!result.error) this.setState({ selectedType: null });
     });
   };
@@ -119,7 +125,7 @@ class Types extends Component {
       selectedType,
       canSave: false,
       canEdit: true,
-      canWatch: true
+      canWatch: true,
     });
   };
   handleNewTypeClickOpen = () => {
@@ -128,8 +134,8 @@ class Types extends Component {
   handleNewTypeClose = () => {
     this.setState({ openNewType: false });
   };
-  handleAddType = type => {
-    addType(type, this, result => {
+  handleAddType = (type) => {
+    addType(type, this, (result) => {
       if (!result.error) {
         this.handleNewTypeClose();
         this.setState({ selectedType: result.type });
@@ -151,7 +157,7 @@ class Types extends Component {
       watchType: this.watchType,
       deleteType: this.deleteType,
       updateSelectedType: this.updateSelectedType,
-      sourceState: this.state
+      sourceState: this.state,
     };
   };
   renderTypesList = () => {
@@ -182,6 +188,6 @@ Types.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   app: PropTypes.object.isRequired,
-  primaryApp: PropTypes.object.isRequired
+  primaryApp: PropTypes.object.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(Types);

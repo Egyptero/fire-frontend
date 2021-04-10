@@ -9,6 +9,7 @@ import {
   MenuItem,
   Divider,
   Typography,
+  Input,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -28,9 +29,7 @@ const styles = (theme) => ({
   gridWithoutBorder: {},
   card: {},
   details: {},
-  formControl: {
-    margin: theme.spacing(1),
-  },
+  formControl: {},
   list: {},
   listOrganizations: {},
   listUsers: {},
@@ -60,13 +59,16 @@ class BasicTypeInfo extends Component {
     const { workflows } = app;
     return (
       <React.Fragment>
-        {/* Empty space*/}
-        <Grid item xs={12}>
-          <p style={{ margin: theme.spacing(1) }} />
-        </Grid>
-        {/* Type name */}
-        <Grid item xs={6} sm={5} md={3} lg={3}>
-          <Grid container direction="column">
+        {/* Name and ID */}
+        <Grid item xs={6} sm={6} md={3} lg={3}>
+          <Grid
+            container
+            direction="column"
+            style={{
+              padding: theme.spacing(1),
+            }}
+          >
+            {/* Type Name */}
             <FormControl className={classes.formControl} size="small">
               <TextField
                 name="name"
@@ -80,11 +82,7 @@ class BasicTypeInfo extends Component {
                 InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />
             </FormControl>
-          </Grid>
-        </Grid>
-        <Grid item xs={6} sm={5} md={6} lg={6}></Grid>
-        <Grid item xs={6} sm={5} md={3} lg={3}>
-          <Grid container direction="column">
+            {/* Type ID */}
             <FormControl className={classes.formControl} size="small">
               <TextField
                 name="_id"
@@ -100,15 +98,22 @@ class BasicTypeInfo extends Component {
             </FormControl>
           </Grid>
         </Grid>
-        {/* Type description */}
-        <Grid item xs={12}>
-          <Grid container direction="column">
+        {/* Description */}
+        <Grid item xs={6} sm={6} md={3} lg={3}>
+          <Grid
+            container
+            direction="column"
+            style={{
+              padding: theme.spacing(1),
+            }}
+          >
+            {/* Type description */}
             <FormControl className={classes.formControl} size="small">
               <TextField
                 name="description"
                 label="Description"
                 multiline
-                rows="2"
+                rows="3"
                 placeholder="Type description"
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
@@ -120,9 +125,93 @@ class BasicTypeInfo extends Component {
             </FormControl>
           </Grid>
         </Grid>
-        {/* Type channel */}
-        <Grid item xs={12} sm={6} md={6} lg={6}>
-          <Grid container direction="column">
+        {/* Start , end time */}
+        <Grid item xs={6} sm={6} md={3} lg={3}>
+          <Grid
+            container
+            direction="column"
+            style={{
+              padding: theme.spacing(1),
+            }}
+          >
+            <TextField
+              margin="dense"
+              onChange={this.handleDataChange}
+              name="start"
+              label="Start time"
+              //value={this.formattedDate(this.state.start)}
+              type="Time"
+              placeholder=""
+              variant="outlined"
+              fullWidth
+              inputProps={{ style: { fontSize: "0.8rem" } }}
+              InputLabelProps={{
+                style: { fontSize: "0.8rem" },
+                shrink: true,
+              }}
+            />
+
+            <TextField
+              margin="dense"
+              onChange={this.handleDataChange}
+              name="stop"
+              label="Stop time"
+              //value={this.formattedDate(this.state.start)}
+              type="Time"
+              placeholder=""
+              variant="outlined"
+              fullWidth
+              inputProps={{ style: { fontSize: "0.8rem" } }}
+              InputLabelProps={{
+                style: { fontSize: "0.8rem" },
+                shrink: true,
+              }}
+            />
+          </Grid>
+        </Grid>
+        {/* Channel , Workflow */}
+        <Grid item xs={6} sm={6} md={3} lg={3}>
+          <Grid
+            container
+            direction="column"
+            style={{
+              padding: theme.spacing(1),
+            }}
+          >
+            {/* workflow */}
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+              size="small"
+            >
+              <InputLabel htmlFor="workflow-label">
+                <Typography variant="caption">Workflow</Typography>
+              </InputLabel>
+              <Select
+                value={
+                  source.sourceState.selectedType.workflowId
+                    ? source.sourceState.selectedType.workflowId
+                    : ""
+                }
+                name="workflow"
+                disabled={!source.sourceState.canSave}
+                onChange={this.onDataChange}
+                input={<OutlinedInput labelWidth={60} id="workflow-label" />}
+              >
+                {workflows
+                  ? workflows.map((workflow) => {
+                      return (
+                        <MenuItem key={workflow._id} value={workflow._id}>
+                          <Typography variant="caption">
+                            {workflow.name}
+                          </Typography>
+                        </MenuItem>
+                      );
+                    })
+                  : ""}
+              </Select>
+            </FormControl>
+            {/* Channel */}
             <FormControl
               variant="outlined"
               className={classes.formControl}
@@ -187,47 +276,10 @@ class BasicTypeInfo extends Component {
             </FormControl>
           </Grid>
         </Grid>
-        {/* Type Workflow */}
-        <Grid item xs={12} sm={6} md={6} lg={6}>
-          <Grid container direction="column">
-            <FormControl
-              variant="outlined"
-              className={classes.formControl}
-              size="small"
-            >
-              <InputLabel htmlFor="workflow-label">
-                <Typography variant="caption">Workflow</Typography>
-              </InputLabel>
-              <Select
-                value={
-                  source.sourceState.selectedType.workflowId
-                    ? source.sourceState.selectedType.workflowId
-                    : ""
-                }
-                name="workflow"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                input={<OutlinedInput labelWidth={60} id="workflow-label" />}
-              >
-                {workflows
-                  ? workflows.map((workflow) => {
-                      return (
-                        <MenuItem key={workflow._id} value={workflow._id}>
-                          <Typography variant="caption">
-                            {workflow.name}
-                          </Typography>
-                        </MenuItem>
-                      );
-                    })
-                  : ""}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        {/* Divider */}
+        {/* Divider
         <Grid item xs={12}>
           <Divider style={{ margin: "1%" }} />
-        </Grid>
+        </Grid> */}
       </React.Fragment>
     );
   }

@@ -13,6 +13,7 @@ export default (ref, data) => {
     token: data.token,
     screen: data.user.type ? "Dashboard" : "Welcome"
   });
+
   if (data.user.accountStatus === "Active") {
     startFireClient(ref);
     startPhoneClient(ref);

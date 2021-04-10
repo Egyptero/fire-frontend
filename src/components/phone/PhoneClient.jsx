@@ -19,7 +19,12 @@ class PhoneClient extends Component {
   };
 
   render() {
-    let { sipState, user } = this.props.app;
+    let { sipState, user, tenant } = this.props.app;
+    if (!user || !tenant) return <React.Fragment />;
+    if (user.overrideUserConf) {
+      if (!user.phone) return <React.Fragment />;
+    } else if (!tenant.voip) return <React.Fragment />;
+
     let buttonColor = sipState && sipState === "Registered" ? "#7cb342" : "red";
     if (!sipState) sipState = "Unregistered";
 
@@ -47,7 +52,7 @@ class PhoneClient extends Component {
                   textTransform: "none",
                 }}
               >
-                <Dialpad fontSize="small"/>
+                <Dialpad fontSize="small" />
               </Fab>
             </Tooltip>
             <PhoneMenu
