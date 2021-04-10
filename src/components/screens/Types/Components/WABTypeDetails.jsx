@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
+import AllTypeParameters from "./AllTypeParameters";
 
 const styles = (theme) => ({
   content: {},
@@ -15,18 +16,19 @@ const styles = (theme) => ({
   listUsers: {},
 });
 
-class ProjectTypeDetails extends Component {
+class WABTypeDetails extends Component {
   state = {};
   render() {
     return (
       <Grid container>
-        <Typography variant="h3">WhatsApp type details</Typography>
+        <AllTypeParameters {...this.props} />
+        <Typography variant="h6">WhatsApp Type Details</Typography>
       </Grid>
     );
   }
 }
 
-ProjectTypeDetails.propTypes = {
+WABTypeDetails.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
@@ -35,4 +37,4 @@ ProjectTypeDetails.propTypes = {
   primaryApp: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ProjectTypeDetails);
+export default withStyles(styles, { withTheme: true })(WABTypeDetails);

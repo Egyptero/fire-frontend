@@ -1,8 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import AllTypeParameters from "./AllTypeParameters";
 
 const styles = (theme) => ({
   content: {},
@@ -15,12 +22,13 @@ const styles = (theme) => ({
   listOrganizations: {},
   listUsers: {},
 });
-
-class WABTypeDetails extends Component {
+class ProjectTypeDetails extends Component {
   state = {};
   render() {
+    const { theme, source } = this.props;
     return (
       <Grid container>
+        <AllTypeParameters {...this.props}/>
         <Accordion
           style={{ width: "100%", boxShadow: "none`" }}
           defaultExpanded={false}
@@ -32,34 +40,17 @@ class WABTypeDetails extends Component {
             style={{ boxShadow: "none`" }}
           >
             <Typography variant="caption">
-              <b>Parameters configuration</b>
+              <b>Project KPIs configuration</b>
             </Typography>
           </AccordionSummary>
           <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
         </Accordion>
-        <Accordion
-          style={{ width: "100%", boxShadow: "none`" }}
-          defaultExpanded={false}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            style={{ boxShadow: "none`" }}
-          >
-            <Typography variant="caption">
-              <b>KPIs configuration</b>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
-        </Accordion>
-
       </Grid>
     );
   }
 }
 
-WABTypeDetails.propTypes = {
+ProjectTypeDetails.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
@@ -68,4 +59,4 @@ WABTypeDetails.propTypes = {
   primaryApp: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(WABTypeDetails);
+export default withStyles(styles, { withTheme: true })(ProjectTypeDetails);

@@ -82,6 +82,7 @@ class Types extends Component {
   };
   saveType = () => {
     let { selectedType } = this.state;
+    console.log("Selected type",selectedType);
     let pickUp = [
       "name",
       "description",
