@@ -29,7 +29,7 @@ export default ref => {
           token: res.body.token,
           user: res.body.data
         });
-        console.log(res.body.data);
+        //console.log(res.body.data);
 
         if (res.body.data.accountStatus === "Pending")
           ref.handleVerifyRequest();

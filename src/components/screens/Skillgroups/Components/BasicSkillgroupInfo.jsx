@@ -17,9 +17,7 @@ const styles = (theme) => ({
   gridWithoutBorder: {},
   card: {},
   details: {},
-  formControl: {
-    margin: theme.spacing(1),
-  },
+  formControl: {},
   list: {},
   listOrganizations: {},
   listUsers: {},
@@ -43,9 +41,9 @@ class BasicSkillgroupInfo extends Component {
     return (
       <React.Fragment>
         {/* Empty space*/}
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <p style={{ margin: theme.spacing(1) }} />
-        </Grid>
+        </Grid> */}
         {/* Skillgroup name */}
         <Grid item xs={6} sm={5} md={3} lg={3}>
           <Grid container direction="column">
@@ -78,7 +76,7 @@ class BasicSkillgroupInfo extends Component {
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedSkillgroup.description}
-                variant="outlined"
+//                variant="outlined"
                 inputProps={{ style: { fontSize: "0.8rem" } }}
                 InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />

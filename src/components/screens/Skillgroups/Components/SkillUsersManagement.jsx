@@ -31,7 +31,7 @@ const styles = (theme) => ({
     border: "1px solid",
     borderColor: theme.palette.secondary.light,
     "border-radius": "5px",
-    maxHeight: theme.spacing(24),
+    maxHeight: theme.spacing(12),
     overflow: "auto",
     "&::-webkit-scrollbar": {
       width: "0.4em",

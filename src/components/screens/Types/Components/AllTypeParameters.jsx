@@ -124,6 +124,7 @@ class AllTypeParameters extends Component {
           interactions: "Interactions",
         },
       },
+      { title: "Edit", field: "edit", type: "boolean" },
     ],
   };
   render() {
@@ -132,8 +133,6 @@ class AllTypeParameters extends Component {
     let { params } = selectedType.configuration
       ? selectedType.configuration
       : [];
-    if (!params) params = [];
-    console.log("send params", params);
     return (
       <Accordion
         style={{ width: "100%", boxShadow: "none`" }}
@@ -163,7 +162,12 @@ class AllTypeParameters extends Component {
                   {/* <b>Parameters</b> */}
                 </Typography>
               }
-              style={{ boxShadow: "none" }}
+              style={{
+                boxShadow: "none",
+                width: "100%",
+                maxWidth: "100%",
+                overflow: "auto",
+              }}
               options={{
                 headerStyle: {
                   backgroundColor: theme.palette.secondary.main,
@@ -187,10 +191,10 @@ class AllTypeParameters extends Component {
               editable={
                 source.sourceState.canSave
                   ? {
-                      // isEditable: (rowData) => source.sourceState.canSave, // === "a", // only name(a) rows would be editable
-                      // isEditHidden: (rowData) => !source.sourceState.canSave, // === "x",
-                      // isDeletable: (rowData) => source.sourceState.canSave, // === "b", // only name(b) rows would be deletable,
-                      // isDeleteHidden: (rowData) =>
+                      isEditable: (rowData) => rowData.edit, // === "a", // only name(a) rows would be editable
+                      isEditHidden: (rowData) => !rowData.edit, // === "x",
+                      isDeletable: (rowData) => rowData.edit, // === "b", // only name(b) rows would be deletable,
+                      isDeleteHidden: (rowData) => !rowData.edit,
                       //   !source.sourceState.canSave, // === "y",
                       // onBulkUpdate: (changes) =>
                       //   new Promise((resolve, reject) => {
@@ -206,32 +210,46 @@ class AllTypeParameters extends Component {
                         console.log("Row editing cancelled"),
                       onRowAdd: (newData) =>
                         new Promise((resolve, reject) => {
-                          console.log("Add new row", newData);
-
                           let data = [...params];
+                          newData.edit = true;
                           data.push(newData);
-                          console.log(data);
-                          selectedType.configuration = { params: [...data] };
+                          if (!selectedType.configuration)
+                            selectedType.configuration = {
+                              kpis: {},
+                              params: [],
+                            };
+
+                          selectedType.configuration.params = [...data];
                           source.updateSelectedType(selectedType);
                           resolve();
                         }),
                       onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
-                          // setTimeout(() => {
                           const data = [...params];
                           const index = oldData.tableData.id;
+                          newData.edit = true;
                           data[index] = newData;
-                          selectedType.configuration = { params: [...data] };
+                          if (!selectedType.configuration)
+                            selectedType.configuration = {
+                              kpis: {},
+                              params: [],
+                            };
+
+                          selectedType.configuration.params = [...data];
                           source.updateSelectedType(selectedType);
                           resolve();
-                          // }, 1000);
                         }),
                       onRowDelete: (oldData) =>
                         new Promise((resolve, reject) => {
                           const data = [...params];
                           const index = oldData.tableData.id;
                           data.splice(index, 1);
-                          selectedType.configuration = { params: [...data] };
+                          if (!selectedType.configuration)
+                            selectedType.configuration = {
+                              kpis: {},
+                              params: [],
+                            };
+                          selectedType.configuration.params = [...data];
                           source.updateSelectedType(selectedType);
                           resolve();
                         }),

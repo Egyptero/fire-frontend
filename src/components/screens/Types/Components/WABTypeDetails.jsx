@@ -10,6 +10,7 @@ import { ExpandMore } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import AllTypeParameters from "./AllTypeParameters";
+import StandardTypeKPIs from "./StandardTypeKPIs";
 
 const styles = (theme) => ({
   content: {},
@@ -22,13 +23,13 @@ const styles = (theme) => ({
   listOrganizations: {},
   listUsers: {},
 });
-
 class WABTypeDetails extends Component {
   state = {};
   render() {
     return (
       <Grid container>
         <AllTypeParameters {...this.props} />
+        <StandardTypeKPIs {...this.props} />
         <Accordion
           style={{ width: "100%", boxShadow: "none`" }}
           defaultExpanded={false}
@@ -61,7 +62,6 @@ class WABTypeDetails extends Component {
           </AccordionSummary>
           <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
         </Accordion>
-
       </Grid>
     );
   }

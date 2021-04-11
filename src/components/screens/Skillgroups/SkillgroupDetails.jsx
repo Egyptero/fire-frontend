@@ -56,7 +56,7 @@ const styles = (theme) => ({
     },
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(1) * 0.4,
     //maxWidth: "90%"
   },
   list: {

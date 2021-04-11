@@ -2,7 +2,11 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  FormControl,
   Grid,
+  Input,
+  InputAdornment,
+  InputLabel,
   Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -10,6 +14,7 @@ import { ExpandMore } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import AllTypeParameters from "./AllTypeParameters";
+import StandardTypeKPIs from "./StandardTypeKPIs";
 
 const styles = (theme) => ({
   content: {},
@@ -26,25 +31,15 @@ const styles = (theme) => ({
 class CustomTypeDetails extends Component {
   state = {};
   render() {
+    const { source, theme, classes } = this.props;
+    let configuration = source.sourceState.selectedType.configuration;
+    if (!configuration) configuration = { kpis: {} };
+    let { kpis } = configuration;
+    if (!kpis) kpis = {};
     return (
       <Grid container>
         <AllTypeParameters {...this.props} />
-        <Accordion
-          style={{ width: "100%", boxShadow: "none`" }}
-          defaultExpanded={false}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            style={{ boxShadow: "none`" }}
-          >
-            <Typography variant="caption">
-              <b>Custom KPIs configuration</b>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
-        </Accordion>
+        <StandardTypeKPIs {...this.props} />
       </Grid>
     );
   }

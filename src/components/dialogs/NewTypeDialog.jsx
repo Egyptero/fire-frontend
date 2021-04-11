@@ -25,6 +25,52 @@ const styles = (theme) => ({
   formControl: {},
   details: {},
 });
+const defaultParams = [
+  {
+    name: "title",
+    label: "Title",
+    type: "textfield",
+    default: "",
+    must: true,
+    show: true,
+    values: "",
+    lookup: "empty",
+    edit: false,
+  },
+  {
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    default: "",
+    must: true,
+    show: true,
+    values: "",
+    lookup: "empty",
+    edit: false,
+  },
+  {
+    name: "startdate",
+    label: "Start Date",
+    type: "date",
+    default: "",
+    must: true,
+    show: true,
+    values: "",
+    lookup: "empty",
+    edit: false,
+  },
+  {
+    name: "enddate",
+    label: "End Date",
+    type: "date",
+    default: "",
+    must: true,
+    show: true,
+    values: "",
+    lookup: "empty",
+    edit: false,
+  },
+];
 
 class NewType extends Component {
   state = {
@@ -48,6 +94,10 @@ class NewType extends Component {
       name: this.state.name,
       description: this.state.description,
       channel: this.state.channel,
+      configuration:{
+        kpis:{},
+        params : [...defaultParams]
+      }
     });
   };
 

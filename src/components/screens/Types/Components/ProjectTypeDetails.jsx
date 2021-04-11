@@ -1,15 +1,9 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { ExpandMore } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import AllTypeParameters from "./AllTypeParameters";
+import StandardTypeKPIs from "./StandardTypeKPIs";
 
 const styles = (theme) => ({
   content: {},
@@ -25,26 +19,10 @@ const styles = (theme) => ({
 class ProjectTypeDetails extends Component {
   state = {};
   render() {
-    const { theme, source } = this.props;
     return (
       <Grid container>
-        <AllTypeParameters {...this.props}/>
-        <Accordion
-          style={{ width: "100%", boxShadow: "none`" }}
-          defaultExpanded={false}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            style={{ boxShadow: "none`" }}
-          >
-            <Typography variant="caption">
-              <b>Project KPIs configuration</b>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails style={{ boxShadow: "none`" }}></AccordionDetails>
-        </Accordion>
+        <AllTypeParameters {...this.props} />
+        <StandardTypeKPIs {...this.props} />
       </Grid>
     );
   }
