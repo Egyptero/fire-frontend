@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { Grid, Card, Divider } from "@material-ui/core";
+import { Grid, Card, Divider, Accordion, AccordionSummary, Typography, AccordionDetails } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import SkillgroupTopBar from "./Components/SkillgroupTopBar";
 import BasicSkillgroupInfo from "./Components/BasicSkillgroupInfo";
 import SkillUsersManagement from "./Components/SkillUsersManagement";
-// import BasicUserInfo from "./Components/BasicUserInfo";
-// import UserSkillManagement from "./Components/UserSkillManagement";
-// import UserAdvancedManagement from "./Components/UserAdvancedManagement";
+import { ExpandMore } from "@material-ui/icons";
 const styles = (theme) => ({
   content: {
     flexGrow: 1,
@@ -32,6 +30,8 @@ const styles = (theme) => ({
     overflow: "hidden",
     maxHeight: "100%",
     minHeight: "100%",
+    backgroundColor: "transparent",
+    boxShadow: "none",    
   },
   details: {
     display: "block",
@@ -156,11 +156,44 @@ class SkillgroupDetails extends Component {
                   {/**Basic User Information like pic , name , email */}
                   <BasicSkillgroupInfo {...this.props} />
                   {/**User skillgroups management where you can assign or remove skill from user */}
-                  <SkillUsersManagement {...this.props} />
-                  {/* Divider */}
-                  <Grid item xs={12}>
-                    <Divider style={{ margin: theme.spacing(1) }} />
-                  </Grid>
+                  <Accordion
+                    style={{ width: "100%", boxShadow: "none`" }}
+                    //disabled={!source.sourceState.canSave}
+                    defaultExpanded={true}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      style={{ boxShadow: "none`" }}
+                    >
+                      <Typography variant="caption">
+                        <b>Skillgroups configuration</b>
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{ boxShadow: "none`" }}>
+                      <SkillUsersManagement {...this.props} />
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                    style={{ width: "100%", boxShadow: "none`" }}
+                    //disabled={!source.sourceState.canSave}
+                    defaultExpanded={false}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      style={{ boxShadow: "none`" }}
+                    >
+                      <Typography variant="caption">
+                        <b>KPIs configuration</b>
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{ boxShadow: "none`" }}>
+                    </AccordionDetails>
+                  </Accordion>
+
                 </Grid>
               </Grid>
             </Grid>

@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import _ from "lodash";
 import loadCustomer from "../../../../functions/tenant/customer/loadCustomer";
 import loadType from "../../../../functions/tenant/type/loadType";
+import RenderInteractionParams from "../../../common/interaction/RenderInteractionParams";
 
 const styles = (theme) => ({
   content: {},
@@ -48,10 +49,7 @@ const styles = (theme) => ({
       outline: "1px solid slategrey",
     },
   },
-  formControl: {
-    margin: theme.spacing(1),
-    maxWidth: "100%",
-  },
+  formControl: {},
   list: {
     width: "100%",
     marginTop: theme.spacing(1),
@@ -123,12 +121,26 @@ class BasicCustomerInfo extends Component {
   onDataChange = (event) => {
     const { source } = this.props;
     let { selectedInteraction } = source.sourceState;
-    if (event.target.name === "title")
-      selectedInteraction.attached.title = event.target.value;
-    if (event.target.name === "description")
-      selectedInteraction.attached.description = event.target.value;
-    if (event.target.name === "due")
-      selectedInteraction.attached.due = event.target.value;
+    // if (event.target.name === "title")
+    //   selectedInteraction.attached.title = event.target.value;
+    // if (event.target.name === "description")
+    //   selectedInteraction.attached.description = event.target.value;
+    // if (event.target.name === "due")
+    //   selectedInteraction.attached.due = event.target.value;
+
+    const types = this.props.app.types.filter(
+      (type) => type._id === selectedInteraction.typeId
+    );
+    if (!types || types.length < 1) return <React.Fragment />;
+    let { params } = selectedInteraction.attached;
+    types[0].configuration.params.forEach((param) => {
+      if (param.name === event.target.name) {
+        //We need to update one of the params
+        params[param.name] = event.target.value;
+      }
+    });
+    //this.setState({ params });
+    selectedInteraction.attached.params = { ...params };
 
     source.updateSelectedInteraction(selectedInteraction);
   };
@@ -188,109 +200,42 @@ class BasicCustomerInfo extends Component {
   };
   render() {
     const { classes, source, theme } = this.props;
+    if (!source.sourceState.selectedInteraction) return <React.Fragment />;
+    const params = {
+      ...source.sourceState.selectedInteraction.attached.params,
+    };
     return (
-      <React.Fragment>
-        {/* Empty space*/}
-        <Grid item xs={12}>
-          <p style={{ margin: theme.spacing(1) }} />
-        </Grid>
-        {/* Title and Description */}
-        <Grid item xs={12} sm={12} md={8} lg={8}>
-          <Grid container direction="column">
-            {/* Title */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="title"
-                label="Title"
-                placeholder="Title"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={source.sourceState.selectedInteraction.attached.title}
-                fullWidth
-                //variant="outlined"
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-              />
-            </FormControl>
-            {/* Description */}
-            <FormControl className={classes.formControl}>
-              <TextField
-                name="description"
-                label="Description"
-                multiline
-                rows="4"
-                placeholder="Description"
-                disabled={!source.sourceState.canSave}
-                onChange={this.onDataChange}
-                value={
-                  source.sourceState.selectedInteraction.attached.description
-                }
-                fullWidth
-                variant="outlined"
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-              />
-            </FormControl>
-          </Grid>
-        </Grid>
+      <Grid container style={{ padding: theme.spacing(1) }}>
         {/* Type Id , Customer Id*/}
+        <Grid item container spacing={1} xs={6} sm={6} md={8} lg={8}>
+          <RenderInteractionParams
+            {...this.props}
+            type={
+              this.props.app.types.filter(
+                (type) =>
+                  type._id === source.sourceState.selectedInteraction.typeId
+              )[0]
+            }
+            handleDataChange={this.onDataChange}
+            canSave={source.sourceState.canSave}
+            params={params}
+          />
+        </Grid>
         <Grid item xs={6} sm={6} md={4} lg={4}>
-          <Grid container direction="column">
+          <Grid
+            container
+            direction="column"
+            style={{ padding: theme.spacing(1) }}
+          >
             <FormControl className={classes.formControl} size="small">
               {this.renderTypeData()}
             </FormControl>
             <FormControl className={classes.formControl} size="small">
               {this.renderCustomerData()}
             </FormControl>
-            <Grid container>
-              <Grid item xs={12} sm={6} lg={6}>
-                <Grid container direction="column">
-                  <FormControl
-                    className={classes.formControl}
-                    style={{ width: "90%" }}
-                    size="small"
-                  >
-                    <TextField
-                      type="date"
-                      label="Start"
-                      disabled
-                      value={
-                        source.sourceState.selectedInteraction.attached.start
-                      }
-                      //variant="outlined"
-                      inputProps={{ style: { fontSize: "0.8rem" } }}
-                      InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-                    />
-                  </FormControl>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Grid container direction="column">
-                  <FormControl
-                    className={classes.formControl}
-                    style={{ width: "90%" }}
-                    size="small"
-                  >
-                    <TextField
-                      type="date"
-                      label="Due"
-                      name="due"
-                      disabled={!source.sourceState.canSave}
-                      onChange={this.onDataChange}
-                      value={
-                        source.sourceState.selectedInteraction.attached.due
-                      }
-                      //variant="outlined"
-                      inputProps={{ style: { fontSize: "0.8rem" } }}
-                      InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-                    />
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
-      </React.Fragment>
+      </Grid>
     );
   }
 }

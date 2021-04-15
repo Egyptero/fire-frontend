@@ -1,7 +1,9 @@
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import RenderInteractionParams from "../../../common/interaction/RenderInteractionParams";
 import getType from "./getType";
+import RenderProject from "./RenderProject";
 import RenderWhatsApp from "./RenderWhatsApp";
 
 const styles = (theme) => ({
@@ -10,21 +12,7 @@ const styles = (theme) => ({
   gridFull: {},
   card: {},
   cardContent: {
-    position: "relative",
-    overflow: "auto",
-    padding: theme.spacing(0),
-    height: "63vh",
-    minWidth: "100%",
-    "&::-webkit-scrollbar": {
-      width: "0.4em",
-    },
-    "&::-webkit-scrollbar-track": {
-      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,.1)",
-      outline: "1px solid slategrey",
-    },
+
   },
   floatButton: {
     position: "absolute",
@@ -131,23 +119,20 @@ class MyInteractionDetails extends Component {
   renderChatType = () => {};
   renderProjectType = () => {
     console.log("We should render project type now");
-    //return <React.Fragment />;
-    return this.renderWhatsAppType();
+    return <RenderProject {...this.props} />;
   };
   renderFacebookPostType = () => {};
   renderWhatsAppType = () => {
     return <RenderWhatsApp {...this.props} />;
   };
   renderCallType = () => {};
-  renderCustomType = () => {};
   renderWebrtcType = () => {};
   renderEmailType = () => {};
   renderVedioType = () => {};
   renderSMSType = () => {};
   renderCustomType = () => {
-    console.log("We should render project type now");
-    //return <React.Fragment />;
-    return this.renderWhatsAppType();
+    console.log("We should render custom type now");
+    return <RenderProject {...this.props} />;
   };
   renderYoutubeType = () => {};
   render() {

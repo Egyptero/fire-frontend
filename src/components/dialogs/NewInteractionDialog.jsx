@@ -17,6 +17,7 @@ import {
   OutlinedInput,
 } from "@material-ui/core";
 import { Cancel, Save } from "@material-ui/icons";
+import RenderInteractionParams from "../common/interaction/RenderInteractionParams";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -36,6 +37,7 @@ class NewInteraction extends Component {
     description: "",
     start: "",
     due: "",
+    params: {},
   };
   componentDidMount() {
     // console.log("New interaction dialog opened");
@@ -62,40 +64,76 @@ class NewInteraction extends Component {
     }
   }
 
+  renderTypeParams = () => {
+    if (!this.state.typeId) return <React.Fragment />;
+    //Find type
+    const types = this.props.app.types.filter(
+      (type) => type._id === this.state.typeId
+    );
+    if (!types || types.length < 1) return <React.Fragment />;
+    //    console.log("type found", types[0].configuration);
+    return (
+      <RenderInteractionParams
+        type={types[0]}
+        handleDataChange={this.handleDataChange}
+        params={this.state.params}
+        canSave={true}
+        {...this.props}
+      />
+    );
+  };
   handleDataChange = (event) => {
     if (event.target.name === "type")
       this.setState({ typeId: event.target.value });
     else if (event.target.name === "customer")
       this.setState({ customerId: event.target.value });
-    else if (event.target.name === "title")
-      this.setState({ title: event.target.value });
-    else if (event.target.name === "description")
-      this.setState({ description: event.target.value });
-    else if (event.target.name === "start")
-      this.setState({ start: event.target.value });
-    else if (event.target.name === "due")
-      this.setState({ due: event.target.value });
+    // else if (event.target.name === "title")
+    //   this.setState({ title: event.target.value });
+    // else if (event.target.name === "description")
+    //   this.setState({ description: event.target.value });
+    // else if (event.target.name === "start")
+    //   this.setState({ start: event.target.value });
+    // else if (event.target.name === "due")
+    //   this.setState({ due: event.target.value });
+    else {
+      const types = this.props.app.types.filter(
+        (type) => type._id === this.state.typeId
+      );
+      if (!types || types.length < 1) return <React.Fragment />;
+      let { params } = this.state;
+      types[0].configuration.params.forEach((param) => {
+        if (param.name === event.target.name) {
+          //We need to update one of the params
+          params[param.name] = event.target.value;
+        }
+      });
+      this.setState({ params });
+    }
   };
   handleAddInteraction = () => {
     const { source } = this.props;
+    const data = { ...this.state.params };
+
     let interaction = {
       customerId: this.state.customerId,
       typeId: this.state.typeId,
-      schedule: this.state.start,
+      schedule: data.startdate, // predefined and must variable
       attached: {
-        title: this.state.title,
-        description: this.state.description,
-        start: this.state.start,
-        due: this.state.due,
+        title: data.title,
+        description: data.description,
+        // start: this.state.start,
+        // due: this.state.due,
+        params: { ...this.state.params },
       },
     };
+    console.log("interaction before saving", interaction);
     source.handleAddInteraction(interaction);
   };
-  formattedDate = (d) => {
-    if (!d) return "";
-    const date = new Date(d);
-    return date.toISOString().split("T")[0];
-  };
+  // formattedDate = (d) => {
+  //   if (!d) return "";
+  //   const date = new Date(d);
+  //   return date.toISOString().split("T")[0];
+  // };
 
   render() {
     const { source, app, theme } = this.props;
@@ -106,7 +144,8 @@ class NewInteraction extends Component {
         open={sourceState.openNewInteraction}
         onClose={handleNewInteractionClose}
         aria-labelledby="form-dialog-title"
-        maxWidth="xs"
+        maxWidth="sm"
+        fullWidth
       >
         <DialogTitle
           id="form-dialog-title"
@@ -122,7 +161,7 @@ class NewInteraction extends Component {
               color: theme.palette.secondary.contrastText,
             }}
           >
-            Create new case
+            Add case
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -135,7 +174,7 @@ class NewInteraction extends Component {
                 size="small"
               >
                 <InputLabel htmlFor="type-label">
-                  <Typography variant="caption">Type</Typography>
+                  <Typography variant="caption">Case type</Typography>
                 </InputLabel>
                 <Select
                   value={this.state.typeId}
@@ -200,74 +239,8 @@ class NewInteraction extends Component {
                 </Select>
               </FormControl>
             </Grid>
-            {/** Task title */}
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <TextField
-                margin="dense"
-                onChange={this.handleDataChange}
-                name="title"
-                label="Title"
-                value={this.state.title}
-                required
-                //variant="outlined"
-                fullWidth
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-              />
-            </Grid>
-            {/** Task description */}
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <TextField
-                margin="dense"
-                multiline
-                rows="6"
-                onChange={this.handleDataChange}
-                name="description"
-                label="Description"
-                value={this.state.description}
-                variant="outlined"
-                fullWidth
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{ style: { fontSize: "0.8rem" } }}
-              />
-            </Grid>
-            {/** Schedule interaction */}
-            <Grid item xs={12} sm={6} md={6} lg={6}>
-              <TextField
-                margin="dense"
-                onChange={this.handleDataChange}
-                name="start"
-                label="Start"
-                value={this.formattedDate(this.state.start)}
-                type="Date"
-                placeholder=""
-                variant="outlined"
-                fullWidth
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{
-                  style: { fontSize: "0.8rem" },
-                  shrink: true,
-                }}
-              />
-            </Grid>
-            {/** Due interaction */}
-            <Grid item xs={12} sm={6} md={6} lg={6}>
-              <TextField
-                margin="dense"
-                onChange={this.handleDataChange}
-                name="due"
-                label="Due"
-                value={this.formattedDate(this.state.due)}
-                type="Date"
-                placeholder=""
-                variant="outlined"
-                fullWidth
-                inputProps={{ style: { fontSize: "0.8rem" } }}
-                InputLabelProps={{
-                  style: { fontSize: "0.8rem" },
-                  shrink: true,
-                }}
-              />
+            <Grid container spacing={2}>
+              {this.renderTypeParams()}
             </Grid>
           </Grid>
         </DialogContent>

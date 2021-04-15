@@ -3,17 +3,8 @@ import { Grid, TextField, FormControl } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 const styles = (theme) => ({
-  content: {
-    flexGrow: 1,
-    height: "86vh",
-  },
-  grid: {
-    display: "flex",
-    position: "relative",
-    maxHeight: "100%",
-    minHeight: "100%",
-    overflow: "hidden",
-  },
+  content: {},
+  grid: {},
   gridWithoutBorder: {},
   card: {},
   details: {},
@@ -46,7 +37,16 @@ class BasicSkillgroupInfo extends Component {
         </Grid> */}
         {/* Skillgroup name */}
         <Grid item xs={6} sm={5} md={3} lg={3}>
-          <Grid container direction="column">
+          <Grid
+            container
+            direction="column"
+            style={{
+              // border: "1px solid",
+              // borderColor: theme.palette.secondary.light,
+              // "border-radius": "5px",
+              padding: theme.spacing(1),
+            }}
+          >
             <FormControl className={classes.formControl}>
               <TextField
                 name="name"
@@ -64,8 +64,16 @@ class BasicSkillgroupInfo extends Component {
         </Grid>
         {/* Skillgroup description */}
         <Grid item xs={12}>
-          <Grid container direction="column">
-            {/* User Email */}
+          <Grid
+            container
+            direction="column"
+            style={{
+              // border: "1px solid",
+              // borderColor: theme.palette.secondary.light,
+              // "border-radius": "5px",
+              padding: theme.spacing(1),
+            }}
+          >
             <FormControl className={classes.formControl}>
               <TextField
                 name="description"
@@ -76,7 +84,7 @@ class BasicSkillgroupInfo extends Component {
                 disabled={!source.sourceState.canSave}
                 onChange={this.onDataChange}
                 value={source.sourceState.selectedSkillgroup.description}
-//                variant="outlined"
+                variant="outlined"
                 inputProps={{ style: { fontSize: "0.8rem" } }}
                 InputLabelProps={{ style: { fontSize: "0.8rem" } }}
               />

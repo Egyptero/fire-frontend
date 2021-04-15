@@ -110,6 +110,16 @@ class AllTypeParameters extends Component {
           log: "Log",
         },
       },
+      {
+        title: "Width",
+        field: "width",
+        lookup: {
+          3: "25%",
+          4: "33%",
+          6: "50%",
+          12: "100%",
+        },
+      },
       { title: "Default", field: "default" },
       { title: "Must", field: "must", type: "boolean" },
       { title: "Show", field: "show", type: "boolean" },
@@ -210,48 +220,54 @@ class AllTypeParameters extends Component {
                         console.log("Row editing cancelled"),
                       onRowAdd: (newData) =>
                         new Promise((resolve, reject) => {
-                          let data = [...params];
-                          newData.edit = true;
-                          data.push(newData);
-                          if (!selectedType.configuration)
-                            selectedType.configuration = {
-                              kpis: {},
-                              params: [],
-                            };
+                          setTimeout(() => {
+                            let data = [...params];
+                            newData.edit = true;
+                            data.push(newData);
+                            if (!selectedType.configuration)
+                              selectedType.configuration = {
+                                kpis: {},
+                                params: [],
+                              };
 
-                          selectedType.configuration.params = [...data];
-                          source.updateSelectedType(selectedType);
-                          resolve();
+                            selectedType.configuration.params = data; // We do not need to recopy array
+                            source.updateSelectedType(selectedType);
+                            resolve();
+                          }, 1000);
                         }),
                       onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
-                          const data = [...params];
-                          const index = oldData.tableData.id;
-                          newData.edit = true;
-                          data[index] = newData;
-                          if (!selectedType.configuration)
-                            selectedType.configuration = {
-                              kpis: {},
-                              params: [],
-                            };
+                          setTimeout(() => {
+                            const data = [...params];
+                            const index = oldData.tableData.id;
+                            newData.edit = true;
+                            data[index] = newData;
+                            if (!selectedType.configuration)
+                              selectedType.configuration = {
+                                kpis: {},
+                                params: [],
+                              };
 
-                          selectedType.configuration.params = [...data];
-                          source.updateSelectedType(selectedType);
-                          resolve();
+                            selectedType.configuration.params = [...data];
+                            source.updateSelectedType(selectedType);
+                            resolve();
+                          }, 1000);
                         }),
                       onRowDelete: (oldData) =>
                         new Promise((resolve, reject) => {
-                          const data = [...params];
-                          const index = oldData.tableData.id;
-                          data.splice(index, 1);
-                          if (!selectedType.configuration)
-                            selectedType.configuration = {
-                              kpis: {},
-                              params: [],
-                            };
-                          selectedType.configuration.params = [...data];
-                          source.updateSelectedType(selectedType);
-                          resolve();
+                          setTimeout(() => {
+                            const data = [...params];
+                            const index = oldData.tableData.id;
+                            data.splice(index, 1);
+                            if (!selectedType.configuration)
+                              selectedType.configuration = {
+                                kpis: {},
+                                params: [],
+                              };
+                            selectedType.configuration.params = [...data];
+                            source.updateSelectedType(selectedType);
+                            resolve();
+                          }, 1000);
                         }),
                     }
                   : {}

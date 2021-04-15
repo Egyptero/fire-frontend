@@ -21,7 +21,23 @@ const styles = (theme) => ({
   grid: {},
   gridFull: {},
   card: {},
-  cardContent: {},
+  cardContent: {
+    position: "relative",
+    overflow: "auto",
+    padding: theme.spacing(0),
+    height: "63vh",
+    minWidth: "100%",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+    },
+    "&::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+    },
+  },
   formControl: {},
 });
 class RenderWhatsApp extends Component {

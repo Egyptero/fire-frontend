@@ -7,7 +7,7 @@ import MyInteraction from "./Dashboard/MyInteractionsSummary";
 const styles = theme => ({
   content: {
     flexGrow: 1,
-    //height: "86vh"
+    height: "90vh"
   },
   grid: {
     display: "flex",
@@ -16,10 +16,7 @@ const styles = theme => ({
     minHeight: "100%"
   },
   card: {
-    overflow: "auto",
-    maxHeight: "100%",
-    minHeight: "100%",
-    minWidth: "100%"
+    
   }
 });
 

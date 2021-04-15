@@ -22,8 +22,6 @@ const styles = (theme) => ({
   card: {},
   details: {},
   formControl: {
-    margin: theme.spacing(1),
-    //maxWidth: "90%"
   },
   list: {
     width: "100%",
@@ -201,7 +199,7 @@ class SkillUsersManagement extends Component {
     const { classes, source, app } = this.props;
     const { users } = app;
     return (
-      <React.Fragment>
+      <Grid container spacing={2}>
         {/* Organization userss except those with skill */}
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <Grid container direction="column">
@@ -242,7 +240,7 @@ class SkillUsersManagement extends Component {
             </FormControl>
           </Grid>
         </Grid>
-      </React.Fragment>
+      </Grid>
     );
   }
 }

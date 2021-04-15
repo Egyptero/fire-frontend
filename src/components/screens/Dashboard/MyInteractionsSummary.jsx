@@ -20,12 +20,19 @@ const styles = (theme) => ({
   content: {},
   grid: {},
   gridFull: {},
-  card: {},
+  card: {
+    overflow: "auto",
+    maxHeight: "100%",
+    minHeight: "100%",
+    minWidth: "100%",
+    boxShadow: "none",
+    backgroundColor: "transparent",
+  },
   cardContent: {
     position: "relative",
     overflow: "auto",
     padding: theme.spacing(0),
-    //    height: "32vh",
+    height: "100%",
     minWidth: "100%",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -89,7 +96,11 @@ class MyInteractionsSummary extends Component {
       <React.Fragment>
         <Card className={classes.card}>
           <CardHeader
-            style={{ padding: this.props.theme.spacing(1) }}
+            style={{
+              padding: this.props.theme.spacing(1),
+              //backgroundColor: this.props.theme.palette.secondary.light,
+              backgroundColor: "lightgrey",
+            }}
             action={
               <div>
                 <FormControl className={classes.formControl} size="small">
@@ -107,21 +118,34 @@ class MyInteractionsSummary extends Component {
                 </FormControl>
               </div>
             }
-            title="Running interactions"
+            title={<b>Running cases / interactions</b>}
             titleTypographyProps={{ variant: "body1" }}
           />
           <Divider />
           <CardContent
             className={classes.cardContent}
-            style={{ height: this.props.fullScreen ? "80vh" : "" }}
+            style={{ height: this.props.fullScreen ? "82vh" : "" }}
           >
             <Grid container direction="row" style={{ height: "100%" }}>
               <Grid md={3} item>
-                <List disablePadding style={{ width: "100%" }}>
-                  {myInteractions.map((myInteraction) => {
-                    return this.renderMyInteractionList(myInteraction);
-                  })}
-                </List>
+                <Grid
+                  container
+                  direction="column"
+                  style={{
+                    padding: this.props.theme.spacing(1),
+                  }}
+                >
+                  <List
+                    disablePadding
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    {myInteractions.map((myInteraction) => {
+                      return this.renderMyInteractionList(myInteraction);
+                    })}
+                  </List>
+                </Grid>
               </Grid>
               <Grid md={9} item>
                 <MyInteractionDetails {...this.props} />
