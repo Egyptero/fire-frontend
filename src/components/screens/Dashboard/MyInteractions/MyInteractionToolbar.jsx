@@ -49,9 +49,9 @@ class MyInteractionToolbar extends Component {
     let { myInteraction } = app;
     let typeinfo = getType(app);
     let customerName = this.getCustomerName();
-    myInteraction.interaction.fromAddress = "+966552735808";
-    myInteraction.interaction.crmlink =
-      "https://www.google.com/search?q=" + customerName;
+    // myInteraction.interaction.fromAddress = "+966552735808";
+    // myInteraction.interaction.crmlink =
+    //   "https://www.google.com/search?q=" + customerName;
 
     if (!myInteraction) return <React.Fragment />;
 

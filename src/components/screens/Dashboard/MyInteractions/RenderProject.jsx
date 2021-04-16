@@ -1,4 +1,7 @@
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Card,
   CardContent,
   CardHeader,
@@ -7,10 +10,13 @@ import {
   Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { ExpandMore } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import RenderInteractionCustomer from "../../../common/interaction/RenderInteractionCustomer";
+import RenderInteractionObject from "../../../common/interaction/RenderInteractionObject";
 import RenderInteractionParams from "../../../common/interaction/RenderInteractionParams";
+import RenderInteractionType from "../../../common/interaction/RenderInteractionType";
 import MyInteractionButtons from "./MyInteractionButtons";
 import MyInteractionToolbar from "./MyInteractionToolbar";
 const styles = (theme) => ({
@@ -53,6 +59,7 @@ class RenderProject extends Component {
           //backgroundImage: `url("./imgs/chatbackground.png")`,
           //backgroundRepeat: true,
           backgroundColor: "transparent",
+          boxShadow: "none",
           //height: "100%",
           //boxShadow: "none",
         }}
@@ -65,10 +72,21 @@ class RenderProject extends Component {
           }}
           action={<MyInteractionButtons {...this.props} />}
         />
-        <Divider />
+        {/* <Divider /> */}
         <CardContent className={classes.cardContentProject}>
           <Grid container>
-            <Grid item sm={8} style={{ padding: theme.spacing(2) }}>
+            <Grid item sm={8} style={{ padding: theme.spacing(1) }}>
+              {/* <Accordion style={{ width: "100%" }} defaultExpanded={true}>
+                <AccordionSummary
+                  expandIcon={<ExpandMore />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography variant="caption">
+                    <b>Case details</b>
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails> */}
               <Grid container spacing={1}>
                 <RenderInteractionParams
                   {...this.props}
@@ -84,17 +102,65 @@ class RenderProject extends Component {
                   }
                 />
               </Grid>
+              {/* </AccordionDetails>
+              </Accordion> */}
             </Grid>
-            <Grid item sm={4} style={{ padding: theme.spacing(2) }}>
-              <Grid container direction="column" spacing={1}>
-                <RenderInteractionCustomer
-                  {...this.props}
-                  customerId={myInteraction.interaction.customerId}
-                />
-                {/* <Typography variant="h5">
-                  We need to render customer details , then customer last 5
-                  interactions
-                </Typography> */}
+            <Grid item sm={4} style={{ padding: theme.spacing(1) }}>
+              <Grid container direction="column">
+                {/* Customer details */}
+                <Accordion style={{ width: "100%" }} defaultExpanded={true}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMore />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography variant="caption">
+                      <b>Customer data</b>
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <RenderInteractionCustomer
+                      {...this.props}
+                      customerId={myInteraction.interaction.customerId}
+                    />
+                  </AccordionDetails>
+                </Accordion>
+                {/* Interaction data details */}
+                <Accordion style={{ width: "100%" }} defaultExpanded={false}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMore />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography variant="caption">
+                      <b>All data</b>
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <RenderInteractionObject
+                      {...this.props}
+                      interaction={myInteraction.interaction}
+                    />
+                  </AccordionDetails>
+                </Accordion>
+                {/* Interaction type details */}
+                <Accordion style={{ width: "100%" }} defaultExpanded={false}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMore />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography variant="caption">
+                      <b>Type data</b>
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <RenderInteractionType
+                      {...this.props}
+                      typeId={myInteraction.interaction.typeId}
+                    />
+                  </AccordionDetails>
+                </Accordion>
               </Grid>
             </Grid>
           </Grid>

@@ -34,17 +34,37 @@ class RenderInteractionCustomer extends Component {
     customer: null,
   };
   componentDidMount() {
-    //Find customer
-    // If not found , load customer
+    const { app } = this.props;
+    if (!app) return;
+    const { customers } = app;
+    if (!customers) return;
+    let result = customers.filter(
+      (customer) => customer._id === this.props.customerId
+    );
+    if (result && result.length > 0) {
+      this.setState({ customer: result[0] });
+    }
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.customerId === this.props.customerId) return;
     else {
-      //Reload customer information
+      const { app } = this.props;
+      if (!app) return;
+      const { customers } = app;
+      if (!customers) return;
+      let result = customers.filter(
+        (customer) => customer._id === this.props.customerId
+      );
+      if (result && result.length > 0) {
+        this.setState({ customer: result[0] });
+      }
     }
   }
   render() {
     const { theme, classes } = this.props;
+    const { customer } = this.state;
+    if (!customer) return <React.Fragment />;
+
     return (
       <Grid container direction="column">
         <TableContainer
@@ -75,7 +95,7 @@ class RenderInteractionCustomer extends Component {
               <TableRow key={"name"}>
                 <TableCell align="center" colSpan={2}>
                   <Typography variant="caption">
-                    <b>Customer name</b>
+                    <b>{`${customer.firstname} ${customer.lastname}`}</b>
                   </Typography>
                 </TableCell>
               </TableRow>
@@ -86,7 +106,7 @@ class RenderInteractionCustomer extends Component {
                     style={{ color: theme.palette.success.dark }}
                   />
                 </TableCell>
-                <TableCell align="left">+966552735273</TableCell>
+                <TableCell align="left">{customer.phone}</TableCell>
               </TableRow>
               <TableRow key={"whatsapp"}>
                 <TableCell align="center">
@@ -95,7 +115,7 @@ class RenderInteractionCustomer extends Component {
                     style={{ color: theme.palette.success.main }}
                   />
                 </TableCell>
-                <TableCell align="left">+966552735273</TableCell>
+                <TableCell align="left">{customer.phone}</TableCell>
               </TableRow>
               <TableRow key={"facebook"}>
                 <TableCell align="center">
@@ -104,7 +124,7 @@ class RenderInteractionCustomer extends Component {
                     style={{ color: theme.palette.info.dark }}
                   />
                 </TableCell>
-                <TableCell align="left">mamdouh.aref</TableCell>
+                <TableCell align="left">{customer.ids.facebookId}</TableCell>
               </TableRow>
               <TableRow key={"email"}>
                 <TableCell align="center">
@@ -113,7 +133,7 @@ class RenderInteractionCustomer extends Component {
                     style={{ color: theme.palette.info.light }}
                   />
                 </TableCell>
-                <TableCell align="left">aref.mamdouh@gmail.com</TableCell>
+                <TableCell align="left">{customer.email}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -128,7 +148,7 @@ RenderInteractionCustomer.propTypes = {
   app: PropTypes.object.isRequired,
   primaryApp: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  customerId: PropTypes.object.isRequired,
+  customerId: PropTypes.string.isRequired,
 };
 export default withStyles(styles, { withTheme: true })(
   RenderInteractionCustomer

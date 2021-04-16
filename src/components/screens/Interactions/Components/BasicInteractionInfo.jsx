@@ -1,11 +1,23 @@
 import React, { Component } from "react";
-import { Grid, TextField, FormControl } from "@material-ui/core";
+import {
+  Grid,
+  TextField,
+  FormControl,
+  Accordion,
+  AccordionSummary,
+  Typography,
+  AccordionDetails,
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import _ from "lodash";
 import loadCustomer from "../../../../functions/tenant/customer/loadCustomer";
 import loadType from "../../../../functions/tenant/type/loadType";
 import RenderInteractionParams from "../../../common/interaction/RenderInteractionParams";
+import RenderInteractionType from "../../../common/interaction/RenderInteractionType";
+import RenderInteractionCustomer from "../../../common/interaction/RenderInteractionCustomer";
+import RenderInteractionObject from "../../../common/interaction/RenderInteractionObject";
+import { ExpandMore } from "@material-ui/icons";
 
 const styles = (theme) => ({
   content: {},
@@ -207,19 +219,21 @@ class BasicCustomerInfo extends Component {
     return (
       <Grid container style={{ padding: theme.spacing(1) }}>
         {/* Type Id , Customer Id*/}
-        <Grid item container spacing={1} xs={6} sm={6} md={8} lg={8}>
-          <RenderInteractionParams
-            {...this.props}
-            type={
-              this.props.app.types.filter(
-                (type) =>
-                  type._id === source.sourceState.selectedInteraction.typeId
-              )[0]
-            }
-            handleDataChange={this.onDataChange}
-            canSave={source.sourceState.canSave}
-            params={params}
-          />
+        <Grid item xs={6} sm={6} md={8} lg={8}>
+          <Grid container spacing={1}>
+            <RenderInteractionParams
+              {...this.props}
+              type={
+                this.props.app.types.filter(
+                  (type) =>
+                    type._id === source.sourceState.selectedInteraction.typeId
+                )[0]
+              }
+              handleDataChange={this.onDataChange}
+              canSave={source.sourceState.canSave}
+              params={params}
+            />
+          </Grid>
         </Grid>
         <Grid item xs={6} sm={6} md={4} lg={4}>
           <Grid
@@ -227,12 +241,60 @@ class BasicCustomerInfo extends Component {
             direction="column"
             style={{ padding: theme.spacing(1) }}
           >
-            <FormControl className={classes.formControl} size="small">
-              {this.renderTypeData()}
-            </FormControl>
-            <FormControl className={classes.formControl} size="small">
-              {this.renderCustomerData()}
-            </FormControl>
+            {/* Customer details */}
+            <Accordion style={{ width: "100%" }} defaultExpanded={true}>
+              <AccordionSummary
+                expandIcon={<ExpandMore />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography variant="caption">
+                  <b>Customer data</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <RenderInteractionCustomer
+                  {...this.props}
+                  customerId={source.sourceState.selectedInteraction.customerId}
+                />
+              </AccordionDetails>
+            </Accordion>
+            {/* Interaction details */}
+            <Accordion style={{ width: "100%" }} defaultExpanded={false}>
+              <AccordionSummary
+                expandIcon={<ExpandMore />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography variant="caption">
+                  <b>All data</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <RenderInteractionObject
+                  {...this.props}
+                  interaction={source.sourceState.selectedInteraction}
+                />
+              </AccordionDetails>
+            </Accordion>
+            {/* Type details */}
+            <Accordion style={{ width: "100%" }} defaultExpanded={false}>
+              <AccordionSummary
+                expandIcon={<ExpandMore />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography variant="caption">
+                  <b>Type data</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <RenderInteractionType
+                  {...this.props}
+                  typeId={source.sourceState.selectedInteraction.typeId}
+                />
+              </AccordionDetails>
+            </Accordion>
           </Grid>
         </Grid>
       </Grid>

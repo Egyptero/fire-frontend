@@ -16,6 +16,8 @@ import {
 } from "@material-ui/core";
 import MyInteractionsItem from "./MyInteractions/MyInteractionsItem";
 import MyInteractionDetails from "./MyInteractions/MyInteractionDetails";
+import RenderInteractionWrapup from "../../common/interaction/RenderInteractionWrapup";
+import RenderInteractionTransfer from "../../common/interaction/RenderInteractionTransfer";
 const styles = (theme) => ({
   content: {},
   grid: {},
@@ -88,7 +90,7 @@ class MyInteractionsSummary extends Component {
     );
   };
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
     const { app } = this.props;
     const myInteractions = app.myInteractions ? app.myInteractions : [];
 
@@ -102,7 +104,36 @@ class MyInteractionsSummary extends Component {
               backgroundColor: "lightgrey",
             }}
             action={
-              <div>
+              <Grid container direction="row">
+                {this.props.app.myInteraction ? (
+                  <React.Fragment>
+                    <RenderInteractionTransfer
+                      {...this.props}
+                      myInteraction={this.props.app.myInteraction}
+                    />
+                    <Divider
+                      style={{
+                        width: "0px",
+                        marginLeft: theme.spacing(4),
+                        marginRight: theme.spacing(4),
+                      }}
+                    />
+                    <RenderInteractionWrapup
+                      {...this.props}
+                      interaction={this.props.app.myInteraction.interaction}
+                    />
+                    <Divider
+                      style={{
+                        width: "0px",
+                        marginLeft: theme.spacing(4),
+                        marginRight: theme.spacing(4),
+                      }}
+                    />
+                  </React.Fragment>
+                ) : (
+                  ""
+                )}
+
                 <FormControl className={classes.formControl} size="small">
                   <InputLabel shrink htmlFor="bot-label-placeholder">
                     <Typography variant="caption">View</Typography>
@@ -116,11 +147,13 @@ class MyInteractionsSummary extends Component {
                     </MenuItem>
                   </Select>
                 </FormControl>
-              </div>
+              </Grid>
             }
             title={<b>Running cases / interactions</b>}
             titleTypographyProps={{ variant: "body1" }}
-          />
+          >
+            
+          </CardHeader>
           <Divider />
           <CardContent
             className={classes.cardContent}

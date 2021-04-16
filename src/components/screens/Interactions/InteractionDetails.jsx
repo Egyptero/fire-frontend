@@ -28,6 +28,8 @@ const styles = (theme) => ({
     overflow: "hidden",
     maxHeight: "100%",
     minHeight: "100%",
+    backgroundColor: "transparent",
+    boxShadow: "none",
   },
   details: {
     display: "block",
@@ -152,9 +154,9 @@ class InteractionDetails extends Component {
                   {/**Basic Interaction Information like pic , name , email */}
                   <BasicInteractionInfo {...this.props} />
                   {/* Divider */}
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <Divider style={{ margin: "1%" }} />
-                  </Grid>
+                  </Grid> */}
                   {/**Advanced Interaction Information like phones , emails , Facebook ... etc */}
                   {/* <InteractionAdvancedInfo {...this.props} /> */}
                 </Grid>
